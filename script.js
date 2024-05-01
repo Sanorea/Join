@@ -5,8 +5,10 @@ function docID(id) {
 function renderHeader() {
     docID('body').innerHTML=/*html*/`
     <header>
-        <img src="./assets/img/logo_mobile.svg">
-        <div class="">G</div>
+        <img class="header-logo" src="./assets/img/logo_mobile.svg">
+        <div class="header-user">
+            <span class="header-user-initials">SM</span>
+        </div>
     </header>`;
 }
 
@@ -17,10 +19,4 @@ function renderNav() {
 function renderHeaderNav() {
     renderHeader();
     renderNav();
-}
-
-function renderContactSite() {
-    renderHeaderNav();
-    docID('body').innerHTML+=`<main id="main-contact"></main>`;    
-    docID('main-contact').innerHTML=``;
 }
