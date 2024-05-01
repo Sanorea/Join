@@ -19,8 +19,4 @@ function renderHeaderNav() {
     renderNav();
 }
 
-function renderContactSite() {
-    renderHeaderNav();
-    docID('body').innerHTML+=`<main id="main-contact"></main>`;    
-    docID('main-contact').innerHTML=``;
-}
+
