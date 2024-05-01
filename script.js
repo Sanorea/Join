@@ -5,8 +5,10 @@ function docID(id) {
 function renderHeader() {
     docID('body').innerHTML=/*html*/`
     <header>
-        <img src="./assets/img/logo_mobile.svg">
-        <div class="">G</div>
+        <img class="header-logo" src="./assets/img/logo_mobile.svg">
+        <div class="header-user">
+            <span class="header-user-initials">SM</span>
+        </div>
     </header>`;
 }
 
@@ -18,5 +20,3 @@ function renderHeaderNav() {
     renderHeader();
     renderNav();
 }
-
-
