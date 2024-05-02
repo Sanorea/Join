@@ -13,7 +13,25 @@ function renderHeader() {
 }
 
 function renderNav() {
-    docID('nav').innerHTML += `<nav></nav>`;
+    docID('nav').innerHTML += /*html*/`
+    <nav>
+        <div class="nav-capture">
+            <img src="/assets/img/summary_icon.svg" alt="summary">
+            <p>Summary</p>
+        </div>
+        <div class="nav-capture">
+            <img src="/assets/img/board_icon.svg" alt="board">
+            <p>Board</p>
+        </div>
+        <div class="nav-capture">
+            <img src="/assets/img/addTask_icon.svg" alt="addTask">
+            <p>Add Task</p>
+        </div>
+        <div class="nav-capture">
+            <img src="/assets/img/contacts_icon.svg" alt="contacts">
+            <p>Contacts</p>
+        </div>
+    </nav>`;
 }
 
 function renderHeaderNav() {
