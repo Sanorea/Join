@@ -1,0 +1,84 @@
+
+/* === general === */
+
+.width-80 {
+    width: 80%;
+}
+
+.width-70 {
+    width: 70%;
+}
+
+p {
+    margin: 0;
+}
+
+.contacts-disp-flex-ai-center-fd-col {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contacts-disp-flex-ai-start-fd-col {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.contacts-df-row-ai-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+/*=== elements ===*/
+
+.contacts-headline-letter {
+    display: flex;
+    justify-content: center;
+    width: 42px;
+    font-size: 20px;
+}
+
+.contacts-headline-letter-padding {
+    padding: 17px 36px;
+}
+
+.contacts-seperator {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+}
+
+.contacts-contact-entry {
+    gap: 20px;
+    padding: 15px 24px;
+}
+
+
+.contacts-user-initials {
+    width: 42px;
+    height: 42px;
+    background-color: orange;
+    border-radius: 45px;
+    border: none;
+    color: white;
+    font-size: 12px;
+}
+
+.contacts-contact {
+    gap: 5px;
+}
+
+.contacts-name {
+    font-size: 20px;
+}
+
+.contacts-email {
+    color: var(--secondary-color);
+    font-size: 16px;
+}
+
+
