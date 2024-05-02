@@ -11,6 +11,7 @@
 
 body {
     margin: 0;
+    font-family: Inter;
 }
 
 /* === header === */
@@ -19,7 +20,6 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 1440px;
     padding: 20px 16px;
     box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 }

@@ -10,11 +10,11 @@
     <script src="script.js"></script>
 </head>
 
-<body  onload="renderHeaderNav()">
+<body onload="renderHeaderNav()">
     <header id="header"></header>
     <nav id="nav"></nav>
     <div class="add-task-bg">
-        <div>
+        <div class="add-task-container">
             <h2>Add Task</h2>
             <div class="add-task-section-container">
                 <div class="add-task-capture-input">
@@ -69,10 +69,7 @@
                         <p class="add-task-required-icon">*</p>
                         <p>This field is required</p>
                     </div>
-                    <button class="add-task-create-button">
-                        <p>Create Task</p>
-                        <img src="/assets/img/check.svg" alt="checkmark">
-                    </button>
+                    <button class="btn-primary btn-create disp-flex-center-center">Create Task</button>
                 </div>
             </div>
         </div>
