@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isa</title>
+    <title>Isabel</title>
+    <link rel="stylesheet" href="add_task.css">
 </head>
-<body>
-    
-</body>
-</html>
 
+<body>
+    <div class="add-task-bg">
+        <div>
+            <h2>Add Task</h2>
+            <div class="add-task-section-container">
+                <div class="add-task-capture-input">
+                    <div class="add-task-required-fields">
+                        <p>Title</p>
+                        <p class="add-task-required-icon">*</p>
+                    </div>
+                    <input class="add-task-input-fields" type="text" placeholder="Enter a title" required>
+                </div>
+                <div class="add-task-capture-input">
+                    <p>Description</p>
+                    <input class="add-task-input-fields add-task-input-fields-description" type="text" placeholder="Enter a Description">
+                </div>
+                <div class="add-task-capture-input">
+                    <p>Assigned to</p>
+                    <div class="add-task-selection">
+                        <select> <!--Contacts mit For-Schleife einfügen-->
+                            <option value="" selected disabled>Select contacts to assign</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="add-task-capture-input">
+                    <div class="add-task-required-fields">
+                        <p>Title</p>
+                        <p class="add-task-required-icon">*</p>
+                    </div>
+                    <input class="add-task-input-fields" type="date" required>
+                </div>
+                <div class="add-task-capture-input">
+                    <p>Prio</p>
+                    <div class="add-task-prio-button-container">
+                        <button class="add-task-prio-buttons">
+                            <p>Urgent</p>
+                            <img src="/assets/img/urgent.svg" alt="urgent">
+                        </button>
+                        <button class="add-task-prio-buttons">
+                            <p>Medium</p>
+                            <img src="/assets/img/medium.svg" alt="medium">
+                        </button>
+                        <button class="add-task-prio-buttons">
+                            <p>Low</p>
+                            <img src="/assets/img/low.svg" alt="low">
+                        </button>
+                    </div>
+                </div>
+                <div class="add-task-basic-line">
+                    <div class="add-task-required-fields">
+                        <p class="add-task-required-icon">*</p>
+                        <p>This field is required</p>
+                    </div>
+                    <button class="add-task-create-button">
+                        <p>Create Task</p>
+                        <img src="/assets/img/check.svg" alt="checkmark">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
