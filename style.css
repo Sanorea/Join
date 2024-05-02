@@ -1,13 +1,19 @@
+@font-face {
+    font-family: Inter;
+    src: url(/assets/font/Inter-VariableFont_slnt\,wght.ttf);
+}
+
 :root {
     --primary-color: #2A3647;
     --secondary-color: #29ABE2;
     --focus-color: #091931;
-    --main-btn-border-radius: 8px;
 }
 
 body {
     margin: 0;
 }
+
+/* === header === */
 
 header {
     display: flex;
@@ -19,8 +25,8 @@ header {
 }
 
 .header-user {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border: 2px solid var(--primary-color);
     border-radius: 559px;
     display: flex;
@@ -38,23 +44,113 @@ header {
     height: 39px;
 }
 
-.btn-wo-icon {
+/* used for close icon */
+.close-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* === display flex variations  === */
+
+.disp-flex-center-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === button variations ===*/
+
+/* primary variant for buttons */
+.btn-primary {
     background-color: var(--primary-color, black);
-    border-radius: var(--main-btn-border-radius);
     border: none;
     color: #FFFFFF;
-    width: 99px;
-    height: 48px;
-    padding: 15px 24px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
 }
 
-.btn-wo-icon:hover {
+.btn-primary:hover:not(:focus) {
     background-color: var(--secondary-color);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
 }
 
-.btn-wo-icon:focus {
+.btn-primary:focus {
     background-color: var(--focus-color);
+}
+
+/* secondary variant for buttons */
+.btn-secondary {
+    background-color: unset;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-secondary:hover:not(:focus) {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:focus {
+    border-color: var(--focus-color);
+    color: var(--focus-color);
+}
+
+/* used for every wo-icon styled btn */
+.btn-wo-icon {
+    border-radius: 8px;
+    width: 104px;
+    height: 27px;
+    padding: 4px 18px;
+    font-size: 16px;
+}
+
+/* used for cancel/clear btn */
+.btn-cancel {
+    border-radius: 10px;
+    width: 136px;
+    height: 61px;
+    padding: 18px 10px;
+    font-size: 20px;
+    gap: 10px;
+}
+
+.btn-cancel::after {
+    content: url('/assets/img/close.svg');
+}
+
+.btn-cancel:hover:not(:focus) {
+    filter: invert(49%) sepia(78%) saturate(448%) hue-rotate(152deg) brightness(102%) contrast(95%);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+}
+
+/* used for create btn */
+.btn-create {
+    border-radius: 10px;
+    height: 61px;
+    padding: 18px 10px;
+    font-size: 21px;
+    font-weight: 700;
+    gap: 10px;
+}
+
+.btn-create::after {
+    content: url('/assets/img/check.svg');
+}
+
+.btn-create:hover:not(:focus) {
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* used for add task btn */
+.btn-add-task {
+    border-radius: 10px;
+    height: 51px;
+    padding: 18px 10px;
+    font-size: 21px;
+    font-weight: 700;
+    gap: 10px;
+}
+
+.btn-add-task::after {
+    content: url('/assets/img/add.svg');
+    height: 20px;
 }
