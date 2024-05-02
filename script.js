@@ -3,17 +3,17 @@ function docID(id) {
 }
 
 function renderHeader() {
-    docID('body').innerHTML=/*html*/`
-    <header>
-        <img class="header-logo" src="./assets/img/logo_mobile.svg">
-        <div class="header-user">
-            <span class="header-user-initials">SM</span>
-        </div>
-    </header>`;
+    docID('header').innerHTML =/*html*/`
+
+    <img class="header-logo" src="./assets/img/logo_mobile.svg">
+    <div class="header-user">
+        <span class="header-user-initials">SM</span>
+    </div>
+    `;
 }
 
 function renderNav() {
-    docID('body').innerHTML+=`<nav></nav>`;
+    docID('nav').innerHTML += `<nav></nav>`;
 }
 
 function renderHeaderNav() {
