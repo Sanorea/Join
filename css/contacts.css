@@ -13,6 +13,40 @@ p {
     margin: 0;
 }
 
+h1 {
+    margin: 0;
+    font-size: 47px;
+    font-weight: 700;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.gap-16 {
+    gap: 16px;
+}
+
+.gap-22 {
+    gap: 22px;
+}
+
+.gap-30 {
+    gap: 30px;
+}
+
+.gap-40 {
+    gap: 40px;
+}
+
+.color-white {
+    color: white;
+}
+
 .contacts-disp-flex-ai-center-fd-col {
     display: flex;
     align-items: center;
@@ -92,36 +126,6 @@ p {
 
 /* contacts details */
 
-h1 {
-    margin: 0;
-    font-size: 47px;
-    font-weight: 700;
-}
-
-.fs-16 {
-    font-size: 16px;
-}
-
-.fw-700 {
-    font-weight: 700;
-}
-
-.gap-16 {
-    gap: 16px;
-}
-
-.gap-22 {
-    gap: 22px;
-}
-
-.gap-30 {
-    gap: 30px;
-}
-
-.gap-40 {
-    gap: 40px;
-}
-
 .contacts-details {
     margin-top: 128px;
 }
@@ -150,4 +154,29 @@ h1 {
     font-size: 36px;
     font-weight: 700;
     width: 220px; /* needs to be higher for desktop */
+}
+
+/* add and edit contact */
+
+.contacts-top-half {
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 50vh;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.icon-contact-person {
+    padding-right: 25px;
+    background: url("/assets/img/contact_person.svg") no-repeat right;
+}
+
+.icon-contact-phone {
+    padding-right: 25px;
+    background: url("/assets/img/contact_phone.svg") no-repeat right;
+}
+
+.icon-contact-mail {
+    padding-right: 25px;
+    background: url("/assets/img/contact_mail.svg") no-repeat right;
 }
