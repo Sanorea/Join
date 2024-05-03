@@ -34,6 +34,14 @@ p {
 
 /*=== elements ===*/
 
+/* contacts-list */
+
+.contacts-list {
+    background-color: var(--element-bg-color);
+    overflow-y: scroll;
+    margin-top: 82px;
+}
+
 .contacts-headline-letter {
     display: flex;
     justify-content: center;
@@ -45,7 +53,7 @@ p {
     padding: 17px 36px;
 }
 
-.contacts-seperator {
+.contacts-list-seperator {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 8px;
     margin-bottom: 8px;
@@ -82,3 +90,64 @@ p {
 }
 
 
+/* contacts details */
+
+h1 {
+    margin: 0;
+    font-size: 47px;
+    font-weight: 700;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.gap-16 {
+    gap: 16px;
+}
+
+.gap-22 {
+    gap: 22px;
+}
+
+.gap-30 {
+    gap: 30px;
+}
+
+.gap-40 {
+    gap: 40px;
+}
+
+.contacts-details {
+    margin-top: 128px;
+}
+
+.contacts-details-seperator {
+    border: 3px solid var(--secondary-color);
+    width: 25%;
+}
+
+.contacts-details-contact {
+    gap: 20px;
+}
+
+.contacts-details-user-initials {
+    width: 80px;
+    height: 80px;
+    background-color: orange;
+    border-radius: 70px;
+    border: none;
+    color: white;
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.contacts-details-name {
+    font-size: 36px;
+    font-weight: 700;
+    width: 220px; /* needs to be higher for desktop */
+}

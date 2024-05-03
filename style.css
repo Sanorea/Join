@@ -4,6 +4,8 @@
 }
 
 :root {
+    --element-bg-color: #FFFFFF;
+    --body-bg-color: #F6F7F9;
     --primary-color: #2A3647;
     --secondary-color: #29ABE2;
     --focus-color: #091931;
@@ -12,6 +14,7 @@
 body {
     margin: 0;
     font-family: Inter;
+    background-color: var(--body-bg-color);
 }
 
 /* === header === */
@@ -22,6 +25,14 @@ header {
     justify-content: space-between;
     padding: 20px 16px;
     box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+    background-color: var(--element-bg-color);
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .header-user {
