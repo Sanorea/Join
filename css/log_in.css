@@ -12,48 +12,74 @@ body {
     background-color: #2A3647;
     height: 100vh;
     width: 100%;
-    animation: onHoverAnimation 2s linear both ;
+    animation: onHoverAnimation 1s linear both;
+    animation-duration: onHoverAnimation 1s;
+    animation-delay: 200ms;
 }
 
 @keyframes onHoverAnimation {
-    from {
-        background-color: #2A3647;  
+    0% {
+        background-color: #2A3647;
     }
-    to {
+
+    100% {
         background-color: #F6F7F8;
     }
 }
 
+
 .acoustic .mobile-logo-white {
     display: flex;
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.64);
-    /* animation: fadeIn 0.1s ease-in-out 0.1s forwards; */
-    animation: logo-animation 1s ease-in-out;
+    top: calc(50% - 60px);
+    left: calc(50% - 50px);
+    transform:  scale(0.64);
+    animation: logo-animation-white 1s ease-in-out forwards;
     height: 121px;
     width: 100px;
-    transition: all 1.0s ease;
-    /* transition: opacity 1s ease-out; */
-    opacity: 0;
     overflow: hidden;
+    animation-delay: 200ms;
+    opacity: 1;
 }
 
-@keyframes logo-animation {
+@keyframes logo-animation-white {
     from {
-      top: 50%;
-      left: 50%;
+        top: calc(50% - 60px);
+        left: calc(50% - 50px);
     }
-  
+
     to {
-      top: 37px;
-      left: 38px;
+        top: 37px;
+        left: 38px;
+        opacity: 0;
     }
-  }
+}
 
 
+.mobile-logo-black {
+    display: flex;
+    position: absolute;
+        top: 37px;
+        left: 38px;
+    transform: scale(0.64);
+    animation: logo-animation-black 1s ease-in-out forwards;
+    height: 121px;
+    width: 100px;
+    overflow: hidden;
+    animation-delay: 200ms;
+    opacity: 0;
+}
 
-.dispaly-none {
-    display: none;
+@keyframes logo-animation-black {
+    from {
+        top: calc(50% - 60px);
+        left: calc(50% - 50px);
+    }
+
+    to {
+        opacity: 1;
+        top: 37px;
+        left: 38px;
+    }
+
 }
