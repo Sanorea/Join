@@ -10,21 +10,31 @@
 }
 
 .add-task-container{
-    width: 80%;
+    width: 100%;
+}
+
+.add-task-container h2{
+    margin-top: 128px;
+    padding-inline: 16px;
 }
 
 .add-task-section-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    height: calc(100vh - 264px);
+    overflow-y: auto;
+}
 
+.add-task-margin-buttom{
+    margin-bottom: 136px;
 }
 
 .add-task-capture-input {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    padding: 16px;
     gap: 8px;
 }
 
@@ -53,12 +63,14 @@
 .add-task-basic-line {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: fixed;
     z-index: 101;
     bottom: 80px;
     left:0;
     right:0;
-    background-color: white;
+    background-color:#F6F7F9;
+    padding: 16px;
 }
 
 /*Klassen der Elemente*/
