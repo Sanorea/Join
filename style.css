@@ -14,6 +14,10 @@ body {
     font-family: Inter;
 }
 
+p {
+    margin:0;
+}
+
 /* === header === */
 
 header {
@@ -52,17 +56,57 @@ nav{
     width: 100%;
     background-color: #2A3647;
     height: 80px;
-    padding: 16px;
+
+    position: fixed;
+    z-index: 101;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
 }
 
-.nav-capture{
+.nav-bar-icon-bg{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
     width: 76px;
     height: 76px;
+    color: #CDCDCD;
+    border-radius: 16px;
+    padding: 16px;
+    ;
 }
+
+.nav-bar-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-bar-icon-bg:hover, .nav-bar-icon-bg:focus {
+    background-color: var(--focus-color);
+    color: #FFFFFF;
+}
+
+.nav-bar-icon-bg:hover img, .nav-bar-icon-bg:focus img{
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(200%) contrast(101%);
+}
+
+
+.nav-bar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-bar-icon:hover, .nav-bar-icon:focus {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(200%) contrast(101%);
+
+}
+
+
+
 
 /* used for close icon */
 .close-icon {
