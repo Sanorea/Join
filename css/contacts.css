@@ -9,8 +9,54 @@
     width: 70%;
 }
 
+.width-100 {
+    width: 100%;
+}
+
 p {
     margin: 0;
+}
+
+h1 {
+    margin: 0;
+    font-size: 47px;
+    font-weight: 700;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.gap-16 {
+    gap: 16px;
+}
+
+.gap-22 {
+    gap: 22px;
+}
+
+.gap-30 {
+    gap: 30px;
+}
+
+.gap-40 {
+    gap: 40px;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.color-white {
+    color: white;
 }
 
 .contacts-disp-flex-ai-center-fd-col {
@@ -31,8 +77,28 @@ p {
     align-items: center;
 }
 
+.contacts-disp-flex-ai-center-fd-col {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contacts-disp-flex-center-center-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
 /*=== elements ===*/
+
+/* contacts-list */
+
+.contacts-list {
+    background-color: var(--element-bg-color);
+    overflow-y: scroll;
+    margin-top: 82px;
+}
 
 .contacts-headline-letter {
     display: flex;
@@ -45,7 +111,7 @@ p {
     padding: 17px 36px;
 }
 
-.contacts-seperator {
+.contacts-list-seperator {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 8px;
     margin-bottom: 8px;
@@ -82,3 +148,93 @@ p {
 }
 
 
+/* contacts details */
+
+.contacts-details {
+    margin-top: 128px;
+}
+
+.contacts-details-seperator {
+    border: 3px solid var(--secondary-color);
+    width: 25%;
+}
+
+.contacts-details-contact {
+    gap: 20px;
+}
+
+.contacts-details-user-initials {
+    width: 80px;
+    height: 80px;
+    background-color: orange;
+    border-radius: 70px;
+    border: none;
+    color: white;
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.contacts-details-name {
+    font-size: 36px;
+    font-weight: 700;
+    width: 220px; /* needs to be higher for desktop */
+}
+
+/* add and edit contact */
+
+.contacts-top-half {
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 45vh;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-sizing: border-box;
+    padding: 66px 24px;
+}
+
+.contacts-management-user-initials {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: orange;
+    border-radius: 70px;
+    border: 3px solid white;
+    color: white;
+    font-size: 47px;
+    font-weight: 400;
+}
+
+.icon-contact-person {
+    background: url("/assets/img/contact_person.svg") no-repeat 90%;
+}
+
+.icon-contact-phone {
+    background: url("/assets/img/contact_phone.svg") no-repeat 90%;
+}
+
+.icon-contact-mail {
+    background: url("/assets/img/contact_mail.svg") no-repeat 90%;
+}
+
+.contacts-input {
+    height: 41px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 13px 21px;
+    box-sizing: border-box;
+}
+
+.contacts-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.contacts-bottom-half {
+    width: 100%;
+    height: 50vh;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
