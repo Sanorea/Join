@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,39 +10,57 @@
     <script src="script.js"></script>
     <script src="js/log_in.js"></script>
 </head>
+
 <body onload="init()">
     <div class="acoustic">
         <img id="mobile-logo-white" class="mobile-logo-white" src="assets/img/logo.svg" alt="">
         <img id="mobile-logo-black" class="mobile-logo-black" src="assets/img/logo_mobile.svg" alt="">
     </div>
     <div class="log-in-body">
-    <div class="log-in-container">
-        <div class="log-in-header">
-            <span class="header">Log in</span>
-            <div class="underline-header"></div>
-        </div>
-        <div class="log-in-input-container">
-            <form class="input">
-                <div class="email-input-content">
-                    <input class="email-input" type="email">
+        <div class="log-in-container">
+            <div class="log-in-header">
+                <span class="header">Log in</span>
+                <div class="underline-header"></div>
+            </div>
+            <div class="log-in-input-container">
+                <form class="input">
+                    <div class="email-input-content">
+                        <input class="email-input" type="email">
+                    </div>
+                    <div class="password-input-content">
+                        <input class="password-input" type="current-password">
+                    </div>
+                </form>
+                <div class="log-in-remember-me">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Remember me
+                    </label>
+                  </div>
+            </div>
+            <div class="log-in-btn">
+                <div class="log-in-button">
+                    <button class="log-in-btn-black"><span class="log-in-btn-text">Log In</span></button>
                 </div>
-                <div class="password-input-content">
-                    <input class="password-input" type="current-password">
+                <div class="log-in-guest">
+                    <button class="log-in-btn-white"><span class="guest-btn-text">Guest Log in</span></button>
                 </div>
-            </form>
-            <div class="log-in-remember-tex">
-                <input type="checkbox" onclick="checkBox()" id="confirm">
-                <label for="confirm">
-                    Remember me
-                </label>
             </div>
         </div>
-        <div class="log-in-btn">
-            <div class="log-in-button"></div>
-            <div class="log-in-guest"></div>
+        <div class="bottom-body">
+            <div class="Not-a-Join-user">
+                <span class="bottom-text-not-joiner">Not a Join user?</span>
+            </div>
+            <div class="Sing-up-button">
+                <button class="Sing-up-btn"><span class="bottom-text-sing-up">Sign up</span></button>
+            </div>
+        </div>
+        <div class="policy-notice">
+            <div class="privacy-policy"><span class="policy-text">Privacy Policy</span></div>
+            <div class="legal-notice"><span class="notice-text">Legal notice</span></div>
         </div>
     </div>
-    <div></div>
-    
+
 </body>
+
 </html>
