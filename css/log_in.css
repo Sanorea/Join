@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 926px;
+    /* width: 100%;
+    height: 100%; */
     display: flex;
     justify-content: center;
 }
@@ -12,17 +12,14 @@ body {
     height: 121px;
 }
 
+
 .acoustic {
     position: absolute;
-    background-color: #F6F7F8;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    animation: onHoverAnimation 1s linear both;
-    animation-duration: onHoverAnimation 1s;
-    animation-delay: 200ms;
-    z-index: 1;
-    
+    animation: logoWidth;
 }
+
 
 @keyframes onHoverAnimation {
     0% {
@@ -31,6 +28,7 @@ body {
 
     100% {
         background-color: #f6f7f800;
+        display: none;
     }
 }
 
@@ -47,6 +45,7 @@ body {
     overflow: hidden;
     animation-delay: 200ms;
     opacity: 1;
+    z-index: 4;
 }
 
 @keyframes logo-animation-white {
@@ -64,6 +63,20 @@ body {
     }
 }
 
+@keyframes logoWidth {
+    from {
+        z-index: 2;
+        height: 100%;
+    }
+
+    to {
+        z-index: 0;
+        display: none;
+    }
+}
+
+
+
 
 .mobile-logo-black {
     display: flex;
@@ -76,6 +89,7 @@ body {
     width: 100px;
     overflow: hidden;
     animation-delay: 200ms;
+    z-index: 2;
     opacity: 0;
 }
 
@@ -94,19 +108,29 @@ body {
     }
 }
 
+.background {
+    background-color: #F6F7F8;
+    height: 100%;
+    width: 100%;
+    animation: onHoverAnimation 1s linear both;
+    animation-delay: 200ms;
+    z-index: 4;
+    position: absolute;
+}
+
 .log-in-container {
     display: flex;
     top: 205px;
     left: 16px;
     align-items: center;
     flex-direction: column;
-    height: 515px;
     width: 396px;
     background-color: #ffffff;
     border-radius: 30px;
     gap: 32px;
     padding: 32px 0px 32px 0px;
     box-shadow: 0px 0px 14px 3px #0000000A;
+    z-index: 0;
 }
 
 .log-in-body {
@@ -114,9 +138,9 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: hidden;
     scrollbar-width: none;
-    height: 100%;
+    height: 100vh;
 }
 
 .log-in-header {
@@ -166,50 +190,54 @@ body {
 .email-input {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 322px;
     height: 24px;
-    background-image: url('/assets/img/email-icon.svg');
+    background-image: url('/assets/img/mail.svg');
     background-repeat: no-repeat;
-    justify-content: space-between;
     border: none;
+    box-sizing: border-box;
+    outline: none;
+    background-position-x: right;
+    font-size: 20px;
+    font-weight: 400;
 }
+
 
 .email-input-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: fill 364px;
+    width: 364px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid;
     gap: 10px;
-    padding: 12px, 21px, 12px, 21px;
     border-color: #D1D1D1;
 }
+
 
 .password-input {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 322px;
+    width: 290px;
     height: 24px;
-    background-image: url('/assets/img/password-icon.svg');
-    background-repeat: no-repeat;
-    justify-content: space-between;
     border: none;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
 }
+
 
 .password-input-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: fill 364px;
+    width: 364px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid;
     gap: 10px;
-    padding: 12px, 21px, 12px, 21px;
     border-color: #D1D1D1;
 }
 
@@ -221,6 +249,7 @@ body {
     padding: 0px 16px 0px 16px;
     gap: 10px;
 }
+
 
 .log-in-btn {
     display: flex;
@@ -325,6 +354,9 @@ body {
     top: 869px;
     /* left: 91px; */
 }
+.policy-notice:hover{
+    cursor: pointer;
+}
 
 .privacy-policy {
     width: 121px;
@@ -359,7 +391,7 @@ body {
     color: #A8A8A8;
 }
 
-.remember-text{
+.remember-text {
     width: 110px;
     height: 19px;
     font-weight: 400;
@@ -367,7 +399,7 @@ body {
     line-height: 19px;
 }
 
-.input-remember{
+.input-remember {
     width: 18px;
     height: 18px;
 }
