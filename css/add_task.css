@@ -36,6 +36,7 @@
     align-items: flex-start;
     padding: 16px;
     gap: 8px;
+    border-width: 1px;
 }
 
 .add-task-required-fields {
@@ -71,6 +72,33 @@
     right:0;
     background-color:#F6F7F9;
     padding: 16px;
+}
+
+.add-task-subtasks-list {
+    display: flex;
+}
+
+.add-task-subtasks-inputfield input {
+    width: 100%;
+    padding:8px;
+    border-style: none;
+}
+
+.add-task-subtasks-inputfield img {
+    width: 14px;
+    height: 14px;
+    padding-right:21px;
+    padding-block:17px;
+}
+
+
+.add-task-subtasks-inputfield {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #D1D1D1;
+    width: 100%;
 }
 
 /*Klassen der Elemente*/
