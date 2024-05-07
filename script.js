@@ -1,5 +1,13 @@
+const BASE_URL = "https://join-192-default-rtdb.europe-west1.firebasedatabase.app/";
+
 function docID(id) {
     return document.getElementById(id);
+}
+
+async function loadData(path="") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    console.log(responseToJson); 
 }
 
 function renderHeader() {
@@ -46,3 +54,4 @@ function renderHeaderNav() {
     renderHeader();
     renderNav();
 }
+
