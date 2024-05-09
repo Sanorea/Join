@@ -4,11 +4,31 @@ function docID(id) {
     return document.getElementById(id);
 }
 
+
 async function loadData(path="") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
-    console.log(responseToJson); 
+    return responseToJson;
 }
+
+
+async function postData(path="", data={}) {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return responseToJson = await response.json();
+}
+
+
+function getFirstLetter(string) {
+    let firstLetter = string.slice(0, 1);
+    return firstLetter;
+}
+
 
 function renderHeader() {
     docID('header').innerHTML =/*html*/`
@@ -19,6 +39,7 @@ function renderHeader() {
     </div>
     `;
 }
+
 
 function renderNav() {
     docID('nav').innerHTML += /*html*/`
@@ -49,6 +70,7 @@ function renderNav() {
         </div>
     `;
 }
+
 
 function renderHeaderNav() {
     renderHeader();
