@@ -29,32 +29,35 @@
                         <input class="email-input" placeholder="Email" type="email">
                     </div>
                     <div class="password-input-content">
-                        <input class="password-input" id="password" onclick="iconSwitch(); this.onclick=null;" placeholder="Password" type="current-password">
+                        <input class="password-input" id="password-1" onclick="iconFirstSwitch(); this.onclick=null;"
+                            placeholder="Password" type="current-password">
                         <img id="icon" onclick="showVisibility()" src="assets/img/lock.svg">
                     </div>
                 </form>
                 <div class="log-in-remember-me">
-                    <input class="form-check-input input-remember" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input input-remember curser" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
-                      <span class="remember-text">Remember me</span>
+                        <span class="remember-text">Remember me</span>
                     </label>
-                  </div>
+                </div>
             </div>
             <div class="log-in-btn">
                 <div class="log-in-button">
-                    <button class="log-in-btn-black btn-primary"><span class="log-in-btn-text">Log In</span></button>
+                    <button class="log-in-btn-black btn-primary curser"><span class="log-in-btn-text">Log In</span></button>
                 </div>
                 <div class="log-in-guest">
-                    <button class="log-in-btn-white btn-secondary"><span class="guest-btn-text">Guest Log in</span></button>
+                    <button class="log-in-btn-white btn-secondary curser"><span class="guest-btn-text">Guest Log
+                            in</span></button>
                 </div>
             </div>
         </div>
-        <div class="bottom-body">
+        <div id="bottom-body" class="bottom-body">
             <div class="Not-a-Join-user">
                 <span class="bottom-text-not-joiner">Not a Join user?</span>
             </div>
             <div class="Sing-up-button">
-                <button class="Sing-up-btn btn-primary"><span onclick="renderSignUp()" class="bottom-text-sing-up">Sign up</span></button>
+                <button class="Sing-up-btn btn-primary curser"><span onclick="renderSignUp()" class="bottom-text-sing-up">Sign
+                        up</span></button>
             </div>
         </div>
         <div class="policy-notice">
@@ -64,5 +67,4 @@
     </div>
 
 </body>
-
 </html>
