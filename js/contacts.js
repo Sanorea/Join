@@ -4,6 +4,7 @@ async function getContactsData() {
     return contactData;
 }
 
+
 function addContact() {
     let name = docID('contact-name').value;
     let email = docID('contact-email').value;
@@ -19,6 +20,38 @@ function addContact() {
         "contact-acronym": acronym,
         "first-letter": firstLetterOfName
     })
+}
+
+
+function showAddContact() {
+    let addContactSite = docID('add-contact');
+    let showContactButton = docID('show-contact-btn');
+
+    addContactSite.classList.remove('d-none');
+    showContactButton.classList.add('d-none');
+
+    renderAddContact();
+}
+
+function renderAddContact() {
+    let addContactSite = docID('add-contact');
+    addContactSite.innerHTML = `
+        <div class="contacts-top-half contacts-disp-flex-center-center-col">
+        <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+            <h1 class="color-white fw-700">Add contact</h1>
+            <p class="color-white fw-400">Tasks are better with a team!</p>
+            <div class="contacts-details-seperator"></div>
+        </div>
+    </div>
+    <div class="contacts-management-user-initials disp-flex-center-center">AM</div>
+    <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+        <form class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+            <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
+            <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
+            <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
+        </form>
+        <button onclick="addContact()" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+    </div> `
 }
 
 /* -- might be used later -- */
