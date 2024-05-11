@@ -90,6 +90,17 @@ h1 {
     flex-direction: column;
 }
 
+/* used for btn styled as a circle */
+.btn-circle {
+    border-radius: 46px;
+    padding: 12px;
+    width: unset;
+    height: unset;
+    position: fixed;
+    right: 5%;
+    bottom: 15%;
+}
+
 /*=== elements ===*/
 
 /* contacts-list */
@@ -123,7 +134,6 @@ h1 {
     padding: 15px 24px;
 }
 
-
 .contacts-user-initials {
     width: 42px;
     height: 42px;
@@ -146,7 +156,6 @@ h1 {
     color: var(--secondary-color);
     font-size: 16px;
 }
-
 
 /* contacts details */
 
@@ -181,6 +190,10 @@ h1 {
 }
 
 /* add and edit contact */
+
+#add-contact {
+    z-index: 150;
+}
 
 .contacts-top-half {
     background-color: var(--primary-color);
