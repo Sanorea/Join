@@ -16,27 +16,6 @@
 
 </header>
 
-<section id="add-contact" class="d-none contacts-disp-flex-ai-center-fd-col">
-    <!--
-    <div class="contacts-top-half contacts-disp-flex-center-center-col">
-        <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
-            <h1 class="color-white fw-700">Add contact</h1>
-            <p class="color-white fw-400">Tasks are better with a team!</p>
-            <div class="contacts-details-seperator"></div>
-        </div>
-    </div>
-    <div class="contacts-management-user-initials disp-flex-center-center">AM</div>
-    <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
-        <form class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
-            <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
-            <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
-            <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
-        </form>
-        <button onclick="addContact()" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
-    </div> 
-    -->
-</section>
-
 <section id="contact-list" class="contacts-list contacts-disp-flex-ai-center-fd-col">
     <div class="width-70 contacts-headline-letter-padding">
         <div class="contacts-headline-letter">A</div>   
@@ -61,7 +40,7 @@
             <p class="contacts-email">beate@web.de</p>
         </div>
     </div>
-    <button id="show-contact-btn" onclick="showAddContact()" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>
+    <button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>
 </section> 
 
 <!--
@@ -92,10 +71,27 @@
 -->
 
 
-
-
-
-
+<section id="add-contact" class="bg">
+    <div class="contacts-disp-flex-ai-center-fd-col ">
+        <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
+        <div class="contacts-top-half contacts-disp-flex-center-center-col">
+            <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+                <h1 class="color-white fw-700">Add contact</h1>
+                <p class="color-white fw-400">Tasks are better with a team!</p>
+                <div class="contacts-details-seperator"></div>
+            </div>
+        </div>
+        <div class="contacts-management-user-initials disp-flex-center-center">AM</div>
+        <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+            <form onsubmit="addContact(); return false;" class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+                <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
+                <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
+                <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
+                <button type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+            </form>
+        </div> 
+    </div>
+</section>
 
 <nav id="nav"></nav>
 
