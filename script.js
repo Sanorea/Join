@@ -108,34 +108,31 @@ async function addTaskLoadData(path="") {
     return responseToJson = await responseAddTask.json();
 }
 
-let tasks = {       
-    title: [],
-    description: [],
-    assignedTo: [],
-/*    date: date,
-    prio: prio,
-    categorie: categorie,
-    subtasks: subtasks, */
-}
-
-
-
 function submitTask() {
-    addTaskPostData("/tasks", {"title": "Zwergkaninchen"});
-    addTaskPostData("/tasks", {"title": "mücke"});    
+    let title = docID('add-task-input-title');
+    let description = docID('add-task-input-description');
+    let assignedTo = docID('add-task-input-assigned');
+    let date = docID('add-task-input-date');
+    let categorie = docID('add-task-input-categorie')
+    
+    addTaskPostData("/tasks", {
+        "title": title.value,
+        "description": description.value,
+        "assignedTo": assignedTo.value,
+        "date": date.value,
+        "prio": "prio",
+        "categorie": categorie.value,
+        "subtasks": "subtasks",
+    });
+    title.value="";
+    description.value="";
+    assignedTo.value="";
+    date.value="";
+    categorie.value="";
+    subtasks.value="";
 }
 
 
-/* function submitTask(){
-    let title = docID('add-task-input-title').value;
-    tasks.title.push(title);
-    let description = docID('add-task-input-description').value;
-    tasks.description.push(description);
-    let assignedTo = docID('add-task-input-assigned').value;
-    tasks.assignedTo.push(assignedTo);
-    
-    console.log('tasks :>> ', tasks);
-} */
 
 
 
