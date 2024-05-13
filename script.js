@@ -44,30 +44,30 @@ function renderHeader() {
 function renderNav() {
     docID('nav').innerHTML += /*html*/`
         <div class="nav-bar-input">
-            <div class="nav-bar-icon-bg">
+            <a class="nav-bar-icon-bg" href="/summary.html">
                 <div class="nav-bar-container">
                     <img class="nav-bar-icon" src="/assets/img/summary_icon.svg" alt="summary">
-                    <p>Summary</p>
+                    <p class="nav-bar-links">Summary</p>
                 </div>
-            </div>
-            <div class="nav-bar-icon-bg">
+            </a>
+            <a class="nav-bar-icon-bg" href="/board.html">
                 <div class="nav-bar-container">
                     <img class="nav-bar-icon" src="/assets/img/board_icon.svg" alt="board">
-                    <p>Board</p>
+                    <p class="nav-bar-links">Board</p>
                 </div>
-            </div>
-            <div class="nav-bar-icon-bg">
+            </a>
+            <a class="nav-bar-icon-bg" href="/add_tasks.html">
                 <div class="nav-bar-container">
                     <img class="nav-bar-icon" src="/assets/img/addTask_icon.svg" alt="addTask">
-                    <p>Add Task</p>
+                    <p class="nav-bar-links">Add Task</p>
                 </div>
-            </div>
-            <div class="nav-bar-icon-bg">
+            </a>
+            <a class="nav-bar-icon-bg" href="/contacts.html">
                 <div class="nav-bar-container">
                     <img class="nav-bar-icon" src="/assets/img/contacts_icon.svg" alt="contacts">
-                    <p>Contacts</p>
+                    <p class="nav-bar-links">Contacts</p>
                 </div>
-            </div>
+            </a>
         </div>
     `;
 }
@@ -77,4 +77,66 @@ function renderHeaderNav() {
     renderHeader();
     renderNav();
 }
+
+
+/*addTask*/
+
+
+
+const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/";
+
+function addTaskInit(path) {
+    addTaskLoadData(path);
+
+}
+
+async function addTaskPostData(path="", data={}) {
+    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json",{
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    }
+
+    );
+    return responseToJson = await responseAddTask.json();
+}
+
+async function addTaskLoadData(path="") {
+    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json");
+    return responseToJson = await responseAddTask.json();
+}
+
+let tasks = {       
+    title: [],
+    description: [],
+    assignedTo: [],
+/*    date: date,
+    prio: prio,
+    categorie: categorie,
+    subtasks: subtasks, */
+}
+
+
+
+function submitTask() {
+    addTaskPostData("/tasks", {"title": "Zwergkaninchen"});
+    addTaskPostData("/tasks", {"title": "mücke"});    
+}
+
+
+/* function submitTask(){
+    let title = docID('add-task-input-title').value;
+    tasks.title.push(title);
+    let description = docID('add-task-input-description').value;
+    tasks.description.push(description);
+    let assignedTo = docID('add-task-input-assigned').value;
+    tasks.assignedTo.push(assignedTo);
+    
+    console.log('tasks :>> ', tasks);
+} */
+
+
+
 

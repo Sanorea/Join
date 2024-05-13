@@ -7,33 +7,33 @@
     <title>Isabel</title>
     <link rel="stylesheet" href="/css/add_task.css">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+
 </head>
 
-<body onload="renderHeaderNav()">
+<body onload="renderHeaderNav(), addTaskInit('/tasks')">
     <header id="header"></header>
     <div class="add-task-bg">
         <div class="add-task-container">
             <div class="head-line">
                 <span>Add Task</span>
             </div>
-            <div class="add-task-section-container">
+            <form class="add-task-section-container">
                 <div class="add-task-capture-input">
                     <div class="add-task-required-fields">
                         <p>Title</p>
                         <p class="add-task-required-icon">*</p>
                     </div>
-                    <input class="add-task-input-fields" type="text" placeholder="Enter a title" required>
+                    <input id="add-task-input-title" class="add-task-input-fields" type="text" placeholder="Enter a title" required>
                 </div>
                 <div class="add-task-capture-input">
                     <p>Description</p>
-                    <input class="add-task-input-fields add-task-input-fields-description" type="text"
+                    <input id="add-task-input-description"  class="add-task-input-fields add-task-input-fields-description" type="text"
                         placeholder="Enter a Description">
                 </div>
                 <div class="add-task-capture-input">
                     <p>Assigned to</p>
                     <div class="add-task-selection">
-                        <select> <!--Contacts mit For-Schleife einfügen-->
+                        <select id="add-task-input-assigned" > <!--Contacts mit for-Schleife einfügen-->
                             <option value="" selected disabled>Select contacts to assign</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -98,18 +98,19 @@
                     </div>
                     
                 </div>
-            </div>
+            </form>
             <div class="add-task-basic-line">
                 <div class="add-task-required-fields">
                     <p class="add-task-required-icon">*</p>
                     <p>This field is required</p>
                 </div>
-                <button class="btn-primary btn-create disp-flex-center-center">Create Task</button>
+                <button type="submit" class="btn-primary btn-create disp-flex-center-center" onclick="submitTask()">Create Task</button>
             </div>
         </div>
     </div>
     <nav id="nav"></nav>
 
 </body>
+<script src="script.js"></script>
 
 </html>
