@@ -97,8 +97,8 @@ h1 {
     width: unset;
     height: unset;
     position: fixed;
-    right: 5%;
-    bottom: 15%;
+    right: 20px;
+    bottom: 100px;
 }
 
 /*=== elements ===*/

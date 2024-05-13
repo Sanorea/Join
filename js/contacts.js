@@ -1,11 +1,39 @@
+arrContacts = [];
+
+function init() {
+    renderHeaderNav();
+    renderContactList();
+    getContactsData();
+}
+
+
 async function getContactsData() {
     let contactData = await loadData("/contacts");
     console.log(contactData);
+    saveContactDataInArray(contactData);
+
     return contactData;
+}
+
+function saveContactDataInArray(contactData) {
+    for (let i in contactData) {
+        arrContacts.push([i, contactData[i]]);
+    }
+    console.log(arrContacts);
+    console.log(arrContacts[0][1]['contact-email']);
 }
 
 
 async function addContact() {
+    let contactInputValues = getContactInputValues();
+    // let contactID = setID();
+    await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.firstLetterOfName, contactInputValues.acronym, contactInputValues.id);
+    emptyContactsInput(contactInputValues.name, contactInputValues.email, contactInputValues.phone);
+    closeDialog('add-contact');
+    renderContactList();
+}
+
+function getContactInputValues() {
     let name = docID('contact-name');
     let email = docID('contact-email');
     let phone = docID('contact-phone');
@@ -13,8 +41,19 @@ async function addContact() {
     let firstLetterOfLastName = getFirstLetter(name.value.split(' ').pop()); // need solution for cases without last name
     let acronym = firstLetterOfName + firstLetterOfLastName;
 
-    await postContactData(name.value, email.value, phone.value, firstLetterOfName, acronym);
-    emptyContactsInput(name, email, phone);
+    return {
+        name,
+        email,
+        phone,
+        firstLetterOfName,
+        firstLetterOfLastName,
+        acronym
+    }
+}
+
+
+function setID() {
+    
 }
 
 
@@ -25,13 +64,14 @@ function emptyContactsInput(name, email, phone) {
 }
 
 
-async function postContactData(name, email, phone, firstLetterOfName, acronym) {
+async function postContactData(name, email, phone, firstLetterOfName, acronym, id) {
     await postData("/contacts", {
         "contact-name": name,
         "contact-email": email,
         "contact-tel": phone,
         "contact-acronym": acronym,
-        "first-letter": firstLetterOfName
+        "first-letter": firstLetterOfName,
+        "contact-id": id
     })
 }
 
@@ -50,29 +90,34 @@ function closeDialog(dialog) {
 }
 
 
-function renderAddContact() {
-    let addContactSite = docID('add-contact');
-    addContactSite.innerHTML = `
-    <section id="add-contact" class="contacts-disp-flex-ai-center-fd-col">
-        <div class="bg">
-            <div class="contacts-top-half contacts-disp-flex-center-center-col">
-                <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
-                    <h1 class="color-white fw-700">Add contact</h1>
-                    <p class="color-white fw-400">Tasks are better with a team!</p>
-                    <div class="contacts-details-seperator"></div>
-                </div>
-            </div>
-            <div class="contacts-management-user-initials disp-flex-center-center">AM</div>
-            <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
-                <form class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
-                    <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
-                    <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
-                    <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
-                </form>
-                <button onclick="addContact()" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
-            </div> 
+function renderContactList() {
+    let contactList = docID('contact-list');
+    contactList.innerHTML = `
+    <div class="width-70 contacts-headline-letter-padding">
+        <div class="contacts-headline-letter">A</div>   
+    </div>
+    <div class="contacts-list-seperator width-80"></div>
+    <div class="contacts-contact-entry width-70 contacts-df-row-ai-center">
+        <div class="contacts-user-initials disp-flex-center-center">AM</div>
+        <div class="contacts-disp-flex-ai-start-fd-col contacts-contact"">
+            <p class="contacts-name">Anton Meyer</p>
+            <p class="contacts-email">anton@meyer.de</p>
         </div>
-    </section>`
+    </div>
+
+    <div class="width-70 contacts-headline-letter-padding">
+        <div class="contacts-headline-letter">B</div>   
+    </div>
+    <div class="contacts-seperator width-80"></div>
+    <div class="contacts-contact-entry width-70 contacts-df-row-ai-center">
+        <div class="contacts-user-initials disp-flex-center-center">BS</div>
+        <div class="contacts-disp-flex-ai-start-fd-col contacts-contact"">
+            <p class="contacts-name">Beate Schulz</p>
+            <p class="contacts-email">beate@web.de</p>
+        </div>
+    </div>
+    <button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>
+    `
 }
 
 
