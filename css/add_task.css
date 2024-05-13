@@ -79,6 +79,8 @@
 
 .add-task-subtasks-list {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .add-task-subtasks-inputfield input {

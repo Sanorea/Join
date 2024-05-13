@@ -129,7 +129,7 @@ function submitTask() {
     assignedTo.value="";
     date.value="";
     categorie.value="";
-    subtasks.value="";
+    subtasks="";
 }
 
 
