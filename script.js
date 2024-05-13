@@ -5,14 +5,14 @@ function docID(id) {
 }
 
 
-async function loadData(path="") {
+async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
     return responseToJson;
 }
 
 
-async function postData(path="", data={}) {
+async function postData(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
@@ -43,29 +43,30 @@ function renderHeader() {
 
 function renderNav() {
     docID('nav').innerHTML += /*html*/`
-
-        <div class="nav-bar-icon-bg">
-            <div class="nav-bar-container">
-                <img class="nav-bar-icon" src="/assets/img/summary_icon.svg" alt="summary">
-                <p>Summary</p>
+        <div class="nav-bar-input">
+            <div class="nav-bar-icon-bg">
+                <div class="nav-bar-container">
+                    <img class="nav-bar-icon" src="/assets/img/summary_icon.svg" alt="summary">
+                    <p>Summary</p>
+                </div>
             </div>
-        </div>
-        <div class="nav-bar-icon-bg">
-            <div class="nav-bar-container">
-                <img class="nav-bar-icon" src="/assets/img/board_icon.svg" alt="board">
-                <p>Board</p>
+            <div class="nav-bar-icon-bg">
+                <div class="nav-bar-container">
+                    <img class="nav-bar-icon" src="/assets/img/board_icon.svg" alt="board">
+                    <p>Board</p>
+                </div>
             </div>
-        </div>
-        <div class="nav-bar-icon-bg">
-            <div class="nav-bar-container">
-                <img class="nav-bar-icon" src="/assets/img/addTask_icon.svg" alt="addTask">
-                <p>Add Task</p>
+            <div class="nav-bar-icon-bg">
+                <div class="nav-bar-container">
+                    <img class="nav-bar-icon" src="/assets/img/addTask_icon.svg" alt="addTask">
+                    <p>Add Task</p>
+                </div>
             </div>
-        </div>
-        <div class="nav-bar-icon-bg">
-            <div class="nav-bar-container">
-                <img class="nav-bar-icon" src="/assets/img/contacts_icon.svg" alt="contacts">
-                <p>Contacts</p>
+            <div class="nav-bar-icon-bg">
+                <div class="nav-bar-container">
+                    <img class="nav-bar-icon" src="/assets/img/contacts_icon.svg" alt="contacts">
+                    <p>Contacts</p>
+                </div>
             </div>
         </div>
     `;

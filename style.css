@@ -62,8 +62,7 @@ header {
 /* === nav-bar === */
 
 nav{
-    display: flex;
-    justify-content: space-between;
+
     width: 100%;
     background-color: #2A3647;
     height: 80px;
@@ -75,17 +74,22 @@ nav{
     box-sizing: border-box;
 }
 
+.nav-bar-input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 18px;
+}
+
 .nav-bar-icon-bg{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    width: 76px;
+    width: 80px;
     height: 76px;
     color: #CDCDCD;
     border-radius: 16px;
-    padding: 16px;
-    ;
 }
 
 .nav-bar-container{
@@ -93,6 +97,7 @@ nav{
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    padding-block: 16px;
 }
 
 .nav-bar-icon-bg:hover, .nav-bar-icon-bg:focus {
