@@ -16,13 +16,24 @@ async function getContactsData() {
 }
 
 
+function sortContacts() {
+      arrContacts.sort((a, b) => (a['first-letter'] > b['first-letter'] ? 1 : -1));
+      console.log(arrContacts);
+}
+
 function saveContactDataInArray(contactData) {
+    let tempArrContacts = [];
     arrContacts = [];
     for (let i in contactData) {
-        arrContacts.push([i, contactData[i]]);
+        tempArrContacts.push([i, contactData[i]]);
     }
+
+    for (let i in tempArrContacts) {
+        arrContacts.push(tempArrContacts[i][1]);
+    }
+    console.log(tempArrContacts);
     console.log(arrContacts);
-    console.log(arrContacts[0][1]['contact-email']);
+    console.log(arrContacts[0]['contact-email']);
 }
 
 
