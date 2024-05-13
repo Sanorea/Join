@@ -1,9 +1,9 @@
-arrContacts = [];
+let arrContacts = [];
 
 function init() {
     renderHeaderNav();
-    renderContactList();
     getContactsData();
+    renderContactList();
 }
 
 
@@ -15,7 +15,9 @@ async function getContactsData() {
     return contactData;
 }
 
+
 function saveContactDataInArray(contactData) {
+    arrContacts = [];
     for (let i in contactData) {
         arrContacts.push([i, contactData[i]]);
     }
@@ -25,21 +27,22 @@ function saveContactDataInArray(contactData) {
 
 
 async function addContact() {
-    let contactInputValues = getContactInputValues();
-    // let contactID = setID();
+    let contactInputValues = setContactInputValues();
     await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.firstLetterOfName, contactInputValues.acronym, contactInputValues.id);
     emptyContactsInput(contactInputValues.name, contactInputValues.email, contactInputValues.phone);
     closeDialog('add-contact');
+    getContactsData();
     renderContactList();
 }
 
-function getContactInputValues() {
+function setContactInputValues() {
     let name = docID('contact-name');
     let email = docID('contact-email');
     let phone = docID('contact-phone');
     let firstLetterOfName = getFirstLetter(name.value);
     let firstLetterOfLastName = getFirstLetter(name.value.split(' ').pop()); // need solution for cases without last name
     let acronym = firstLetterOfName + firstLetterOfLastName;
+    let id = setID();
 
     return {
         name,
@@ -47,13 +50,22 @@ function getContactInputValues() {
         phone,
         firstLetterOfName,
         firstLetterOfLastName,
-        acronym
+        acronym,
+        id
     }
 }
 
 
 function setID() {
-    
+    let id = 0;
+    if (arrContacts.length == 0) {
+        id = 1;
+    } else {
+        let lastUsedId = arrContacts[arrContacts.length - 1][1]['contact-id'];
+        id = lastUsedId + 1;
+    }
+
+    return id;
 }
 
 
