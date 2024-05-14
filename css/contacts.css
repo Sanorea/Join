@@ -109,6 +109,7 @@ h1 {
     background-color: var(--element-bg-color);
     overflow-y: scroll;
     margin-top: 82px;
+    margin-bottom: 82px;
 }
 
 .contacts-headline-letter {
