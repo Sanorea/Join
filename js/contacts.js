@@ -44,7 +44,7 @@ function renderContactList() {
                 arrContactsInList.push(arrContacts[j]);
             }
         }
-        arrContactsInList.sort();
+        arrContactsInList.sort((a, b) => (a['contact-name'] > b['contact-name'] ? 1 : -1));
         // for loop to generate HTML for every contact for current headline letter
         for (let k = 0; k < arrContactsInList.length; k++) {
             currentId = arrContactsInList[k]['contact-id'];
