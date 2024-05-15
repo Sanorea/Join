@@ -56,9 +56,37 @@ function renderContactList() {
 }
 
 
+function openContactDetails(id) {
+    let contact = arrContacts.find(entry => entry['contact-id'] === id);
+    let contactDetail = docID('contact-detail')
+    openDialog('contacts-details');
+    contactDetail.innerHTML = generateContactDetailHTML(contact);
+}
+
+function generateContactDetailHTML(contact) {
+    return `
+    <div class="contacts-df-row-ai-center contacts-details-contact">
+    <div class="contacts-details-user-initials disp-flex-center-center" style="background-color: ${contact['contact-color']}">${contact['contact-acronym']}</div>
+    <p class="contacts-details-name">${contact['contact-name']}</p>
+    </div>
+    <p>Contact Information</p>
+    <div class="contacts-disp-flex-ai-start-fd-col gap-22">
+        <div class="">
+            <p class="fw-700">Email</p>
+            <p class="contacts-email">${contact['contact-email']}</p>
+        </div>
+        <div class="">
+            <p class="fw-700">Phone</p>
+            <p>${contact['contact-tel']}</p>
+        </div>
+    </div>
+    `
+}
+
+
 function generateContactHTML(contact, id) {
     return `
-    <div id="contact${id}" class="contacts-contact-entry width-70 contacts-df-row-ai-center">
+    <div id="contact${id}" onclick="openContactDetails(${id})" class="contacts-contact-entry width-70 contacts-df-row-ai-center">
         <div class="contacts-user-initials disp-flex-center-center" style="background-color: ${contact['contact-color']}">${contact['contact-acronym']}</div>
         <div class="contacts-disp-flex-ai-start-fd-col contacts-contact"">
             <p class="contacts-name">${contact['contact-name']}</p>

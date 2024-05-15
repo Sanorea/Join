@@ -161,7 +161,10 @@ h1 {
 /* contacts details */
 
 .contacts-details {
-    margin-top: 128px;
+    margin-top: 82px;
+    margin-bottom: 82px;
+    background-color: var(--body-bg-color) !important;
+    justify-content: unset !important;
 }
 
 .contacts-details-seperator {
