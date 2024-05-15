@@ -55,6 +55,10 @@ h1 {
     margin-top: 60px;
 }
 
+.mb-40 {
+    margin-bottom: 40px;
+}
+
 .color-white {
     color: white;
 }
@@ -94,8 +98,8 @@ h1 {
 .btn-circle {
     border-radius: 46px;
     padding: 12px;
-    width: unset;
-    height: unset;
+    width: 56px;
+    height: 56px;
     position: fixed;
     right: 20px;
     bottom: 100px;
@@ -160,11 +164,20 @@ h1 {
 
 /* contacts details */
 
+.close-arrow {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    top: 35px;
+    right: -40%;
+}
+
 .contacts-details {
-    margin-top: 82px;
-    margin-bottom: 82px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     background-color: var(--body-bg-color) !important;
     justify-content: unset !important;
+    z-index: 0 !important;
 }
 
 .contacts-details-seperator {
@@ -192,6 +205,47 @@ h1 {
     font-weight: 700;
     width: 220px; /* needs to be higher for desktop */
 }
+
+.delete-edit {
+    height: 100%;
+    width: 100%;
+    z-index: 95;
+    position: fixed;
+}
+
+.del-edit-menu {
+    background-color: var(--element-bg-color) !important;
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    height: 100px;
+    width: 116px;
+    box-shadow: 4px 4px 2px -2px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px 20px 0 20px;
+    position: fixed;
+    right: 20px;
+    bottom: 95px !important;
+    top: unset !important;
+    left: unset !important;
+    right: 20px !important;
+    z-index: 90;
+}
+
+.del-edit-menu-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 96px;
+    height: 40px;
+    padding: 8px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 
 /* add and edit contact */
 

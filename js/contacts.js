@@ -199,6 +199,10 @@ function openDialog(dialog) {
     let dialogContainer = docID(dialog);
     dialogContainer.classList.remove('closed');
     dialogContainer.classList.add('opened');
+    if (dialog == 'delete-edit-menu') {
+        element = docID('delete-edit');
+        element.classList.remove('d-none')
+    }
 }
 
 
@@ -206,4 +210,8 @@ function closeDialog(dialog) {
     let dialogContainer = docID(dialog);
     dialogContainer.classList.remove('opened');
     dialogContainer.classList.add('closed');
+    if (dialog == 'delete-edit-menu') {
+        element = docID('delete-edit');
+        element.classList.add('d-none')
+    }
 }

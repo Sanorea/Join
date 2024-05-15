@@ -43,8 +43,9 @@
     <button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button> -->
 </section> 
 
-<section id="contacts-details" class="bg contacts-details contacts-disp-flex-ai-center-fd-col gap-40">
-    <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+<section id="contacts-details" class="bg contacts-details contacts-disp-flex-ai-center-fd-col">
+    <img class="close-arrow" onclick="closeDialog('contacts-details')"src="/assets/img/arrow-left-line.svg" alt="">
+    <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16 mb-40">
         <h1>Contacts</h1>
         <p class="fs-16">Better with a team</p>
         <div class="contacts-details-seperator"></div>
@@ -68,6 +69,12 @@
         </div>
         -->
     </div>    
+    <button onclick="openDialog('delete-edit-menu')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/more_vert.svg" alt=""></button>
+    <div id="delete-edit" class="delete-edit d-none" onclick="closeDialog('delete-edit-menu')"></div>
+        <div id="delete-edit-menu" class="bg del-edit-menu">
+            <div id="edit-btn" class="del-edit-menu-btn"><img src="/assets/img/edit.svg" alt="">Edit</div>
+            <div id="delete-btn" class="del-edit-menu-btn"><img src="/assets/img/delete.svg" alt="">Delete</div>
+        </div>
 </section>
 
 
