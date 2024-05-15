@@ -131,16 +131,19 @@ body {
     padding: 32px 0px 32px 0px;
     box-shadow: 0px 0px 14px 3px #0000000A;
     z-index: 0;
+    height: 515px;
 }
 
 .log-in-body {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     overflow-y: hidden;
     scrollbar-width: none;
-    height: 100vh;
+    height: 515px;
+    margin-top: 170px;
+    box-shadow: 0px 0px 14px 3px #0000000A;
 }
 
 .log-in-header {
@@ -185,6 +188,7 @@ body {
     gap: 32px;
     width: 364px;
     height: 152px;
+    align-items: center;
 }
 
 .email-input {
@@ -266,6 +270,18 @@ body {
 #icon-2 {
     cursor: pointer;
     position: absolute;
+    margin-left: 296px;
+}
+
+#icon-3 {
+    cursor: pointer;
+    position: absolute;
+    margin-left: 293px;
+}
+
+#icon-4 {
+    cursor: pointer;
+    position: absolute;
     margin-left: 293px;
 }
 
@@ -276,6 +292,7 @@ body {
     align-items: center;
     width: 364px;
     height: 48px;
+    flex-direction: column;
 }
 
 .log-in-remember-me {
@@ -338,7 +355,7 @@ body {
     position: absolute;
     width: 292px;
     height: 49px;
-    top: 778px;
+    top: 740px;
     /* left: 70px; */
     gap: 35px;
     justify-content: center;
@@ -568,7 +585,6 @@ body {
 .sign-up-btn {
     height: 51px;
     width: 180px;
-    margin-top: 10px;
 }
 
 .sign-up-remember-me {
@@ -578,7 +594,6 @@ body {
     height: 24px;
     padding: 0px 16px 0px 16px;
     gap: 10px;
-    margin-top: 25px;
     justify-content: center;
 }
 
@@ -588,9 +603,96 @@ body {
     width: 32px;
     margin-right: 280px;
     margin-bottom: 25px;
+    border-radius: 50%;
+}
+
+.header-arrow:hover{
+    background-color: #e6e6e6;
 }
 
 .curser:hover{
     cursor: pointer;
 }
 
+.form-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+#notTheSamePassword{
+    color: red;
+    margin-right: 100px;
+    position: absolute;
+    margin-top: 90px;
+}
+
+
+.popup{
+    position: absolute;
+    z-index: 999;
+    background-color: #2A3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 190px;
+    width: 450px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.modalContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-title{
+    color: #ffffff;
+}
+
+.d-none{
+    display: none;
+}
+
+.policy-text:hover{
+    color: #29ABE2;
+    font-weight: bold;
+}
+
+.notice-text:hover{
+    color: #29ABE2;
+    font-weight: bold;
+}
+
+@media(max-width: 480px){
+    .popup{
+        width: 345px;
+        height: 150px;
+        font-size: 12px;
+    }
+}
+@media(max-width: 380px){
+    .popup{
+        width: 303px;
+        height: 123px;
+    }
+}
+
+@media(max-width: 280px){
+    .popup{
+        width: 345px;
+        height: 150px;
+    }
+}
+
+@media(max-width: 330px){
+    .popup{
+        width: 280px;
+        height: 118px;
+        font-size: 11px;
+    }
+}
