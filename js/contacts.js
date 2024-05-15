@@ -59,7 +59,7 @@ function renderContactList() {
 function generateContactHTML(contact, id) {
     return `
     <div id="contact${id}" class="contacts-contact-entry width-70 contacts-df-row-ai-center">
-        <div class="contacts-user-initials disp-flex-center-center">${contact['contact-acronym']}</div>
+        <div class="contacts-user-initials disp-flex-center-center" style="background-color: ${contact['contact-color']}">${contact['contact-acronym']}</div>
         <div class="contacts-disp-flex-ai-start-fd-col contacts-contact"">
             <p class="contacts-name">${contact['contact-name']}</p>
             <p class="contacts-email">${contact['contact-email']}</p>
@@ -126,6 +126,15 @@ function setContactInputValues() {
 }
 
 
+function getRandomColor() {
+    const colors = [
+      "#9327FF", "#6E52FF", "#FC71FF", "#FFBB2B", "#1FD7C1", "#FF7A00", "#FFC700"
+    ];
+    let randomColorIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomColorIndex];
+}
+
+
 function setID() {
     let id = 0;
     if (arrContacts.length == 0) {
@@ -152,7 +161,8 @@ async function postContactData(name, email, phone, acronym, id) {
         "contact-email": email,
         "contact-tel": phone,
         "contact-acronym": acronym,
-        "contact-id": id
+        "contact-id": id,
+        "contact-color": getRandomColor()
     })
 }
 
