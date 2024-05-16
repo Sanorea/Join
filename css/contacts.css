@@ -39,6 +39,10 @@ h1 {
     gap: 16px;
 }
 
+.gap-20 {
+    gap: 20px;
+}
+
 .gap-22 {
     gap: 22px;
 }
@@ -257,6 +261,26 @@ h1 {
     filter: invert(49%) sepia(78%) saturate(448%) hue-rotate(152deg) brightness(102%) contrast(95%);
 }
 
+.edit-btn-layout {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#delete-btn, #save-edit-btn {
+    height: 51px;
+    padding: 18px 10px;
+    box-sizing: border-box;
+}
+
+#delete-btn {
+    width: 82px;
+    font-size: 20px;
+}
+
+#save-edit-btn {
+    width: 99px;
+}
 
 /* add and edit contact */
 

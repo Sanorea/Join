@@ -154,8 +154,29 @@ async function deleteContact(id) {
 
 async function editContact(id) {
     let contact = getCurrentContactById(id);
+    let contactDetail = docID('contact-detail');
     let key = contact['unique-key'];
+    let name = docID('contact-name-saved').value;
+    let email = docID('contact-email-saved').value;
+    let phone = docID('contact-phone-saved').value;
+    let firstLetterOfName = getFirstLetter(name);
+    let firstLetterOfLastName = getFirstLetter(name.split(' ').pop()); // need solution for cases without last name
+    let acronym = firstLetterOfName + firstLetterOfLastName;
 
+    await updateData("/contacts/" + key, {
+        "contact-name": name,
+        "contact-email": email,
+        "contact-tel": phone,
+        "contact-acronym": acronym,
+        "contact-id": id,
+        "contact-color": getRandomColor()
+    })
+
+    closeDialog('edit-contact');
+    closeDialog('delete-edit-menu');
+    await reloadContacts();
+    contact = getCurrentContactById(id);
+    contactDetail.innerHTML = generateContactDetailHTML(contact);
 }
 
 function loadCurrentContact(id) {
