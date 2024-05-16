@@ -10,7 +10,7 @@
     <script src="js/contacts.js"></script>
 
 </head>
-<body onload="init()">
+<body onload="contactsInit()">
 
 <header id="header">
 
@@ -72,7 +72,7 @@
     <button onclick="openDialog('delete-edit-menu')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/more_vert.svg" alt=""></button>
     <div id="delete-edit" class="delete-edit d-none" onclick="closeDialog('delete-edit-menu')"></div>
         <div id="delete-edit-menu" class="bg del-edit-menu">
-            <div id="edit-btn" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
+            <div id="edit-btn" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
             <div id="delete-btn" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="/assets/img/delete.svg" alt="">Delete</div>
         </div>
 </section>
@@ -94,6 +94,28 @@
                 <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
                 <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
                 <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
+                <button type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+            </form>
+        </div> 
+    </div>
+</section>
+
+<section id="edit-contact" class="bg">
+    <div class="contacts-disp-flex-ai-center-fd-col ">
+        <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
+        <div class="contacts-top-half contacts-disp-flex-center-center-col">
+            <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+                <h1 class="color-white fw-700">Add contact</h1>
+                <p class="color-white fw-400">Tasks are better with a team!</p>
+                <div class="contacts-details-seperator"></div>
+            </div>
+        </div>
+        <div id="contacts-user-initials-saved" class="contacts-management-user-initials disp-flex-center-center">AM</div>
+        <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+            <form onsubmit="editContact(currentOpenedContact); return false;" class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+                <input required id="contact-name-saved" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
+                <input required id="contact-email-saved" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
+                <input required id="contact-phone-saved" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
                 <button type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
             </form>
         </div> 

@@ -66,7 +66,7 @@ function renderContactList() {
 
 
 function openContactDetails(id) {
-    let contact = arrContacts.find(entry => entry['contact-id'] === id);
+    let contact = getCurrentContactById(id);
     let contactDetail = docID('contact-detail')
     currentOpenedContact = id;
     openDialog('contacts-details');
@@ -145,13 +145,40 @@ async function addContact() {
 
 
 async function deleteContact(id) {
-    let contact = arrContacts.find(entry => entry['contact-id'] === id);
+    let contact = getCurrentContactById(id);
     let key = contact['unique-key'];
     await deleteData("/contacts/" + key);
     closeDialog('contacts-details');
     reloadContacts();
 }
 
+async function editContact(id) {
+    let contact = getCurrentContactById(id);
+    let key = contact['unique-key'];
+
+}
+
+function loadCurrentContact(id) {
+    let contact = getCurrentContactById(id);
+    let name = docID('contact-name-saved');
+    let email = docID('contact-email-saved');
+    let phone = docID('contact-phone-saved');
+    let initials = docID('contacts-user-initials-saved')
+
+    openDialog('edit-contact');
+
+    name.value = contact['contact-name'];
+    email.value = contact['contact-email'];
+    phone.value = contact['contact-tel'];
+    initials.innerHTML = `${contact['contact-acronym']}`
+    initials.style = `background-color: ${contact['contact-color']}`
+}
+
+
+function getCurrentContactById(id) {
+    let contact = arrContacts.find(entry => entry['contact-id'] === id);
+    return contact;
+}
 
 function setContactInputValues() {
     let name = docID('contact-name');
