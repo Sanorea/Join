@@ -3,7 +3,9 @@ const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.fire
 
 
 function init() {
-    loadData(path="-NxdlUHdMDgqDya6QkiU/login")
+    let body = docID('body');
+    loadData(path="-NxdlUHdMDgqDya6QkiU/login");
+    body.innerHTML = LogInHTML();
 }
 
 function SingUpHTML() {
@@ -57,59 +59,62 @@ function SingUpHTML() {
 
 function LogInHTML() {
     return /*HTML*/ `
+    <div id="log-in-body" class="log-in-body">
+        <div id="log-in-container" class="log-in-container">
             <div class="log-in-header">
                 <span id="header" class="header">Log in</span>
                 <div class="underline-header"></div>
             </div>
             <div id="log-in-input-container" class="log-in-input-container">
-                <form class="input">
+                <form onsubmit="userLogIn(); return false;" class="input">
                     <div class="email-input-content">
-                        <input class="email-input" placeholder="Email" type="email">
+                        <input required id="log-in-email" minlength="6" maxlength="20" class="email-input" placeholder="Email" type="email">
                     </div>
                     <div class="password-input-content">
-                        <input class="password-input" id="log-in-password-renderHTML" onclick="iconFirstSwitch('icon-4'); this.onclick=null;"
-                            placeholder="Password" type="password">
-                        <img id="icon-4" onclick="showVisibility('log-in-password-renderHTML','icon-4')" src="assets/img/lock.svg">
+                        <input required class="password-input" minlength="5" maxlength="15" id="log-in-password-1"
+                            onclick="iconFirstSwitch('icon-3'); this.onclick=null;" placeholder="Password"
+                            type="password">
+                        <img id="icon-3" onclick="showVisibility('log-in-password-1','icon-3')" src="assets/img/lock.svg">
                     </div>
-                </form>
-                <div class="log-in-remember-me">
-                    <input class="form-check-input input-remember" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        <span class="remember-text">Remember me</span>
-                    </label>
-                </div>
-            </div>
+                    <div class="log-in-remember-me">
+                        <input class="form-check-input input-remember curser" type="checkbox" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <span class="remember-text">Remember me</span>
+                        </label>
+                    </div>
             <div class="log-in-btn">
                 <div class="log-in-button">
-                    <button class="log-in-btn-black btn-primary"><span class="log-in-btn-text">Log In</span></button>
+                    <button type="submit" class="log-in-btn-black btn-primary curser"><span class="log-in-btn-text">Log In</span></button>
                 </div>
+            </form>
                 <div class="log-in-guest">
-                    <button class="log-in-btn-white btn-secondary"><span class="guest-btn-text">Guest Log
-                            in</span></button>
+                    <button class="log-in-btn-white btn-secondary curser"><span class="guest-btn-text">Guest Log in</span></button>
                 </div>
             </div>
-        <div id="bottom-body" class="bottom-body">
+        </div>
+        <div id="bottom-body-1" class="bottom-body">
             <div class="Not-a-Join-user">
                 <span class="bottom-text-not-joiner">Not a Join user?</span>
             </div>
             <div class="Sing-up-button">
-                <button class="Sing-up-btn btn-primary curser"><span onclick="renderSignUp()" class="bottom-text-sing-up">Sign up</span></button>
+                <button onclick="renderSignUp()" class="Sing-up-btn btn-primary curser"><span class="bottom-text-sing-up">Sign up</span></button>
             </div>
         </div>
         <div class="policy-notice">
             <div class="privacy-policy"><span class="policy-text">Privacy Policy</span></div>
             <div class="legal-notice"><span class="notice-text">Legal notice</span></div>
         </div>
+    </div>
     `;
 }
 
-function renderPopUp() {
+function renderPopUp(text) {
     return /*HTML*/ `
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content modalContent">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Password does not match</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">${text}</h1>
       </div>
       <div class="modal-footer">
         <button onclick="fromPopUpToSignUp()" type="button" class="btn btn-primary">Okey</button>
@@ -127,7 +132,6 @@ function fromPopUpToSignUp() {
 
 function renderSignUp() {
     let container = docID('log-in-container');
-    let bottomBody = docID('bottom-body-1');
     let bodyLogIn = docID('log-in-body');
     bodyLogIn.style.height = '595px';
     container.style.height = '100%';
@@ -135,12 +139,12 @@ function renderSignUp() {
 }
 
 function backToLogIn() {
+    let body = docID('body');
     let container = docID('log-in-container');
-    let bottomBody = docID('bottom-body-1');
     let bodyLogIn = docID('log-in-body');
     bodyLogIn.style.height = '515px';
     container.style.height = '515px';
-    container.innerHTML = LogInHTML();
+    body.innerHTML = LogInHTML();
 }
 
 function showVisibility(id, icon) {
@@ -172,9 +176,9 @@ function addUserLogIn() {
     }
     if (password.value != docID('sign-up-password-2').value) {
         popUp.classList.remove("d-none");
-        popUp.innerHTML = renderPopUp();
+        popUp.innerHTML = renderPopUp('Password does not match');
     } else {
-        postData("-NxdlUHdMDgqDya6QkiU/login/0", signUpDAta);
+        postData("-NxdlUHdMDgqDya6QkiU/login", signUpDAta);
         name.value = ``;
         email.value = ``;
         password.value = ``;
@@ -211,14 +215,20 @@ function check() {
 }
 
 async function userLogIn(){
+    let popUp = docID('sign-up-popup');
     let response = await loadData("-NxdlUHdMDgqDya6QkiU");
-    console.log(response);
-    console.log(Object.keys(response['login'][0]));
+    let users = Object.values(response.login);
     let email = docID('log-in-email');
     let password = docID('log-in-password-1');
-    let user = response.find(u => u.email == email.value && u.password == password.value);
-    console.log(user);
+    let user = users.find(u => u.email == email.value && u.password == password.value);
     if (user) {
-        console.log(user);
+        popUp.classList.remove("d-none");
+        popUp.innerHTML = renderPopUp('Welcome');
+        email.value = ``;
+        password.value = ``;
+    } else {
+        popUp.classList.remove("d-none");
+        popUp.innerHTML = renderPopUp('Email or Password are wrong');
+        password.value = ``;
     }
 }

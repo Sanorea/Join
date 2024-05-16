@@ -1,10 +1,11 @@
 body {
     margin: 0;
     padding: 0;
-    /* width: 100%;
-    height: 100%; */
     display: flex;
     justify-content: center;
+    /* align-items: center; */
+    height: 100%;
+    width: 100%;
 }
 
 .log-in-logo {
@@ -38,7 +39,6 @@ body {
     position: relative;
     top: calc(50% - 60px);
     left: calc(50% - 50px);
-    /* transform: scale(0.64); */
     animation: logo-animation-white 1s ease-in-out forwards;
     height: 121px;
     width: 100px;
@@ -641,6 +641,7 @@ body {
     width: 450px;
     border-radius: 10px;
     padding: 10px;
+    top: 250px;
 }
 
 .modalContent{
@@ -652,6 +653,7 @@ body {
 
 .modal-title{
     color: #ffffff;
+    font-size: x-large;
 }
 
 .d-none{
@@ -666,6 +668,12 @@ body {
 .notice-text:hover{
     color: #29ABE2;
     font-weight: bold;
+}
+
+#body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media(max-width: 480px){
