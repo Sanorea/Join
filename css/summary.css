@@ -1,0 +1,47 @@
+.top-header{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 223px;
+    height: 104px;
+    top: 128px;
+    left: 16px;
+    gap: 16px;
+}
+
+.top-underline{
+    width: 40%;
+    border: 2px solid;
+    border-color: var(--secondary-color);
+    border-radius: 90px;
+}
+
+.join360{
+    width: 203px;
+    height: 56px;
+    font-weight: 700;
+    font-size: 47px;
+}
+
+.key-metrics{
+    width: 2223px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--focus-color);
+}
+
+.cards-body{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 396px;
+    height: 384px;
+    top: 272px;
+    left: 16px;
+}
+
+.first-row{
+    width: 396px;
+    height: 110px;
+}
