@@ -1,6 +1,7 @@
 let arrContacts = [];
 let arrHeadlineLetters = [];
 let currentId = 0;
+let currentOpenedContact = 0;
 
 async function init() {
     renderHeaderNav();
@@ -8,6 +9,11 @@ async function init() {
     renderContactList();
 }
 
+
+async function reloadContacts() {
+    await getContactsData();
+    renderContactList();
+}
 
 async function getContactsData() {
     let contactData = await loadData("/contacts");
@@ -33,6 +39,7 @@ function getHeadlineLetters() {
 function renderContactList() {
     let arrContactsInList = [];
     let contactList = docID('contact-list');
+    contactList.innerHTML = ``;
     getHeadlineLetters();
     // for loop to go through every headline letter that exists
     for (let i = 0; i < arrHeadlineLetters.length; i++) {
@@ -59,8 +66,10 @@ function renderContactList() {
 function openContactDetails(id) {
     let contact = arrContacts.find(entry => entry['contact-id'] === id);
     let contactDetail = docID('contact-detail')
+    currentOpenedContact = id;
     openDialog('contacts-details');
     contactDetail.innerHTML = generateContactDetailHTML(contact);
+    
 }
 
 function generateContactDetailHTML(contact) {
@@ -116,6 +125,7 @@ function saveContactDataInArray(contactData) {
 
     for (let i in tempArrContacts) {
         arrContacts.push(tempArrContacts[i][1]);
+        arrContacts[i]['unique-key'] = tempArrContacts[i][0];
     }
     console.log(tempArrContacts);
     console.log(arrContacts);
@@ -128,8 +138,16 @@ async function addContact() {
     await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.acronym, contactInputValues.id);
     emptyContactsInput(contactInputValues.name, contactInputValues.email, contactInputValues.phone);
     closeDialog('add-contact');
-    getContactsData();
-    renderContactList();
+    reloadContacts();
+}
+
+
+async function deleteContact(id) {
+    let contact = arrContacts.find(entry => entry['contact-id'] === id);
+    let key = contact['unique-key'];
+    await deleteData("/contacts/" + key);
+    closeDialog('contacts-details');
+    reloadContacts();
 }
 
 
