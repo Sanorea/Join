@@ -244,6 +244,17 @@ h1 {
     padding: 8px;
     box-sizing: border-box;
     text-align: center;
+    cursor: pointer;
+    border-radius: 9px;
+}
+
+.del-edit-menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--secondary-color);
+}
+
+.del-edit-menu-btn:hover #edit-img, .del-edit-menu-btn:hover #delete-img {
+    filter: invert(49%) sepia(78%) saturate(448%) hue-rotate(152deg) brightness(102%) contrast(95%);
 }
 
 
