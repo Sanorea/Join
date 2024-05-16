@@ -3,7 +3,7 @@ let arrHeadlineLetters = [];
 let currentId = 0;
 let currentOpenedContact = 0;
 
-async function init() {
+async function contactsInit() {
     renderHeaderNav();
     await getContactsData();
     renderContactList();
@@ -15,6 +15,7 @@ async function reloadContacts() {
     renderContactList();
 }
 
+
 async function getContactsData() {
     let contactData = await loadData("/contacts");
     console.log(contactData);
@@ -22,6 +23,7 @@ async function getContactsData() {
 
     return contactData;
 }
+
 
 function getHeadlineLetters() {
     arrHeadlineLetters = [];
