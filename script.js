@@ -23,6 +23,18 @@ async function postData(path = "", data = {}) {
     return responseToJson = await response.json();
 }
 
+async function updateData(path = "", data = {}) {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return responseToJson = await response.json();
+}
+
+
 
 async function deleteData(path = "") {
     let response = await fetch(BASE_URL + path + ".json", {
