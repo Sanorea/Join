@@ -24,6 +24,14 @@ async function postData(path = "", data = {}) {
 }
 
 
+async function deleteData(path = "") {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "DELETE",
+    });
+    return responseToJson = await response.json();
+}
+
+
 function getFirstLetter(string) {
     let firstLetter = string.slice(0, 1);
     return firstLetter;
