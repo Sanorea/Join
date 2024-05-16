@@ -107,11 +107,12 @@ const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatab
 
 function addTaskInit(path) {
     addTaskLoadData(path);
+    renderNames();
 
 }
 
-async function addTaskPostData(path="", data={}) {
-    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json",{
+async function addTaskPostData(path = "", data = {}) {
+    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json", {
         method: "POST",
         header: {
             "Content-Type": "application/json",
@@ -123,7 +124,7 @@ async function addTaskPostData(path="", data={}) {
     return responseToJson = await responseAddTask.json();
 }
 
-async function addTaskLoadData(path="") {
+async function addTaskLoadData(path = "") {
     let responseAddTask = await fetch(BASE_URL_Isa + path + ".json");
     return responseToJson = await responseAddTask.json();
 }
@@ -134,7 +135,7 @@ function submitTask() {
     let assignedTo = docID('add-task-input-assigned');
     let date = docID('add-task-input-date');
     let categorie = docID('add-task-input-categorie')
-    
+
     addTaskPostData("/tasks", {
         "title": title.value,
         "description": description.value,
@@ -144,13 +145,57 @@ function submitTask() {
         "categorie": categorie.value,
         "subtasks": "subtasks",
     });
-    title.value="";
-    description.value="";
-    assignedTo.value="";
-    date.value="";
-    categorie.value="";
-    subtasks="";
+    title.value = "";
+    description.value = "";
+    assignedTo.value = "";
+    date.value = "";
+    categorie.value = "";
+    subtasks = "";
 }
+
+function renderNames() {
+    let names = ['isabel', 'peter', 'alex'];
+    let dropDown = document.getElementById('dropDown');
+    for (let i = 0; i < names.length; i++) {
+        const element = names[i];
+        dropDown.innerHTML += `                
+        <li>
+            <label>
+                ${element}
+                <input type="checkbox" value="${element}">
+            </label>
+        </li>`;
+    }
+    attachCheckboxHandlers();
+}
+
+function handleCB() {
+    let mySelectedListItems = [];
+    let mySelectedListItemsText = '';
+
+    chBoxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+            mySelectedListItems.push(checkbox.value);
+            mySelectedListItemsText += checkbox.value + ', ';
+        }
+    });
+
+    dpBtn.innerText =
+        mySelectedListItems.length > 0
+            ? mySelectedListItemsText.slice(0, -2) : 'Select';
+    console.log(mySelectedListItems);
+}
+
+function attachCheckboxHandlers() {
+    chBoxes = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
+    dpBtn = document.getElementById('multiSelectDropdown');
+    chBoxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', handleCB);
+    });
+}
+
+let chBoxes;
+let dpBtn;
 
 
 
