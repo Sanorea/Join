@@ -254,5 +254,27 @@ color: var(--focus-color);
     content: url(/assets/img/Group\ 7\ otherWithe.svg);
 }
 
+#body {
+    height: 780px;
+}
+
+.welcome{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background-color: white;
+    color: black;
+}
+
+.Greet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 

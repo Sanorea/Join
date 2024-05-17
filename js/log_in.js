@@ -2,7 +2,7 @@
 const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.firebasedatabase.app/';
 
 
-function init() {
+function initLogIn() {
     let body = docID('body');
     loadData(path = "-NxdlUHdMDgqDya6QkiU/login");
     body.innerHTML = LogInHTML();
