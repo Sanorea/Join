@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +9,63 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
+
 <body onload="renderHeaderNav()">
     <header id="header"></header>
     <nav id="nav"></nav>
     <div id="body">
         <div class="top-header">
-            <div class="join360-contrent"><span class="join360">Join 360</span></div> 
+            <div class="join360-contrent"><span class="join360">Join 360</span></div>
             <div class="key-metrics-content"><span class="key-metrics">Key Metrics at a Glance</span></div>
             <div class="top-underline"></div>
         </div>
         <div class="cards-body">
             <div class="first-row">
                 <div class="to-do-card">
-                    <div class="to-do-card-img"><img src="/assets/img/Frame 59.svg" alt=""></div>
+                    <div class=""><img class="to-do-card-img" src="/assets/img/Frame 59.svg" alt=""></div>
                     <div class="to-do-card-counter">
                         <div class="counter">1</div>
                         <div class="card-info">To-Do</div>
                     </div>
                 </div>
-                <div class="done-card"></div>
+                <div class="done-card">
+                    <div class=""><img class="to-do-card-img" src="/assets/img/Group 7.svg" alt=""></div>
+                    <div class="to-do-card-counter">
+                        <div class="counter">1</div>
+                        <div class="card-info">Done</div>
+                    </div>
+                </div>
             </div>
-            <div class="second-row"></div>
-            <div class="third-row"></div>
+            <div class="second-row">
+                <div class="urgent-left">
+                    <div class=""><img src="assets/img/Group 7 logo.svg" alt=""></div>
+                    <div class="urgent-counter">
+                        <div class="counter">1</div>
+                        <div class="card-info">Urgent</div>
+                    </div>
+                </div>
+                <div class="intermediate-line"></div>
+                <div class="urgent-right">
+                    <div class="date">October 16, 2022</div>
+                    <div class="upcoming-deadline">Upcoming Deadline</div>
+                </div>
+            </div>
+            <div class="third-row">
+                <div class="board-card">
+                    <div class="counter">5</div>
+                    <div class="board-info">Task in Board</div>
+                </div>
+                <div class="board-card">
+                    <div class="counter">2</div>
+                    <div class="progress-info">Task in Progress</div>
+                </div>
+                <div class="board-card">
+                    <div class="counter">2</div>
+                    <div class="feedback-info">Awaiting feedback</div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
 </html>

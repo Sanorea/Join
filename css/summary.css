@@ -1,4 +1,4 @@
-.top-header{
+.top-header {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -9,21 +9,21 @@
     gap: 16px;
 }
 
-.top-underline{
+.top-underline {
     width: 40%;
     border: 2px solid;
     border-color: var(--secondary-color);
     border-radius: 90px;
 }
 
-.join360{
+.join360 {
     width: 203px;
     height: 56px;
     font-weight: 700;
     font-size: 47px;
 }
 
-.key-metrics{
+.key-metrics {
     width: 2223px;
     height: 24px;
     font-weight: 400;
@@ -31,7 +31,7 @@
     color: var(--focus-color);
 }
 
-.cards-body{
+.cards-body {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -41,7 +41,185 @@
     left: 16px;
 }
 
-.first-row{
+.first-row {
     width: 396px;
     height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* justify-content: center; */
 }
+
+.counter {
+    height: 56px;
+    font-weight: 600;
+    font-size: 47px;
+    align-items: center;
+    display: flex;
+}
+
+.to-do-card-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* height: 73px; */
+    /* width: 40px; */
+}
+
+.to-do-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 186px;
+    height: 110px;
+    border-radius: 20px;
+    /* padding: 38px 19px 38px 19px; */
+    gap: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.to-do-card-img {
+    width: 40px;
+    height: 40px;
+    gap: 10px;
+    display: flex;
+}
+
+.card-info{
+    /* width: 40px; */
+    height: 17px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    color: var(--focus-color);
+}
+
+.done-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 186px;
+    height: 110px;
+    border-radius: 20px;
+    /* padding: 38px 19px 38px 19px; */
+    gap: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.second-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 396px;
+    height: 110px;
+    top: 140px;
+    border-radius: 20px;
+    /* padding: 28px 0px 28px 0px; */
+    gap: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.intermediate-line{
+    height: 68px;
+    width: 1px;
+    border: 1px solid;
+    border-color: #D1D1D1;
+    border-radius: 90px;
+    background-color: #D1D1D1;
+}
+
+.urgent-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 108px;
+    height: 73px;
+    gap: 18px;
+}
+
+.urgent-right{
+    display: flex;
+    flex-direction: column;
+    width: 135px;
+    height: 44px;
+    gap: 8px;
+}
+
+.date{
+    width: 135px;
+    height: 19px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--focus-color);
+}
+
+.upcoming-deadline{
+    width: 130px;
+    height: 17px;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--focus-color);
+}
+
+.urgent-counter{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.third-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 396px;
+    height: 116px;
+    top: 268px;
+}
+
+.board-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 116px;
+    height: 116px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+
+.board-info{
+    width: 54px;
+    height: 34px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    color: var(--focus-color);
+}
+
+.progress-info{
+    width: 59px;
+    height: 34px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    color: var(--focus-color);
+}
+
+.feedback-info{
+    width: 62px;
+    height: 34px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    color: var(--focus-color);
+}
+

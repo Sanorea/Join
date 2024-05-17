@@ -231,7 +231,7 @@ body {
     border-color: var(--secondary-color);
 }
 
-.password-input:focus{
+.password-input:focus {
     outline: none;
     border-color: var(--secondary-color);
 }
@@ -243,7 +243,7 @@ body {
 
 
 .password-input {
-        display: flex;
+    display: flex;
     align-items: center;
     width: 364px;
     height: 50px;
@@ -522,7 +522,7 @@ body {
     height: 56px;
 }
 
-.email-input-name-content{
+.email-input-name-content {
     display: flex;
     align-items: center;
     width: 364px;
@@ -542,7 +542,7 @@ body {
     border-radius: 10px;
 }
 
-.name-input{
+.name-input {
     display: flex;
     align-items: center;
     width: 364px;
@@ -570,15 +570,15 @@ body {
     gap: 24px;
 }
 
-.sign-in-policy{
+.sign-in-policy {
     color: var(--secondary-color);
 }
 
-.sign-in-policy:hover{
+.sign-in-policy:hover {
     cursor: pointer;
 }
 
-.accapt-the-policy-text{
+.accapt-the-policy-text {
     color: #A8A8A8;
 }
 
@@ -597,7 +597,7 @@ body {
     justify-content: center;
 }
 
-.header-arrow{
+.header-arrow {
     position: absolute;
     height: 32px;
     width: 32px;
@@ -606,15 +606,15 @@ body {
     border-radius: 50%;
 }
 
-.header-arrow:hover{
+.header-arrow:hover {
     background-color: #e6e6e6;
 }
 
-.curser:hover{
+.curser:hover {
     cursor: pointer;
 }
 
-.form-body{
+.form-body {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -622,7 +622,7 @@ body {
     gap: 32px;
 }
 
-#notTheSamePassword{
+#notTheSamePassword {
     color: red;
     margin-right: 100px;
     position: absolute;
@@ -630,7 +630,7 @@ body {
 }
 
 
-.popup{
+.popup {
     position: absolute;
     z-index: 999;
     background-color: #2A3647;
@@ -644,61 +644,125 @@ body {
     top: 250px;
 }
 
-.modalContent{
+.modalContent {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.modal-title{
+.modal-title {
     color: #ffffff;
     font-size: x-large;
 }
 
-.d-none{
+.d-none {
     display: none;
 }
 
-.policy-text:hover{
+.policy-text:hover {
     color: #29ABE2;
     font-weight: bold;
 }
 
-.notice-text:hover{
+.notice-text:hover {
     color: #29ABE2;
     font-weight: bold;
 }
 
-#body{
+#body {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-@media(max-width: 480px){
-    .popup{
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #7ac142;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 10% auto;
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes scale {
+
+    0%,
+    100% {
+        transform: none
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1)
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #7ac142
+    }
+}
+
+
+@media(max-width: 480px) {
+    .popup {
         width: 345px;
         height: 150px;
         font-size: 12px;
     }
 }
-@media(max-width: 380px){
-    .popup{
+
+@media(max-width: 380px) {
+    .popup {
         width: 303px;
         height: 123px;
     }
 }
 
-@media(max-width: 280px){
-    .popup{
+@media(max-width: 280px) {
+    .popup {
         width: 345px;
         height: 150px;
     }
 }
 
-@media(max-width: 330px){
-    .popup{
+@media(max-width: 330px) {
+    .popup {
         width: 280px;
         height: 118px;
         font-size: 11px;

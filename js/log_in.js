@@ -4,7 +4,7 @@ const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.fire
 
 function init() {
     let body = docID('body');
-    loadData(path="-NxdlUHdMDgqDya6QkiU/login");
+    loadData(path = "-NxdlUHdMDgqDya6QkiU/login");
     body.innerHTML = LogInHTML();
 }
 
@@ -53,7 +53,7 @@ function SingUpHTML() {
             <div class="legal-notice"><span class="notice-text">Legal notice</span></div>
         </div>
         </form>
-        <div id="sign-up-popup" class="modal-dialog modal-fullscreen-sm-down d-none popup"></div>
+        <!-- <div id="sign-up-popup" class="modal-dialog modal-fullscreen-sm-down d-none popup"></div> -->
   `;
 }
 
@@ -88,7 +88,7 @@ function LogInHTML() {
                 </div>
             </form>
                 <div class="log-in-guest">
-                    <button class="log-in-btn-white btn-secondary curser"><span class="guest-btn-text">Guest Log in</span></button>
+                    <button type="button" onclick="guestLogIn()" class="log-in-btn-white btn-secondary curser"><span class="guest-btn-text">Guest Log in</span></button>
                 </div>
             </div>
         </div>
@@ -125,6 +125,36 @@ function renderPopUp(text) {
     `;
 }
 
+function WelcomePopUp(text, name) {
+    return /*HTML*/ `
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modalContent">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">${text} ${name}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+    `;
+}
+
+function checkInPopup() {
+    return /*HTML*/ `
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modalContent">
+          <div class="modal-header">
+          <div class="circle-loader">
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+</svg>
+</div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    `}
+
 function fromPopUpToSignUp() {
     let popUp = docID('sign-up-popup');
     popUp.classList.add("d-none");
@@ -145,6 +175,13 @@ function backToLogIn() {
     bodyLogIn.style.height = '515px';
     container.style.height = '515px';
     body.innerHTML = LogInHTML();
+}
+
+function guestLogIn(){
+    let popUp = docID('sign-up-popup');
+    popUp.classList.remove("d-none");
+        popUp.innerHTML = WelcomePopUp('Welcome', 'Guest');
+        setTimeout(function () { window.location.href = "summary.html"; }, 1400);
 }
 
 function showVisibility(id, icon) {
@@ -177,12 +214,14 @@ function addUserLogIn() {
     if (password.value != docID('sign-up-password-2').value) {
         popUp.classList.remove("d-none");
         popUp.innerHTML = renderPopUp('Password does not match');
-    } else {
-        postData("-NxdlUHdMDgqDya6QkiU/login", signUpDAta);
-        name.value = ``;
-        email.value = ``;
         password.value = ``;
         passwordSecond.value = ``;
+    } else {
+        postData("-NxdlUHdMDgqDya6QkiU/login", signUpDAta);
+        popUp.classList.remove("d-none");
+        popUp.innerHTML = checkInPopup();
+        setTimeout(function () { popUp.classList.add("d-none"); }, 2000);
+        setTimeout(backToLogIn, 2000);
     }
 }
 
@@ -197,7 +236,7 @@ async function postData(path = "", data = {}) {
     return responseToJson = await response.json();
 }
 
-async function loadData(path="") {
+async function loadData(path = "") {
     let response = await fetch(EDU_FIREBASE + path + ".json");
     let responseToJson = await response.json();
     return responseToJson;
@@ -214,18 +253,20 @@ function check() {
     }
 }
 
-async function userLogIn(){
+async function userLogIn() {
     let popUp = docID('sign-up-popup');
     let response = await loadData("-NxdlUHdMDgqDya6QkiU");
     let users = Object.values(response.login);
+    console.log(users);
     let email = docID('log-in-email');
     let password = docID('log-in-password-1');
     let user = users.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         popUp.classList.remove("d-none");
-        popUp.innerHTML = renderPopUp('Welcome');
+        popUp.innerHTML = WelcomePopUp('Welcome', user.name);
         email.value = ``;
         password.value = ``;
+        setTimeout(function () { window.location.href = "summary.html"; }, 1400);
     } else {
         popUp.classList.remove("d-none");
         popUp.innerHTML = renderPopUp('Email or Password are wrong');
