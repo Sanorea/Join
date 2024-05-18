@@ -1,4 +1,5 @@
 function initSummary(){
+    console.log();
     renderHeaderNav();
     docID('body').innerHTML = renderSummaryHTML();
     loadTheWelcomeSreen('Sophia Müller');

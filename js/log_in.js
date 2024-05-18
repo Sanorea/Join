@@ -3,9 +3,8 @@ const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.fire
 
 
 function initLogIn() {
-    let body = docID('body');
     loadData(path = "-NxdlUHdMDgqDya6QkiU/login");
-    body.innerHTML = LogInHTML();
+    docID('body').innerHTML = LogInHTML();
 }
 
 function SingUpHTML() {
@@ -146,9 +145,7 @@ function checkInPopup() {
         <div class="modal-content modalContent">
           <div class="modal-header">
           <div class="circle-loader">
-          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-</svg>
-</div>
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
           </div>
         </div>
       </div>
@@ -257,7 +254,6 @@ async function userLogIn() {
     let popUp = docID('sign-up-popup');
     let response = await loadData("-NxdlUHdMDgqDya6QkiU");
     let users = Object.values(response.login);
-    console.log(users);
     let email = docID('log-in-email');
     let password = docID('log-in-password-1');
     let user = users.find(u => u.email == email.value && u.password == password.value);
