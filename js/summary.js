@@ -1,6 +1,7 @@
 function initSummary(){
     renderHeaderNav();
     docID('body').innerHTML = renderSummaryHTML();
+    loadTheWelcomeSreen('Sophia Müller');
 }
 
 function renderSummaryHTML(){
@@ -60,16 +61,16 @@ function renderSummaryHTML(){
     `; 
 }
 
-function loadTheWelcomeSreen(user){
+function loadTheWelcomeSreen(name){
     let welcomeScreen = docID('welcomeScreen');
-    welcomeScreen.innerHTML = renderWelcomeHTML(user);
+    welcomeScreen.innerHTML = renderWelcomeHTML(name);
 }
 
-function renderWelcomeHTML(user){
+function renderWelcomeHTML(name){
   return /*HTML*/ `
     <div class="Greet">
-      <div class="greet">good Morning</div>
-      <div class="greet-name">${user.name}</div>
+      <div class="greet-text">good Morning</div>
+      <div class="greet-name">${name}</div>
     </div>  
   `;
 }
