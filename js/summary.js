@@ -1,9 +1,11 @@
+
 function initSummary(){
-    console.log();
     renderHeaderNav();
     docID('body').innerHTML = renderSummaryHTML();
-    loadTheWelcomeSreen('Sophia Müller');
+    loadTheWelcomeSreen();
 }
+
+let localStorageName = getItemLocalStorage('user-name');
 
 function renderSummaryHTML(){
     return /*HTML*/ `
@@ -62,16 +64,24 @@ function renderSummaryHTML(){
     `; 
 }
 
-function loadTheWelcomeSreen(name){
+function loadTheWelcomeSreen(){
     let welcomeScreen = docID('welcomeScreen');
-    welcomeScreen.innerHTML = renderWelcomeHTML(name);
+    welcomeScreen.innerHTML = renderWelcomeHTML();
 }
 
-function renderWelcomeHTML(name){
+function renderWelcomeHTML(){
   return /*HTML*/ `
     <div class="Greet">
       <div class="greet-text">good Morning</div>
-      <div class="greet-name">${name}</div>
+      <div class="greet-name">${localStorageName}</div>
     </div>  
   `;
+}
+
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
 }

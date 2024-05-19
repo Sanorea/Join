@@ -178,6 +178,7 @@ function guestLogIn(){
     let popUp = docID('sign-up-popup');
     popUp.classList.remove("d-none");
         popUp.innerHTML = WelcomePopUp('Welcome', 'Guest');
+        setItemLocalStorage('user-name', 'Guest');
         setTimeout(function () { window.location.href = "summary.html"; }, 1400);
 }
 
@@ -262,10 +263,19 @@ async function userLogIn() {
         popUp.innerHTML = WelcomePopUp('Welcome', user.name);
         email.value = ``;
         password.value = ``;
+        setItemLocalStorage('user-name', user.name)
         setTimeout(function () { window.location.href = "summary.html"; }, 1400);
     } else {
         popUp.classList.remove("d-none");
         popUp.innerHTML = renderPopUp('Email or Password are wrong');
         password.value = ``;
     }
+}
+
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
 }

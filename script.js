@@ -4,6 +4,8 @@ function docID(id) {
     return document.getElementById(id);
 }
 
+//  let localStorageName = getItemLocalStorage('user-name');
+
 
 async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
@@ -50,38 +52,25 @@ function getFirstLetter(string) {
 }
 
 
-function renderHeader() {
+function renderHeader(firstLetter) {
     docID('header').innerHTML =/*html*/`
 
     <img class="header-logo" src="./assets/img/logo_mobile.svg">
     <div class="header-user dropdown" onclick="dropDownMenu()">
-        <span class="header-user-initials">SM</span>
+        <span class="header-user-initials">${firstLetter}</span>
         <div id="myDropdown" class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <a href="#">Help</a>
+        <a href="#">Legal Notice</a>
+        <a href="#">Privacy Policy</a>
+        <a onclick="clearTheLocalStorage()" href="index.html">Log out</a>
   </div>
   </div>
     `;
 }
 
-function dropDownMenu() {
-   document.getElementById("myDropdown").classList.toggle("show")
-  }
-  
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropdown')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
+function clearTheLocalStorage(){
+    localStorage.clear();
+}
 
 
 function renderNav() {
@@ -117,7 +106,8 @@ function renderNav() {
 
 
 function renderHeaderNav() {
-    renderHeader();
+    let finishFirstletter = getFirstLetter(localStorageName);
+    renderHeader(finishFirstletter);
     renderNav();
 }
 
@@ -219,3 +209,30 @@ function attachCheckboxHandlers() {
 
 let chBoxes;
 let dpBtn;
+
+
+function dropDownMenu() {
+    document.getElementById("myDropdown").classList.toggle("show")
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropdown')) {
+        let dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
+}

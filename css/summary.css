@@ -301,6 +301,8 @@
     font-weight: 400;
     text-align: left;
     color: var(--primary-color);
+    display: flex;
+    justify-content: center;
 }
 
 .greet-name {
@@ -310,4 +312,6 @@
     font-weight: 700;
     text-align: left;
     color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
 }
