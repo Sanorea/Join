@@ -4,7 +4,7 @@ function docID(id) {
     return document.getElementById(id);
 }
 
-//  let localStorageName = getItemLocalStorage('user-name');
+  let localStorageName = getItemLocalStorage('user-name');
 
 
 async function loadData(path = "") {

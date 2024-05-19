@@ -5,8 +5,6 @@ function initSummary(){
     loadTheWelcomeSreen();
 }
 
-let localStorageName = getItemLocalStorage('user-name');
-
 function renderSummaryHTML(){
     return /*HTML*/ `
     <div class="top-header">
