@@ -1,5 +1,9 @@
 const BASE_URL = "https://join-192-default-rtdb.europe-west1.firebasedatabase.app/";
 
+// let date = new Date();
+// let time =  date.getHours();
+// console.log(time);
+
 function docID(id) {
     return document.getElementById(id);
 }

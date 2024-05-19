@@ -5,6 +5,10 @@ function initSummary(){
     loadTheWelcomeSreen();
 }
 
+let date = new Date();
+let time =  date.getHours();
+console.log(time);
+
 function renderSummaryHTML(){
     return /*HTML*/ `
     <div class="top-header">
@@ -64,13 +68,14 @@ function renderSummaryHTML(){
 
 function loadTheWelcomeSreen(){
     let welcomeScreen = docID('welcomeScreen');
-    welcomeScreen.innerHTML = renderWelcomeHTML();
+    let greetText = loadDateTime();
+    welcomeScreen.innerHTML = renderWelcomeHTML(greetText);
 }
 
-function renderWelcomeHTML(){
+function renderWelcomeHTML(greetText){
   return /*HTML*/ `
     <div class="Greet">
-      <div class="greet-text">good Morning</div>
+      <div class="greet-text">${greetText}</div>
       <div class="greet-name">${localStorageName}</div>
     </div>  
   `;
@@ -83,3 +88,16 @@ function setItemLocalStorage(key, data) {
 function getItemLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
+
+function loadDateTime(){
+    if (time > 6 && time < 12 ) {
+        return 'Good Morning'
+    } if (time > 10 && time < 17) {
+        return 'good noon'
+    } if (time > 17 && time < 22) {
+        return 'Good evening'
+    } if (time > 22 && time < 6) {
+        return 'Good Night'
+    }
+}
+

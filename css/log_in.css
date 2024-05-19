@@ -670,11 +670,11 @@ body {
     font-weight: bold;
 }
 
-#body {
+/* #body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 
 .wrapper {
