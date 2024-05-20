@@ -44,7 +44,7 @@
     font-size: 24px;
 }
 
-.board-input::placeholder{
+.board-input::placeholder {
     width: 100px;
     height: 24px;
     font-weight: 400;
@@ -55,3 +55,68 @@
     align-items: center;
 }
 
+.task-body {
+    position: absolute;
+    width: 396px;
+    height: 1038px;
+    top: 296px;
+    left: 16px;
+    gap: 26px;
+}
+
+.body-title-todo {
+    width: 73px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 27px;
+    color: var(--primary-color);
+}
+
+
+.board-body-todo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body-title-progress {
+    width: 205px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 27px;
+    color: var(--primary-color);
+}
+
+.body-title-done {
+    width: 73px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 27px;
+    color: var(--primary-color);
+}
+
+.body-title-feedback {
+    width: 205px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 27px;
+    color: var(--primary-color);
+}
+
+.board-todo-drag {
+    width: 392px;
+    height: 48px;
+    gap: 10px;
+    border-radius: 10px;
+    border: dotted;
+    background-color: #E7E7E7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #A8A8A8;
+}
+
+.empty-task-text {
+    color: #A8A8A8;
+    font-size: 16px;
+    font-weight: 400;
+}

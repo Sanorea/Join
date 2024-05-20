@@ -91,13 +91,13 @@ function getItemLocalStorage(key) {
 
 function loadDateTime(){
     if (time > 6 && time < 12 ) {
-        return 'Good Morning'
-    } if (time > 10 && time < 17) {
-        return 'good noon'
+        return 'Good morning'
+    } if (time > 12 && time < 17) {
+        return 'Good afternoon'
     } if (time > 17 && time < 22) {
         return 'Good evening'
     } if (time > 22 && time < 6) {
-        return 'Good Night'
+        return 'Good night'
     }
 }
 
