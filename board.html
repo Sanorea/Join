@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alle</title>
     <script src="js/board.js"></script>
+    <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
@@ -14,7 +15,37 @@
     <header id="header"></header>
     <nav id="nav"></nav>
     <div id="body" class="board-body">
-        <div></div>
+                <div class="board-content"><span class="board-title">Board</span></div>
+                <img class="board-add-task" src="assets/img/add-img.svg" alt="">
+            <input class="board-input" placeholder="Find Task" type="text">
+        <div class="todo-content">
+            <div class="board-body-todo">
+                <div class="body-title-todo"></div>
+                <div class="body-add-todo"></div>
+            </div>
+            <div class="board-todo-drag"></div>
+        </div>
+        <div class="progress-content">
+            <div class="board-body-progress">
+                <div class="body-title-progress"></div>
+                <div class="body-add-progress"></div>
+            </div>
+            <div class="board-progress-drag"></div>
+        </div>
+        <div class="feedback-content">
+            <div class="board-body-feedback">
+                <div class="body-title-feedback"></div>
+                <div class="body-add-feedback"></div>
+            </div>
+            <div class="board-feedback-drag"></div>
+        </div>
+        <div class="done-content">
+            <div class="board-body-done">
+                <div class="body-title-done"></div>
+                <div class="body-add-done"></div>
+            </div>
+            <div class="board-done-drag"></div>
+        </div>
     </div>
 </body>
 
