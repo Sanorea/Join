@@ -120,12 +120,19 @@ function renderHeaderNav() {
 
 
 
+function addTaskContactsToArray() {
+    let addTaskContacts=[];
+    let responseToJson = addTaskLoadData(path = "");
+    addTaskContacts.push(responseToJson);
+    console.log('addTaskContacts :>> ', addTaskContacts);
+}
+
 const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/";
 
 function addTaskInit(path) {
     addTaskLoadData(path);
     renderNames();
-
+    addTaskContactsToArray();
 }
 
 async function addTaskPostData(path = "", data = {}) {
@@ -136,14 +143,16 @@ async function addTaskPostData(path = "", data = {}) {
         },
         body: JSON.stringify(data)
     }
-
     );
     return responseToJson = await responseAddTask.json();
 }
 
 async function addTaskLoadData(path = "") {
     let responseAddTask = await fetch(BASE_URL_Isa + path + ".json");
-    return responseToJson = await responseAddTask.json();
+    let responseToJson = await responseAddTask.json();
+    console.log('responseToJson :>> ', responseToJson);
+    return responseToJson;
+
 }
 
 function submitTask() {
@@ -151,7 +160,7 @@ function submitTask() {
     let description = docID('add-task-input-description');
     let assignedTo = docID('add-task-input-assigned');
     let date = docID('add-task-input-date');
-    let categorie = docID('add-task-input-categorie')
+/*     let categorie = docID('add-task-input-categorie') */
 
     addTaskPostData("/tasks", {
         "title": title.value,
@@ -159,14 +168,14 @@ function submitTask() {
         "assignedTo": assignedTo.value,
         "date": date.value,
         "prio": "prio",
-        "categorie": categorie.value,
+/*         "categorie": categorie.value, */
         "subtasks": "subtasks",
     });
     title.value = "";
     description.value = "";
     assignedTo.value = "";
     date.value = "";
-    categorie.value = "";
+/*     categorie.value = ""; */
     subtasks = "";
 }
 
