@@ -3,6 +3,8 @@ function initSummary() {
     renderHeaderNav();
     docID('body').innerHTML = renderSummaryHTML();
     loadTheWelcomeSreen();
+    // loadFocus();
+     renderSideNavHTML();
 }
 
 let date = new Date();
@@ -110,4 +112,9 @@ function loadDateTime() {
         return 'Good night'
     }
 }
+
+// function loadFocus(){
+//     let id = docID('summary-link'); 
+//     id.classList.add('sideNav-summary-focus');
+// };
 

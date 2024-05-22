@@ -4,6 +4,11 @@ const BASE_URL = "https://join-192-default-rtdb.europe-west1.firebasedatabase.ap
 // let time =  date.getHours();
 // console.log(time);
 
+// function init(){
+//     loadFocus();
+// renderSideNavHTML()
+// }
+
 function docID(id) {
     return document.getElementById(id);
 }
@@ -108,11 +113,40 @@ function renderNav() {
     `;
 }
 
+function renderSideNavHTML(){
+    docID('sideNav').innerHTML = /*HTML*/`<div class="sideNav-logo">
+    <img src="assets/img/Capa 1.svg" alt="">
+</div>
+<div class="sideNav-links">
+    <div class="sideNav-summary" id="summary-link">
+        <img src="assets/img/Vector.svg" alt="">
+        <a href="summary.html" class="sideNav-text">Summary</a>
+    </div>
+    <div class="sideNav-summary" id="add-task-link">
+        <img src="assets/img/edit_square.svg" alt="">
+        <a href="add_tasks.html" class="sideNav-text">Add Task</a>
+    </div>
+    <div class="sideNav-summary" id="board-link">
+        <img src="assets/img/vec.svg" alt="">
+        <a href="board.html" class="sideNav-text">Board</a>
+    </div>
+    <div class="sideNav-summary" id="">
+        <img src="assets/img/perm_contact_calendar.svg" alt="">
+        <a href="contacts.html"  class="sideNav-text">Contacts</a>
+    </div>
+</div>
+<div class="sideNav-policy-content">
+    <span class="sideNav-policy">Privacy Policy</span>
+    <span class="sideNav-notice">Legal notice</span>
+</div>`;
+}
+
 
 function renderHeaderNav() {
     let finishFirstletter = getFirstLetter(localStorageName);
     renderHeader(finishFirstletter);
     renderNav();
+    renderSideNavHTML();
 }
 
 
@@ -249,3 +283,8 @@ function setItemLocalStorage(key, data) {
 function getItemLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
+
+// function loadFocus(){
+//     let id = docID('add-task-link'); 
+//     id.classList.add('sideNav-summary-focus');
+// };
