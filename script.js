@@ -61,7 +61,7 @@ function renderHeader(firstLetter) {
 
     <img class="header-logo" src="./assets/img/logo_mobile.svg">
     <div class="header-user dropdown" onclick="dropDownMenu()">
-        <span class="header-user-initials">${firstLetter}</span>
+        <span class="header-user-initials dropdown">${firstLetter}</span>
         <div id="myDropdown" class="dropdown-content">
         <a href="#">Help</a>
         <a href="#">Legal Notice</a>

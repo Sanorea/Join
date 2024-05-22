@@ -1,19 +1,21 @@
 .top-header {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    width: 223px;
+    width: 100%;
     height: 104px;
     top: 128px;
     left: 16px;
     gap: 16px;
+    max-width: 540px;
+    width: calc(100% - 32px);
 }
 
 .top-underline {
-    width: 40%;
+    width: 17%;
     border: 2px solid;
     border-color: var(--secondary-color);
     border-radius: 90px;
+    margin-top: 15px;
 }
 
 .join360 {
@@ -32,22 +34,24 @@
 }
 
 .cards-body {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    width: 396px;
     height: 384px;
     top: 272px;
     left: 16px;
+    max-width: 540px;
+    width: calc(100% - 32px);
+    gap: 16px;
 }
 
 .first-row {
-    width: 396px;
+    width: 100%;
     height: 110px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* justify-content: center; */
+    gap: 20px;
 }
 
 .counter {
@@ -72,7 +76,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 186px;
+    width: 100%;
     height: 110px;
     border-radius: 20px;
     /* padding: 38px 19px 38px 19px; */
@@ -102,7 +106,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 186px;
+    width: 100%;
     height: 110px;
     border-radius: 20px;
     /* padding: 38px 19px 38px 19px; */
@@ -115,8 +119,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    width: 396px;
+    width: 100%;
     height: 110px;
     top: 140px;
     border-radius: 20px;
@@ -181,10 +184,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: absolute;
-    width: 396px;
+    width: 100%;
     height: 116px;
     top: 268px;
+    gap: 20px;
 }
 
 .board-card {
@@ -192,7 +195,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 116px;
+    width: 100%;
     height: 116px;
     border-radius: 20px;
     background-color: white;
@@ -210,7 +213,7 @@
 }
 
 .progress-info {
-    width: 59px;
+    width: 100%;
     height: 34px;
     font-weight: 400;
     font-size: 14px;
@@ -219,7 +222,7 @@
 }
 
 .feedback-info {
-    width: 62px;
+    width: 100%;
     height: 34px;
     font-weight: 400;
     font-size: 14px;
@@ -254,8 +257,18 @@
     content: url(/assets/img/Group\ 7\ otherWithe.svg);
 }
 
-#body {
+/* #body {
     height: 780px;
+} */
+
+.body-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    gap: 30px;
 }
 
 .welcome {
@@ -270,6 +283,7 @@
     animation: greet-background 1s linear both;
     animation-delay: 900ms;
     /* animation-name: greet-background; */
+    top: 0;
 }
 
 .Greet {
@@ -283,7 +297,7 @@
     /* opacity: 1; */
 }
 
-@keyframes  greet-background {
+@keyframes greet-background {
     0% {
         opacity: 1;
     }
@@ -295,7 +309,7 @@
 }
 
 .greet-text {
-    width: 252px;
+    width: 268px;
     height: 43px;
     font-size: 36px;
     font-weight: 400;
@@ -314,4 +328,151 @@
     color: var(--secondary-color);
     display: flex;
     justify-content: center;
+}
+
+#sideNav {
+    height: 100vh;
+    width: 232px;
+    background-color: var(--primary-color);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.sideNav-links {
+    height: 229px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sideNav-logo {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.sideNav-summary {
+    width: 100%;
+    height: 46px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sideNav-summary a{
+    text-decoration: none;
+}
+
+.sideNav-summary:hover{
+    cursor: pointer;
+    background-color: #2A3D59;
+}
+
+.sideNav-text {
+    font-weight: 400;
+    font-size: 16px;
+    color: #CDCDCD;
+    width: 80px;
+}
+
+.sideNav-policy-content {
+    height: 40%;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sideNav-policy {
+    padding: 8px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #A8A8A8;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.sideNav-notice {
+    padding: 8px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #A8A8A8;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+
+@media(min-width: 990px) {
+    #nav {
+        display: none;
+    }
+    #sideNav{
+        display: flex;
+    }
+    .welcome{
+       visibility: hidden;
+    }
+    .body-content{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 30px;
+    margin-left: 145px;
+    width: calc(100% - 232px);
+    }
+    .top-header{
+        flex-direction: initial;
+        width: 625px;
+        gap: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 73px;
+    }
+    .join360{
+        display: flex;
+        width: 264px;
+        font-size: 61px;
+        font-weight: 700;
+        height: 100%;
+    }
+    .key-metrics{
+        width: 301px;
+        font-size: 27px;
+        font-weight: 400;
+        display: flex;
+    }
+    .switch{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row-reverse;
+        height: 100%;
+        gap: 30px;
+    }
+    .top-underline{
+        height: 100%;
+    }
+    .key-metrics-content{
+        height: 100%;
+        /* margin-left: 20px; */
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+       }
 }
