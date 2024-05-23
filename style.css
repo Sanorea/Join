@@ -432,7 +432,7 @@ header {
     align-items: center;
 }
 
-  @media(min-width: 1017px) {
+  @media(min-width: 11017px) {
     #nav {
         display: none;
     }
