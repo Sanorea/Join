@@ -8,7 +8,7 @@ body {
     width: 100%;
 }
 
-#body{
+#body-login{
     width: 100%;
 }
 
@@ -573,7 +573,7 @@ body {
     border: 1px solid;
     border-color: #D1D1D1;
     gap: 8px;
-    padding: 12px 21px 12px 21px;
+    padding: 12px 24px 12px 21px;
     border-radius: 10px;
 }
 

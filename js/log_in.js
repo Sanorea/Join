@@ -4,7 +4,7 @@ const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.fire
 
 function initLogIn() {
     loadData(path = "-NxdlUHdMDgqDya6QkiU/login");
-    docID('body').innerHTML = LogInHTML();
+    docID('body-login').innerHTML = LogInHTML();
 }
 
 function SingUpHTML() {
@@ -166,7 +166,7 @@ function renderSignUp() {
 }
 
 function backToLogIn() {
-    let body = docID('body');
+    let body = docID('body-login');
     let container = docID('log-in-container');
     let bodyLogIn = docID('log-in-body');
     bodyLogIn.style.height = '515px';

@@ -65,14 +65,18 @@ function renderHeader(firstLetter) {
     docID('header').innerHTML =/*html*/`
 
     <img class="header-logo" src="./assets/img/logo_mobile.svg">
+    <div class="header-text">Kanban Project Management Tool</div>
+    <div class="top-right-infos">
+    <img class="info-img" src="./assets/img/help.svg" alt="">
     <div class="header-user dropdown" onclick="dropDownMenu()">
         <span class="header-user-initials dropdown">${firstLetter}</span>
         <div id="myDropdown" class="dropdown-content">
-        <a href="#">Help</a>
+        <a class="help-d-none" href="#">Help</a>
         <a href="#">Legal Notice</a>
         <a href="#">Privacy Policy</a>
         <a onclick="clearTheLocalStorage()" href="index.html">Log out</a>
   </div>
+    </div>
   </div>
     `;
 }

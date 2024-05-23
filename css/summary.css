@@ -333,5 +333,5 @@
     text-align: left;
     color: var(--secondary-color);
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
