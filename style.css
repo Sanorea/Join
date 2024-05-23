@@ -427,7 +427,7 @@ header {
     cursor: pointer;
 }
 
-.greet-body {
+/* .greet-body {
     display: none;
 }
 
@@ -436,7 +436,7 @@ header {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .header-text {
     display: none;
@@ -476,24 +476,24 @@ header {
         display: flex;
     }
 
-    .welcome {
+    /* .welcome {
         visibility: hidden;
-    }
+    } */
 
-    .body-content {
+    /* .body-content {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-direction: column;
         height: 100vh;
         gap: 30px;
-        /* margin-left: 145px; */
-        /* width: calc(100% - 232px); */
+        margin-left: 145px;
+        width: calc(100% - 232px);
         max-width: 700px;
         margin-left: 65px;
-    }
+    } 
 
-    #body {
+     #body {
         margin-left: 232px;
         width: calc(100% - 232px);
     }
@@ -506,9 +506,9 @@ header {
         justify-content: center;
         align-items: center;
         height: 73px;
-    }
+    } */
 
-    .join360 {
+    /* .join360 {
         display: flex;
         width: 264px;
         font-size: 61px;
@@ -534,11 +534,11 @@ header {
 
     .top-underline {
         height: 100%;
-    }
+    } */
 
-    .key-metrics-content {
+    /* .key-metrics-content {
         height: 100%;
-        /* margin-left: 20px; */
+         margin-left: 20px; 
         display: flex;
         align-items: center;
         justify-content: center;
@@ -554,12 +554,12 @@ header {
 
     .greet-body {
         display: flex;
-    }
+    } */
 
-    .welcome {
+    /* .welcome {
         height: 0;
         width: 0;
-    }
+    } */
 
     .help-d-none {
         display: none !important;
@@ -580,7 +580,7 @@ header {
 }
 
 
-@media(max-width: 1280px) {
+/* @media(max-width: 1280px) {
     .greet-name {
         width: auto;
     }
@@ -605,4 +605,4 @@ header {
     .body-content {
         margin-left: 2px;
     }
-}
+} */
