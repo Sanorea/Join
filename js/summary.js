@@ -73,18 +73,21 @@ function renderSummaryHTML() {
           </div>
         </div>
         <div id="welcomeScreen" class="welcome"></div>
+        <div class="greet-body" id="greet-body"></div>
     `;
 }
 
 function loadTheWelcomeSreen() {
+    let greetBody = docID('greet-body');
     let welcomeScreen = docID('welcomeScreen');
     let greetText = loadDateTime();
     welcomeScreen.innerHTML = renderWelcomeHTML(greetText);
+    greetBody.innerHTML = renderWelcomeHTML(greetText);
 }
 
 function renderWelcomeHTML(greetText) {
     return /*HTML*/ `
-    <div class="Greet">
+    <div class="greet">
       <div class="greet-text">${greetText}</div>
       <div class="greet-name">${localStorageName}</div>
     </div>  

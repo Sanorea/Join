@@ -1,3 +1,9 @@
+#body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .top-header {
     display: flex;
     flex-direction: column;
@@ -291,7 +297,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 274px;
+    /* width: 274px; */
     height: 102px;
     gap: 3px;
     /* opacity: 1; */
@@ -320,7 +326,7 @@
 }
 
 .greet-name {
-    width: 430px;
+    width: 440px;
     height: 56px;
     font-size: 47px;
     font-weight: 700;
