@@ -44,7 +44,7 @@ function renderSummaryHTML() {
               </div>
               <div class="second-row card-hover">
                   <div class="urgent-left">
-                      <div class=""><img src="assets/img/Group 7 logo.svg" alt=""></div>
+                      <div class=""><img class="to-do-card-img" src="assets/img/Group 7 logo.svg" alt=""></div>
                       <div class="urgent-counter">
                           <div class="counter"><span class="black">1</span></div>
                           <div class="card-info"><span class="focus-color">Urgent</span></div>
@@ -88,7 +88,7 @@ function loadTheWelcomeSreen() {
 function renderWelcomeHTML(greetText) {
     return /*HTML*/ `
     <div class="greet">
-      <div class="greet-text">${greetText}</div>
+      <div class="greet-text">${greetText},</div>
       <div class="greet-name">${localStorageName}</div>
     </div>  
   `;

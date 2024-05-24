@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 860px;
 }
 
 .top-header {
@@ -315,7 +316,8 @@
 }
 
 .greet-text {
-    width: 268px;
+    /* width: 268px; */
+    width: 100%;
     height: 43px;
     font-size: 36px;
     font-weight: 400;
@@ -333,7 +335,7 @@
     text-align: left;
     color: var(--secondary-color);
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
 }
 
 .greet-body {
@@ -367,6 +369,7 @@
     #body {
         margin-left: 232px;
         width: calc(100% - 232px);
+        height: auto;
     }
 
     .top-header {
@@ -374,7 +377,6 @@
         width: 625px;
         gap: 30px;
         display: flex;
-        justify-content: center;
         align-items: center;
         height: 73px;
     }
@@ -425,20 +427,97 @@
 
     .greet-text {
         justify-content: flex-start;
+        font-size: 47px;
+        /* width: 100%; */
     }
 
+    .greet-name{
+        font-size: 64px;
+        width: 100%;
+    }
 
     .welcome {
         height: 0;
         width: 0;
     }
+
+    .cards-body{
+        height: 562px;
+        max-width: 560px;
+    }
+    .first-row{
+        height: 100%;
+    }
+    .second-row{
+        height: 100%;
+        gap: 61px;
+    }
+    .third-row{
+        height: 100%;
+    }
+    .to-do-card{
+        height: 100%;
+    }
+    .done-card{
+        height: 100%;
+    }
+    .board-card{
+        height: 100%;
+    }
+
+    .counter{
+        font-size: 64px;
+    }
+    .card-info{
+        font-size: 20px;
+    }
+    .to-do-card-img{
+        height: 69px;
+        width: 69px;
+    }
+    .urgent-right{
+        gap: 13px;
+        width: 100%;
+    }
+    .urgent-left{
+        width: 100%;
+    }
+    .date{
+        font-size: 21px;
+        width: 100%;
+    }
+    .upcoming-deadline{
+        font-size: 16px;
+        width: 100%;
+    }
+    .board-info{
+        font-size: 20px;
+        width: 125px;
+    }
+    .progress-info{
+        font-size: 20px;
+    }
+    .feedback-info{
+        font-size: 20px;
+    }
+    .greet-name{
+        margin-top: 73px;
+        justify-content: flex-start;
+    }
 }
 
-@media(max-width: 1280px) {
+@media(min-width: 1370px){
+    .greet-name{
+        margin-top: 0;
+        justify-content: flex-start;
+    }
+}
+
+/* @media(max-width: 1280px) {
     .greet-name {
         width: auto;
     }
-}
+} */
 
 @media(max-width: 1110px) {
     .join360 {
