@@ -249,7 +249,7 @@ async function renderContactListaddTasks() {
         const acronym = acronyms[i];
         dropDown.innerHTML += `                
         <li>
-            <label>
+            <label class="dropdown-content">
                 <div>
                     <div>${acronym}</div>
                     <div>${name}</div>
@@ -262,9 +262,8 @@ async function renderContactListaddTasks() {
 }
 
 async function renderDropdownCategorieAddTasks() {
-    let categories = ['tee', 'kaffee'];
-    console.log('categories :>> ', categories);
-    let dropDown = document.getElementById('dropdownCategorie');
+    let categories = [];
+    let dropDown = document.getElementById('dropDown');
     for (let i = 0; i < categories.length; i++) {
         const categorie = categories[i];
         dropDown.innerHTML += `                
