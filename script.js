@@ -13,7 +13,7 @@ function docID(id) {
     return document.getElementById(id);
 }
 
-  let localStorageName = getItemLocalStorage('user-name');
+let localStorageName = getItemLocalStorage('user-name');
 
 
 async function loadData(path = "") {
@@ -81,7 +81,7 @@ function renderHeader(firstLetter) {
     `;
 }
 
-function clearTheLocalStorage(){
+function clearTheLocalStorage() {
     localStorage.clear();
 }
 
@@ -117,7 +117,7 @@ function renderNav() {
     `;
 }
 
-function renderSideNavHTML(){
+function renderSideNavHTML() {
     docID('sideNav').innerHTML = /*HTML*/`<div class="sideNav-logo">
     <img src="assets/img/Capa 1.svg" alt="">
 </div>
@@ -158,18 +158,18 @@ function renderHeaderNav() {
 
 
 
-function addTaskContactsToArray() {
-    let addTaskContacts=[];
-    let responseToJson = addTaskLoadData(path = "");
-    addTaskContacts.push(responseToJson);
-    console.log('addTaskContacts :>> ', addTaskContacts);
+async function addTaskContactsToArray() {
+    let addTaskContacts = [];
+    let addTaskResponseToJson = await addTaskLoadData(path = "");
+    addTaskContacts.push(addTaskResponseToJson);
 }
 
 const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/";
 
-function addTaskInit(path) {
-    addTaskLoadData(path);
-    renderNames();
+function addTaskInit() {
+    addTaskLoadData("/contacts/contact-name");
+    renderContactListaddTasks();
+    renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
 }
 
@@ -185,20 +185,12 @@ async function addTaskPostData(path = "", data = {}) {
     return responseToJson = await responseAddTask.json();
 }
 
-async function addTaskLoadData(path = "") {
-    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json");
-    let responseToJson = await responseAddTask.json();
-    console.log('responseToJson :>> ', responseToJson);
-    return responseToJson;
-
-}
-
 function submitTask() {
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
     let assignedTo = docID('add-task-input-assigned');
     let date = docID('add-task-input-date');
-/*     let categorie = docID('add-task-input-categorie') */
+    /*     let categorie = docID('add-task-input-categorie') */
 
     addTaskPostData("/tasks", {
         "title": title.value,
@@ -206,32 +198,92 @@ function submitTask() {
         "assignedTo": assignedTo.value,
         "date": date.value,
         "prio": "prio",
-/*         "categorie": categorie.value, */
+        /*         "categorie": categorie.value, */
         "subtasks": "subtasks",
     });
     title.value = "";
     description.value = "";
     assignedTo.value = "";
     date.value = "";
-/*     categorie.value = ""; */
+    /*     categorie.value = ""; */
     subtasks = "";
 }
 
-function renderNames() {
-    let names = ['isabel', 'peter', 'alex'];
+async function addTaskLoadData(path = "") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    return responseToJson;
+}
+
+let names = [];
+let acronyms = [];
+    
+async function renderContactListInput(){
+    await getContactsData();
+    names = await renderNames();
+    acronyms = await renderAcronym();
+    return {names, acronyms};
+}
+
+async function renderNames(){
+    for (let i = 0; i < arrContacts.length; i++) {
+        let name = arrContacts[i]['contact-name'];
+        names.push(name);
+    }
+    return names;
+}
+
+async function renderAcronym(){
+    for (let i = 0; i < arrContacts.length; i++) {
+        let acronym = arrContacts[i]['contact-acronym'];
+        acronyms.push(acronym);
+    }
+    return acronyms;
+}
+
+async function renderContactListaddTasks() {
+    let {names, acronyms} = await renderContactListInput();
     let dropDown = document.getElementById('dropDown');
     for (let i = 0; i < names.length; i++) {
-        const element = names[i];
+        const name = names[i];
+        const acronym = acronyms[i];
         dropDown.innerHTML += `                
         <li>
             <label>
-                ${element}
-                <input type="checkbox" value="${element}">
+                <div>
+                    <div>${acronym}</div>
+                    <div>${name}</div>
+                </div>    
+                <input type="checkbox" value="${name}">
             </label>
         </li>`;
     }
     attachCheckboxHandlers();
 }
+
+async function renderDropdownCategorieAddTasks() {
+    let categories = ['tee', 'kaffee'];
+    console.log('categories :>> ', categories);
+    let dropDown = document.getElementById('dropdownCategorie');
+    for (let i = 0; i < categories.length; i++) {
+        const categorie = categories[i];
+        dropDown.innerHTML += `                
+        <li>
+            <label>
+                <div>
+
+                    <div>${categorie}</div>
+                </div>    
+                <input type="checkbox" value="${categorie}">
+            </label>
+        </li>`;
+    }
+    attachCheckboxHandlers();
+}
+
+
+
+
 
 function handleCB() {
     let mySelectedListItems = [];
@@ -247,7 +299,7 @@ function handleCB() {
     dpBtn.innerText =
         mySelectedListItems.length > 0
             ? mySelectedListItemsText.slice(0, -2) : 'Select';
-    console.log(mySelectedListItems);
+
 }
 
 function attachCheckboxHandlers() {
@@ -289,6 +341,6 @@ function getItemLocalStorage(key) {
 }
 
 // function loadFocus(){
-//     let id = docID('add-task-link'); 
+//     let id = docID('add-task-link');
 //     id.classList.add('sideNav-summary-focus');
 // };
