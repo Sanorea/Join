@@ -280,66 +280,8 @@ async function renderDropdownCategorieAddTasks() {
     attachCheckboxHandlers();
 }
 
-
-
-
-
-function handleCB() {
-    let mySelectedListItems = [];
-    let mySelectedListItemsText = '';
-
-    chBoxes.forEach((checkbox) => {
-        if (checkbox.checked) {
-            mySelectedListItems.push(checkbox.value);
-            mySelectedListItemsText += checkbox.value + ', ';
-        }
-    });
-
-    dpBtn.innerText =
-        mySelectedListItems.length > 0
-            ? mySelectedListItemsText.slice(0, -2) : 'Select';
-
+function openContactListTasks(){
+    /* enfernt d-none von Listencontainer*/
+    /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
+    /* passt Text in inputfeld zu suchfeld an*/
 }
-
-function attachCheckboxHandlers() {
-    chBoxes = document.querySelectorAll('.dropdown-menu input[type="checkbox"]');
-    dpBtn = document.getElementById('multiSelectDropdown');
-    chBoxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', handleCB);
-    });
-}
-
-let chBoxes;
-let dpBtn;
-
-
-function dropDownMenu() {
-    document.getElementById("myDropdown").classList.toggle("show")
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function (event) {
-    if (!event.target.matches('.dropdown')) {
-        let dropdowns = document.getElementsByClassName("dropdown-content");
-        let i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
-function setItemLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
-
-function getItemLocalStorage(key) {
-    return JSON.parse(localStorage.getItem(key))
-}
-
-// function loadFocus(){
-//     let id = docID('add-task-link');
-//     id.classList.add('sideNav-summary-focus');
-// };
