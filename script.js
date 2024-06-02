@@ -285,3 +285,7 @@ function openContactListTasks(){
     /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
     /* passt Text in inputfeld zu suchfeld an*/
 }
+
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
+}

@@ -41,11 +41,14 @@ function getHeadlineLetters() {
 function renderContactList() {
     let arrContactsInList = [];
     let contactList = docID('contact-list');
-    contactList.innerHTML = ``;
+    contactList.innerHTML = `
+    <button onclick="openDialog('add-contact')" class="btn-primary btn-add-contact disp-flex-center-center">Add new contact</button>
+    <div id="contact-list-table" class="contacts-disp-flex-ai-center-fd-col"></div>`;
+    let contactListTable = docID('contact-list-table');
     getHeadlineLetters();
     // for loop to go through every headline letter that exists
     for (let i = 0; i < arrHeadlineLetters.length; i++) {
-        contactList.innerHTML += generateContactListHTML(arrHeadlineLetters[i]);
+        contactListTable.innerHTML += generateContactListHTML(arrHeadlineLetters[i]);
         // for loop to check which contacts start with the current headline letter
         for (let j = 0; j < arrContacts.length; j++) {
             let firstLetter = getFirstLetter(arrContacts[j]['contact-name']);
@@ -57,11 +60,11 @@ function renderContactList() {
         // for loop to generate HTML for every contact for current headline letter
         for (let k = 0; k < arrContactsInList.length; k++) {
             currentId = arrContactsInList[k]['contact-id'];
-            contactList.innerHTML += generateContactHTML(arrContactsInList[k], currentId);
+            contactListTable.innerHTML += generateContactHTML(arrContactsInList[k], currentId);
         }
         arrContactsInList = [];
     }
-    contactList.innerHTML += `<button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>`
+    contactListTable.innerHTML += `<button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>`
 }
 
 
@@ -69,7 +72,10 @@ function openContactDetails(id) {
     let contact = getCurrentContactById(id);
     let contactDetail = docID('contact-detail')
     currentOpenedContact = id;
-    openDialog('contacts-details');
+    currentScreenWidth = window.innerWidth;
+    if (currentScreenWidth < 1017) {
+        openDialog('contacts-details');
+    }
     contactDetail.innerHTML = generateContactDetailHTML(contact);
     
 }

@@ -1,5 +1,31 @@
 
+/* == responsive desktop == */
+
+@media(min-width: 1017px) {
+
+}
+
+
 /* === general === */
+
+
+#contact-list-table::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* scrollbar track */
+#contact-list-table::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+}
+
+/* scrollbar thumb */
+#contact-list-table::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #A8A8A8;
+}
+
 
 .width-80 {
     width: 80%;
@@ -115,7 +141,6 @@ h1 {
 
 .contacts-list {
     background-color: var(--element-bg-color);
-    overflow-y: scroll;
     margin-top: 82px;
     margin-bottom: 82px;
 }
@@ -182,6 +207,7 @@ h1 {
     background-color: var(--body-bg-color) !important;
     justify-content: unset !important;
     z-index: 0 !important;
+    height: 100vh;
 }
 
 .contacts-details-seperator {
@@ -285,14 +311,14 @@ h1 {
 /* add and edit contact */
 
 .bg {
-    display: none;
+     display: none;
     /* transition: transform 0.3s ease-out, background-color 0s ease-out; */
 }
-
+    
 .bg.closed {
     transform: translateX(200%);
 }
-
+    
 .bg.opened {
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
@@ -316,6 +342,7 @@ h1 {
 .contacts-btn-close img {
     height: 15px;
     width: 15px;
+    cursor: pointer;
 }
 
 .contacts-top-half {
@@ -335,7 +362,7 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: orange;
+    background-color: #D1D1D1;
     border-radius: 70px;
     border: 3px solid white;
     color: white;

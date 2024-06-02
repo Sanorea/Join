@@ -163,6 +163,7 @@ header {
     background-color: var(--primary-color, black);
     border: none;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .btn-primary:hover:not(:focus) {
@@ -179,6 +180,7 @@ header {
     background-color: unset;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+    cursor: pointer;
 }
 
 .btn-secondary:hover:not(:focus) {
@@ -250,7 +252,22 @@ header {
 
 .btn-add-task::after {
     content: url('/assets/img/add.svg');
-    height: 20px;
+}
+
+
+/* used for add contact btn */
+.btn-add-contact {
+    border-radius: 10px;
+    width: 352px;
+    height: 56px;
+    padding: 12px 0;
+    font-size: 21px;
+    font-weight: 700;
+    gap: 16px;
+}
+
+.btn-add-contact::after {
+    content: url(/assets/img/person_add.svg);
 }
 
 /*Dropdown menu*/
@@ -467,7 +484,7 @@ header {
     display: flex;
 } */
 
-@media(min-width: 11017px) {
+@media(min-width: 1017px) {
     #nav {
         display: none;
     }
