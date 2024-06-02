@@ -7,6 +7,7 @@ async function contactsInit() {
     renderHeaderNav();
     await getContactsData();
     renderContactList();
+    setActiveButton("contact-list-table", "contacts-contact-entry");
 }
 
 
@@ -42,7 +43,7 @@ function renderContactList() {
     let arrContactsInList = [];
     let contactList = docID('contact-list');
     contactList.innerHTML = `
-    <button onclick="openDialog('add-contact')" class="btn-primary btn-add-contact disp-flex-center-center">Add new contact</button>
+    <button id="add-contact-desktop-btn" onclick="openDialog('add-contact')" class="btn-primary btn-add-contact disp-flex-center-center">Add new contact</button>
     <div id="contact-list-table" class="contacts-disp-flex-ai-center-fd-col"></div>`;
     let contactListTable = docID('contact-list-table');
     getHeadlineLetters();
@@ -70,7 +71,7 @@ function renderContactList() {
 
 function openContactDetails(id) {
     let contact = getCurrentContactById(id);
-    let contactDetail = docID('contact-detail')
+    let contactDetail = docID('contact-detail');
     currentOpenedContact = id;
     currentScreenWidth = window.innerWidth;
     if (currentScreenWidth < 1017) {
@@ -83,8 +84,10 @@ function openContactDetails(id) {
 function generateContactDetailHTML(contact) {
     return `
     <div class="contacts-df-row-ai-center contacts-details-contact">
-    <div class="contacts-details-user-initials disp-flex-center-center" style="background-color: ${contact['contact-color']}">${contact['contact-acronym']}</div>
-    <p class="contacts-details-name">${contact['contact-name']}</p>
+        <div class="contacts-details-user-initials disp-flex-center-center" style="background-color: ${contact['contact-color']}">
+            ${contact['contact-acronym']}
+        </div>
+        <p class="contacts-details-name">${contact['contact-name']}</p>
     </div>
     <p>Contact Information</p>
     <div class="contacts-disp-flex-ai-start-fd-col gap-22">

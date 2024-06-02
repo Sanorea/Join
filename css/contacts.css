@@ -32,7 +32,7 @@
 }
 
 .width-70 {
-    width: 70%;
+    width: 70vw;
 }
 
 .width-100 {
@@ -163,17 +163,13 @@ h1 {
 
 }
 
-.contacts-contact-entry {
-    gap: 20px;
-    padding: 15px 24px;
-}
-
 .contacts-user-initials {
+    min-width: 42px;
     width: 42px;
     height: 42px;
     background-color: orange;
     border-radius: 45px;
-    border: none;
+    border: 2px solid white;
     color: white;
     font-size: 12px;
 }
@@ -189,6 +185,17 @@ h1 {
 .contacts-email {
     color: var(--secondary-color);
     font-size: 16px;
+}
+
+.contacts-contact-entry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.contact-list-details {
+    width: 100vw;
 }
 
 /* contacts details */
@@ -210,9 +217,13 @@ h1 {
     height: 100vh;
 }
 
-.contacts-details-seperator {
+.contacts-details-seperator-mobile {
     border: 3px solid var(--secondary-color);
     width: 25%;
+}
+
+.contacts-details-seperator-desktop {
+    display: none;
 }
 
 .contacts-details-contact {
@@ -224,7 +235,8 @@ h1 {
     height: 80px;
     background-color: orange;
     border-radius: 70px;
-    border: none;
+    border: 3px solid white;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
     color: white;
     font-size: 27px;
     font-weight: 400;

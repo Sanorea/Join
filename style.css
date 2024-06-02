@@ -258,7 +258,7 @@ header {
 /* used for add contact btn */
 .btn-add-contact {
     border-radius: 10px;
-    width: 352px;
+    width: 90%;
     height: 56px;
     padding: 12px 0;
     font-size: 21px;
