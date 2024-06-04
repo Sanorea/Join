@@ -1,4 +1,4 @@
-#body{
+.body-summary{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,7 +367,7 @@
         max-width: 700px;
         margin-left: 65px;
     }
-    #body {
+    .body-summary {
         margin-left: 232px;
         width: calc(100% - 232px);
         height: auto;
