@@ -242,6 +242,7 @@
     cursor: pointer;
     transform: scale(1.07);
     color: white !important;
+    transition: 100ms ease-in-out;
 }
 
 .card-hover:hover span {

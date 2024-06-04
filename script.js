@@ -140,8 +140,8 @@ function renderSideNavHTML() {
     </div>
 </div>
 <div class="sideNav-policy-content">
-    <span class="sideNav-policy">Privacy Policy</span>
-    <span class="sideNav-notice">Legal notice</span>
+    <a class="sideNav-policy-a" href="privacy_policy.html"><span class="sideNav-policy">Privacy Policy</span></a>
+    <a class="sideNav-policy-a" href="legal_notice.html"><span class="sideNav-notice">Legal notice</span></a>
 </div>`;
 }
 

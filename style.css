@@ -401,7 +401,6 @@ header {
 .sideNav-policy-content {
     height: 45%;
     display: flex;
-    align-items: end;
     flex-direction: column;
     justify-content: flex-end;
     width: 100%;
@@ -409,7 +408,7 @@ header {
 }
 
 .sideNav-policy {
-    padding: 8px;
+    padding: 8px 0px 8px 0px;
     gap: 8px;
     display: flex;
     align-items: center;
@@ -421,7 +420,7 @@ header {
 }
 
 .sideNav-notice {
-    padding: 8px;
+    padding: 8px 0px 8px 0px;
     gap: 8px;
     display: flex;
     align-items: center;
@@ -478,6 +477,11 @@ header {
 .info-img:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.sideNav-policy-a{
+    text-decoration: none !important;
+    width: 100%;
 }
 
 /* .help-d-none{
