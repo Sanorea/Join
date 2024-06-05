@@ -14,7 +14,7 @@ function renderPrivacyPolice() {
             <div><img class="back-arrow-img" src="assets/img/arrow-left-line.svg" alt=""></div>
         </div>
         <div class="notice-text">
-            <h1>Impressum</h1>
+            <!-- <h1>Impressum</h1>
 
             <p>Gruppe 192<br />
                 KanBan-Board<br />
@@ -62,7 +62,8 @@ function renderPrivacyPolice() {
             <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
                 Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-            <p>Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p>
+            <p>Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p> -->
+
         </div>
 </div>`;
 }
