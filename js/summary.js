@@ -13,7 +13,6 @@ let minute = date.getMinutes();
 let time = hour + "." + minute;
 console.log(time)
 
-console.log(time);
 
 function renderSummaryHTML() {
     return /*HTML*/ `
