@@ -6,6 +6,7 @@
         margin-bottom: 0;
         padding: 32px 0 32px 24px;
         width: 30%;
+        box-shadow: 4px 0px 2px -2px rgba(0, 0, 0, 0.2);
     }
 
     #contact-list-table {
@@ -115,10 +116,29 @@
     .width-70 {
         width: 80%;
     }
+
+    #edit-delete-desktop-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .del-edit-menu-btn {
+        padding: 0;
+    }
+
+    .del-edit-menu-btn:hover {
+        background-color: unset;
+    }
 }
 
 @media(max-width: 1016px) {
     #add-contact-desktop-btn {
+        display: none;
+    }
+
+    #edit-delete-desktop-container {
         display: none;
     }
 }

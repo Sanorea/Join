@@ -87,7 +87,13 @@ function generateContactDetailHTML(contact) {
         <div class="contacts-details-user-initials disp-flex-center-center" style="background-color: ${contact['contact-color']}">
             ${contact['contact-acronym']}
         </div>
+        <div>
         <p class="contacts-details-name">${contact['contact-name']}</p>
+        <div id="edit-delete-desktop-container">
+            <div id="edit-btn-desktop" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
+            <div id="del-btn-desktop" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="/assets/img/delete.svg" alt="">Delete</div>
+        </div>
+        </div>
     </div>
     <p>Contact Information</p>
     <div class="contacts-disp-flex-ai-start-fd-col gap-22">
