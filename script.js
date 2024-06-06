@@ -534,6 +534,10 @@ function openContactListTasks(){
     /* passt Text in inputfeld zu suchfeld an*/
 }
 
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
 function getItemLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
