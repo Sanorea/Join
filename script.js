@@ -85,6 +85,23 @@ function clearTheLocalStorage() {
     localStorage.clear();
 }
 
+function dropDownMenu() {
+    document.getElementById("myDropdown").classList.toggle("show")
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropdown')) {
+        let dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
 
 function renderNav() {
     docID('nav').innerHTML += /*html*/`
@@ -371,20 +388,20 @@ function renderSideNavHTML() {
 </div>`;
 }
 
-function sideNavPolicy(){
-   let body =  docID('body-summary-content');
-   body.classList.remove('body-summary');
-   body.innerHTML = renderLegalNotice();
+function sideNavPolicy() {
+    let body = docID('body-summary-content');
+    body.classList.remove('body-summary');
+    body.innerHTML = renderLegalNotice();
 }
 
 function sideNavNotice() {
-    let body =  docID('body-summary-content');
-   body.classList.remove('body-summary');
-   body.innerHTML =  renderPrivacyPolice();
+    let body = docID('body-summary-content');
+    body.classList.remove('body-summary');
+    body.innerHTML = renderPrivacyPolice();
 }
 
 function backToSite() {
-    let body =  docID('body-summary-content');
+    let body = docID('body-summary-content');
     let greetBody = docID('greet-body');
     body.innerHTML = renderSummaryHTML();
     greetBody = loadTheWelcomeSreen();
@@ -463,15 +480,15 @@ async function addTaskLoadData(path = "") {
 
 let names = [];
 let acronyms = [];
-    
-async function renderContactListInput(){
+
+async function renderContactListInput() {
     await getContactsData();
     names = await renderNames();
     acronyms = await renderAcronym();
-    return {names, acronyms};
+    return { names, acronyms };
 }
 
-async function renderNames(){
+async function renderNames() {
     for (let i = 0; i < arrContacts.length; i++) {
         let name = arrContacts[i]['contact-name'];
         names.push(name);
@@ -479,7 +496,7 @@ async function renderNames(){
     return names;
 }
 
-async function renderAcronym(){
+async function renderAcronym() {
     for (let i = 0; i < arrContacts.length; i++) {
         let acronym = arrContacts[i]['contact-acronym'];
         acronyms.push(acronym);
@@ -488,7 +505,7 @@ async function renderAcronym(){
 }
 
 async function renderContactListaddTasks() {
-    let {names, acronyms} = await renderContactListInput();
+    let { names, acronyms } = await renderContactListInput();
     let dropDown = document.getElementById('dropDown');
     for (let i = 0; i < names.length; i++) {
         const name = names[i];
@@ -528,7 +545,7 @@ async function renderDropdownCategorieAddTasks() {
 
 
 
-function openContactListTasks(){
+function openContactListTasks() {
     /* enfernt d-none von Listencontainer*/
     /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
     /* passt Text in inputfeld zu suchfeld an*/
@@ -547,12 +564,12 @@ function setActiveButton(containerId, btnClass) {
 
     // Loop through the buttons and add the active class to the current/clicked button
     for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
+        btns[i].addEventListener("click", function () {
             var current = document.getElementsByClassName("active");
 
             // If there's no active class
             if (current.length > 0) {
-            current[0].className = current[0].className.replace(" active", "");
+                current[0].className = current[0].className.replace(" active", "");
             }
 
             // Add the active class to the current/clicked button
