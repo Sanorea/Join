@@ -526,6 +526,8 @@ async function renderDropdownCategorieAddTasks() {
     attachCheckboxHandlers();
 }
 
+
+
 function openContactListTasks(){
     /* enfernt d-none von Listencontainer*/
     /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
@@ -557,4 +559,12 @@ function setActiveButton(containerId, btnClass) {
             this.className += " active";
         });
     }
+}
+
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
 }
