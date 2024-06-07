@@ -271,11 +271,3 @@ async function userLogIn() {
         password.value = ``;
     }
 }
-
-function setItemLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
-
-function getItemLocalStorage(key) {
-    return JSON.parse(localStorage.getItem(key))
-}
