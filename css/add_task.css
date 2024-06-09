@@ -154,3 +154,17 @@
     border-style: solid;
     padding: 0px;
 }
+
+
+.dropdown-add-task {
+
+}
+
+.dropdown-add-task li {
+    display: flex;
+}
+
+.dropdown-add-task div {
+    display: flex;
+    gap: 16px;
+}

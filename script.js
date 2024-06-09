@@ -371,20 +371,20 @@ function renderSideNavHTML() {
 </div>`;
 }
 
-function sideNavPolicy(){
-   let body =  docID('body-summary-content');
-   body.classList.remove('body-summary');
-   body.innerHTML = renderLegalNotice();
+function sideNavPolicy() {
+    let body = docID('body-summary-content');
+    body.classList.remove('body-summary');
+    body.innerHTML = renderLegalNotice();
 }
 
 function sideNavNotice() {
-    let body =  docID('body-summary-content');
-   body.classList.remove('body-summary');
-   body.innerHTML =  renderPrivacyPolice();
+    let body = docID('body-summary-content');
+    body.classList.remove('body-summary');
+    body.innerHTML = renderPrivacyPolice();
 }
 
 function backToSite() {
-    let body =  docID('body-summary-content');
+    let body = docID('body-summary-content');
     let greetBody = docID('greet-body');
     body.innerHTML = renderSummaryHTML();
     greetBody = loadTheWelcomeSreen();
@@ -399,8 +399,46 @@ function renderHeaderNav() {
     renderSideNavHTML();
 }
 
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
 
-/*addTask*/
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
+}
+
+function setActiveButton(containerId, btnClass) {
+    // Get the container element
+    var btnContainer = document.getElementById(containerId);
+
+    // Get all buttons with class=x inside the container
+    var btns = btnContainer.getElementsByClassName(btnClass);
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+
+            // If there's no active class
+            if (current.length > 0) {
+                current[0].className = current[0].className.replace(" active", "");
+            }
+
+            // Add the active class to the current/clicked button
+            this.className += " active";
+        });
+    }
+}
+
+function setItemLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getItemLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
+}
+
+/*-------------addTask-------------*/
 
 
 
@@ -463,15 +501,15 @@ async function addTaskLoadData(path = "") {
 
 let names = [];
 let acronyms = [];
-    
-async function renderContactListInput(){
+
+async function renderContactListInput() {
     await getContactsData();
     names = await renderNames();
     acronyms = await renderAcronym();
-    return {names, acronyms};
+    return { names, acronyms };
 }
 
-async function renderNames(){
+async function renderNames() {
     for (let i = 0; i < arrContacts.length; i++) {
         let name = arrContacts[i]['contact-name'];
         names.push(name);
@@ -479,7 +517,7 @@ async function renderNames(){
     return names;
 }
 
-async function renderAcronym(){
+async function renderAcronym() {
     for (let i = 0; i < arrContacts.length; i++) {
         let acronym = arrContacts[i]['contact-acronym'];
         acronyms.push(acronym);
@@ -488,23 +526,29 @@ async function renderAcronym(){
 }
 
 async function renderContactListaddTasks() {
-    let {names, acronyms} = await renderContactListInput();
-    let dropDown = document.getElementById('dropDown');
+    let { names, acronyms } = await renderContactListInput();
+    let dropDownList = document.getElementById('dropDownList');
+    dropDownList.innerHTML = "";
     for (let i = 0; i < names.length; i++) {
         const name = names[i];
         const acronym = acronyms[i];
-        dropDown.innerHTML += `                
-        <li>
-            <label class="dropdown-content">
-                <div>
+        dropDownList.innerHTML += `   
+        <table>
+            <tr>
+                <td>
                     <div>${acronym}</div>
-                    <div>${name}</div>
-                </div>    
-                <input type="checkbox" value="${name}">
-            </label>
-        </li>`;
+                </td>
+                <td>
+                <div>${name}</div>
+            </td>
+                <td>                
+                    <input type="checkbox" value="${name}">
+                </td>
+            </tr>
+        </table>`;
+        console.log('name :>> ', name);
     }
-    attachCheckboxHandlers();
+
 }
 
 async function renderDropdownCategorieAddTasks() {
@@ -523,52 +567,18 @@ async function renderDropdownCategorieAddTasks() {
             </label>
         </li>`;
     }
-    attachCheckboxHandlers();
+
 }
 
 
 
-function openContactListTasks(){
+function openContactListTasks() {
+    let dropDown = document.getElementById('dropDown');
+
     /* enfernt d-none von Listencontainer*/
     /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
     /* passt Text in inputfeld zu suchfeld an*/
 }
 
-function setItemLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
 
-function getItemLocalStorage(key) {
-    return JSON.parse(localStorage.getItem(key))
-}
 
-function setActiveButton(containerId, btnClass) {
-    // Get the container element
-    var btnContainer = document.getElementById(containerId);
-
-    // Get all buttons with class=x inside the container
-    var btns = btnContainer.getElementsByClassName(btnClass);
-
-    // Loop through the buttons and add the active class to the current/clicked button
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-
-            // If there's no active class
-            if (current.length > 0) {
-            current[0].className = current[0].className.replace(" active", "");
-            }
-
-            // Add the active class to the current/clicked button
-            this.className += " active";
-        });
-    }
-}
-
-function setItemLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
-
-function getItemLocalStorage(key) {
-    return JSON.parse(localStorage.getItem(key))
-}
