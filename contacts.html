@@ -41,7 +41,7 @@
 </div>
 
 <section id="add-contact" class="bg">
-    <div class="contacts-disp-flex-ai-center-fd-col ">
+    <div class="addAndEditDialog">
         <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
         <div class="contacts-top-half contacts-disp-flex-center-center-col">
             <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
@@ -51,19 +51,22 @@
             </div>
         </div>
         <div class="contacts-management-user-initials disp-flex-center-center"><img src="/assets/img/person_white.svg" alt=""></div>
-        <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
-            <form onsubmit="addContact(); return false;" class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+        <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+            <form onsubmit="addContact(); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
                 <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
                 <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
                 <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
-                <button type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+                <div class="add-contact-btn-layout gap-20">
+                    <button id="cancel-btn" name="cancel_btn" type="button" onclick="closeDialog('add-contact')" class="btn-secondary btn-cancel disp-flex-center-center">Cancel</button>
+                    <button id="create-btn" type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+                </div>
             </form>
         </div> 
     </div>
 </section>
 
 <section id="edit-contact" class="bg">
-    <div class="contacts-disp-flex-ai-center-fd-col ">
+    <div class="addAndEditDialog">
         <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
         <div class="contacts-top-half contacts-disp-flex-center-center-col">
             <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
@@ -72,8 +75,8 @@
             </div>
         </div>
         <div id="contacts-user-initials-saved" class="contacts-management-user-initials disp-flex-center-center">AM</div>
-        <div class="contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
-            <form onsubmit="editContact(currentOpenedContact); return false;" class="contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+        <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+            <form onsubmit="editContact(currentOpenedContact); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
                 <input required id="contact-name-saved" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
                 <input required id="contact-email-saved" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
                 <input required id="contact-phone-saved" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
