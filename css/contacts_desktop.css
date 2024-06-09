@@ -131,6 +131,74 @@
     .del-edit-menu-btn:hover {
         background-color: unset;
     }
+
+    .contacts-top-half {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        width: 30vw;
+        height: 594px;
+        max-width: unset;
+    }
+
+    .contacts-bottom-half {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 10px;
+        width: 45vw;
+        height: 594px;
+        max-width: unset;
+    }
+
+    .contacts-management-user-initials {
+        height: 150px;
+        width: 150px;
+        border-radius: 999px;
+        margin-left: 20px;
+    }
+    
+    .addAndEditDialog {
+        flex-direction: row;
+    }
+
+    .contacts-btn-close {
+        filter: none;
+        right: -95%;
+        top: -250px;
+    }
+
+    .contacts-form {
+        align-items: flex-end;
+    }
+
+    .contacts-form-inputs {
+        margin-right: 30px;
+    }
+
+    .width-100 {
+        width: 60%;
+    }
+
+    #cancel-btn {
+        height: 57px;
+        width: 126px;
+    }
+
+    #create-btn {
+        height: 57px;
+        width: 214px;
+    }
+
+    .add-contact-btn-layout {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media(max-width: 1150px) {
+    .add-contact-btn-layout {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 
 @media(max-width: 1016px) {
@@ -139,6 +207,10 @@
     }
 
     #edit-delete-desktop-container {
+        display: none;
+    }
+
+    #cancel-btn {
         display: none;
     }
 }
