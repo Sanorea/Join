@@ -28,7 +28,7 @@ p {
 /* === header === */
 
 header {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 16px;
