@@ -121,7 +121,7 @@
     font-weight: 400;
 }
 
-.board-body{
+.board-body {
     display: flex;
     height: 100vh;
     width: 95%;
@@ -129,7 +129,7 @@
     flex-direction: column;
 }
 
-.top{
+.top {
     width: 95%;
     display: flex;
     justify-content: center;
@@ -138,7 +138,7 @@
     margin-top: 80px;
 }
 
-.todo-content{
+.todo-content {
     width: 95%;
     gap: 30px;
     display: flex;
@@ -146,7 +146,7 @@
     justify-content: center;
 }
 
-.progress-content{
+.progress-content {
     width: 95%;
     gap: 30px;
     display: flex;
@@ -154,7 +154,7 @@
     justify-content: center;
 }
 
-.feedback-content{
+.feedback-content {
     width: 95%;
     gap: 30px;
     display: flex;
@@ -162,7 +162,7 @@
     justify-content: center;
 }
 
-.done-content{
+.done-content {
     width: 95%;
     gap: 30px;
     display: flex;
@@ -170,25 +170,25 @@
     justify-content: center;
 }
 
-.board-switch{
+.board-switch {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.board-input-content{
+.board-input-content {
     display: flex;
     align-items: center;
     width: 95%;
     justify-content: center;
 }
 
-.cursor:hover{
+.cursor:hover {
     cursor: pointer;
 }
 
-.board-add-btn{
+.board-add-btn {
     color: white;
     width: 200px;
     height: 48px;
@@ -204,12 +204,12 @@
     font-weight: 700;
 }
 
-.board-add-btn-img{
+.board-add-btn-img {
     height: 18px;
     width: 18px;
 }
 
-.left-side{
+.left-side {
     display: flex;
     width: 95%;
     justify-content: space-between;
@@ -218,7 +218,7 @@
     max-width: 600px
 }
 
-.card-content{
+.card-content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -229,7 +229,7 @@
     width: 100%;
 }
 
-.headline-card{
+.headline-card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -243,79 +243,92 @@
     width: max-content;
 }
 
-.card-title{
+.card-title {
     font: 700;
     font-size: 16px;
 }
 
-.card-subtitle{
+.card-subtitle {
     font-size: 16px;
     font-weight: 400;
     color: #A8A8A8;
-    text-overflow: ellipsis "[...]";
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    line-break: auto;
 }
 
-.w3-green{
+.w3-green {
     height: 8px;
     border-radius: 50px;
     width: 100%;
 }
 
-.bar{
+.bar {
     width: 100%;
 }
 
-.card-subtask{
+.card-subtask {
     display: flex;
     width: 100%;
-    
+
 }
 
-.subtask-content{
+.subtask-content {
     display: flex;
 }
 
-@media(min-width: 1017px){
-    .board-body{
+@media(min-width: 1017px) {
+    .board-body {
         margin-left: 232px;
         align-items: flex-start;
         padding-left: 20px;
         padding-right: 20px;
         width: auto;
     }
-    .task-body{
+
+    .task-body {
         flex-direction: row;
         max-width: 100%;
         display: flex;
         align-items: flex-start;
     }
-    .board-add-btn{
+
+    .board-add-btn {
         display: flex;
         width: 100%;
         max-width: 175px;
     }
-    .board-add-task{
+
+    .board-add-task {
         display: none;
     }
-    .top{
+
+    .top {
         flex-direction: row;
         align-items: baseline;
     }
-    .board-input{
+
+    .board-input {
         margin-top: 0;
     }
-    .board-input-content{
+
+    .board-input-content {
         gap: 20px;
     }
-    .board-input{
+
+    .board-input {
         max-width: 350px;
     }
-    .left-side{
+
+    .left-side {
         width: 55%;
     }
-    .board-title{
+
+    .board-title {
         font-size: 61px;
         font-weight: 700;
     }
-    
+
 }
