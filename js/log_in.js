@@ -183,7 +183,6 @@ function guestLogIn(){
 }
 
 function showVisibility(id, icon) {
-
     let x = document.getElementById(`${id}`);
     if (x.type === "password") {
         x.type = "text";
