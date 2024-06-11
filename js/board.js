@@ -1,7 +1,7 @@
-function initBoard() {
-    document.getElementById('body').innerHTML = renderBoardHTML();
-    renderSideNavHTML();
-    renderHeaderNav();
+function initBoard(id, renderClass) {
+    document.getElementById(id).innerHTML = renderBoardHTML();
+    // renderSideNavHTML(id, renderClass);
+    renderHeaderNav(id, renderClass);
     renderInToDo();
 }
 
@@ -88,3 +88,23 @@ function renderInToDo(){
     let body = document.getElementById('todo-body-card');
     body.innerHTML = renderCardHTML();
 }
+
+// function sideNavPolicy() {
+//     let body = docID('body-summary-content');
+//     body.classList.remove('body-summary');
+//     body.innerHTML = renderLegalNotice();
+// }
+
+// function sideNavNotice() {
+//     let body = docID('body-summary-content');
+//     body.classList.remove('body-summary');
+//     body.innerHTML = renderPrivacyPolice();
+// }
+
+// function backToSite() {
+//     let body = docID('body-summary-content');
+//     let greetBody = docID('greet-body');
+//     body.innerHTML = renderSummaryHTML();
+//     greetBody = loadTheWelcomeSreen();
+//     body.classList.add('body-summary');
+// }

@@ -1,3 +1,4 @@
+
 .board-content {
     width: 136px;
     height: 56px;
@@ -50,6 +51,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 .task-body {
     width: 100%;
@@ -265,14 +267,22 @@
     width: 100%;
 }
 
+.w3-light-grey{
+    width: 100%;
+    background-color: #F4F4F4 !important;
+}
+
 .bar {
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .card-subtask {
     display: flex;
     width: 100%;
-
+    align-items: center;
+    justify-content: center;
 }
 
 .subtask-content {

@@ -84,15 +84,15 @@ window.onclick = function (event) {
 }
 
 
-function sideNavPolicy() {
-    let body = docID('body-summary-content');
-    body.classList.remove('body-summary');
+function sideNavPolicy(id, renderClass) {
+    let body = docID(id);
+    body.classList.remove(renderClass);
     body.innerHTML = renderLegalNotice();
 }
 
-function sideNavNotice() {
-    let body = docID('body-summary-content');
-    body.classList.remove('body-summary');
+function sideNavNotice(id, renderClass) {
+    let body = docID(id);
+    body.classList.remove(renderClass);
     body.innerHTML = renderPrivacyPolice();
 }
 

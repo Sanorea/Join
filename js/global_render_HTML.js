@@ -224,7 +224,7 @@ function renderLegalNotice() {
     `;
 }
 
-function renderSideNavHTML() {
+function renderSideNavHTML(id, renderClass) {
     docID('sideNav').innerHTML = /*HTML*/`<div class="sideNav-logo">
     <img src="assets/img/Capa 1.svg" alt="">
 </div>
@@ -247,8 +247,8 @@ function renderSideNavHTML() {
     </div></a>
 </div>
 <div class="sideNav-policy-content">
-    <span onclick="sideNavPolicy()" class="sideNav-policy">Privacy Policy</span>
-    <span onclick="sideNavNotice()" class="sideNav-notice">Legal notice</span>
+    <span onclick="sideNavPolicy('${id}', '${renderClass}')" class="sideNav-policy">Privacy Policy</span>
+    <span onclick="sideNavNotice('${id}', '${renderClass}')" class="sideNav-notice">Legal notice</span>
 </div>`;
 }
 
@@ -304,9 +304,9 @@ function renderHeader(firstLetter) {
     `;
 }
 
-function renderHeaderNav() {
+function renderHeaderNav(id, renderClass) {
     let finishFirstletter = getFirstLetter(localStorageName);
     renderHeader(finishFirstletter);
     renderNav();
-    renderSideNavHTML();
+    renderSideNavHTML(id, renderClass);
 }
