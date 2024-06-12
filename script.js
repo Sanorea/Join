@@ -8,6 +8,8 @@ const BASE_URL = "https://join-192-default-rtdb.europe-west1.firebasedatabase.ap
 //     loadFocus();
 // renderSideNavHTML()
 // }
+let switchId;
+let switchClass;
 
 function docID(id) {
     return document.getElementById(id);
@@ -88,6 +90,8 @@ function sideNavPolicy(id, renderClass) {
     let body = docID(id);
     body.classList.remove(renderClass);
     body.innerHTML = renderLegalNotice();
+    switchId = id;
+    switchClass = renderClass;
 }
 
 function sideNavNotice(id, renderClass) {
@@ -97,11 +101,22 @@ function sideNavNotice(id, renderClass) {
 }
 
 function backToSite() {
-    let body = docID('body-summary-content');
-    let greetBody = docID('greet-body');
-    body.innerHTML = renderSummaryHTML();
-    greetBody = loadTheWelcomeSreen();
-    body.classList.add('body-summary');
+    let body = docID(switchId);
+    // let greetBody = docID(renderClass);
+    if (switchId == "body-board") {
+        body.innerHTML = renderBoardHTML()
+    } 
+    if (switchId == "body-summary-content") {
+        body.innerHTML =  renderSummaryHTML();
+        greetBody = loadTheWelcomeSreen();
+    }
+    // if ("body-summary-content") {
+    //     body.innerHTML =  renderSummaryHTML()
+    // }
+    // if ("body-summary-content") {
+    //     body.innerHTML =  renderSummaryHTML()
+    // }
+     body.classList.add(switchClass);
 }
 
 
