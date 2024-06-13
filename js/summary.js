@@ -1,7 +1,7 @@
 
 function initSummary(id, renderClass) {
     renderHeaderNav(id, renderClass);
-    docID(id).innerHTML = renderSummaryHTML();
+    docID('body-summary-content').innerHTML = renderSummaryHTML();
     loadTheWelcomeSreen();
     // loadFocus();
      renderSideNavHTML(id, renderClass);

@@ -1,5 +1,5 @@
 function initBoard(id, renderClass) {
-    document.getElementById(id).innerHTML = renderBoardHTML();
+    document.getElementById('body-board').innerHTML = renderBoardHTML();
     // renderSideNavHTML(id, renderClass);
     renderHeaderNav(id, renderClass);
     renderInToDo();

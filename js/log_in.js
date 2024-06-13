@@ -219,6 +219,8 @@ function addUserLogIn() {
         popUp.innerHTML = checkInPopup();
         setTimeout(function () { popUp.classList.add("d-none"); }, 2000);
         setTimeout(backToLogIn, 2000);
+        let contactInputValue = setContactInputValuesSignUp();
+        postContactData(contactInputValue.name.value, contactInputValue.email.value, contactInputValue.phone, contactInputValue.acronym, contactInputValue.id);
     }
 }
 
@@ -269,4 +271,35 @@ async function userLogIn() {
         popUp.innerHTML = renderPopUp('Email or Password are wrong');
         password.value = ``;
     }
+}
+
+function setContactInputValuesSignUp() {
+    let name = docID('sing-up-name'); // Input für Name
+    let email = docID('sing-up-email'); // Inputfeld für E-Mail
+    let phone = "";
+    let firstLetterOfName = getFirstLetter(name.value);
+    let firstLetterOfLastName = getFirstLetter(name.value.split(' ').pop()); 
+    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let id = setID();
+
+    return {
+        name,
+        email,
+        phone,
+        firstLetterOfName,
+        firstLetterOfLastName,
+        acronym,
+        id
+    }
+}
+
+async function postContactData(name, email, phone, acronym, id) {
+    await postData("/contacts", {
+        "contact-name": name,
+        "contact-email": email,
+        "contact-tel": phone,
+        "contact-acronym": acronym,
+        "contact-id": id,
+        "contact-color": getRandomColor()
+    })
 }
