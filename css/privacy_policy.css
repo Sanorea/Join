@@ -4,7 +4,7 @@
     padding: 15px;
     justify-content: center;
     flex-direction: column;
-    margin-top: 100px;
+    /* margin-top: 100px; */
 }
 
 .headline {
@@ -31,10 +31,10 @@
 
 @media(min-width: 1017px) {
     #privacy_policy-container {
-        width: calc(95% - 300px);
+        width: calc(95% - 100px);
         max-width: 1440px;
-        padding-left: 300px;
-        margin-top: 100px;
+        padding-left: 140px;
+        /* margin-top: 100px; */
     }
     .back-arrow-img {
         width: 40px;

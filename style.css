@@ -479,10 +479,10 @@ header {
     transform: scale(1.1);
 }
 
-/* .sideNav-policy-a{
+.sideNav-policy-a{
     text-decoration: none !important;
     width: 100%;
-} */
+}
 
 /* .help-d-none{
     display: flex;
@@ -660,11 +660,10 @@ header {
 
 @media(min-width: 1017px) {
     #legal_notice-container {
-        width: calc(95% - 300px);
+        width: calc(95% - 140px);
         max-width: 1440px;
-        padding-left: 300px;
-        margin-top: 100px;
-        box-sizing: content-box;
+        padding-left: 160px;
+        /* margin-top: 100px; */
     }
 
     .back-arrow-img {
@@ -684,7 +683,7 @@ header {
     padding: 15px;
     justify-content: center;
     flex-direction: column;
-    margin-top: 100px;
+    /* margin-top: 100px; */
 }
 
 .headline {
@@ -711,10 +710,10 @@ header {
 
 @media(min-width: 1017px) {
     #privacy_policy-container {
-        width: calc(95% - 300px);
+        width: calc(95% - 230px);
         max-width: 1440px;
-        padding-left: 300px;
-        margin-top: 100px;
+        padding-left: 160px;
+        /* margin-top: 100px; */
         box-sizing: content-box;
     }
     .back-arrow-img {
