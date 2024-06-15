@@ -10,6 +10,7 @@
     <script src="/js/contacts.js"></script>
     <script src="script.js"></script>
     <script src="/js/global_render_HTML.js"></script>
+    <script src="js/add_task.js"></script>
 </head>
 
 
@@ -91,15 +92,14 @@
                         <p>Subtasks</p>
                     </div>
                     <div class="add-task-subtasks-inputfield">
-                        <input type="text">
-                        <img src="/assets/img/add.svg" alt="">
+                        <input required id="subtasks-input" minlength="5" onclick="taskInput()" type="text">
+                        <div class="add-task-imgs">
+                            <img onclick="addToSubtaskArray()" id="check-visibility" class="d-none" src="assets/img/check-task.svg" alt="">
+                            <img onclick="deleteValue()" id="switch_img" src="/assets/img/add.svg" alt="">
+                        </div>
                     </div>
                     <div class="add-task-subtasks-list">
-                        <li>1</li>
-                        <div>
-                            <img src="/assets/img/edit_icon.svg" alt="Bearbeiten">
-                            <img src="/assets/img/delete_icon.svg" alt="Löschen">
-                        </div>
+                        <ul id="add-task-subtasks-list"></ul>
                     </div>
 
                 </div>

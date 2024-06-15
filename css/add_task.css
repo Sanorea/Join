@@ -164,3 +164,34 @@
     display: flex;
     gap: 16px;
 }
+
+/* edu */
+
+.add-task-imgs {
+    display: flex;
+
+}
+
+.list{
+    display: flex;
+    width: 97%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#add-task-subtasks-list{
+    width: 100%;
+}
+
+.img-content{
+    display: flex;
+    justify-content: space-between;
+    width: 60px;
+}
+
+.split {
+    width: 1px;
+    height: 25px;
+    border-left: 2px solid;
+    border-color: #A8A8A8;
+}
