@@ -1,70 +1,97 @@
-function initBoard(id, renderClass) {
-    document.getElementById('body-board').innerHTML = renderBoardHTML();
+let arrTasks = [];
+
+let currentDraggedElement;
+
+async function initBoard(id, renderClass) {
+    // document.getElementById('body-board').innerHTML = renderBoardHTML();
     // renderSideNavHTML(id, renderClass);
     renderHeaderNav(id, renderClass);
-    renderInToDo();
+    await getTaskData();
+    updateHTML();
 }
 
-function renderBoardHTML() {
-    return /*HTML*/ `
-    <div class="top">
-            <div class="left-side">
-                <div class="board-content"><span class="board-title">Board</span></div>
-            <img class="board-add-task cursor" src="assets/img/add-img.svg" alt="">
-            </div>
-            <div class="board-input-content">
-                <input class="board-input" placeholder="Find Task" type="text">
-                <button class="board-add-btn cursor">Add Task <img class="board-add-btn-img" src="assets/img/add-white.svg" alt=""></button>
-            </div>
-        </div>
-        <div class="task-body">
-            <div class="todo-content">
-                <div class="board-body-todo">
-                    <div class="body-title-todo">To do</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
-                </div>
-                <div id="todo-body-card">
-                    <div class="board-todo-drag"><span class="empty-task-text">No Task To do</span></div>
-                </div>
-            </div>
-            <div class="progress-content">
-                <div class="board-body-todo">
-                    <div class="body-title-progress"> In progress</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
-                </div>
-                <div id="progress-body-card">
-                    <div class="board-todo-drag"><span class="empty-task-text">No Task in progress</span></div>
-                </div>
-            </div>
-            <div class="feedback-content">
-                <div class="board-body-todo">
-                    <div class="body-title-feedback">Await feedback</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
-                </div>
-                <div id="feedback-body-card">
-                    <div class="board-todo-drag"><span class="empty-task-text">No task in Feedback</span></div>
-                </div>
-            </div>
-            <div class="done-content">
-                <div class="board-body-todo">
-                    <div class="body-title-done">Done</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
-                </div>
-                <div id="done-body-card">
-                    <div class="board-todo-drag"><span class="empty-task-text">No Task in done</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
+async function getTaskData() {
+    let taskData = await loadData('/tasks');
+    saveTaskDataInArray(taskData);
+    return taskData;
 }
 
-function renderCardHTML() {
+
+async function updateHTML() {
+    // await getTaskData();
+
+    let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
+
+    for (let i = 0; i < boardCategories.length; i++) {
+        let category = boardCategories[i];
+        let elements = arrTasks.filter(t => t['boardCategory'] == category);
+        
+        docID(category).innerHTML ='';
+        for (let index = 0; index < elements.length; index++) {
+            const element = elements[index];
+            docID(category).innerHTML += renderCardHTML(element);
+        }
+    }
+
+
+
+
+    // let toDo = arrTasks.filter(t => t['boardCategory'] == 'toDo');
+    // docID('toDo').innerHTML ='';
+
+    // for (let index = 0; index < toDo.length; index++) {
+    //     const element = toDo[index];
+    //     docID('toDo').innerHTML += renderCardHTML(element);
+    // }
+
+    // let inProgress = arrTasks.filter(t => t['boardCategory'] == 'inProgress');
+    // docID('inProgress').innerHTML ='';
+
+    // for (let index = 0; index < inProgress.length; index++) {
+    //     const element = inProgress[index];
+    //     docID('inProgress').innerHTML += renderCardHTML(element);
+    // }
+}
+
+
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function moveTo(category) {
+    let index = arrTasks.findIndex(obj => obj.id == currentDraggedElement);
+    arrTasks[index]['boardCategory'] = category;
+    updateHTML();
+}
+
+
+function saveTaskDataInArray(taskData) {
+    let tempArrTasks = [];
+    arrTasks = [];
+    for (let i in taskData) {
+        tempArrTasks.push([i, taskData[i]]);
+    }
+
+    for (let i in tempArrTasks) {
+        arrTasks.push(tempArrTasks[i][1]);
+        arrTasks[i]['unique-key'] = tempArrTasks[i][0];
+    }
+
+    console.log(arrTasks);
+    console.log(arrTasks[0]['boardCategory']);
+}
+
+
+function renderCardHTML(element) {
     return /*HTML*/ `
-    <div class="card-content">
+    <div draggable="true" ondragstart="startDragging(${element['id']})" class="card-content">
         <div class="headline-card">User Story</div>
-        <div class="card-title">Kochwelt Page & Recipe Recommender</div>
-        <div class="card-subtitle">Build start page with recipe recommendation wjkfviwjfviw</div>
+        <div class="card-title">${element['title']}</div>
+        <div class="card-subtitle">${element['description']}</div>
         <div class="card-subtask">
             <div class="bar">
                 <div class="w3-light-grey">
