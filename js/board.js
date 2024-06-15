@@ -25,32 +25,13 @@ async function updateHTML() {
     for (let i = 0; i < boardCategories.length; i++) {
         let category = boardCategories[i];
         let elements = arrTasks.filter(t => t['boardCategory'] == category);
-        
+
         docID(category).innerHTML ='';
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
             docID(category).innerHTML += renderCardHTML(element);
         }
     }
-
-
-
-
-    // let toDo = arrTasks.filter(t => t['boardCategory'] == 'toDo');
-    // docID('toDo').innerHTML ='';
-
-    // for (let index = 0; index < toDo.length; index++) {
-    //     const element = toDo[index];
-    //     docID('toDo').innerHTML += renderCardHTML(element);
-    // }
-
-    // let inProgress = arrTasks.filter(t => t['boardCategory'] == 'inProgress');
-    // docID('inProgress').innerHTML ='';
-
-    // for (let index = 0; index < inProgress.length; index++) {
-    //     const element = inProgress[index];
-    //     docID('inProgress').innerHTML += renderCardHTML(element);
-    // }
 }
 
 
