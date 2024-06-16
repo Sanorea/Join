@@ -176,11 +176,15 @@
     display: flex;
     width: 97%;
     justify-content: space-between;
-    margin-bottom: 15px;
+    align-items: center;
+    height: 50px;
 }
 
 #add-task-subtasks-list{
     width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .img-content{
@@ -195,3 +199,19 @@
     border-left: 2px solid;
     border-color: #A8A8A8;
 }
+
+.newEditInput {
+    border: none;
+    width: 100%;
+}
+
+.newEditInput:focus{
+    outline-width: 0;
+}
+
+.aktiveInput{
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid;
+    border-color: #29ABE2;
+}
+
