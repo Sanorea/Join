@@ -6,7 +6,6 @@ async function initBoard(id, renderClass) {
     // document.getElementById('body-board').innerHTML = renderBoardHTML();
     // renderSideNavHTML(id, renderClass);
     renderHeaderNav(id, renderClass);
-    await getTaskData();
     updateHTML();
 }
 
@@ -18,8 +17,7 @@ async function getTaskData() {
 
 
 async function updateHTML() {
-    // await getTaskData();
-
+    await getTaskData();
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -43,9 +41,22 @@ function allowDrop(event) {
     event.preventDefault();
 }
 
-function moveTo(category) {
+async function moveTo(category) {
     let index = arrTasks.findIndex(obj => obj.id == currentDraggedElement);
+    let key = arrTasks[index]['unique-key'];
     arrTasks[index]['boardCategory'] = category;
+
+    await updateData("/tasks/" + key, {
+        "assignetTo": arrTasks[index]['assignedTo'],
+        "boardCategory": arrTasks[index]['boardCategory'],
+        "date": arrTasks[index]['date'],
+        "description": arrTasks[index]['description'],
+        "id": arrTasks[index]['id'],
+        "prio": arrTasks[index]['prio'],
+        "subtasks": arrTasks[index]['subtasks'],
+        "title": arrTasks[index]['title']
+    })
+
     updateHTML();
 }
 
