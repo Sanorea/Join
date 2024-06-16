@@ -1,12 +1,34 @@
 
 let subtaskArray = [];
 
+let windowEvent;
+
 function taskInput() {
+    let windowEvent = docID('add-task-subtasks-inputfield');
     let addImg = docID('switch_img');
     let checkImg = docID('check-visibility');
+    // windowEvent.classList.add('eyy');
     addImg.src = "assets/img/close.svg";
     checkImg.classList.remove('d-none');
 }
+
+// windowEvent = docID('add-task-subtasks-inputfield');
+// function switchEdit() {
+//     document.getElementById("add-task-subtasks-inputfield").classList.toggle("eyy")
+// }
+
+// window.onclick = function (event) {
+//     if (!event.target.matches('add-task-subtasks-inputfield')) {
+//         let dropdowns = document.getElementsByClassName("add-task-subtasks-inputfield");
+//         let i;
+//         for (i = 0; i < dropdowns.length; i++) {
+//             var openDropdown = dropdowns[i];
+//             if (openDropdown.classList.contains('eyy')) {
+//                 openDropdown.classList.remove('eyy');
+//             }
+//         }
+//     }
+// }
 
 function addToSubtaskArray() {
     let inputValue = docID('subtasks-input');

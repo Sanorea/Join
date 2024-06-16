@@ -91,8 +91,8 @@
                     <div class="add-task-required-fields">
                         <p>Subtasks</p>
                     </div>
-                    <div class="add-task-subtasks-inputfield">
-                        <input required id="subtasks-input" minlength="5" onclick="taskInput()" type="text">
+                    <div onclick="switchEdit()" id="add-task-subtasks-inputfield" class="add-task-subtasks-inputfield">
+                        <input class="subtasks-input" required id="subtasks-input" minlength="5" onclick="taskInput()" type="text">
                         <div class="add-task-imgs">
                             <img onclick="addToSubtaskArray()" id="check-visibility" class="d-none" src="assets/img/check-task.svg" alt="">
                             <img onclick="deleteValue()" id="switch_img" src="/assets/img/add.svg" alt="">
