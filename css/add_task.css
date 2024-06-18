@@ -191,7 +191,7 @@
 }
 
 .img-content{
-    display: flex;
+    display: none;
     justify-content: space-between;
     width: 60px;
 }
@@ -227,7 +227,11 @@
     border-color: #29ABE2 !important;
 }
 
-.list:hover{
+.hover:hover .img-content{
+    background-color: #A8A8A8;
+    display: flex !important;
+}
+.hover:hover{
     background-color: #A8A8A8;
 }
 
