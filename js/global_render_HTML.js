@@ -1,4 +1,4 @@
-function renderSideNavHTML(id, renderClass) {
+function renderSideNavHTML() {
     docID('sideNav').innerHTML = /*HTML*/`<div class="sideNav-logo">
     <img src="assets/img/Capa 1.svg" alt="">
 </div>
@@ -58,17 +58,17 @@ function renderNav() {
     `;
 }
 
-function renderHeader(firstLetter, id, renderClass) {
+function renderHeader(firstLetter) {
     docID('header').innerHTML =/*html*/`
 
     <img class="header-logo" src="./assets/img/logo_mobile.svg">
     <div class="header-text">Kanban Project Management Tool</div>
     <div class="top-right-infos">
-    <img class="info-img" src="./assets/img/help.svg" alt="">
+    <a href="../help.html"><img class="info-img" src="./assets/img/help.svg" alt=""></a>
     <div class="header-user dropdown" onclick="dropDownMenu()">
         <span class="header-user-initials dropdown">${firstLetter}</span>
         <div id="myDropdown" class="dropdown-content">
-        <a class="help-d-none" href="#">Help</a>
+        <a class="help-d-none" href="../help.html">Help</a>
         <a href="../legal_notice.html">Legal Notice</a>
         <a href="../privacy_policy.html">Privacy Policy</a>
         <a onclick="clearTheLocalStorage()" href="index.html">Log out</a>

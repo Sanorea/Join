@@ -1,549 +1,642 @@
-.text{
+.text {
     /* Text */
 
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 24px;
-
-position: absolute;
-width: 1014px;
-height: 1024px;
-left: 328px;
-top: 311px;
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 20px 20px 20px;
+    margin-top: 100px;
 }
 
-.welcome-text{
-
-/* Welcome to the help page for Join, your guide to using our kanban project management tool. Here, we'll provide an overview of what Join is, how it can benefit you, and how to use it. */
-
-width: 1014px;
-height: 38px;
-
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 120%;
-/* or 19px */
-
-/* black */
-color: #000000;
-
-
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+.width{
+    width: 100% !important;
 }
 
-.frame-185{
+.welcome-text {
 
-/* Frame 185 */
+    /* Welcome to the help page for Join, your guide to using our kanban project management tool. Here, we'll provide an overview of what Join is, how it can benefit you, and how to use it. */
 
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 16px;
+    max-width: 1014px;
+    
 
-width: 1014px;
-height: 238px;
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+
+    /* black */
+    color: #000000;
 
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
-.help-title{
+.frame-185 {
+
+    /* Frame 185 */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    max-width: 1014px;
+    
 
 
-/* What is Join? */
-
-width: 346px;
-height: 32px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
-
-/* black */
-color: #000000;
-
-
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
-.hallo{
+.help-title {
 
-/* Join is a kanban-based project management tool designed and built by a group of dedicated students as part of their web development bootcamp at the Developer Akademie. Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize work, limit work-in-progress, and maximize efficiency (or flow). Join leverages the principles of kanban to help users manage their tasks and projects in an intuitive, visual interface. It is important to note that Join is designed as an educational exercise and is not intended for extensive business usage. While we strive to ensure the best possible user experience, we cannot guarantee consistent availability, reliability, accuracy, or other aspects of quality regarding Join. */
 
-width: 1014px;
-height: 190px;
+    /* What is Join? */
 
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 120%;
-/* or 19px */
+    max-width: 346px;
+    
 
-/* Ligth blue */
-color: #29ABE2;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
 
+    /* black */
+    color: #000000;
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
 
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
-/* How to use it */
+.what_is_join {
 
-width: 346px;
-height: 32px;
+    /* Join is a kanban-based project management tool designed and built by a group of dedicated students as part of their web development bootcamp at the Developer Akademie. Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize work, limit work-in-progress, and maximize efficiency (or flow). Join leverages the principles of kanban to help users manage their tasks and projects in an intuitive, visual interface. It is important to note that Join is designed as an educational exercise and is not intended for extensive business usage. While we strive to ensure the best possible user experience, we cannot guarantee consistent availability, reliability, accuracy, or other aspects of quality regarding Join. */
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
+    max-width: 1014px;
+    
 
-/* black */
-color: #000000;
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
 
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
 
-/* Inside auto layout */
-flex: none;
-order: 2;
-flex-grow: 0;
+.light_blue {
+    /* Ligth blue */
+    color: #29ABE2;
+}
 
+.How_to_use_it {
 
-/* Frame 218 */
 
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 16px;
+    /* How to use it */
 
-width: 1014px;
-height: 556px;
+    max-width: 346px;
+    
 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
 
-/* Inside auto layout */
-flex: none;
-order: 3;
-align-self: stretch;
-flex-grow: 0;
+    /* black */
+    color: #000000;
 
 
-/* Here is a step-by-step guide on how to use Join: */
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
 
-width: 1014px;
-height: 19px;
+.frame-128 {
+    /* Frame 218 */
 
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 120%;
-/* or 19px */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
 
-/* black */
-color: #000000;
+    max-width: 1014px;
+    
 
 
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+}
 
+.steb_by_step-subline {
 
-/* Frame 186 */
+    /* Here is a step-by-step guide on how to use Join: */
 
-/* Auto layout */
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 16px;
+    max-width: 1014px;
+    
 
-width: 1014px;
-height: 521px;
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
 
+    /* black */
+    color: #000000;
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
 
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
 
-/* Frame 187 */
+}
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 35px;
+.frame-186 {
+    /* Frame 186 */
 
-width: 1014px;
-height: 61px;
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
 
+    max-width: 1014px;
+    
 
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
 
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
 
-/* 1. */
 
-width: 21px;
-height: 32px;
+.frame-187 {
+    /* Frame 187 */
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 35px;
 
-/* black */
-color: #000000;
+    max-width: 1014px;
+    
 
 
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 
+}
 
-/* Exploring the Board When you log in to Join, you'll find a default board. This board represents your project and contains four default lists: "To Do", "In Progress", “Await feedback” and "Done". */
+.first {
+    /* 1. */
 
-width: 958px;
-height: 61px;
+    max-width: 21px;
+    
 
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 120%;
-/* or 24px */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
 
-/* black */
-color: #000000;
+    /* black */
+    color: #000000;
 
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 1;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 
+}
 
-/* Frame 189 */
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 35px;
+.first_text {
+    /* Exploring the Board When you log in to Join, you'll find a default board. This board represents your project and contains four default lists: "To Do", "In Progress", “Await feedback” and "Done". */
 
-width: 1014px;
-height: 80px;
+    max-width: 958px;
+    
 
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
+    /* black */
+    color: #000000;
 
 
-/* 2. */
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
 
-width: 26px;
-height: 32px;
+.fram-189 {
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
+    /* Frame 189 */
 
-/* black */
-color: #000000;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 35px;
 
+    max-width: 1014px;
+    
 
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
 
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
 
-/* Creating Contacts In Join, you can add contacts to collaborate on your projects. Go to the "Contacts" section, click on "New contact", and fill in the required information. Once added, these contacts can be assigned tasks and they can interact with the tasks on the board. */
 
-width: 953px;
-height: 80px;
+.second {
+    /* 2. */
 
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 120%;
-/* or 24px */
+    max-width: 26px;
 
-/* black */
-color: #000000;
 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 1;
+    /* black */
+    color: #000000;
 
 
-/* Frame 188 */
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 35px;
 
-width: 1014px;
-height: 80px;
+.second_text {
+    /* Creating Contacts In Join, you can add contacts to collaborate on your projects. Go to the "Contacts" section, click on "New contact", and fill in the required information. Once added, these contacts can be assigned tasks and they can interact with the tasks on the board. */
 
+    max-width: 953px;
+    
 
-/* Inside auto layout */
-flex: none;
-order: 2;
-align-self: stretch;
-flex-grow: 0;
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
 
+    /* black */
+    color: #000000;
 
-/* 3. */
 
-width: 26px;
-height: 32px;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
+.frame-188 {
 
-/* black */
-color: #000000;
+    /* Frame 188 */
 
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 35px;
 
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    max-width: 1014px;
+    
 
 
-/* Adding Cards Now that you've added your contacts, you can start adding cards. Cards represent individual tasks. Click the "+" button under the appropriate list to create a new card. Fill in the task details in the card, like task name, description, due date, assignees, etc. */
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
 
-width: 953px;
-height: 80px;
 
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 120%;
-/* or 24px */
+.third {
+    /* 3. */
 
-/* black */
-color: #000000;
+    max-width: 26px;
+    
 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 1;
+    /* black */
+    color: #000000;
 
 
-/* Frame 190 */
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 35px;
+.third_text {
 
-width: 1014px;
-height: 61px;
+    /* Adding Cards Now that you've added your contacts, you can start adding cards. Cards represent individual tasks. Click the "+" button under the appropriate list to create a new card. Fill in the task details in the card, like task name, description, due date, assignees, etc. */
 
+    max-width: 953px;
+    
 
-/* Inside auto layout */
-flex: none;
-order: 3;
-align-self: stretch;
-flex-grow: 0;
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
 
+    /* black */
+    color: #000000;
 
-/* 4. */
 
-width: 26px;
-height: 32px;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
+.frame-190 {
 
-/* black */
-color: #000000;
+    /* Frame 190 */
 
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 35px;
 
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
+    max-width: 1014px;
+    
 
 
-/* Moving Cards As the task moves from one stage to another, you can reflect that on the board by dragging and dropping the card from one list to another. */
+    /* Inside auto layout */
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+}
 
-width: 953px;
-height: 61px;
+.fourth {
 
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 120%;
-/* or 24px */
+    /* 4. */
 
-/* black */
-color: #000000;
+    max-width: 26px;
+    
 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
 
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 1;
+    /* black */
+    color: #000000;
 
 
-/* Frame 191 */
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 35px;
+.fourth_text {
 
-width: 1014px;
-height: 175px;
+    /* Moving Cards As the task moves from one stage to another, you can reflect that on the board by dragging and dropping the card from one list to another. */
 
+    max-width: 953px;
+    
 
-/* Inside auto layout */
-flex: none;
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
+
+    /* black */
+    color: #000000;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.frame_191 {
+
+    /* Frame 191 */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 35px;
+
+    max-width: 1014px;
+    
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 4;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.fifth {
+
+    /* 5. */
+
+    max-width: 25px;
+    
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
+
+    /* black */
+    color: #000000;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.fifth_text {
+
+    /* Deleting Cards Once a task is completed, you can either move it to the "Done" list or delete it. Deleting a card will permanently remove it from the board. Please exercise caution when deleting cards, as this action is irreversible. Remember that using Join effectively requires consistent updates from you and your team to ensure the board reflects the current state of your project. Have more questions about Join? Feel free to contact us at [Your Contact Email]. We're here to help you! */
+
+    max-width: 954px;
+    
+
+    /* Version 2/body */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    /* or 24px */
+
+    /* black */
+    color: #000000;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.enjoy_using_join {
+    /* Enjoy using Join! */
+
+    
+margin-top: 30px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+    /* or 32px */
+
+    /* black */
+    color: #000000;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+
+}
+
+.headline {
+    font-weight: 700;
+    font-size: 61px;
+    margin-bottom: 30px;
+}
+
+.back-arrow-img {
+    width: 40px;
+}
+
+.back-arrow-img:hover {
+    cursor: pointer;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+}
+
+.top{
+    width: 100%;
+}
+
+.section1 {
+    margin-bottom: 30px;
+}
+
+.section2 {
+    margin-bottom: 30px;
+}
+
+.section3 {
+    margin-bottom: 30px;
+}
+
+.order{
 order: 4;
-align-self: stretch;
-flex-grow: 0;
+}
 
-
-/* 5. */
-
-width: 25px;
-height: 32px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
-
-/* black */
-color: #000000;
-
-
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-
-
-/* Deleting Cards Once a task is completed, you can either move it to the "Done" list or delete it. Deleting a card will permanently remove it from the board. Please exercise caution when deleting cards, as this action is irreversible. Remember that using Join effectively requires consistent updates from you and your team to ensure the board reflects the current state of your project. Have more questions about Join? Feel free to contact us at [Your Contact Email]. We're here to help you! */
-
-width: 954px;
-height: 175px;
-
-/* Version 2/body */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 120%;
-/* or 24px */
-
-/* black */
-color: #000000;
-
-
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 1;
-
-
-/* Enjoy using Join! */
-
-width: 346px;
-height: 64px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 27px;
-line-height: 120%;
-/* or 32px */
-
-/* black */
-color: #000000;
-
-
-/* Inside auto layout */
-flex: none;
-order: 4;
-flex-grow: 0;
-
+@media(min-width: 1017px) {
+    .text {
+        /* width: calc(95% - 140px); */
+        width: 60%;
+        max-width: 1440px;
+        padding-left: 280px;
+        /* margin-top: 100px; */
+    }
+    .back-arrow-img {
+        width: 40px;
+    }
+    .headline {
+        font-weight: 700;
+        font-size: 61px;
+        margin-bottom: 30px;
+    }
 }
