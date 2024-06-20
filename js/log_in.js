@@ -48,8 +48,8 @@ function SingUpHTML() {
             </div>
         </div>
         <div class="policy-notice">
-            <div class="privacy-policy"><a class="sideNav-policy-a" href="privacy_policy.html"><span class="policy-text">Privacy Policy</span></a></div>
-            <div class="legal-notice"><a class="sideNav-policy-a" href="legal_notice.html"><span class="notice-text">Legal notice</span></a></div>
+            <div class="privacy-policy"><a class="sideNav-policy-a" href="legal_notice.html"><span class="policy-text">Privacy Policy</span></a></div>
+            <div class="legal-notice"><a class="sideNav-policy-a" href="privacy_policy.html"><span class="notice-text">Legal notice</span></a></div>
         </div>
         </form>
         <!-- <div id="sign-up-popup" class="modal-dialog modal-fullscreen-sm-down d-none popup"></div> -->
@@ -100,8 +100,8 @@ function LogInHTML() {
             </div>
         </div>
         <div class="policy-notice">
-            <div class="privacy-policy"><a class="sideNav-policy-a" href="privacy_policy.html"><span class="policy-text">Privacy Policy</span></a></div>
-            <div class="legal-notice"><a class="sideNav-policy-a" href="legal_notice.html"><span class="notice-text">Legal notice</span></a></div>
+            <div class="privacy-policy"><a class="sideNav-policy-a" href="legal_notice.html"><span class="policy-text">Privacy Policy</span></a></div>
+            <div class="legal-notice"><a class="sideNav-policy-a" href="privacy_policy.html"><span class="notice-text">Legal notice</span></a></div>
         </div>
     </div>
     `;

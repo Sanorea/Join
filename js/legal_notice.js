@@ -1,5 +1,5 @@
 function initNotice() {
-    if (document.referrer == 'http://127.0.0.1:5501/index.html') {
+    if (localStorage.getItem("user-name") === null) {
         renderSideNavHTML();
     let editSideNav = document.getElementById('edit-sideNav'); 
     let editPolicy = document.getElementById('edit-content'); 
@@ -9,4 +9,5 @@ function initNotice() {
         renderHeaderNav();
         renderSideNavHTML();  
     }
+    console.log(document.referrer);
 }

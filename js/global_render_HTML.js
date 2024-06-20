@@ -69,8 +69,8 @@ function renderHeader(firstLetter) {
         <span class="header-user-initials dropdown">${firstLetter}</span>
         <div id="myDropdown" class="dropdown-content">
         <a class="help-d-none" href="../help.html">Help</a>
-        <a href="../legal_notice.html">Legal Notice</a>
-        <a href="../privacy_policy.html">Privacy Policy</a>
+        <a href="../privacy_policy.html">Legal Notice</a>
+        <a href="../legal_notice.html">Privacy Policy</a>
         <a onclick="clearTheLocalStorage()" href="index.html">Log out</a>
   </div>
     </div>
