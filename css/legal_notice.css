@@ -3,6 +3,7 @@
     display: flex;
     padding: 15px;
     justify-content: center;
+    margin-bottom: 90px;
     flex-direction: column;
     /* margin-top: 100px; */
 }
@@ -33,6 +34,8 @@
         width: calc(95% - 140px);
         max-width: 1440px;
         padding-left: 160px;
+        margin-bottom: 0;
+        /* margin-bottom: 90px; */
         /* margin-top: 100px; */
     }
     .back-arrow-img {
