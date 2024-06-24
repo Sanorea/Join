@@ -24,7 +24,10 @@ async function updateHTML() {
         let category = boardCategories[i];
         let elements = arrTasks.filter(t => t['boardCategory'] == category);
 
-        docID(category).innerHTML ='';
+        if (elements.length > 0) {
+            docID(category).innerHTML ='';
+        }
+
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
             docID(category).innerHTML += renderCardHTML(element);
@@ -60,6 +63,18 @@ async function moveTo(category) {
     updateHTML();
 }
 
+function highlight(category1, category2, category3) {
+    document.getElementById(category1).classList.add('drag-area-highlight');
+    document.getElementById(category2).classList.add('drag-area-highlight');
+    document.getElementById(category3).classList.add('drag-area-highlight');
+}
+
+function removeHighlight() {
+    document.getElementById('toDo').classList.remove('drag-area-highlight');
+    document.getElementById('inProgress').classList.remove('drag-area-highlight');
+    document.getElementById('awaitFeedback').classList.remove('drag-area-highlight');
+    document.getElementById('done').classList.remove('drag-area-highlight');
+}
 
 function saveTaskDataInArray(taskData) {
     let tempArrTasks = [];

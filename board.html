@@ -33,7 +33,7 @@
                     <div class="body-title-todo">To do</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
-                <div id="toDo" class="board-todo-drag" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
+                <div id="toDo" class="drag-area" ondrop="moveTo('toDo')" ondragover="allowDrop(event)" ondragstart="highlight('inProgress', 'awaitFeedback', 'done')" ondragend="removeHighlight()">
                     <span class="empty-task-text">No Task To do</span>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <div class="body-title-progress"> In progress</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
-                <div id="inProgress" class="board-todo-drag" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)" ondragstart="highlight('toDo', 'awaitFeedback', 'done')" ondragend="removeHighlight()">
                     <span class="empty-task-text">No Task in progress</span>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="body-title-feedback">Await feedback</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
-                <div id="awaitFeedback" class="board-todo-drag" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+                <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)" ondragstart="highlight('inProgress', 'toDo', 'done')" ondragend="removeHighlight()">
                     <span class="empty-task-text">No task in Feedback</span>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     <div class="body-title-done">Done</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
-                <div id="done" class="board-todo-drag" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                <div id="done" class="drag-area" ondrop="moveTo('done')" ondragover="allowDrop(event)" ondragstart="highlight('inProgress', 'awaitFeedback', 'toDo')" ondragend="removeHighlight()">
                     <span class="empty-task-text">No Task in done</span>
                 </div>
             </div>
