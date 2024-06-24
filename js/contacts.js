@@ -164,7 +164,13 @@ async function deleteContact(id) {
     let key = contact['unique-key'];
     await deleteData("/contacts/" + key);
     closeDialog('contacts-details');
+    emptyContactDetails();
     reloadContacts();
+}
+
+function emptyContactDetails() {
+    let details = docID('contact-detail');
+    details.innerHTML = '';
 }
 
 async function editContact(id) {
