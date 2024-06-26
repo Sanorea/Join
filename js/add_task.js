@@ -3,6 +3,160 @@ let subtaskArray = [];
 
 let windowEvent;
 
+
+
+/*addTask*/
+
+
+
+async function addTaskContactsToArray() {
+    let addTaskContacts = [];
+    let addTaskResponseToJson = await addTaskLoadData(path = "");
+    addTaskContacts.push(addTaskResponseToJson);
+}
+
+const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/";
+
+function addTaskInit() {
+    addTaskLoadData("/contacts/contact-name");
+    renderContactListaddTasks();
+    renderDropdownCategorieAddTasks();
+    addTaskContactsToArray();
+}
+
+async function addTaskPostData(path = "", data = {}) {
+    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    }
+    );
+    return responseToJson = await responseAddTask.json();
+}
+
+function submitTask() {
+    let title = docID('add-task-input-title');
+    let description = docID('add-task-input-description');
+    let assignedTo = docID('add-task-input-assigned');
+    let date = docID('add-task-input-date');
+    /*     let categorie = docID('add-task-input-categorie') */
+
+    addTaskPostData("/tasks", {
+        "title": title.value,
+        "description": description.value,
+        "assignedTo": assignedTo.value,
+        "date": date.value,
+        "prio": "prio",
+        /*         "categorie": categorie.value, */
+        "subtasks": subtaskArray,
+    });
+    title.value = "";
+    description.value = "";
+    assignedTo.value = "";
+    date.value = "";
+    /*     categorie.value = ""; */
+    subtasks = "";
+}
+
+async function addTaskLoadData(path = "") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    return responseToJson;
+}
+
+let names = [];
+let acronyms = [];
+
+async function renderContactListInput() {
+    await getContactsData();
+    names = await renderNames();
+    acronyms = await renderAcronym();
+    return { names, acronyms };
+}
+
+async function renderNames() {
+    for (let i = 0; i < arrContacts.length; i++) {
+        let name = arrContacts[i]['contact-name'];
+        names.push(name);
+    }
+    return names;
+}
+
+async function renderAcronym() {
+    for (let i = 0; i < arrContacts.length; i++) {
+        let acronym = arrContacts[i]['contact-acronym'];
+        acronyms.push(acronym);
+    }
+    return acronyms;
+}
+
+async function renderContactListaddTasks() {
+    let { names, acronyms } = await renderContactListInput();
+    let dropDown = document.getElementById('dropDown');
+    for (let i = 0; i < names.length; i++) {
+        const name = names[i];
+        const acronym = acronyms[i];
+        dropDownList.innerHTML += `   
+        <table>
+            <tr>
+                <td>
+                    <div>${acronym}</div>
+                </td>
+                <td>
+                <div>${name}</div>
+            </td>
+                <td>                
+                    <input type="checkbox" value="${name}">
+                </td>
+            </tr>
+        </table>`;
+        console.log('name :>> ', name);
+    }
+
+}
+
+async function renderDropdownCategorieAddTasks() {
+    let categories = [];
+    let dropDown = document.getElementById('dropDown');
+    for (let i = 0; i < categories.length; i++) {
+        const categorie = categories[i];
+        dropDown.innerHTML += `                
+        <li>
+            <label>
+                <div>
+
+                    <div>${categorie}</div>
+                </div>    
+                <input type="checkbox" value="${categorie}">
+            </label>
+        </li>`;
+    }
+
+}
+
+
+
+function openContactListTasks() {
+    /* enfernt d-none von Listencontainer*/
+    /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
+    /* passt Text in inputfeld zu suchfeld an*/
+}
+
+// function setItemLocalStorage(key, data) {
+//     localStorage.setItem(key, JSON.stringify(data));
+// }
+
+// function getItemLocalStorage(key) {
+//     return JSON.parse(localStorage.getItem(key))
+// }
+
+
+
+
+
+
 function taskInput() {
     // let windowEvent = docID('add-task-subtasks-inputfield');
     let addImg = docID('switch_img');
