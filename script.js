@@ -83,7 +83,13 @@ function dropDownMenu() {
 //     }
 // }
 
+// function setItemLocalStorage(key, data) {
+//     localStorage.setItem(key, JSON.stringify(data));
+// }
 
+// function getItemLocalStorage(key) {
+//     return JSON.parse(localStorage.getItem(key))
+// }
 
 function setActiveButton(containerId, btnClass) {
     // Get the container element

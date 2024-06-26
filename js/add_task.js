@@ -133,28 +133,27 @@ async function renderDropdownCategorieAddTasks() {
             </label>
         </li>`;
     }
-
 }
 
-
+function toggleVisibility(elementId, show = true, className = "d-none-add-task") {
+    const element = document.getElementById(elementId);
+    show ? element.classList.remove(className) : element.classList.add(className); //wenn show = true, dann führe aus, ansonsten das andere
+}
 
 function openContactListTasks() {
+    toggleVisibility("dropDownList", true);
+
     /* enfernt d-none von Listencontainer*/
     /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
     /* passt Text in inputfeld zu suchfeld an*/
 }
 
-// function setItemLocalStorage(key, data) {
-//     localStorage.setItem(key, JSON.stringify(data));
-// }
-
-// function getItemLocalStorage(key) {
-//     return JSON.parse(localStorage.getItem(key))
-// }
 
 
 
 
+
+/*Subtasks*/
 
 
 function taskInput() {

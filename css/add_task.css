@@ -169,6 +169,10 @@
     gap: 16px;
 }
 
+.d-none-add-task {
+    display: none;
+}
+
 /* edu */
 
 .add-task-imgs {
