@@ -141,11 +141,23 @@ function toggleVisibility(elementId, show = true, className = "d-none-add-task")
 }
 
 function openContactListTasks() {
-    toggleVisibility("dropDownList", true);
+    const selectfieldOpen = document.getElementById("selectfieldOpen");
+    selectfieldOpen.classList.add("d-none-add-task");
+    const selectfieldClose = document.getElementById("selectfieldClose");
+    selectfieldClose.classList.remove("d-none-add-task");
+    const contactListTasks = document.getElementById("dropDownList");
+    contactListTasks.classList.remove("d-none-add-task")
+}
 
-    /* enfernt d-none von Listencontainer*/
-    /* passt Bildpfad an (Pfeil hoch anstelle von runter)*/
-    /* passt Text in inputfeld zu suchfeld an*/
+
+function closeContactListTasks() {
+    const selectfieldOpen = document.getElementById("selectfieldOpen");
+    selectfieldOpen.classList.remove("d-none-add-task");
+    const selectfieldClose = document.getElementById("selectfieldClose");
+    selectfieldClose.classList.add("d-none-add-task");
+    const contactListTasks = document.getElementById("dropDownList");
+    contactListTasks.classList.add("d-none-add-task")
+
 }
 
 

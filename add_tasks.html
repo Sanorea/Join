@@ -40,7 +40,12 @@
                     <p>Assigned to</p>
                     <div class="add-task-selection">
                         <div class="dropdown-add-task" id="dropdown">
-                            <button onclick="openContactListTasks()">test</button>
+                            <div id="selectfieldOpen" onclick="openContactListTasks()">
+                                Select an option
+                            </div>
+                            <div id="selectfieldClose" class="d-none-add-task" onclick="closeContactListTasks()">
+                                Select an option
+                            </div>
                             <ul class="dropdown-menu d-none-add-task" id="dropDownList">
                                 <!-- Checkboxes werden hier dynamisch hinzugefügt -->
                             </ul>

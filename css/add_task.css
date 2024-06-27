@@ -170,7 +170,7 @@
 }
 
 .d-none-add-task {
-    display: none;
+    display: none !important;
 }
 
 /* edu */
