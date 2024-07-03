@@ -22,6 +22,7 @@ function addTaskInit() {
     renderContactListaddTasks();
     renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
+    rendercheckedContacts ();
 }
 
 async function addTaskPostData(path = "", data = {}) {
@@ -109,20 +110,31 @@ async function renderContactListaddTasks() {
                 <div>${name}</div>
             </td>
                 <td>                
-                    <input id="checkboxes${i}" type="checkbox" value="${name}">
+                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym}">
                 </td>
             </tr>
         </table>`;
     }
+    readValueAssignedTo();
 }
 
-async function readValueAssignedTo() {
+async function rendercheckedContacts () {
+    let checkedContacts = document.getElementById('checkedContacts');
+    checkedContacts.innerHTML = "";
+    checkedContacts.innerHTML += `
+    <div>${valueCheckedBoxes}`;
+}
+
+function readValueAssignedTo() {
+    valueCheckedBoxes = [];
     for (let j = 0; j < names.length; j++) {
         let name = document.getElementById(`checkboxes${j}`);
         let value = name.value;
         if (name.checked===true) {
         valueCheckedBoxes.push(value);} 
     }
+    rendercheckedContacts ();
+    console.log('valueCheckedBoxes :>> ', valueCheckedBoxes);
 }
 
 
