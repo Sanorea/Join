@@ -7,7 +7,7 @@ let windowEvent;
 
 /*addTask*/
 
-
+let valueCheckedBoxes = [];
 
 async function addTaskContactsToArray() {
     let addTaskContacts = [];
@@ -39,24 +39,25 @@ async function addTaskPostData(path = "", data = {}) {
 function submitTask() {
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
-    let assignedTo = docID('add-task-input-assigned');
+    let assignedTo = docID('dropDownList');
     let date = docID('add-task-input-date');
-    /*     let categorie = docID('add-task-input-categorie') */
+    let categorie = docID('categories');
+    readValueAssignedTo();
 
     addTaskPostData("/tasks", {
         "title": title.value,
         "description": description.value,
-        "assignedTo": assignedTo.value,
+        "assignedTo": valueCheckedBoxes,
         "date": date.value,
         "prio": "prio",
-        /*         "categorie": categorie.value, */
+        "categorie": categorie.value,
         "subtasks": subtaskArray,
     });
     title.value = "";
     description.value = "";
     assignedTo.value = "";
     date.value = "";
-    /*     categorie.value = ""; */
+    categorie.value = "";
     subtasks = "";
 }
 
@@ -94,11 +95,11 @@ async function renderAcronym() {
 
 async function renderContactListaddTasks() {
     let { names, acronyms } = await renderContactListInput();
-    let dropDown = document.getElementById('dropDown');
+    let dropDown = document.getElementById('dropDownList');
     for (let i = 0; i < names.length; i++) {
         const name = names[i];
         const acronym = acronyms[i];
-        dropDownList.innerHTML += `   
+        dropDown.innerHTML += `   
         <table>
             <tr>
                 <td>
@@ -108,14 +109,23 @@ async function renderContactListaddTasks() {
                 <div>${name}</div>
             </td>
                 <td>                
-                    <input type="checkbox" value="${name}">
+                    <input id="checkboxes${i}" type="checkbox" value="${name}">
                 </td>
             </tr>
         </table>`;
-        console.log('name :>> ', name);
     }
-
 }
+
+async function readValueAssignedTo() {
+    for (let j = 0; j < names.length; j++) {
+        let name = document.getElementById(`checkboxes${j}`);
+        let value = name.value;
+        if (name.checked===true) {
+        valueCheckedBoxes.push(value);} 
+    }
+}
+
+
 
 async function renderDropdownCategorieAddTasks() {
     let categories = [];

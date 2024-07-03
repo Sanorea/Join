@@ -40,11 +40,13 @@
                     <p>Assigned to</p>
                     <div class="add-task-selection">
                         <div class="dropdown-add-task" id="dropdown">
-                            <div id="selectfieldOpen" onclick="openContactListTasks()">
+                            <div id="selectfieldOpen" class="addTask-selectfield" onclick="openContactListTasks()">
                                 Select an option
+                                <img src="./assets/img/arrow_down.svg" alt="">
                             </div>
-                            <div id="selectfieldClose" class="d-none-add-task" onclick="closeContactListTasks()">
-                                Select an option
+                            <div id="selectfieldClose" class="addTask-selectfield d-none-add-task" onclick="closeContactListTasks()">
+                                <input type="search">
+                                <img src="./assets/img/arrow_up.svg" alt="">
                             </div>
                             <ul class="dropdown-menu d-none-add-task" id="dropDownList">
                                 <!-- Checkboxes werden hier dynamisch hinzugefügt -->
