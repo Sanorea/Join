@@ -72,10 +72,11 @@ async function addTaskPostData(path = "", data = {}) {
 async function submitTask() {
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
-    let assignedTo = docID('dropDownList');
     let date = docID('add-task-input-date');
     let categorie = docID('categories');
     readValueAssignedTo();
+    renderNamesCheckedBoxes();
+
     await addTaskIdsToArray();
     let newId = setId();
     addTaskPostData("/tasks", {
@@ -86,17 +87,15 @@ async function submitTask() {
         "prio": prios,
         "subtasks": subtaskArray,
         "title": title.value,
-        "assignedTo": valueCheckedBoxes,
+        "namesAssignedTo": checkedNames,
+        "acronymsAssignedTo": checkedAcronyms,
     });
     title.value = "";
     description.value = "";
-    assignedTo.value = "";
+/*     assignedTo.value = ""; */
     date.value = "";
     categorie.value = "";
     subtasks = "";
-
-
-
 }
 
 function setId() {
@@ -120,6 +119,8 @@ async function addTaskLoadData(path = "") {
 let names = [];
 let acronyms = [];
 let prios = "";
+let checkedAcronyms = [];
+let checkedNames = [];
 
 async function renderContactListInput() {
     await getContactsData();
@@ -144,6 +145,24 @@ async function renderAcronym() {
     return acronyms;
 }
 
+function renderNamesCheckedBoxes() {
+    for (let i = 0; i < valueCheckedBoxes.length; i++) {
+        console.log('valueCheckedBoxes :>> ', valueCheckedBoxes);
+        const acronymString = valueCheckedBoxes[i];
+
+
+        let acronymToString = acronymString.slice(0,2);
+        console.log('acronymToString :>> ', acronymToString);
+        checkedAcronyms.push(acronymToString);    
+
+        const nameString = valueCheckedBoxes[i];        
+        let nameToString = nameString.slice(3);
+        checkedNames.push(nameToString);
+        console.log('nameToString :>> ', nameToString);
+        
+    }
+}
+
 async function renderContactListaddTasks() {
     let { names, acronyms } = await renderContactListInput();
     let dropDown = document.getElementById('dropDownList');
@@ -160,7 +179,7 @@ async function renderContactListaddTasks() {
                 <div>${name}</div>
             </td>
                 <td>                
-                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym}">
+                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${name}">
                 </td>
             </tr>
         </table>`;
