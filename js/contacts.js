@@ -19,7 +19,6 @@ async function reloadContacts() {
 
 async function getContactsData() {
     let contactData = await loadData("/contacts");
-    console.log(contactData);
     saveContactDataInArray(contactData);
 
     return contactData;
@@ -35,7 +34,6 @@ function getHeadlineLetters() {
         }
         arrHeadlineLetters.sort();
     }
-    console.log(arrHeadlineLetters);
 }
 
 
@@ -144,9 +142,6 @@ function saveContactDataInArray(contactData) {
         arrContacts.push(tempArrContacts[i][1]);
         arrContacts[i]['unique-key'] = tempArrContacts[i][0];
     }
-    console.log(tempArrContacts);
-    console.log(arrContacts);
-    console.log(arrContacts[0]['contact-email']);
 }
 
 
