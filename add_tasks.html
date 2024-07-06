@@ -67,19 +67,19 @@
                 <div class="add-task-capture-input">
                     <p>Prio</p>
                     <div class="add-task-prio-button-container">
-                        <input name="prio" type="radio" class="add-task-prio-buttons" value="Urgent">
+                        <div class="add-task-prio-buttons" id="prioUrgent" onclick="setPrio('urgent')">
                             <p>Urgent</p>
                             <img src="/assets/img/urgent.svg" alt="urgent">
-                        </input>
-                        <input name="prio" type="radio" class="add-task-prio-buttons" value="Medium">
+                        </div>
+                        <div class="add-task-prio-buttons"  id="prioMedium" onclick="setPrio('medium')">
                             <p>Medium</p>
                             <img src="/assets/img/medium.svg" alt="medium">
-                        </input>
-                        <input name="prio" type="radio" class="add-task-prio-buttons" value="Low">
+                        </div>
+                        <div class="add-task-prio-buttons"  id="prioLow" onclick="setPrio('low')">
                             <p>Low</p>
                             <img src="/assets/img/low.svg" alt="low">
-                        </input>
-                    </div>
+                        </div>
+                    </select>
                 </div>
                 <div class="add-task-capture-input">
                     <div class="add-task-required-fields">

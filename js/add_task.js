@@ -1,5 +1,6 @@
 
 let subtaskArray = [];
+let arrIds = [];
 
 let windowEvent;
 
@@ -8,6 +9,11 @@ let windowEvent;
 /*addTask*/
 
 let valueCheckedBoxes = [];
+let valueCheckedRadios = [];
+let counterOfId = 1;
+let arrIdTasks = "";
+
+
 
 async function addTaskContactsToArray() {
     let addTaskContacts = [];
@@ -15,18 +21,44 @@ async function addTaskContactsToArray() {
     addTaskContacts.push(addTaskResponseToJson);
 }
 
-const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/";
+async function addTaskIdsToArray() {
+    let addTaskIdsData = await loadData("/tasks");
+    console.log('addTaskIdsData :>> ', addTaskIdsData);
+    saveAddTaskIdsInArray(addTaskIdsData);
+    /*     let addTaskIds = [];
+        let addTaskResponseToJson = await addTaskLoadData(path = "");
+        addTaskIds.push(addTaskResponseToJson); */
+}
 
-function addTaskInit() {
-    addTaskLoadData("/contacts/contact-name");
+function saveAddTaskIdsInArray(addTaskIdsData) {
+    let tempArrIds = [];
+    arrIds = [];
+    for (let i in addTaskIdsData) {
+        tempArrIds.push([i, addTaskIdsData[i]]);
+    }
+    for (let i in tempArrIds) {
+        arrIds.push(tempArrIds[i][1]);
+        arrIds[i]['unique-key'] = tempArrIds[i][0];
+    }
+}
+
+
+/* const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/"; */
+
+async function addTaskInit() {
+    await addTaskLoadData("/contacts/contact-name");
+    await addTaskLoadData("/tasks");
+    setId();
     renderContactListaddTasks();
     renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
-    rendercheckedContacts ();
+    addTaskIdsToArray();
+    rendercheckedContacts();
+    /*     console.log('addTaskIds :>> ', addTaskIds); */
 }
 
 async function addTaskPostData(path = "", data = {}) {
-    let responseAddTask = await fetch(BASE_URL_Isa + path + ".json", {
+    let responseAddTask = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
             "Content-Type": "application/json",
@@ -37,22 +69,24 @@ async function addTaskPostData(path = "", data = {}) {
     return responseToJson = await responseAddTask.json();
 }
 
-function submitTask() {
+async function submitTask() {
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
     let assignedTo = docID('dropDownList');
     let date = docID('add-task-input-date');
     let categorie = docID('categories');
     readValueAssignedTo();
-
+    await addTaskIdsToArray();
+    let newId = setId();
     addTaskPostData("/tasks", {
-        "title": title.value,
-        "description": description.value,
-        "assignedTo": valueCheckedBoxes,
+        "boardCategory": categorie.value,
         "date": date.value,
-        "prio": "prio",
-        "categorie": categorie.value,
+        "description": description.value,
+        "id": newId,
+        "prio": prios,
         "subtasks": subtaskArray,
+        "title": title.value,
+        "assignedTo": valueCheckedBoxes,
     });
     title.value = "";
     description.value = "";
@@ -60,6 +94,21 @@ function submitTask() {
     date.value = "";
     categorie.value = "";
     subtasks = "";
+
+
+
+}
+
+function setId() {
+    let id = 0;
+    if (arrIds.length == 0) {
+        id = 1;
+    } else {
+        let lastUsedId = arrIds[arrIds.length - 1]['id'];
+        id = lastUsedId + 1;
+    }
+
+    return id;
 }
 
 async function addTaskLoadData(path = "") {
@@ -70,6 +119,7 @@ async function addTaskLoadData(path = "") {
 
 let names = [];
 let acronyms = [];
+let prios = "";
 
 async function renderContactListInput() {
     await getContactsData();
@@ -118,7 +168,7 @@ async function renderContactListaddTasks() {
     readValueAssignedTo();
 }
 
-async function rendercheckedContacts () {
+async function rendercheckedContacts() {
     let checkedContacts = document.getElementById('checkedContacts');
     checkedContacts.innerHTML = "";
     checkedContacts.innerHTML += `
@@ -130,11 +180,15 @@ function readValueAssignedTo() {
     for (let j = 0; j < names.length; j++) {
         let name = document.getElementById(`checkboxes${j}`);
         let value = name.value;
-        if (name.checked===true) {
-        valueCheckedBoxes.push(value);} 
+        if (name.checked === true) {
+            valueCheckedBoxes.push(value);
+        }
     }
-    rendercheckedContacts ();
-    console.log('valueCheckedBoxes :>> ', valueCheckedBoxes);
+    rendercheckedContacts();
+}
+
+function setPrio(prio) {
+    prios = prio;
 }
 
 
