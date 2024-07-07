@@ -25,7 +25,9 @@ async function updateHTML() {
         let elements = arrTasks.filter(t => t['boardCategory'] == category);
 
         if (elements.length > 0) {
-            docID(category).innerHTML ='';
+            docID(category).innerHTML = '';
+        } else {
+            docID(category).innerHTML = '<span class="empty-task-text">No Task in ...</span>';
         }
 
         for (let index = 0; index < elements.length; index++) {

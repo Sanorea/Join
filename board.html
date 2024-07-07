@@ -17,7 +17,7 @@
 <body onload="initBoard()">
     <header id="header"></header>
     <div id="body-board" class="board-body">
-        <div class="top">
+        <div class="board-top">
             <div class="left-side">
                 <div class="board-content"><span class="board-title">Board</span></div>
             <img class="board-add-task cursor" src="assets/img/add-img.svg" alt="">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="task-body">
-            <div class="todo-content">
+            <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-todo">To do</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
@@ -37,7 +37,7 @@
                     <span class="empty-task-text">No Task To do</span>
                 </div>
             </div>
-            <div class="progress-content">
+            <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-progress"> In progress</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
@@ -46,7 +46,7 @@
                     <span class="empty-task-text">No Task in progress</span>
                 </div>
             </div>
-            <div class="feedback-content">
+            <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-feedback">Await feedback</div>
                     <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
@@ -55,10 +55,9 @@
                     <span class="empty-task-text">No task in Feedback</span>
                 </div>
             </div>
-            <div class="done-content">
+            <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-done">Done</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
                 <div id="done" class="drag-area" ondrop="moveTo('done')" ondragover="allowDrop(event)" ondragstart="highlight('inProgress', 'awaitFeedback', 'toDo')" ondragend="removeHighlight()">
                     <span class="empty-task-text">No Task in done</span>
