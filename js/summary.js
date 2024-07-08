@@ -1,10 +1,19 @@
+let toDoCounter = 0;
+let inProgressCounter = 0;
+let awaitFeedbackCounter = 0;
+let doneCounter = 0;
+let urgentCounter = 0;
+let upcomingDate = '';
 
-function initSummary(id, renderClass) {
+let urgentTaskDates = [];
+
+async function initSummary(id, renderClass) {
     renderHeaderNav(id, renderClass);
+    await getTaskSummaryCount();
     docID('body-summary-content').innerHTML = renderSummaryHTML();
     loadTheWelcomeSreen();
     // loadFocus();
-     renderSideNavHTML(id, renderClass);
+    renderSideNavHTML(id, renderClass);
 }
 
 let date = new Date();
@@ -13,6 +22,47 @@ let minute = date.getMinutes();
 let time = hour + "." + minute;
 console.log(time)
 
+async function getTaskSummaryCount() {
+    await getTaskData();
+
+    countTasksInCategories();
+    countUrgentTasks();
+    setNextUrgentTaskDate();
+} 
+
+function countTasksInCategories() {
+    for (let i = 0; i < arrTasks.length; i++) {
+        switch (arrTasks[i]['boardCategory']) {
+            case 'toDo':
+                toDoCounter += 1;
+                break;
+            case 'inProgress':
+                inProgressCounter += 1;
+                break;
+            case 'awaitFeedback':
+                awaitFeedbackCounter += 1;
+                break;
+            case 'done':
+                doneCounter += 1;
+                break;
+        }
+    }
+}
+
+function countUrgentTasks() {
+    for (let i = 0; i < arrTasks.length; i++) {
+        if (arrTasks[i]['prio'] === "urgent") {
+            urgentCounter += 1;
+            urgentTaskDates.push(arrTasks[i]['date']);
+        }
+    }
+}
+
+function setNextUrgentTaskDate() {
+    var minDate = urgentTaskDates.reduce(function (a, b) { return a < b ? a : b; }); 
+
+    upcomingDate = minDate ? new Date(minDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'No urgent task';
+}
 
 function renderSummaryHTML() {
     return /*HTML*/ `
@@ -29,14 +79,14 @@ function renderSummaryHTML() {
                   <div class="to-do-card card-hover">
                       <div class=""><img class="to-do-card-img" src="/assets/img/Frame 59.svg" alt=""></div>
                       <div class="to-do-card-counter">
-                          <div class="counter"><span class="black">1</span></div>
+                          <div class="counter"><span class="black">${toDoCounter}</span></div>
                           <div class="card-info"><span class="focus-color">To-Do</span></div>
                       </div>
                   </div>
                   <div class="done-card card-hover">
                       <div class=""><img class="to-do-card-img" src="/assets/img/Group 7.svg" alt=""></div>
                       <div class="to-do-card-counter">
-                          <div class="counter"><span class="black">1</span></div>
+                          <div class="counter"><span class="black">${doneCounter}</span></div>
                           <div class="card-info"><span class="focus-color">Done</span></div>
                       </div>
                   </div>
@@ -45,27 +95,27 @@ function renderSummaryHTML() {
                   <div class="urgent-left">
                       <div class=""><img class="to-do-card-img" src="assets/img/Group 7 logo.svg" alt=""></div>
                       <div class="urgent-counter">
-                          <div class="counter"><span class="black">1</span></div>
+                          <div class="counter"><span class="black">${urgentCounter}</span></div>
                           <div class="card-info"><span class="focus-color">Urgent</span></div>
                       </div>
                   </div>
                   <div class="intermediate-line"></div>
                   <div class="urgent-right">
-                      <div class="date"><span class="black">October 16, 2022</span></div>
+                      <div class="date"><span class="black">${upcomingDate}</span></div>
                       <div class="upcoming-deadline"><span class="focus-color">Upcoming Deadline</span></div>
                   </div>
               </div>
               <div class="third-row">
                   <div class="board-card card-hover">
-                      <div class="counter"><span class="black">5</span></div>
+                      <div class="counter"><span class="black">${arrTasks.length}</span></div>
                       <div class="board-info"><span class="focus-color">Task in Board</span></div>
                   </div>
                   <div class="board-card card-hover">
-                      <div class="counter"><span class="black">2</span></div>
+                      <div class="counter"><span class="black">${inProgressCounter}</span></div>
                       <div class="progress-info"><span class="focus-color">Task in Progress</span></div>
                   </div>
                   <div class="board-card card-hover">
-                      <div class="counter"><span class="black">2</span></div>
+                      <div class="counter"><span class="black">${awaitFeedbackCounter}</span></div>
                       <div class="feedback-info"><span class="focus-color">Awaiting feedback</span></div>
                   </div>
               </div>
