@@ -40,7 +40,7 @@ header {
     right: 0;
     z-index: 100;
     box-sizing: border-box;
-    width: 100%;
+    width: 100vw;
 }
 
 .header-user {
@@ -75,7 +75,7 @@ header {
 
 #nav {
 
-    width: 100%;
+    width: 100vw;
     background-color: #2A3647;
     height: 80px;
     position: fixed;
