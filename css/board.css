@@ -236,6 +236,16 @@
     display: flex;
 }
 
+#subtask-counter{
+    display: flex;
+    width: 100%;
+}
+
+
+.d-none{
+    display: none;
+}
+
 .drag-area {
     min-height: 150px;
     display: flex;

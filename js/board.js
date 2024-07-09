@@ -32,10 +32,52 @@ async function updateHTML() {
 
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
-            docID(category).innerHTML += renderCardHTML(element);
+            let subTaskResult = subtaskList(element);
+            // let ContactsArrayList = ContactsArray(data);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult);
         }
     }
 }
+
+function ContactsArray(element) {
+    let contact = element['acronymsAssignedTo'];
+    for (let i = 0; i < contact.length; i++) {
+        console.log(console.log(contact[i]));
+    }
+}
+
+function subtaskList(element) {
+    let stylee = document.querySelectorAll('.card-subtask');
+    if (!element['subtasks'] || !Array.isArray(element['subtasks'])) {
+
+        stylee.forEach(function (el) {
+            // el.classList.remove('card-subtask');
+            // el.classList.add('d-none');
+        });
+        return ``;
+    } else {
+        let list = element['subtasks'].length
+        // stylee.forEach(function(el) {
+        //     if (el.classList.contains('d-none')) {
+        //         el.classList.remove('d-none');
+        //     }
+        //     if (!el.classList.contains('card-subtask')) {
+        //         el.classList.add('card-subtask');
+        //     }
+        // });
+        return ` <div class="bar">
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-green w3-center" style="width:50%"></div>
+                </div><br>
+            </div>
+            <div  id='subtask-counter' class="subtask-content">
+                <div><span>0/${list}</span></div>
+            </div>`;
+    }
+}
+
+
+
 
 
 function startDragging(id) {
@@ -95,22 +137,14 @@ function saveTaskDataInArray(taskData) {
 }
 
 
-function renderCardHTML(element) {
+function renderCardHTML(element, subTaskResult) {
     return /*HTML*/ `
     <div draggable="true" ondragstart="startDragging(${element['id']})" class="card-content">
         <div class="headline-card">User Story</div>
         <div class="card-title">${element['title']}</div>
         <div class="card-subtitle">${element['description']}</div>
         <div class="card-subtask">
-            <div class="bar">
-                <div class="w3-light-grey">
-                    <div class="w3-container w3-green w3-center" style="width:50%"></div>
-                </div><br>
-            </div>
-            <div class="subtask-content">
-                <div class="counter">1/2</div>
-                <div class="subtask">Subtask</div>
-            </div>
+          <div id='subtask-counter'>${subTaskResult}</div>
         </div>
         <div class="card-info">
             <div class="card-prfile"></div>
@@ -120,7 +154,7 @@ function renderCardHTML(element) {
     `;
 }
 
-function renderInToDo(){
+function renderInToDo() {
     let body = document.getElementById('todo-body-card');
     body.innerHTML = renderCardHTML();
 }
