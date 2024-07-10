@@ -33,10 +33,34 @@ async function updateHTML() {
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
             let subTaskResult = subtaskList(element);
-            // let ContactsArrayList = ContactsArray(data);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult);
+            let prioResult = findoutPrio(element);
+            console.log(element);
+            // ContactsArray(element);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult);
         }
     }
+}
+
+function findoutPrio(element) {
+    let prio = element['prio'];
+    let prioVal = "";
+
+    switch (prio) {
+        case 'urgent':
+            prioVal = `<div><img src="assets/img/Prio baja.svg" alt=""></div>`;
+            break;
+        case 'medium':
+            prioVal = `<div><img src="assets/img/Capa 2 (1).svg" alt=""></div>`;
+            break;
+        case 'low':
+            prioVal = `<div><img src="assets/img/Capa 1.svg" alt=""></div>`;
+            break;
+
+        default:
+            prioVal = `<div>Not Found</div>`;
+            break;
+    }
+    return prioVal;
 }
 
 function ContactsArray(element) {
@@ -49,35 +73,21 @@ function ContactsArray(element) {
 function subtaskList(element) {
     let stylee = document.querySelectorAll('.card-subtask');
     if (!element['subtasks'] || !Array.isArray(element['subtasks'])) {
-
         stylee.forEach(function (el) {
-            // el.classList.remove('card-subtask');
-            // el.classList.add('d-none');
         });
         return ``;
     } else {
         let list = element['subtasks'].length
-        // stylee.forEach(function(el) {
-        //     if (el.classList.contains('d-none')) {
-        //         el.classList.remove('d-none');
-        //     }
-        //     if (!el.classList.contains('card-subtask')) {
-        //         el.classList.add('card-subtask');
-        //     }
-        // });
         return ` <div class="bar">
                 <div class="w3-light-grey">
                     <div class="w3-container w3-green w3-center" style="width:50%"></div>
                 </div><br>
             </div>
-            <div  id='subtask-counter' class="subtask-content">
+            <div id='subtask-counter' class="subtask-content">
                 <div><span>0/${list}</span></div>
             </div>`;
     }
 }
-
-
-
 
 
 function startDragging(id) {
@@ -137,9 +147,9 @@ function saveTaskDataInArray(taskData) {
 }
 
 
-function renderCardHTML(element, subTaskResult) {
+function renderCardHTML(element, subTaskResult, prioResult) {
     return /*HTML*/ `
-    <div draggable="true" ondragstart="startDragging(${element['id']})" class="card-content">
+    <div onclick="openCard()" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content">
         <div class="headline-card">User Story</div>
         <div class="card-title">${element['title']}</div>
         <div class="card-subtitle">${element['description']}</div>
@@ -148,11 +158,13 @@ function renderCardHTML(element, subTaskResult) {
         </div>
         <div class="card-info">
             <div class="card-prfile"></div>
-            <div class="card-difficulty"></div>
+            <div class="card-difficulty">${prioResult}</div>
         </div>
     </div>
     `;
 }
+
+function openCard() {}
 
 function renderInToDo() {
     let body = document.getElementById('todo-body-card');
