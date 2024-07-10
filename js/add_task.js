@@ -1,19 +1,16 @@
 
 let subtaskArray = [];
 let arrIds = [];
-
 let windowEvent;
-
-
+let valueCheckedBoxes = [];
+let arrIdTasks = "";
+let names = [];
+let acronyms = [];
+let prios = "";
+let checkedAcronyms = [];
+let checkedNames = [];
 
 /*addTask*/
-
-let valueCheckedBoxes = [];
-let valueCheckedRadios = [];
-let counterOfId = 1;
-let arrIdTasks = "";
-
-
 
 async function addTaskContactsToArray() {
     let addTaskContacts = [];
@@ -23,11 +20,7 @@ async function addTaskContactsToArray() {
 
 async function addTaskIdsToArray() {
     let addTaskIdsData = await loadData("/tasks");
-    console.log('addTaskIdsData :>> ', addTaskIdsData);
     saveAddTaskIdsInArray(addTaskIdsData);
-    /*     let addTaskIds = [];
-        let addTaskResponseToJson = await addTaskLoadData(path = "");
-        addTaskIds.push(addTaskResponseToJson); */
 }
 
 function saveAddTaskIdsInArray(addTaskIdsData) {
@@ -48,13 +41,11 @@ function saveAddTaskIdsInArray(addTaskIdsData) {
 async function addTaskInit() {
     await addTaskLoadData("/contacts/contact-name");
     await addTaskLoadData("/tasks");
-    setId();
     renderContactListaddTasks();
     renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
-    addTaskIdsToArray();
     rendercheckedContacts();
-    /*     console.log('addTaskIds :>> ', addTaskIds); */
+
 }
 
 async function addTaskPostData(path = "", data = {}) {
@@ -92,7 +83,6 @@ async function submitTask() {
     });
     title.value = "";
     description.value = "";
-/*     assignedTo.value = ""; */
     date.value = "";
     categorie.value = "";
     subtasks = "";
@@ -106,7 +96,6 @@ function setId() {
         let lastUsedId = arrIds[arrIds.length - 1]['id'];
         id = lastUsedId + 1;
     }
-
     return id;
 }
 
@@ -115,12 +104,6 @@ async function addTaskLoadData(path = "") {
     let responseToJson = await response.json();
     return responseToJson;
 }
-
-let names = [];
-let acronyms = [];
-let prios = "";
-let checkedAcronyms = [];
-let checkedNames = [];
 
 async function renderContactListInput() {
     await getContactsData();
@@ -149,17 +132,13 @@ function renderNamesCheckedBoxes() {
     for (let i = 0; i < valueCheckedBoxes.length; i++) {
         console.log('valueCheckedBoxes :>> ', valueCheckedBoxes);
         const acronymString = valueCheckedBoxes[i];
-
-
         let acronymToString = acronymString.slice(0,2);
         console.log('acronymToString :>> ', acronymToString);
         checkedAcronyms.push(acronymToString);    
-
         const nameString = valueCheckedBoxes[i];        
         let nameToString = nameString.slice(3);
         checkedNames.push(nameToString);
         console.log('nameToString :>> ', nameToString);
-        
     }
 }
 
@@ -210,8 +189,6 @@ function setPrio(prio) {
     prios = prio;
 }
 
-
-
 async function renderDropdownCategorieAddTasks() {
     let categories = [];
     let dropDown = document.getElementById('dropDown');
@@ -252,12 +229,7 @@ function closeContactListTasks() {
     selectfieldClose.classList.add("d-none-add-task");
     const contactListTasks = document.getElementById("dropDownList");
     contactListTasks.classList.add("d-none-add-task")
-
 }
-
-
-
-
 
 
 /*Subtasks*/
@@ -363,6 +335,3 @@ function finishEditInput(i) {
     let edit = subtaskArray[i];
     editTask.innerHTML = renderSubtaskList(edit, i);
 }
-
-
-
