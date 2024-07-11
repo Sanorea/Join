@@ -149,7 +149,7 @@ function saveTaskDataInArray(taskData) {
 
 function renderCardHTML(element, subTaskResult, prioResult) {
     return /*HTML*/ `
-    <div onclick="openCard()" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content">
+    <div onclick="openCard()" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
         <div class="headline-card">User Story</div>
         <div class="card-title">${element['title']}</div>
         <div class="card-subtitle">${element['description']}</div>
@@ -164,7 +164,14 @@ function renderCardHTML(element, subTaskResult, prioResult) {
     `;
 }
 
-function openCard() {}
+function openCard() {
+docID('card-popUp-background').hidden = false;
+    
+}
+
+function closeCardPopUp() {
+    docID('card-popUp-background').hidden = true;
+}
 
 function renderInToDo() {
     let body = document.getElementById('todo-body-card');

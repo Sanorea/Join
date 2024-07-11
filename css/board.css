@@ -214,7 +214,7 @@
     width: 100%;
 }
 
-.w3-light-grey{
+.w3-light-grey {
     width: 100%;
     background-color: #F4F4F4 !important;
 }
@@ -236,13 +236,13 @@
     display: flex;
 }
 
-#subtask-counter{
+#subtask-counter {
     display: flex;
     width: 100%;
 }
 
 
-.d-none{
+.d-none {
     display: none;
 }
 
@@ -257,7 +257,8 @@
     padding: 10px 0;
 }
 
-.drag-area-highlight, .empty-task-text {
+.drag-area-highlight,
+.empty-task-text {
     background-color: #E7E7E7;
     border-style: dotted;
     border-color: #A8A8A8;
@@ -297,9 +298,88 @@
     background-color: #A8A8A8;
 }
 
+.card-popUp-background {
+    background-color: rgba(43, 42, 42, 0.479);
+    width: 100vw;
+    height: calc(100% - 80px);
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-popUp {
+    background-color: white;
+    padding: 32px 24px 32px 24px;
+    width: 396px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-popUp-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-popUp-headline {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.card-popUp-subline {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #42526E;
+}
+
+.categorie{
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background-color: #0038FF;
+    padding: 4px 16px 4px 16px;
+    gap: 10px;
+    border-radius: 8px;
+}
+
+.card-popUp-DueDate {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-popUp-priority {
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-and-delete {
+    display: flex;
+    gap: 15px;
+    margin-left: 220px;
+}
+
+.line{
+    height: 23px;
+    width: 1px;
+    border: 1px solid;
+    border-color: #D1D1D1;
+    border-radius: 8px;
+}
 
 
-@media(min-width: 1520px) { /* note: 1017px / 1403 px */
+@media(min-width: 1520px) {
+
+    /* note: 1017px / 1403 px */
     .board-body {
         align-items: flex-start;
         padding-left: 20px;
@@ -358,7 +438,7 @@
         flex-direction: column;
         justify-content: flex-start;
     }
-    
+
     .drag-area {
         min-height: 50vh;
         overflow-x: unset;
@@ -373,7 +453,9 @@
     }
 }
 
-@media(min-width: 1017px) { /* note: 1017px / 1403 px */ 
+@media(min-width: 1017px) {
+
+    /* note: 1017px / 1403 px */
     .board-body {
         margin-left: 232px;
     }
