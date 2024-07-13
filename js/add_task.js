@@ -71,7 +71,8 @@ async function submitTask() {
     await addTaskIdsToArray();
     let newId = setId();
     addTaskPostData("/tasks", {
-        "boardCategory": categorie.value,
+        "boardCategory": "toDo",
+        "taskCategory": categorie.value,
         "date": date.value,
         "description": description.value,
         "id": newId,
