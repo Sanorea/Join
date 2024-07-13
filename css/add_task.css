@@ -164,9 +164,30 @@
     display: flex;
 }
 
+.dropdown-menu {
+    padding-left: 16px;
+    padding-right: 48px;
+    margin-top: 0px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.dropDownList-cantact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+    height: 56px;
+}
+
+.dropDownList-contact-element{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .dropdown-add-task div {
     display: flex;
-    gap: 16px;
+
 }
 
 .d-none-add-task {
@@ -186,6 +207,23 @@
     justify-content: space-between;
     font-size: 16px;
 }
+
+.add-task-details-user-initials {
+    width: 42px;
+    height: 42px;
+/*     background-color: orange; */
+    border-radius: 45px;
+    border: 2px solid white;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    margin-right: 8px;
+}
+
 
 /* edu */
 

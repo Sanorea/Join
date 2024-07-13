@@ -6,6 +6,7 @@ let valueCheckedBoxes = [];
 let arrIdTasks = "";
 let names = [];
 let acronyms = [];
+let colors = [];
 let prios = "";
 let checkedAcronyms = [];
 let checkedNames = [];
@@ -110,7 +111,9 @@ async function renderContactListInput() {
     await getContactsData();
     names = await renderNames();
     acronyms = await renderAcronym();
-    return { names, acronyms };
+    colors = await renderColors();
+
+    return {names, acronyms, colors};
 }
 
 async function renderNames() {
@@ -129,6 +132,14 @@ async function renderAcronym() {
     return acronyms;
 }
 
+async function renderColors() {
+    for (let i = 0; i < arrContacts.length; i++) {
+        let color = arrContacts[i]['contact-color'];
+        colors.push(color);
+    }
+    return colors;
+}
+
 function renderNamesCheckedBoxes() {
     for (let i = 0; i < valueCheckedBoxes.length; i++) {
         console.log('valueCheckedBoxes :>> ', valueCheckedBoxes);
@@ -144,36 +155,45 @@ function renderNamesCheckedBoxes() {
 }
 
 async function renderContactListaddTasks() {
-    let { names, acronyms } = await renderContactListInput();
+    let { names, acronyms, colors} = await renderContactListInput();
+
+
     let dropDown = document.getElementById('dropDownList');
     for (let i = 0; i < names.length; i++) {
+        const color = colors[i];
+
         const name = names[i];
         const acronym = acronyms[i];
         dropDown.innerHTML += `   
         <table>
-            <tr>
-                <td>
-                    <div>${acronym}</div>
-                </td>
-                <td>
-                <div>${name}</div>
-            </td>
-                <td>                
+            <div class ="dropDownList-cantact-container">
+                <div class ="dropDownList-contact-element">
+                    <div class ="add-task-details-user-initials" style="background-color: ${color}">${acronym}</div>
+                    <div class ="dropDownList-contact-element">${name}</div>
+                </div>
+                <div class ="dropDownList-contact-element" >
                     <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${name}">
-                </td>
-            </tr>
+                </div>
+            </div>
         </table>`;
     }
     readValueAssignedTo();
 }
 
 async function rendercheckedContacts() {
+    checkedAcronyms = [];
+    renderNamesCheckedBoxes();
     let checkedContacts = document.getElementById('checkedContacts');
     checkedContacts.innerHTML = "";
-    checkedContacts.innerHTML += `
-    <div>${valueCheckedBoxes}`;
+    for (let i = 0; i < checkedAcronyms.length; i++) {
+        const acronym = checkedAcronyms[i];
+        const color = colors[i];
+        checkedContacts.innerHTML += `
+    <div class="add-task-details-user-initials"  style="background-color: ${color}">${acronym}`;
+    }
+    
 }
-
+ 
 function readValueAssignedTo() {
     valueCheckedBoxes = [];
     for (let j = 0; j < names.length; j++) {
