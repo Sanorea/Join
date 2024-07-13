@@ -17,7 +17,8 @@ async function getTaskData() {
 
 
 async function updateHTML() {
-    await getTaskData();
+    let test = await getTaskData();
+    console.log(test);
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -32,28 +33,52 @@ async function updateHTML() {
 
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
+            let taskCategoryResult = taskCategory(element);
             let subTaskResult = subtaskList(element);
             let prioResult = findoutPrio(element);
-            console.log(element);
-            // ContactsArray(element);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult);
+            let ContactsArrayResult = ContactsArray(element);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
         }
     }
 }
 
+function deleteCard(element) {
+   console.log(arrTasks);
+}
+
+function taskCategory(element) {
+    let category = element['taskCategory']
+    let categoryVal = "";
+
+    switch (category) {
+        case 'User Story':
+            categoryVal = `<div class="headline-card">User Story</div>`;
+            break;
+        case 'Technical Task':
+            categoryVal = `<div class="headline-card-Technical">Technical Task</div>`;
+            break;
+
+        default:
+            categoryVal = `<div>Not Found</div>`;
+            break;
+    }
+    return categoryVal;
+}
+
 function findoutPrio(element) {
+    console.log(element);
     let prio = element['prio'];
     let prioVal = "";
 
     switch (prio) {
         case 'urgent':
-            prioVal = `<div><img src="assets/img/Prio baja.svg" alt=""></div>`;
+            prioVal = `<div><img src="assets/img/prio high.svg" alt=""></div>`;
             break;
         case 'medium':
-            prioVal = `<div><img src="assets/img/Capa 2 (1).svg" alt=""></div>`;
+            prioVal = `<div><img src="assets/img/Capa 2.svg" alt=""></div>`;
             break;
         case 'low':
-            prioVal = `<div><img src="assets/img/Capa 1.svg" alt=""></div>`;
+            prioVal = `<div><img src="assets/img/Prio low.svg" alt=""></img></div>`;
             break;
 
         default:
@@ -64,10 +89,16 @@ function findoutPrio(element) {
 }
 
 function ContactsArray(element) {
+    let elementContact = "";
     let contact = element['acronymsAssignedTo'];
-    for (let i = 0; i < contact.length; i++) {
-        console.log(console.log(contact[i]));
-    }
+    if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
+        elementContact = `<div>not contact</div>`;
+    } else
+        for (let i = 0; i < contact.length; i++) {
+            let user = contact[i];
+            elementContact += `<div class="user-content">${user}</div>`;
+        }
+    return elementContact;
 }
 
 function subtaskList(element) {
@@ -142,31 +173,66 @@ function saveTaskDataInArray(taskData) {
         arrTasks[i]['unique-key'] = tempArrTasks[i][0];
     }
 
-    console.log(arrTasks);
-    console.log(arrTasks[0]['boardCategory']);
+    // console.log(arrTasks);
+    // console.log(arrTasks[0]['boardCategory']);
 }
 
 
-function renderCardHTML(element, subTaskResult, prioResult) {
+function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
     return /*HTML*/ `
-    <div onclick="openCard()" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
-        <div class="headline-card">User Story</div>
+    <div onclick="openCard(${element})" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
+        <div>${taskCategory}</div>
         <div class="card-title">${element['title']}</div>
         <div class="card-subtitle">${element['description']}</div>
         <div class="card-subtask">
           <div id='subtask-counter'>${subTaskResult}</div>
         </div>
         <div class="card-info">
-            <div class="card-prfile"></div>
+            <div class="card-profil">${ContactsArrayResult}</div>
             <div class="card-difficulty">${prioResult}</div>
         </div>
     </div>
     `;
 }
 
-function openCard() {
-docID('card-popUp-background').hidden = false;
-    
+function renderPopupCardHTML(element) {
+    return /*HTML*/ `
+      <div class="card-popUp">
+            <div class="card-popUp-top">
+                <div class="categorie">User Story</div>
+                <div class="back-arrow"><img class="cursor" onclick="closeCardPopUp()" src="assets/img/close.svg" alt=""></div>
+            </div>
+            <div class="card-popUp-headline">CSS Architrktur Planning</div>
+            <div class="card-popUp-subline">Define css naming convestion and strucute</div>
+            <div class="card-popUp-DueDate">
+                <div class="title">Due date:</div>
+                <div class="date">01/03/0492</div>
+            </div>
+            <div class="card-popUp-priority">
+                <div class="title">Priority</div>
+                <div class="difficulty">Urgent</div>
+            </div>
+            <div class="card-popUp-assignet">
+                <div class="title">Assignet to:</div>
+                <div class="assignet-list"></div>
+            </div>
+            <div class="card-popUp-subtask">
+                <div class="title">Subtask</div>
+                <div class="subtask-list"></div>
+            </div>
+            <div class="edit-and-delete">
+                <div onclick="deleteCard(${element})" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
+                <div class="line"></div>
+                <div class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
+            </div>
+        </div>    
+    `;
+}
+
+function openCard(element) {
+    console.log(element);
+    docID('card-popUp-background').hidden = false;
+    renderPopupCardHTML(element)
 }
 
 function closeCardPopUp() {
@@ -177,23 +243,3 @@ function renderInToDo() {
     let body = document.getElementById('todo-body-card');
     body.innerHTML = renderCardHTML();
 }
-
-// function sideNavPolicy() {
-//     let body = docID('body-summary-content');
-//     body.classList.remove('body-summary');
-//     body.innerHTML = renderLegalNotice();
-// }
-
-// function sideNavNotice() {
-//     let body = docID('body-summary-content');
-//     body.classList.remove('body-summary');
-//     body.innerHTML = renderPrivacyPolice();
-// }
-
-// function backToSite() {
-//     let body = docID('body-summary-content');
-//     let greetBody = docID('greet-body');
-//     body.innerHTML = renderSummaryHTML();
-//     greetBody = loadTheWelcomeSreen();
-//     body.classList.add('body-summary');
-// }

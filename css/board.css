@@ -317,6 +317,8 @@
     gap: 16px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0px 0px 4px 0px #00000029;
+border-radius: 30px;
 }
 
 .card-popUp-top{
@@ -365,7 +367,23 @@
 .edit-and-delete {
     display: flex;
     gap: 15px;
-    margin-left: 220px;
+    margin-left: 165px;
+}
+
+.edit {
+    display: flex;
+    box-sizing: content-box;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.delete {
+    display: flex;
+    box-sizing: content-box;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
 .line{
@@ -374,6 +392,46 @@
     border: 1px solid;
     border-color: #D1D1D1;
     border-radius: 8px;
+}
+
+.headline-card-Technical {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    background-color: #1FD7C1;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    height: 27px;
+    width: max-content;
+}
+
+.card-profil {
+    display: flex;
+}
+
+.user-content {
+
+    width: 30px;
+    height: 30px;
+     background-color: orange; 
+    border-radius: 45px;
+    border: 2px solid white;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    margin-right: -8px;
+}
+
+.card-info{
+    display: flex;
+    justify-content: space-between;
 }
 
 
