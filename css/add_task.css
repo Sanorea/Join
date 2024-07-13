@@ -350,5 +350,40 @@
     background-color: #A8A8A8;
 }
 
+/*responsive-Desktop*/
 
+@media (min-width:1017px) {
+
+    .add-task-section-container {
+        display: flex;
+        flex-direction: row;
+        margin-left: 328px;
+        margin-right: 96px;        
+    }
+
+    .left-side-desktop {
+        width: 50vh;
+    }
+
+    .separator-desktop {
+        border: 1px solid black;
+        border-color: #D1D1D1;
+        height: 424px;
+    }
+
+    .right-side-desktop {
+        width: 50vh;
+    }
+
+    .add-task-basic-line {
+        margin-left: 328px;
+        margin-right: 96px;
+    }
+
+    .add-task-capture-input {
+        padding-inline: 0px;
+        width: 100%;
+    }
+    
+}
 
