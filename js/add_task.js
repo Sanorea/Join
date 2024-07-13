@@ -10,6 +10,8 @@ let colors = [];
 let prios = "";
 let checkedAcronyms = [];
 let checkedNames = [];
+let checkedColors = [];
+let checkedCategorys = "";
 
 /*addTask*/
 
@@ -45,7 +47,7 @@ async function addTaskInit() {
     renderContactListaddTasks();
     renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
-    rendercheckedContacts();
+/*     rendercheckedContacts(); */
 
 }
 
@@ -67,13 +69,11 @@ async function submitTask() {
     let date = docID('add-task-input-date');
     let categorie = docID('categories');
     readValueAssignedTo();
-    renderNamesCheckedBoxes();
-
     await addTaskIdsToArray();
     let newId = setId();
     addTaskPostData("/tasks", {
         "boardCategory": "toDo",
-        "taskCategory": categorie.value,
+        "taskCategory": checkedCategorys,
         "date": date.value,
         "description": description.value,
         "id": newId,
@@ -88,6 +88,31 @@ async function submitTask() {
     date.value = "";
     categorie.value = "";
     subtasks = "";
+}
+
+function checkedCategory(taskCategory) {
+    const contactListTasks = document.getElementById("categoryDropDownList");
+    contactListTasks.classList.add("d-none-add-task");
+    const selectedButton = document.getElementById("categorySelectfieldTask");
+    selectedButton.classList.remove("d-none-add-task");  
+    const closeButton = document.getElementById("categorySelectfieldClose");
+    closeButton.classList.add("d-none-add-task");   
+    const openButton = document.getElementById("categorySelectfieldOpen");
+    openButton.classList.add("d-none-add-task");  
+    checkedCategorys = taskCategory;
+    let selectField = docID('categorySelectfieldTask');
+    selectField.innerHTML = `
+    <span>${checkedCategorys}</span>
+    <img src="./assets/img/arrow_down.svg" alt="">`;
+}
+
+function closeCheckedCategory() {
+    const selectfieldTask = docID('categorySelectfieldTask');
+    selectfieldTask.classList.add("d-none-add-task");
+    const selectfieldOpen = docID('categorySelectfieldOpen');
+    selectfieldOpen.classList.remove("d-none-add-task");
+    const contactListTasks = document.getElementById("categoryDropDownList");
+    contactListTasks.classList.remove("d-none-add-task");
 }
 
 function setId() {
@@ -113,7 +138,7 @@ async function renderContactListInput() {
     acronyms = await renderAcronym();
     colors = await renderColors();
 
-    return {names, acronyms, colors};
+    return { names, acronyms, colors };
 }
 
 async function renderNames() {
@@ -142,20 +167,20 @@ async function renderColors() {
 
 function renderNamesCheckedBoxes() {
     for (let i = 0; i < valueCheckedBoxes.length; i++) {
-        console.log('valueCheckedBoxes :>> ', valueCheckedBoxes);
         const acronymString = valueCheckedBoxes[i];
-        let acronymToString = acronymString.slice(0,2);
-        console.log('acronymToString :>> ', acronymToString);
-        checkedAcronyms.push(acronymToString);    
-        const nameString = valueCheckedBoxes[i];        
-        let nameToString = nameString.slice(3);
+        let acronymToString = acronymString.slice(0, 2);
+        checkedAcronyms.push(acronymToString);
+        const nameString = valueCheckedBoxes[i];
+        let nameToString = nameString.slice(11);
         checkedNames.push(nameToString);
-        console.log('nameToString :>> ', nameToString);
+        const colorString = valueCheckedBoxes[i];
+        let colorToString = colorString.slice(3, 10);
+        checkedColors.push(colorToString);
     }
 }
 
 async function renderContactListaddTasks() {
-    let { names, acronyms, colors} = await renderContactListInput();
+    let { names, acronyms, colors } = await renderContactListInput();
 
 
     let dropDown = document.getElementById('dropDownList');
@@ -172,7 +197,7 @@ async function renderContactListaddTasks() {
                     <div class ="dropDownList-contact-element">${name}</div>
                 </div>
                 <div class ="dropDownList-contact-element" >
-                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${name}">
+                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${color};${name}">
                 </div>
             </div>
         </table>`;
@@ -182,18 +207,20 @@ async function renderContactListaddTasks() {
 
 async function rendercheckedContacts() {
     checkedAcronyms = [];
+    checkedNames = [];
+    checkedColors = [];
     renderNamesCheckedBoxes();
     let checkedContacts = document.getElementById('checkedContacts');
     checkedContacts.innerHTML = "";
     for (let i = 0; i < checkedAcronyms.length; i++) {
         const acronym = checkedAcronyms[i];
-        const color = colors[i];
+        const checkedColor = checkedColors[i];
         checkedContacts.innerHTML += `
-    <div class="add-task-details-user-initials"  style="background-color: ${color}">${acronym}`;
+    <div class="add-task-details-user-initials"  style="background-color: ${checkedColor}">${acronym}`;
     }
-    
+
 }
- 
+
 function readValueAssignedTo() {
     valueCheckedBoxes = [];
     for (let j = 0; j < names.length; j++) {
@@ -204,10 +231,26 @@ function readValueAssignedTo() {
         }
     }
     rendercheckedContacts();
+
 }
 
-function setPrio(prio) {
+function setPrio(prio, color) {
     prios = prio;
+
+    document.getElementById('priourgent').classList.remove('urgent-color');
+    document.getElementById('priomedium').classList.remove('medium-color');
+    document.getElementById('priolow').classList.remove('low-color');
+    document.getElementById(`prio${prio}`).classList.add(color);
+
+    document.getElementById('urgentImg').innerHTML = `
+    <img src="/assets/img/urgent.svg" alt="urgent">`;
+    document.getElementById('mediumImg').innerHTML = `
+    <img src="/assets/img/medium.svg" alt="medium">`;
+    document.getElementById('lowImg').innerHTML = `
+    <img src="/assets/img/low.svg" alt="low">`;
+
+    document.getElementById(`${prio}Img`).innerHTML = `
+    <img src="/assets/img/${prio}-white.svg" alt="prio">`;
 }
 
 async function renderDropdownCategorieAddTasks() {
@@ -249,6 +292,24 @@ function closeContactListTasks() {
     const selectfieldClose = document.getElementById("selectfieldClose");
     selectfieldClose.classList.add("d-none-add-task");
     const contactListTasks = document.getElementById("dropDownList");
+    contactListTasks.classList.add("d-none-add-task")
+}
+
+function openCategoryList() {
+    const selectfieldOpen = document.getElementById("categorySelectfieldOpen");
+    selectfieldOpen.classList.add("d-none-add-task");
+    const selectfieldClose = document.getElementById("categorySelectfieldClose");
+    selectfieldClose.classList.remove("d-none-add-task");
+    const contactListTasks = document.getElementById("categoryDropDownList");
+    contactListTasks.classList.remove("d-none-add-task")
+}
+
+function closeCategoryList() {
+    const selectfieldOpen = document.getElementById("categorySelectfieldOpen");
+    selectfieldOpen.classList.remove("d-none-add-task");
+    const selectfieldClose = document.getElementById("categorySelectfieldClose");
+    selectfieldClose.classList.add("d-none-add-task");
+    const contactListTasks = document.getElementById("categoryDropDownList");
     contactListTasks.classList.add("d-none-add-task")
 }
 

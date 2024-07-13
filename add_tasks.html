@@ -41,7 +41,7 @@
                     <div class="add-task-selection">
                         <div class="dropdown-add-task" id="dropdown">
                             <div id="selectfieldOpen" class="addTask-selectfield" onclick="openContactListTasks()">
-                                Select an option
+                                Select contacts to assign
                                 <img src="./assets/img/arrow_down.svg" alt="">
                             </div>
                             <div id="selectfieldClose" class="addTask-selectfield d-none-add-task" onclick="closeContactListTasks()">
@@ -59,27 +59,33 @@
                 </div>
                 <div class="add-task-capture-input">
                     <div class="add-task-required-fields">
-                        <p>Date</p>
+                        <p>Due date</p>
                         <p class="add-task-required-icon">*</p>
                     </div>
-                    <input id="add-task-input-date" class="add-task-input-fields" type="date" required>
+                    <input id="add-task-input-date" class="add-task-input-fields" type="date" required >
                 </div>
                 <div class="add-task-capture-input">
                     <p>Prio</p>
                     <div class="add-task-prio-button-container">
-                        <div class="add-task-prio-buttons" id="prioUrgent" onclick="setPrio('urgent')">
+                        <div class="add-task-prio-buttons" id="priourgent" onclick="setPrio('urgent', 'urgent-color')">
                             <p>Urgent</p>
-                            <img src="/assets/img/urgent.svg" alt="urgent">
+                            <div id="urgentImg">
+                                <img src="/assets/img/urgent.svg" alt="urgent">
+                            </div>
                         </div>
-                        <div class="add-task-prio-buttons"  id="prioMedium" onclick="setPrio('medium')">
+                        <div class="add-task-prio-buttons"  id="priomedium" onclick="setPrio('medium', 'medium-color')">
                             <p>Medium</p>
-                            <img src="/assets/img/medium.svg" alt="medium">
+                            <div id="mediumImg">
+                                <img src="/assets/img/medium.svg" alt="medium">
+                            </div>
                         </div>
-                        <div class="add-task-prio-buttons"  id="prioLow" onclick="setPrio('low')">
+                        <div class="add-task-prio-buttons"  id="priolow" onclick="setPrio('low', 'low-color')">
                             <p>Low</p>
-                            <img src="/assets/img/low.svg" alt="low">
+                            <div id="lowImg">
+                                <img src="/assets/img/low.svg" alt="low">
+                            </div>
                         </div>
-                    </select>
+                    </div>
                 </div>
                 <div class="add-task-capture-input">
                     <div class="add-task-required-fields">
@@ -89,12 +95,28 @@
 
                     <div class="add-task-selection">
                         <div>
-                            <label for="categorie-names"></label>
-                            <select id="categories">
-                                <option value="" disabled selected>Select task category</option>
-                                <option value="Technical Task">Technical Task</option>
-                                <option value="User Story">User Story</option>
-                            </select>
+                            <div id="categorySelectfieldOpen"  class="" onclick="openCategoryList()" >
+                                Select task category
+                                <img src="./assets/img/arrow_down.svg" alt="">
+                            </div>
+                            <div id="categorySelectfieldClose"  class="d-none-add-task" onclick="closeCategoryList()">
+                                Select task category
+                                <img src="./assets/img/arrow_up.svg" alt="">
+                            </div>
+                            <div id="categorySelectfieldTask"  class="d-none-add-task" onclick="closeCheckedCategory()">
+                                <div id="selectedCategory"></div>
+                                <img src="./assets/img/arrow_up.svg" alt="">
+                            </div>
+                            <div id="categoryDropDownList" class="categoryDropDown d-none-add-task">
+                                <label class="dropdown-option" onclick="checkedCategory('Technical Task')">
+                                    <input type="radio" name="" id="categories" class="add-task-radio-hidden" value="Technical Task">
+                                    <span>Technical Task</span>
+                                </label>
+                                <label class="dropdown-option"  onclick="checkedCategory('User Story')">
+                                    <input type="radio" name="" id="categories" class="add-task-radio-hidden" value="User Story">
+                                    <span>User Story</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
