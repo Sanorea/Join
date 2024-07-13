@@ -354,6 +354,11 @@
 
 @media (min-width:1017px) {
 
+    .head-line {
+        padding-left: 0px;
+        margin-left: 328px;
+    }
+
     .add-task-section-container {
         display: flex;
         flex-direction: row;
@@ -362,7 +367,7 @@
     }
 
     .left-side-desktop {
-        width: 50vh;
+        width: 45vh;
     }
 
     .separator-desktop {
@@ -372,7 +377,7 @@
     }
 
     .right-side-desktop {
-        width: 50vh;
+        width: 45vh;
     }
 
     .add-task-basic-line {
