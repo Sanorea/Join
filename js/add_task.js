@@ -13,14 +13,38 @@ let checkedNames = [];
 let checkedColors = [];
 let checkedCategorys = "";
 
-/*addTask*/
+    /*init-functions / general-functions*/
 
+    async function addTaskLoadData(path = "") {
+        let response = await fetch(BASE_URL + path + ".json");
+        let responseToJson = await response.json();
+        return responseToJson;
+    }
+
+    async function addTaskInit() {
+        await addTaskLoadData("/contacts/contact-name");
+        await addTaskLoadData("/tasks");
+        renderContactListaddTasks();
+        renderDropdownCategorieAddTasks();
+        addTaskContactsToArray();
+    }
+
+    function toggleVisibility(elementId, show = true, className = "d-none-add-task") {
+        const element = document.getElementById(elementId);
+        show ? element.classList.remove(className) : element.classList.add(className); //wenn show = true, dann führe aus, ansonsten das andere
+    }
+
+
+    /*Assigned to*/
+
+/*Download Contacts*/
 async function addTaskContactsToArray() {
     let addTaskContacts = [];
     let addTaskResponseToJson = await addTaskLoadData(path = "");
     addTaskContacts.push(addTaskResponseToJson);
 }
 
+/*Create next ID for Task*/
 async function addTaskIdsToArray() {
     let addTaskIdsData = await loadData("/tasks");
     saveAddTaskIdsInArray(addTaskIdsData);
@@ -38,83 +62,6 @@ function saveAddTaskIdsInArray(addTaskIdsData) {
     }
 }
 
-
-/* const BASE_URL_Isa = "https://join-50399-default-rtdb.europe-west1.firebasedatabase.app/"; */
-
-async function addTaskInit() {
-    await addTaskLoadData("/contacts/contact-name");
-    await addTaskLoadData("/tasks");
-    renderContactListaddTasks();
-    renderDropdownCategorieAddTasks();
-    addTaskContactsToArray();
-/*     rendercheckedContacts(); */
-
-}
-
-async function addTaskPostData(path = "", data = {}) {
-    let responseAddTask = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    }
-    );
-    return responseToJson = await responseAddTask.json();
-}
-
-async function submitTask() {
-    let title = docID('add-task-input-title');
-    let description = docID('add-task-input-description');
-    let date = docID('add-task-input-date');
-    let categorie = docID('categories');
-    readValueAssignedTo();
-    await addTaskIdsToArray();
-    let newId = setId();
-    addTaskPostData("/tasks", {
-        "boardCategory": "toDo",
-        "taskCategory": checkedCategorys,
-        "date": date.value,
-        "description": description.value,
-        "id": newId,
-        "prio": prios,
-        "subtasks": subtaskArray,
-        "title": title.value,
-        "namesAssignedTo": checkedNames,
-        "acronymsAssignedTo": checkedAcronyms,
-    });
-    title.value = "";
-    description.value = "";
-    date.value = "";
-    categorie.value = "";
-    subtasks = "";
-}
-
-function checkedCategory(taskCategory) {
-    const contactListTasks = document.getElementById("categoryDropDownList");
-    contactListTasks.classList.add("d-none-add-task");
-    const selectedButton = document.getElementById("categorySelectfieldTask");
-    selectedButton.classList.remove("d-none-add-task");  
-    const closeButton = document.getElementById("categorySelectfieldClose");
-    closeButton.classList.add("d-none-add-task");   
-    const openButton = document.getElementById("categorySelectfieldOpen");
-    openButton.classList.add("d-none-add-task");  
-    checkedCategorys = taskCategory;
-    let selectField = docID('categorySelectfieldTask');
-    selectField.innerHTML = `
-    <span>${checkedCategorys}</span>
-    <img src="./assets/img/arrow_down.svg" alt="">`;
-}
-
-function closeCheckedCategory() {
-    const selectfieldTask = docID('categorySelectfieldTask');
-    selectfieldTask.classList.add("d-none-add-task");
-    const selectfieldOpen = docID('categorySelectfieldOpen');
-    selectfieldOpen.classList.remove("d-none-add-task");
-    const contactListTasks = document.getElementById("categoryDropDownList");
-    contactListTasks.classList.remove("d-none-add-task");
-}
-
 function setId() {
     let id = 0;
     if (arrIds.length == 0) {
@@ -126,19 +73,12 @@ function setId() {
     return id;
 }
 
-async function addTaskLoadData(path = "") {
-    let response = await fetch(BASE_URL + path + ".json");
-    let responseToJson = await response.json();
-    return responseToJson;
-}
-
 async function renderContactListInput() {
     await getContactsData();
     names = await renderNames();
     acronyms = await renderAcronym();
     colors = await renderColors();
-
-    return { names, acronyms, colors };
+    return {names, acronyms, colors };
 }
 
 async function renderNames() {
@@ -181,12 +121,9 @@ function renderNamesCheckedBoxes() {
 
 async function renderContactListaddTasks() {
     let { names, acronyms, colors } = await renderContactListInput();
-
-
     let dropDown = document.getElementById('dropDownList');
     for (let i = 0; i < names.length; i++) {
         const color = colors[i];
-
         const name = names[i];
         const acronym = acronyms[i];
         dropDown.innerHTML += `   
@@ -234,23 +171,50 @@ function readValueAssignedTo() {
 
 }
 
-function setPrio(prio, color) {
-    prios = prio;
+function openContactListTasks() {
+    const selectfieldOpen = document.getElementById("selectfieldOpen");
+    selectfieldOpen.classList.add("d-none-add-task");
+    const selectfieldClose = document.getElementById("selectfieldClose");
+    selectfieldClose.classList.remove("d-none-add-task");
+    const contactListTasks = document.getElementById("dropDownList");
+    contactListTasks.classList.remove("d-none-add-task")
+}
 
-    document.getElementById('priourgent').classList.remove('urgent-color');
-    document.getElementById('priomedium').classList.remove('medium-color');
-    document.getElementById('priolow').classList.remove('low-color');
-    document.getElementById(`prio${prio}`).classList.add(color);
 
-    document.getElementById('urgentImg').innerHTML = `
-    <img src="/assets/img/urgent.svg" alt="urgent">`;
-    document.getElementById('mediumImg').innerHTML = `
-    <img src="/assets/img/medium.svg" alt="medium">`;
-    document.getElementById('lowImg').innerHTML = `
-    <img src="/assets/img/low.svg" alt="low">`;
+function closeContactListTasks() {
+    const selectfieldOpen = document.getElementById("selectfieldOpen");
+    selectfieldOpen.classList.remove("d-none-add-task");
+    const selectfieldClose = document.getElementById("selectfieldClose");
+    selectfieldClose.classList.add("d-none-add-task");
+    const contactListTasks = document.getElementById("dropDownList");
+    contactListTasks.classList.add("d-none-add-task")
+}
 
-    document.getElementById(`${prio}Img`).innerHTML = `
-    <img src="/assets/img/${prio}-white.svg" alt="prio">`;
+    /*Category*/
+
+function checkedCategory(taskCategory) {
+    const contactListTasks = document.getElementById("categoryDropDownList");
+    contactListTasks.classList.add("d-none-add-task");
+    const selectedButton = document.getElementById("categorySelectfieldTask");
+    selectedButton.classList.remove("d-none-add-task");  
+    const closeButton = document.getElementById("categorySelectfieldClose");
+    closeButton.classList.add("d-none-add-task");   
+    const openButton = document.getElementById("categorySelectfieldOpen");
+    openButton.classList.add("d-none-add-task");  
+    checkedCategorys = taskCategory;
+    let selectField = docID('categorySelectfieldTask');
+    selectField.innerHTML = `
+    <span>${checkedCategorys}</span>
+    <img src="./assets/img/arrow_down.svg" alt="">`;
+}
+
+function closeCheckedCategory() {
+    const selectfieldTask = docID('categorySelectfieldTask');
+    selectfieldTask.classList.add("d-none-add-task");
+    const selectfieldOpen = docID('categorySelectfieldOpen');
+    selectfieldOpen.classList.remove("d-none-add-task");
+    const contactListTasks = document.getElementById("categoryDropDownList");
+    contactListTasks.classList.remove("d-none-add-task");
 }
 
 async function renderDropdownCategorieAddTasks() {
@@ -271,30 +235,6 @@ async function renderDropdownCategorieAddTasks() {
     }
 }
 
-function toggleVisibility(elementId, show = true, className = "d-none-add-task") {
-    const element = document.getElementById(elementId);
-    show ? element.classList.remove(className) : element.classList.add(className); //wenn show = true, dann führe aus, ansonsten das andere
-}
-
-function openContactListTasks() {
-    const selectfieldOpen = document.getElementById("selectfieldOpen");
-    selectfieldOpen.classList.add("d-none-add-task");
-    const selectfieldClose = document.getElementById("selectfieldClose");
-    selectfieldClose.classList.remove("d-none-add-task");
-    const contactListTasks = document.getElementById("dropDownList");
-    contactListTasks.classList.remove("d-none-add-task")
-}
-
-
-function closeContactListTasks() {
-    const selectfieldOpen = document.getElementById("selectfieldOpen");
-    selectfieldOpen.classList.remove("d-none-add-task");
-    const selectfieldClose = document.getElementById("selectfieldClose");
-    selectfieldClose.classList.add("d-none-add-task");
-    const contactListTasks = document.getElementById("dropDownList");
-    contactListTasks.classList.add("d-none-add-task")
-}
-
 function openCategoryList() {
     const selectfieldOpen = document.getElementById("categorySelectfieldOpen");
     selectfieldOpen.classList.add("d-none-add-task");
@@ -313,8 +253,70 @@ function closeCategoryList() {
     contactListTasks.classList.add("d-none-add-task")
 }
 
+    /*Prio*/
 
-/*Subtasks*/
+    function setPrio(prio, color) {
+        prios = prio;
+        document.getElementById('priourgent').classList.remove('urgent-color');
+        document.getElementById('priomedium').classList.remove('medium-color');
+        document.getElementById('priolow').classList.remove('low-color');
+        document.getElementById(`prio${prio}`).classList.add(color);
+        document.getElementById('urgentImg').innerHTML = `
+        <img src="/assets/img/urgent.svg" alt="urgent">`;
+        document.getElementById('mediumImg').innerHTML = `
+        <img src="/assets/img/medium.svg" alt="medium">`;
+        document.getElementById('lowImg').innerHTML = `
+        <img src="/assets/img/low.svg" alt="low">`;
+        document.getElementById(`${prio}Img`).innerHTML = `
+        <img src="/assets/img/${prio}-white.svg" alt="prio">`;
+    }
+
+    /*Post Data on Firebase*/
+
+async function addTaskPostData(path = "", data = {}) {
+    let responseAddTask = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    }
+    );
+    return responseToJson = await responseAddTask.json();
+}
+
+async function submitTask() {
+    let title = docID('add-task-input-title');
+    let description = docID('add-task-input-description');
+    let date = docID('add-task-input-date');
+    let categorie = docID('categories');
+    readValueAssignedTo();
+    await addTaskIdsToArray();
+    let newId = setId();
+    addTaskPostData("/tasks", {
+        "boardCategory": "toDo",
+        "taskCategory": checkedCategorys,
+        "date": date.value,
+        "description": description.value,
+        "id": newId,
+        "prio": prios,
+        "subtasks": subtaskArray,
+        "title": title.value,
+        "namesAssignedTo": checkedNames,
+        "acronymsAssignedTo": checkedAcronyms,
+    });
+    title.value = "";
+    description.value = "";
+    date.value = "";
+    categorie.value = "";
+    subtasks = "";
+
+    setTimeout(() => {
+        window.location.href = "board.html";
+    }, 2000);
+}
+
+    /*Subtasks*/
 
 
 function taskInput() {
