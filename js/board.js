@@ -232,7 +232,7 @@ function renderPopupCardHTML(element) {
 function openCard(element) {
     console.log(element);
     docID('card-popUp-background').hidden = false;
-    renderPopupCardHTML(element)
+    renderPopupCardHTML(element);
 }
 
 function closeCardPopUp() {

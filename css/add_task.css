@@ -195,8 +195,7 @@
 .categoryDropDown{
     display: flex;
     flex-direction: column;
-    padding-left: 16px;
-    padding-right: 48px;
+
     margin-top: 0px;
     background-color: white;
     border-radius: 10px;
@@ -207,6 +206,9 @@
     align-items: center;
     cursor: pointer;
     height: 43px;
+    padding-left: 16px;
+    padding-right: 48px;
+    border-radius: 10px;
 }
 
 .dropdown-option .option-name {
