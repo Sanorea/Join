@@ -176,7 +176,7 @@
 }
 
 .add-task-input-fields-description{
-    height: 88px;
+    height: 88px !important;
 }
 
 .add-task-selection{
@@ -394,3 +394,99 @@
     
 }
 
+
+/*Edit-Card*/
+
+.card-popUp-background-edit {
+    z-index: 899;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.card-popUp-background-edit-container {
+    background-color: white;
+    margin-inline: 10px;
+    margin-block: 20px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 525px;
+    overflow-y: scroll;
+    padding: 24px;
+}
+
+.edit-pop-up-closing-tag {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 48px;
+    padding-right: 40px;
+    width: 32px;
+    width: 100%;
+    
+}
+
+.edit-task-ok-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 48px;
+    padding-right: 40px;
+}
+
+.add-task-input-fields-edit {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 100%;
+    height: 40px;
+    padding-left:16px;
+
+}
+
+.add-task-input-fields-edit::placeholder{
+    color: #D1D1D1;
+    font-size: 16px;
+    height: 20px;
+}
+
+.add-task-input-fields-edit:focus{
+    border-color:#29ABE2;
+}
+
+.add-task-required-fields {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    margin-block: 25px;
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 10px;
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+
+  }
