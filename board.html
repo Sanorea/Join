@@ -14,6 +14,8 @@
     <link rel="icon" type="image/x-icon" href="/assets/img/Logo for Favicon construction.svg">
     <script src="js/global_render_HTML.js"></script>
     <script src="js/add_task.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/edit_task.js"></script>
     <link rel="stylesheet" href="css/add_task.css">
 </head>
 
@@ -77,92 +79,10 @@
     <div id="card-popUp-background" class="card-popUp-background" hidden="true"></div>
 
     <!-- Edit-Card-Pop-Up -->
-    <div class="card-popUp-background-edit d-none-add-task" id="cardPopUpBGEdit">
+    <div class="card-popUp-background-edit" id="cardPopUpBGEdit">
         <div class="card-popUp-background-edit-container" id="cardPopUpBGEditContainer">
-
             <div class="edit-pop-up-closing-tag"><img src="/assets/img/close.svg" alt=""></div>
-            <div class="add-task-capture-input">
-                <div class="add-task-required-fields">
-                    <p>Title</p>
-                    <p class="add-task-required-icon">*</p>
-                </div>
-                <input id="addTaskInputTitleEdit" class="add-task-input-fields-edit" type="text" placeholder="Enter a title"
-                    required>
-            </div>
-            <div class="add-task-capture-input">
-                <p>Description</p>
-                <input id="addTaskIinputDdescriptionEdit" class="add-task-input-fields-edit add-task-input-fields-description"
-                    type="text" placeholder="Enter a Description">
-            </div>
-            <div class="add-task-capture-input">
-                <div class="add-task-required-fields">
-                    <p>Due date</p>
-                    <p class="add-task-required-icon">*</p>
-                </div>
-                <input id="addTaskInputDateEdit" class="add-task-input-fields-edit" type="date" required>
-            </div>
-            <div class="add-task-capture-input">
-                <p>Prio</p>
-                <div class="add-task-prio-button-container">
-                    <div class="add-task-prio-buttons" id="priourgentEdit" onclick="setPrio('urgent', 'urgent-color')">
-                        <p>Urgent</p>
-                        <div id="urgentImgEdit">
-                            <img src="/assets/img/urgent.svg" alt="urgent">
-                        </div>
-                    </div>
-                    <div class="add-task-prio-buttons" id="priomediumEdit" onclick="setPrio('medium', 'medium-color')">
-                        <p>Medium</p>
-                        <div id="mediumImg">
-                            <img src="/assets/img/medium.svg" alt="medium">
-                        </div>
-                    </div>
-                    <div class="add-task-prio-buttons" id="priolowEdit" onclick="setPrio('low', 'low-color')">
-                        <p>Low</p>
-                        <div id="lowImg">
-                            <img src="/assets/img/low.svg" alt="low">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="add-task-capture-input">
-                <p>Assigned to</p>
-                <div class="add-task-selection">
-                    <div class="dropdown-add-task" id="dropdownEdit">
-                        <div id="selectfieldOpenEdit" class="addTask-selectfield" onclick="openContactListTasks()">
-                            Select contacts to assign
-                            <img src="./assets/img/arrow_down.svg" alt="">
-                        </div>
-                        <div id="selectfieldCloseEdit" class="addTask-selectfield d-none-add-task"
-                            onclick="closeContactListTasks()">
-                            <input type="search">
-                            <img src="./assets/img/arrow_up.svg" alt="">
-                        </div>
-                        <ul class="dropdown-menu d-none-add-task" id="dropDownList">
-                            <!-- Checkboxes werden hier dynamisch hinzugefügt -->
-                        </ul>
-                        <div id="checkedContactsEdit">
-                            <!-- angewählte Personen werden hier dynamisch hinzugefügt -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="add-task-capture-input">
-                <div class="add-task-required-fields">
-                    <p>Subtasks</p>
-                </div>
-                <div id="add-task-subtasks-inputfield" class="add-task-subtasks-inputfield">
-                    <input class="subtasks-input" required id="subtasksInputEdit" minlength="5" onclick="taskInput()"
-                        type="text">
-                    <div class="add-task-imgs">
-                        <img onclick="addToSubtaskArray()" id="checkVisibilityEdit" class="d-none"
-                            src="assets/img/check-task.svg" alt="">
-                        <img onclick="deleteValue()" id="switchImgEdit" src="/assets/img/add.svg" alt="">
-                    </div>
-                </div>
-                <div class="add-task-subtasks-list">
-                    <ul id="addTaskSubtasksList"></ul>
-                </div>
-            </div>
+            <div w3-include-html="templates/add_task_template.html"></div>
             <div class="edit-task-ok-button">
                 <button type="submit" class="btn-primary btn-create disp-flex-center-center" onclick="submitTask()">
                     OK

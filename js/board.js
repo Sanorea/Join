@@ -5,8 +5,10 @@ let currentDraggedElement;
 async function initBoard(id, renderClass) {
     // document.getElementById('body-board').innerHTML = renderBoardHTML();
     // renderSideNavHTML(id, renderClass);
+    await includeHTML();
     renderHeaderNav(id, renderClass);
     updateHTML();
+    renderContactListaddTasks();   
 }
 
 async function getTaskData() {
@@ -18,7 +20,7 @@ async function getTaskData() {
 
 async function updateHTML() {
     let test = await getTaskData();
-    console.log(test);
+/*     console.log(test); */
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -66,7 +68,7 @@ function taskCategory(element) {
 }
 
 function findoutPrio(element) {
-    console.log(element);
+/*     console.log(element); */
     let prio = element['prio'];
     let prioVal = "";
 

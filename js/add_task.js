@@ -22,6 +22,7 @@ let checkedCategorys = "";
     }
 
     async function addTaskInit() {
+        await includeHTML();
         await addTaskLoadData("/contacts/contact-name");
         await addTaskLoadData("/tasks");
         renderContactListaddTasks();
@@ -33,6 +34,17 @@ let checkedCategorys = "";
         const element = document.getElementById(elementId);
         show ? element.classList.remove(className) : element.classList.add(className); //wenn show = true, dann führe aus, ansonsten das andere
     }
+
+    async function includeHTML(){
+        let includeElements = document.querySelectorAll('[w3-include-html]');
+        for (let i = 0; i < includeElements.length; i++) {
+            const element = includeElements[i];
+            file = element.getAttribute("w3-include-html");
+            let resp = await fetch(file);
+            element.innerHTML = await resp.text();
+        }
+    }
+        
 
 
     /*Assigned to*/
@@ -57,9 +69,13 @@ function saveAddTaskIdsInArray(addTaskIdsData) {
         tempArrIds.push([i, addTaskIdsData[i]]);
     }
     for (let i in tempArrIds) {
+
         arrIds.push(tempArrIds[i][1]);
         arrIds[i]['unique-key'] = tempArrIds[i][0];
+
     }
+    console.log('tempArrIds :>> ', tempArrIds);
+    console.log('arrIds :>> ', arrIds);
 }
 
 function setId() {
@@ -155,7 +171,6 @@ async function rendercheckedContacts() {
         checkedContacts.innerHTML += `
     <div class="add-task-details-user-initials"  style="background-color: ${checkedColor}">${acronym}`;
     }
-
 }
 
 function readValueAssignedTo() {
@@ -168,7 +183,6 @@ function readValueAssignedTo() {
         }
     }
     rendercheckedContacts();
-
 }
 
 function openContactListTasks() {
@@ -311,9 +325,9 @@ async function submitTask() {
     categorie.value = "";
     subtasks = "";
 
-    setTimeout(() => {
+/*     setTimeout(() => {
         window.location.href = "board.html";
-    }, 2000);
+    }, 2000); */
 }
 
     /*Subtasks*/
