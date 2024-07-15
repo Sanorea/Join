@@ -424,10 +424,8 @@
     display: flex;
     justify-content: flex-end;
     padding-top: 48px;
-    padding-right: 40px;
     width: 32px;
     width: 100%;
-    
 }
 
 .edit-task-ok-button {
@@ -435,7 +433,6 @@
     display: flex;
     justify-content: flex-end;
     padding-bottom: 48px;
-    padding-right: 40px;
 }
 
 .add-task-input-fields-edit {
