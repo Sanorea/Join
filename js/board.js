@@ -135,14 +135,16 @@ async function moveTo(category) {
     arrTasks[index]['boardCategory'] = category;
 
     await updateData("/tasks/" + key, {
-        "assignetTo": arrTasks[index]['assignedTo'],
+        "taskCategory":  arrTasks[index]['taskCategory'],
         "boardCategory": arrTasks[index]['boardCategory'],
         "date": arrTasks[index]['date'],
         "description": arrTasks[index]['description'],
         "id": arrTasks[index]['id'],
         "prio": arrTasks[index]['prio'],
         "subtasks": arrTasks[index]['subtasks'],
-        "title": arrTasks[index]['title']
+        "title": arrTasks[index]['title'], 
+        "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
+        "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
     })
 
     updateHTML();
