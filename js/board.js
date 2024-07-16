@@ -50,7 +50,7 @@ function deleteCard(element) {
 }
 
 function taskCategory(element) {
-    let category = element['taskCategory']
+    let category = element['taskCategory'];
     let categoryVal = "";
 
     switch (category) {
@@ -203,11 +203,11 @@ console.log(element);
     `;
 }
 
-function renderPopupCardHTML(element, key) {
+function renderPopupCardHTML(element, key, taskCategoryResult, ) {
     return /*HTML*/ `
       <div class="card-popUp">
             <div class="card-popUp-top">
-                <div class="categorie">${element['title']}</div>
+                <div class="categorie">${taskCategoryResult}</div>
                 <div class="back-arrow"><img class="cursor" onclick="closeCardPopUp()" src="assets/img/close.svg" alt=""></div>
             </div>
             <div class="card-popUp-headline">${element['title']}</div>
@@ -241,7 +241,14 @@ function openCard(element, key) {
    let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
     let keyToObject = arrTasks.find((y) => y = element);
-    container.innerHTML = renderPopupCardHTML(keyToObject, key);
+    let taskCategoryResult = taskCategory(keyToObject);
+    let subtaskListArray = taskArray(keyToObject); 
+    container.innerHTML = renderPopupCardHTML(keyToObject, key, taskCategoryResult, subtaskListArray);
+}
+
+function taskArray(keyToObject) {
+    let list = keyToObject['subtasks'];
+    
 }
 
 function closeCardPopUp() {
