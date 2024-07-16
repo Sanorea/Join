@@ -165,21 +165,22 @@
 
 }
 
-.add-task-input-fields::placeholder{
+.add-task-input-fields::placeholder {
     color: #D1D1D1;
     font-size: 16px;
     height: 20px;
 }
 
-.add-task-input-fields:focus{
-    border-color:#29ABE2 !important;
-}
+.add-task-input-fields:focus {
+    border-color: #29ABE2;
+    outline: none;
+  }
 
-.add-task-input-fields-description{
+.add-task-input-fields-description {
     height: 88px !important;
 }
 
-.add-task-selection{
+.add-task-selection {
     width: 100%;
 }
 
