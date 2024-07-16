@@ -324,10 +324,11 @@ async function submitTask() {
     date.value = "";
     categorie.value = "";
     subtasks = "";
-
+/* 
     setTimeout(() => {
         window.location.href = "board.html";
-    }, 2000);
+    }, 2000); */
+
 }
 
     /*Subtasks*/

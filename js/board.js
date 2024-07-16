@@ -230,7 +230,7 @@ function renderPopupCardHTML(element, key) {
             <div class="edit-and-delete">
                 <div onclick="deleteCard(${element['unique-key']})" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
-                <div onclick="editCard(${element['unique-key']})" class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
+                <div onclick="editTaskLoadCardData(${element['unique-key']})" class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
         </div>    
     `;

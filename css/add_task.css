@@ -196,7 +196,6 @@
 .categoryDropDown{
     display: flex;
     flex-direction: column;
-
     margin-top: 0px;
     background-color: white;
     border-radius: 10px;
