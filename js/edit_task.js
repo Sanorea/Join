@@ -1,15 +1,16 @@
 
 
 
-function editTaskLoadCardData() {
-    let title = docID('add-task-input-title');
+function editCard(key) {
+    console.log('key :>> ', key);
+/*     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
     let date = docID('add-task-input-date');
     let categorie = docID('categories');
     title.value = 'test';
     description.value = 'test';
     date.value = '1991-05-14';
-    categorie.value = 'Technical Task';
+    categorie.value = 'Technical Task'; */
 }
 
 function editTaskLoadCardCheckedFields() {
