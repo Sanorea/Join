@@ -185,8 +185,10 @@ function saveTaskDataInArray(taskData) {
 
 function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
 console.log(element);
+  let uniqueKey = element['unique-key'];
+  
     return /*HTML*/ `
-    <div onclick="openCard(${element})" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
+    <div onclick="openCard(${uniqueKey})" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
         <div>${taskCategory}</div>
         <div class="card-title">${element['title']}</div>
         <div class="card-subtitle">${element['description']}</div>
@@ -227,7 +229,7 @@ function renderPopupCardHTML(element) {
                 <div class="subtask-list"></div>
             </div>
             <div class="edit-and-delete">
-                <div onclick="deleteCard(${element})" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
+                <div onclick="deleteCard()" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
                 <div class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
