@@ -22,135 +22,16 @@
                 <span>Add Task</span>
             </div>
             <div class="add-task-section-container">
-                <div class="left-side-desktop">
-                    <div class="add-task-capture-input">
-                        <div class="add-task-required-fields">
-                            <p>Title</p>
-                            <p class="add-task-required-icon">*</p>
-                        </div>
-                        <input id="add-task-input-title" class="add-task-input-fields" type="text"
-                            placeholder="Enter a title" required>
-                    </div>
-                    <div class="add-task-capture-input">
-                        <p>Description</p>
-                        <input id="add-task-input-description"
-                            class="add-task-input-fields add-task-input-fields-description" type="text"
-                            placeholder="Enter a Description">
-                    </div>
-                    <div class="add-task-capture-input">
-                        <p>Assigned to</p>
-                        <div class="add-task-selection">
-                            <div class="dropdown-add-task" id="dropdown">
-                                <div id="selectfieldOpen" class="addTask-selectfield" onclick="openContactListTasks()">
-                                    Select contacts to assign
-                                    <img src="./assets/img/arrow_down.svg" alt="">
-                                </div>
-                                <div id="selectfieldClose" class="addTask-selectfield d-none-add-task" onclick="closeContactListTasks()">
-                                    <input type="search">
-                                    <img src="./assets/img/arrow_up.svg" alt="">
-                                </div>
-                                <ul class="dropdown-menu d-none-add-task" id="dropDownList">
-                                    <!-- Checkboxes werden hier dynamisch hinzugefügt -->
-                                </ul>
-                                <div id="checkedContacts">
-                                    <!-- angewählte Personen werden hier dynamisch hinzugefügt -->                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="separator-desktop"></div>
-                <div class="right-side-desktop">
-                    <div class="add-task-capture-input">
-                        <div class="add-task-required-fields">
-                            <p>Due date</p>
-                            <p class="add-task-required-icon">*</p>
-                        </div>
-                        <input id="add-task-input-date" class="add-task-input-fields" type="date" required >
-                    </div>
-                    <div class="add-task-capture-input">
-                        <p>Prio</p>
-                        <div class="add-task-prio-button-container">
-                            <div class="add-task-prio-buttons" id="priourgent" onclick="setPrio('urgent', 'urgent-color')">
-                                <p>Urgent</p>
-                                <div id="urgentImg">
-                                    <img src="/assets/img/urgent.svg" alt="urgent">
-                                </div>
-                            </div>
-                            <div class="add-task-prio-buttons"  id="priomedium" onclick="setPrio('medium', 'medium-color')">
-                                <p>Medium</p>
-                                <div id="mediumImg">
-                                    <img src="/assets/img/medium.svg" alt="medium">
-                                </div>
-                            </div>
-                            <div class="add-task-prio-buttons"  id="priolow" onclick="setPrio('low', 'low-color')">
-                                <p>Low</p>
-                                <div id="lowImg">
-                                    <img src="/assets/img/low.svg" alt="low">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="add-task-capture-input">
-                        <div class="add-task-required-fields">
-                            <p>Categorie</p>
-                            <p class="add-task-required-icon">*</p>
-                        </div>
-
-                        <div class="add-task-selection">
-                            <div>
-                                <div id="categorySelectfieldOpen"  class="addTask-selectfield" onclick="openCategoryList()" >
-                                    Select task category
-                                    <img src="./assets/img/arrow_down.svg" alt="">
-                                </div>
-                                <div id="categorySelectfieldClose"  class="addTask-selectfield d-none-add-task" onclick="closeCategoryList()">
-                                    Select task category
-                                    <img src="./assets/img/arrow_up.svg" alt="">
-                                </div>
-                                <div id="categorySelectfieldTask"  class="addTask-selectfield d-none-add-task" onclick="closeCheckedCategory()">
-                                    <div id="selectedCategory"></div>
-                                    <img src="./assets/img/arrow_up.svg" alt="">
-                                </div>
-                                <div id="categoryDropDownList" class="categoryDropDown d-none-add-task">
-                                    <label class="dropdown-option" onclick="checkedCategory('Technical Task')">
-                                        <input type="radio" name="" id="categories" class="add-task-radio-hidden" value="Technical Task">
-                                        <span>Technical Task</span>
-                                    </label>
-                                    <label class="dropdown-option"  onclick="checkedCategory('User Story')">
-                                        <input type="radio" name="" id="categories" class="add-task-radio-hidden" value="User Story">
-                                        <span>User Story</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="add-task-capture-input add-task-margin-buttom">
-                        <div class="add-task-required-fields">
-                            <p>Subtasks</p>
-                        </div>
-                        <div id="add-task-subtasks-inputfield" class="add-task-subtasks-inputfield">
-                            <input class="subtasks-input" required id="subtasks-input" minlength="5" onclick="taskInput()" type="text">
-                            <div class="add-task-imgs">
-                                <img onclick="addToSubtaskArray()" id="check-visibility" class="d-none" src="assets/img/check-task.svg" alt="">
-                                <img onclick="deleteValue()" id="switch_img" src="/assets/img/add.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="add-task-subtasks-list">
-                            <ul id="add-task-subtasks-list"></ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="add-task-basic-line">
-                    <div class="add-task-required-fields">
-                        <p class="add-task-required-icon">*</p>
-                        <p>This field is required</p>
-                    </div>
-                    <button type="submit" class="btn-primary btn-create disp-flex-center-center"
-                        onclick="submitTask()">Create Task</button>
-                </div>
+                <div w3-include-html="templates/add_task_template.html"></div>
             </div>
-
+            <div class="add-task-basic-line">
+                <div class="add-task-required-fields">
+                    <p class="add-task-required-icon">*</p>
+                    <p>This field is required</p>
+                </div>
+                <button type="submit" class="btn-primary btn-create disp-flex-center-center"
+                    onclick="submitTask()">Create Task</button>
+            </div>
         </div>
     </div>
     <nav id="nav"></nav>

@@ -172,7 +172,7 @@
 }
 
 .add-task-input-fields:focus{
-    border-color:#29ABE2;
+    border-color:#29ABE2 !important;
 }
 
 .add-task-input-fields-description{
@@ -391,7 +391,10 @@
         padding-inline: 0px;
         width: 100%;
     }
-    
+
+    .separator-desktop {
+        display: none;
+    }
 }
 
 
