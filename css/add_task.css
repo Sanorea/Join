@@ -454,7 +454,7 @@
 }
 
 .add-task-input-fields-edit:focus{
-    border-color:#29ABE2;
+    border-color:#29ABE2 !important;
 }
 
 .add-task-required-fields {

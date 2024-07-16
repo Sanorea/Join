@@ -325,9 +325,9 @@ async function submitTask() {
     categorie.value = "";
     subtasks = "";
 
-/*     setTimeout(() => {
+    setTimeout(() => {
         window.location.href = "board.html";
-    }, 2000); */
+    }, 2000);
 }
 
     /*Subtasks*/
