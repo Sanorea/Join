@@ -20,11 +20,8 @@ async function getTaskData() {
 
 async function updateHTML() {
     await getTaskData();
-<<<<<<< HEAD
-=======
     let test = await getTaskData();
 /*     console.log(test); */
->>>>>>> 5e46c0a26c25ef71c5b3d407f5099971f0bd8961
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -72,10 +69,7 @@ function taskCategory(element) {
 }
 
 function findoutPrio(element) {
-<<<<<<< HEAD
-=======
 /*     console.log(element); */
->>>>>>> 5e46c0a26c25ef71c5b3d407f5099971f0bd8961
     let prio = element['prio'];
     let prioVal = "";
 
