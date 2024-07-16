@@ -187,7 +187,7 @@ console.log(element);
   let uniqueKey = element['unique-key'];
   
     return /*HTML*/ `
-    <div onclick="openCard(${uniqueKey})" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
+    <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
         <div>${taskCategory}</div>
         <div class="card-title">${element['title']}</div>
         <div class="card-subtitle">${element['description']}</div>
@@ -202,22 +202,22 @@ console.log(element);
     `;
 }
 
-function renderPopupCardHTML(element) {
+function renderPopupCardHTML(element, key) {
     return /*HTML*/ `
       <div class="card-popUp">
             <div class="card-popUp-top">
-                <div class="categorie">${element}</div>
+                <div class="categorie">${element['title']}</div>
                 <div class="back-arrow"><img class="cursor" onclick="closeCardPopUp()" src="assets/img/close.svg" alt=""></div>
             </div>
-            <div class="card-popUp-headline">CSS Architrktur Planning</div>
-            <div class="card-popUp-subline">Define css naming convestion and strucute</div>
+            <div class="card-popUp-headline">${element['title']}</div>
+            <div class="card-popUp-subline">${element['description']}</div>
             <div class="card-popUp-DueDate">
                 <div class="title">Due date:</div>
-                <div class="date">01/03/0492</div>
+                <div class="date">${element['date']}</div>
             </div>
             <div class="card-popUp-priority">
                 <div class="title">Priority</div>
-                <div class="difficulty">Urgent</div>
+                <div class="difficulty">${element['prio']}</div>
             </div>
             <div class="card-popUp-assignet">
                 <div class="title">Assignet to:</div>
@@ -228,19 +228,19 @@ function renderPopupCardHTML(element) {
                 <div class="subtask-list"></div>
             </div>
             <div class="edit-and-delete">
-                <div onclick="deleteCard()" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
+                <div onclick="deleteCard(${element['unique-key']})" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
-                <div class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
+                <div onclick="editCard(${element['unique-key']})" class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
         </div>    
     `;
 }
 
-function openCard(element) {
-    console.log(element);
+function openCard(element, key) {
    let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
-    container.innerHTML = renderPopupCardHTML(element);
+    let keyToObject = arrTasks.find((y) => y = element);
+    container.innerHTML = renderPopupCardHTML(keyToObject, key);
 }
 
 function closeCardPopUp() {
