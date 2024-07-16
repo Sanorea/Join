@@ -17,7 +17,6 @@ async function getTaskData() {
     return taskData;
 }
 
-
 async function updateHTML() {
     await getTaskData();
     let test = await getTaskData();
