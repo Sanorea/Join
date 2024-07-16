@@ -17,8 +17,7 @@ async function getTaskData() {
 
 
 async function updateHTML() {
-    let test = await getTaskData();
-    console.log(test);
+    await getTaskData();
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -66,7 +65,6 @@ function taskCategory(element) {
 }
 
 function findoutPrio(element) {
-    console.log(element);
     let prio = element['prio'];
     let prioVal = "";
 
@@ -181,6 +179,7 @@ function saveTaskDataInArray(taskData) {
 
 
 function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
+console.log(element);
     return /*HTML*/ `
     <div onclick="openCard(${element})" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
         <div>${taskCategory}</div>
@@ -201,7 +200,7 @@ function renderPopupCardHTML(element) {
     return /*HTML*/ `
       <div class="card-popUp">
             <div class="card-popUp-top">
-                <div class="categorie">User Story</div>
+                <div class="categorie">${element}</div>
                 <div class="back-arrow"><img class="cursor" onclick="closeCardPopUp()" src="assets/img/close.svg" alt=""></div>
             </div>
             <div class="card-popUp-headline">CSS Architrktur Planning</div>
@@ -233,8 +232,9 @@ function renderPopupCardHTML(element) {
 
 function openCard(element) {
     console.log(element);
+   let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
-    renderPopupCardHTML(element);
+    container.innerHTML = renderPopupCardHTML(element);
 }
 
 function closeCardPopUp() {
