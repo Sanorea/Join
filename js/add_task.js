@@ -12,6 +12,9 @@ let checkedAcronyms = [];
 let checkedNames = [];
 let checkedColors = [];
 let checkedCategorys = "";
+let searchedNames = [];
+let searchedAcronyms = [];
+let searchedColors = [];
 
     /*init-functions / general-functions*/
 
@@ -144,7 +147,7 @@ async function renderContactListaddTasks() {
         const acronym = acronyms[i];
         dropDown.innerHTML += `   
         <table>
-            <div class ="dropDownList-cantact-container">
+            <div class ="dropDownList-contact-container">
                 <div class ="dropDownList-contact-element">
                     <div class ="add-task-details-user-initials" style="background-color: ${color}">${acronym}</div>
                     <div class ="dropDownList-contact-element">${name}</div>
@@ -331,16 +334,11 @@ async function submitTask() {
     subtasks = "";
 
 
-    setTimeout();
-
-}
-
-function setTimeout() {
     setTimeout(() => {
         window.location.href = "board.html";
     }, 2000);
-}
 
+}
     /*Subtasks*/
 
 
@@ -443,4 +441,75 @@ function finishEditInput(i) {
     subtaskArray[i] = newElement;
     let edit = subtaskArray[i];
     editTask.innerHTML = renderSubtaskList(edit, i);
+}
+
+/* function searchContacts() {
+    let inputField = docID('searchField');
+    let search = inputField.value.toLowerCase();
+    let dropDown = document.getElementById('dropDownList');
+    dropDown.innerHTML ="";
+    searchedNames = [];
+    searchedAcronyms = [];
+    searchedColors = [];
+    inputField.addEventListener("input", function (){
+        for (let i = 0; i < arrContacts.length; i++) {
+            const name = arrContacts[i]['contact-name'];
+            const acronym = arrContacts[i]['contact-acronym'];
+            const color = arrContacts[i]['contact-color'];
+            if (name.toLowerCase().includes(search)) {
+                searchedNames.push(name);
+                searchedAcronyms.push(acronym);
+                searchedColors.push(color);
+            }
+        }
+        renderSearchedContactListaddTasks();
+    })
+} */
+
+function searchContacts() {
+    let inputField = docID('searchField');
+    let search = inputField.value.toLowerCase();
+    let dropDown = document.getElementById('dropDownList');
+    dropDown.innerHTML ="";
+    searchedNames = [];
+    searchedAcronyms = [];
+    searchedColors = [];
+    for (let i = 0; i < arrContacts.length; i++) {
+        const name = arrContacts[i]['contact-name'];
+        const acronym = arrContacts[i]['contact-acronym'];
+        const color = arrContacts[i]['contact-color'];
+        if (name.toLowerCase().includes(search)) {
+            searchedNames.push(name);
+            searchedAcronyms.push(acronym);
+            searchedColors.push(color);
+        }
+    }
+    renderSearchedContactListaddTasks();
+}
+
+function stopPropagation(event) {
+    event.stopPropagation();
+}
+
+async function renderSearchedContactListaddTasks() {
+    let dropDown = document.getElementById('dropDownList');
+    console.log('searchedNames :>> ', searchedNames);
+    for (let i = 0; i < searchedNames.length; i++) {
+        const color = searchedColors[i];
+        const name = searchedNames[i];
+        const acronym = searchedAcronyms[i];
+        
+        dropDown.innerHTML += `   
+        <table>
+            <div class ="dropDownList-contact-container">
+                <div class ="dropDownList-contact-element">
+                    <div class ="add-task-details-user-initials" style="background-color: ${color}">${acronym}</div>
+                    <div class ="dropDownList-contact-element">${name}</div>
+                </div>
+                <div class ="dropDownList-contact-element" >
+                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${color};${name}">
+                </div>
+            </div>
+        </table>`;
+    }
 }

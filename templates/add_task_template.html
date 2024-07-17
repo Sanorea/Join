@@ -22,7 +22,7 @@
                     <img src="./assets/img/arrow_down.svg" alt="">
                 </div>
                 <div id="selectfieldClose" class="addTask-selectfield d-none-add-task" onclick="closeContactListTasks()">
-                    <input type="search">
+                    <input onkeydown="searchContacts()" onkeyup="searchContacts()" onclick="stopPropagation(event)" id="searchField" type="input" >
                     <img src="./assets/img/arrow_up.svg" alt="">
                 </div>
                 <ul class="dropdown-menu d-none-add-task" id="dropDownList">
