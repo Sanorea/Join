@@ -1,4 +1,5 @@
 let arrTasks = [];
+let checkboxSubtask = [];
 
 let currentDraggedElement;
 
@@ -255,7 +256,7 @@ function taskArray(keyToObject) {
         const element = list[i];
         content += `
         <div class="list-card-subtaskarray">
-            <input type="checkbox" value="">
+            <input type="checkbox" value="${element}">
             <div>
                 <div>${element}</div>
             </div>    
