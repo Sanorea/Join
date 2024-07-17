@@ -43,6 +43,7 @@ async function updateHTML() {
             docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
         }
     }
+    console.log(arrTasks);
 }
 
 function deleteCard(element) {
@@ -201,7 +202,7 @@ function renderCardHTML(element, subTaskResult, prioResult, taskCategory, Contac
     `;
 }
 
-function renderPopupCardHTML(element, key, taskCategoryResult, ) {
+function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray ) {
     return /*HTML*/ `
       <div class="card-popUp">
             <div class="card-popUp-top">
@@ -220,14 +221,14 @@ function renderPopupCardHTML(element, key, taskCategoryResult, ) {
             </div>
             <div class="card-popUp-assignet">
                 <div class="title">Assignet to:</div>
-                <div class="assignet-list"></div>
+                <div class="assignet-list">${contactCardArrayResult}</div>
             </div>
             <div class="card-popUp-subtask">
                 <div class="title">Subtask</div>
-                <div class="subtask-list"></div>
+                <div class="subtask-list">${subtaskListArray}</div>
             </div>
             <div class="edit-and-delete">
-                <div onclick="deleteCard(${element['unique-key']})" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
+                <div onclick="deleteCard('${element['unique-key']}')" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
                 <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
@@ -235,18 +236,72 @@ function renderPopupCardHTML(element, key, taskCategoryResult, ) {
     `;
 }
 
-function openCard(element, key) {
+function openCard(element) {
    let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
-    let keyToObject = arrTasks.find((y) => y = element);
+    let keyToObject = arrTasks.find((y) => y['unique-key'] === element);
     let taskCategoryResult = taskCategory(keyToObject);
     let subtaskListArray = taskArray(keyToObject); 
-    container.innerHTML = renderPopupCardHTML(keyToObject, key, taskCategoryResult, subtaskListArray);
+    let contactCardArrayResult = contactCardArray(keyToObject);
+    console.log(keyToObject);
+    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray );
 }
 
 function taskArray(keyToObject) {
+    let content = "";
     let list = keyToObject['subtasks'];
+    console.log(list);
+    for (let i = 0; i < list.length; i++) {
+        const element = list[i];
+        content += `
+        <div class="list-card-subtaskarray">
+            <input type="checkbox" value="">
+            <div>
+                <div>${element}</div>
+            </div>    
+         </div>       
+            `;
+    }
+    return content;
+}
+
+function contactCardArray(keyToObject) {
+    let list = keyToObject['acronymsAssignedTo'];
+    let nameArray = keyToObject['namesAssignedTo']
+    let array = "";
+    for (let i = 0; i < list.length; i++) {
+        const element = list[i];
+        let name = nameArray[i];
+        array +=` 
+        <div class="reder-card">
+          <div class="user-content-array">${element}</div>
+          <div> ${name}</div>
+        </div>
+        `;
+    }
+    console.log(keyToObject);
+    return array;
+}
+
+function deleteCard(key) {
+    let keyToObject = arrTasks.find((y) => y['unique-key'] === key);
+    arrTasks.splice(keyToObject);
+    console.log(arrTasks);
+    deleteTaskPostData("/tasks/" + key );
+    closeCardPopUp();
+    updateHTML();
+}
+
+function subtaskBar() {
     
+}
+
+async function deleteTaskPostData(path ="") {
+    let responseAddTask = await fetch(BASE_URL + path + ".json", {
+        method: "DELETE",
+    }
+    );
+    return responseToJson = await responseAddTask.json();
 }
 
 function closeCardPopUp() {

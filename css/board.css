@@ -211,7 +211,7 @@
 .w3-green {
     height: 8px;
     border-radius: 50px;
-    width: 100%;
+    width: 0% ;
 }
 
 .w3-light-grey {
@@ -432,6 +432,40 @@ border-radius: 30px;
 .card-info{
     display: flex;
     justify-content: space-between;
+}
+
+.user-content-array{
+    width: 30px;
+    height: 30px;
+     background-color: orange; 
+    border-radius: 45px;
+    border: 2px solid white;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    margin-right: -8px;
+}
+
+.reder-card{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.assignet-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.list-card-subtaskarray {
+    display: flex;
+    gap: 20px;
 }
 
 
