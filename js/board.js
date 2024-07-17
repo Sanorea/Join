@@ -184,9 +184,7 @@ function saveTaskDataInArray(taskData) {
 
 
 function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
-console.log(element);
   let uniqueKey = element['unique-key'];
-  
     return /*HTML*/ `
     <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
         <div>${taskCategory}</div>

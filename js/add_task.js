@@ -307,6 +307,11 @@ async function submitTask() {
     readValueAssignedTo();
     await addTaskIdsToArray();
     let newId = setId();
+
+  /*   if (checkedNames = []) {
+        checkedNames = "";
+    } */
+
     addTaskPostData("/tasks", {
         "boardCategory": "toDo",
         "taskCategory": checkedCategorys,
@@ -324,6 +329,7 @@ async function submitTask() {
     date.value = "";
     categorie.value = "";
     subtasks = "";
+
 /* 
     setTimeout(() => {
         window.location.href = "board.html";
