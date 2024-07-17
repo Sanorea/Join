@@ -11,6 +11,7 @@ async function editCard(key) {
     let savedTitle = addArrTasks[0][key]['title'];
     let savedDescription = addArrTasks[0][key]['description'];
     let savedDate = addArrTasks[0][key]['date'];
+
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
     let date = docID('add-task-input-date');
@@ -19,7 +20,7 @@ async function editCard(key) {
     date.value = savedDate;
     showSavedPrio(key);
     showSavedAssignedTo(key);
-
+    showSubtasks(key);
     docID('categorieCapture').classList.add('d-none-add-task');
 }
 
@@ -48,6 +49,11 @@ function showSavedAssignedTo(key) {
         }
     }
     readValueAssignedTo();
+}
+
+function showSubtasks(key) {
+    subtaskArray = addArrTasks[0][key]['subtasks'];
+    renderList();
 }
 
 function changeColorPrioButton(prio) {
@@ -88,15 +94,12 @@ async function editContact() {
         "description": description.value,
         "id": savedID,
         "prio": prios,
-/*         "subtasks": subtaskArray, */
+        "subtasks": subtaskArray,
         "title": title.value,
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,
     })
-
-/*     closeDialog('edit-contact');
-    closeDialog('delete-edit-menu');
-    await reloadContacts();
-    contact = getCurrentContactById(id);
-    contactDetail.innerHTML = generateContactDetailHTML(contact); */
+    updateHTML();
+/*     setTimeout(); */
+    closeEditCard(); 
 }

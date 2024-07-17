@@ -330,11 +330,15 @@ async function submitTask() {
     categorie.value = "";
     subtasks = "";
 
-/* 
+
+    setTimeout();
+
+}
+
+function setTimeout() {
     setTimeout(() => {
         window.location.href = "board.html";
-    }, 2000); */
-
+    }, 2000);
 }
 
     /*Subtasks*/
