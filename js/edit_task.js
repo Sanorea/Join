@@ -4,9 +4,7 @@ let uniqueKey = "";
 
 async function editCard(key) {
     uniqueKey=key;
-    
-    let popUp = docID('cardPopUpBGEdit');
-    popUp.classList.remove("d-none-add-task");
+    openNewTaskPopUp();
     await addTaskContactsToArray();
     let savedTitle = addArrTasks[0][key]['title'];
     let savedDescription = addArrTasks[0][key]['description'];
@@ -102,4 +100,10 @@ async function editContact() {
     updateHTML();
 /*     setTimeout(); */
     closeEditCard(); 
+}
+
+function openNewTaskPopUp() {
+    closeCardPopUp();
+    let popUp = docID('cardPopUpBGEdit');
+    popUp.classList.remove("d-none-add-task");
 }
