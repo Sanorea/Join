@@ -14,7 +14,6 @@ async function editCard(key) {
     let savedTitle = addArrTasks[0][key]['title'];
     let savedDescription = addArrTasks[0][key]['description'];
     let savedDate = addArrTasks[0][key]['date'];
-
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
     let date = docID('add-task-input-date');
@@ -117,5 +116,4 @@ function openNewTaskPopUp(boardCategory) {
     popUp.classList.remove("d-none-add-task");
     button.classList.remove("d-none-add-task");
     globalBoardCategory = boardCategory;
-
 }
