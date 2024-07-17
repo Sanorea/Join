@@ -59,9 +59,13 @@ function countUrgentTasks() {
 }
 
 function setNextUrgentTaskDate() {
-    var minDate = urgentTaskDates.reduce(function (a, b) { return a < b ? a : b; }); 
+    if (urgentTaskDates.length > 0) {
+        var minDate = urgentTaskDates.reduce(function (a, b) { return a < b ? a : b; }); 
 
-    upcomingDate = minDate ? new Date(minDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'No urgent task';
+        upcomingDate = minDate ? new Date(minDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'No urgent task';
+    } else {
+        upcomingDate = "No urgent task available"
+    }
 }
 
 function renderSummaryHTML() {
