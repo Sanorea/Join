@@ -25,7 +25,7 @@
         <div class="board-top">
             <div class="left-side">
                 <div class="board-content"><span class="board-title">Board</span></div>
-                <img class="board-add-task cursor" src="assets/img/add-img.svg" alt="">
+                <img onclick="openNewTaskPopUp('toDo')" class="board-add-task cursor" src="assets/img/add-img.svg" alt="">
             </div>
             <div class="board-input-content">
                 <input class="board-input" placeholder="Find Task" type="text">
@@ -37,7 +37,7 @@
             <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-todo">To do</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
+                    <img onclick="openNewTaskPopUp('toDo')" class="cursor" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
                 <div id="toDo" class="drag-area" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"
                     ondragstart="highlight('inProgress', 'awaitFeedback', 'done')" ondragend="removeHighlight()">
@@ -47,7 +47,7 @@
             <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-progress"> In progress</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
+                    <img class="cursor" onclick="openNewTaskPopUp('inProgress')" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
                 <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)"
                     ondragstart="highlight('toDo', 'awaitFeedback', 'done')" ondragend="removeHighlight()">
@@ -57,7 +57,7 @@
             <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-feedback">Await feedback</div>
-                    <img class="cursor" src="assets/img/plus button mobile.svg#" alt="">
+                    <img class="cursor" onclick="openNewTaskPopUp('awaitFeedback')" src="assets/img/plus button mobile.svg#" alt="">
                 </div>
                 <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)"
                     ondragstart="highlight('inProgress', 'toDo', 'done')" ondragend="removeHighlight()">
@@ -84,9 +84,11 @@
             <div onclick="closeEditCard()" class="edit-pop-up-closing-tag"><img src="/assets/img/close.svg" alt=""></div>
             <div w3-include-html="templates/add_task_template.html"></div>
             <div class="edit-task-ok-button">
-                <button type="submit" class="btn-primary btn-create disp-flex-center-center" onclick="editContact()">
+                <button id="buttonPopUpOK" type="submit" class="btn-primary btn-create disp-flex-center-center d-none-add-task" onclick="editContact()">
                     OK
                 </button>
+                <button id="buttonPopUpAdd" type="submit" class="btn-primary btn-create disp-flex-center-center d-none-add-task"
+                onclick="submitTask('toDo')">Create Task</button>
             </div>
         </div>
     </div>

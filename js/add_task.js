@@ -302,7 +302,7 @@ async function addTaskPostData(path = "", data = {}) {
     return responseToJson = await responseAddTask.json();
 }
 
-async function submitTask() {
+async function submitTask(boardCategory) {
     let title = docID('add-task-input-title');
     let description = docID('add-task-input-description');
     let date = docID('add-task-input-date');
@@ -310,13 +310,16 @@ async function submitTask() {
     readValueAssignedTo();
     await addTaskIdsToArray();
     let newId = setId();
-
     if (checkedNames.length<=0) {
-        checkedNames = "";}
+        checkedNames = "";
+    }
 
+    if (globalBoardCategory != boardCategory) {
+        boardCategory = globalBoardCategory;
+    }
 
     addTaskPostData("/tasks", {
-        "boardCategory": "toDo",
+        "boardCategory": boardCategory,
         "taskCategory": checkedCategorys,
         "date": date.value,
         "description": description.value,

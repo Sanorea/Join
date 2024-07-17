@@ -1,10 +1,15 @@
 let addArrTasks = [];
 let uniqueKey = "";
+let globalBoardCategory = "";
 
 
 async function editCard(key) {
     uniqueKey=key;
-    openNewTaskPopUp();
+    closeCardPopUp();
+    let popUp = docID('cardPopUpBGEdit');
+    popUp.classList.remove("d-none-add-task");
+    let button = docID('buttonPopUpOK');
+    button.classList.remove("d-none-add-task")
     await addTaskContactsToArray();
     let savedTitle = addArrTasks[0][key]['title'];
     let savedDescription = addArrTasks[0][key]['description'];
@@ -64,6 +69,10 @@ function closeEditCard () {
     let popUp = docID('cardPopUpBGEdit');
     popUp.classList.add("d-none-add-task");
     docID('categorieCapture').classList.remove('d-none-add-task');
+    let buttonOK = docID('buttonPopUpOK');
+    buttonOK.classList.add("d-none-add-task");
+    let buttonAdd = docID('buttonPopUpAdd');
+    buttonAdd.classList.add("d-none-add-task")
 }
 
 async function addTaskLoadData(path = "") {
@@ -102,8 +111,11 @@ async function editContact() {
     closeEditCard(); 
 }
 
-function openNewTaskPopUp() {
-    closeCardPopUp();
+function openNewTaskPopUp(boardCategory) {
     let popUp = docID('cardPopUpBGEdit');
+    let button = docID('buttonPopUpAdd');
     popUp.classList.remove("d-none-add-task");
+    button.classList.remove("d-none-add-task");
+    globalBoardCategory = boardCategory;
+
 }
