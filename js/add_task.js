@@ -308,9 +308,9 @@ async function submitTask() {
     await addTaskIdsToArray();
     let newId = setId();
 
-  /*   if (checkedNames = []) {
-        checkedNames = "";
-    } */
+    if (checkedNames.length<=0) {
+        checkedNames = "";}
+
 
     addTaskPostData("/tasks", {
         "boardCategory": "toDo",
