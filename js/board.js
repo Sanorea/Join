@@ -9,7 +9,7 @@ async function initBoard(id, renderClass) {
     await includeHTML();
     renderHeaderNav(id, renderClass);
     updateHTML();
-    renderContactListaddTasks();   
+    renderContactListaddTasks();
 }
 
 async function getTaskData() {
@@ -22,7 +22,7 @@ async function getTaskData() {
 async function updateHTML() {
     await getTaskData();
     let test = await getTaskData();
-/*     console.log(test); */
+    /*     console.log(test); */
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -48,7 +48,7 @@ async function updateHTML() {
 }
 
 function deleteCard(element) {
-   console.log(arrTasks);
+    console.log(arrTasks);
 }
 
 function taskCategory(element) {
@@ -71,7 +71,7 @@ function taskCategory(element) {
 }
 
 function findoutPrio(element) {
-/*     console.log(element); */
+    /*     console.log(element); */
     let prio = element['prio'];
     let prioVal = "";
 
@@ -140,14 +140,14 @@ async function moveTo(category) {
     arrTasks[index]['boardCategory'] = category;
 
     await updateData("/tasks/" + key, {
-        "taskCategory":  arrTasks[index]['taskCategory'],
+        "taskCategory": arrTasks[index]['taskCategory'],
         "boardCategory": arrTasks[index]['boardCategory'],
         "date": arrTasks[index]['date'],
         "description": arrTasks[index]['description'],
         "id": arrTasks[index]['id'],
         "prio": arrTasks[index]['prio'],
         "subtasks": arrTasks[index]['subtasks'],
-        "title": arrTasks[index]['title'], 
+        "title": arrTasks[index]['title'],
         "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
         "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
     })
@@ -186,7 +186,7 @@ function saveTaskDataInArray(taskData) {
 
 
 function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
-  let uniqueKey = element['unique-key'];
+    let uniqueKey = element['unique-key'];
     return /*HTML*/ `
     <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
         <div>${taskCategory}</div>
@@ -203,7 +203,7 @@ function renderCardHTML(element, subTaskResult, prioResult, taskCategory, Contac
     `;
 }
 
-function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray ) {
+function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray) {
     return /*HTML*/ `
       <div class="card-popUp">
             <div class="card-popUp-top">
@@ -238,14 +238,14 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
 }
 
 function openCard(element) {
-   let container = docID('card-popUp-background');
+    let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
     let keyToObject = arrTasks.find((y) => y['unique-key'] === element);
     let taskCategoryResult = taskCategory(keyToObject);
-    let subtaskListArray = taskArray(keyToObject); 
+    let subtaskListArray = taskArray(keyToObject);
     let contactCardArrayResult = contactCardArray(keyToObject);
     console.log(keyToObject);
-    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray );
+    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
 }
 
 function taskArray(keyToObject) {
@@ -256,7 +256,7 @@ function taskArray(keyToObject) {
         const element = list[i];
         content += `
         <div class="list-card-subtaskarray">
-            <input type="checkbox" value="${element}">
+            <input onclick="subtaskCardCheckbox(${i},'${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" value="${element}">
             <div>
                 <div>${element}</div>
             </div>    
@@ -273,7 +273,7 @@ function contactCardArray(keyToObject) {
     for (let i = 0; i < list.length; i++) {
         const element = list[i];
         let name = nameArray[i];
-        array +=` 
+        array += ` 
         <div class="reder-card">
           <div class="user-content-array">${element}</div>
           <div> ${name}</div>
@@ -288,16 +288,31 @@ function deleteCard(key) {
     let keyToObject = arrTasks.find((y) => y['unique-key'] === key);
     arrTasks.splice(keyToObject);
     console.log(arrTasks);
-    deleteTaskPostData("/tasks/" + key );
+    deleteTaskPostData("/tasks/" + key);
     closeCardPopUp();
     updateHTML();
 }
 
 function subtaskBar() {
-    
 }
 
-async function deleteTaskPostData(path ="") {
+function subtaskCardCheckbox(index, element) {
+
+    let id = docID(`contactCardId${index}`);
+    let object = arrTasks.find((y) => y['unique-key'] === element);
+    console.log(object);
+
+    let value = id.value;
+    if (id.checked) {
+        checkboxSubtask.push(value);
+    } if (!id.checked) {
+        checkboxSubtask.splice(value);
+    }
+    console.log(checkboxSubtask);
+
+}
+
+async function deleteTaskPostData(path = "") {
     let responseAddTask = await fetch(BASE_URL + path + ".json", {
         method: "DELETE",
     }
