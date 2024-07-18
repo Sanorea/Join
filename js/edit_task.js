@@ -1,6 +1,6 @@
 let addArrTasks = [];
 let uniqueKey = "";
-let globalBoardCategory = "";
+/* let globalBoardCategory = ""; */
 
 
 async function editCard(key) {

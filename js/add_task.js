@@ -15,6 +15,7 @@ let checkedCategorys = "";
 let searchedNames = [];
 let searchedAcronyms = [];
 let searchedColors = [];
+let globalBoardCategory = "";
 
 /*init-functions / general-functions*/
 
