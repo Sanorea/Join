@@ -106,7 +106,6 @@ async function editContact() {
         "acronymsAssignedTo": checkedAcronyms,
     })
     updateHTML();
-/*     setTimeout(); */
     closeEditCard(); 
 }
 

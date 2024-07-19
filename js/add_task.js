@@ -309,6 +309,7 @@ async function addTaskPostData(path = "", data = {}) {
 }
 
 async function submitTask(boardCategory) {
+
     let {title, description, date, categorie} = setVariablesForDivs();
     readValueAssignedTo();
     await addTaskIdsToArray();
@@ -491,3 +492,32 @@ function renderSearchedContactListHTML(color, acronym, name, i) {
         </table>
             `;
 }
+
+function requiredFields(boardCategory) {
+    let titleRequired = docID('titleRequired');
+    let title = docID('add-task-input-title');
+    let dateRequired = docID('dateRequired');
+    let date = docID('add-task-input-date');
+    let categoryRequired = docID('categoryRequired');
+    let categoryField = docID('categorySelectfieldTask');
+    titleRequired.classList.add('d-none-add-task');
+    dateRequired.classList.add('d-none-add-task');
+    categoryRequired.classList.add('d-none-add-task');
+    checkEmptyFields(title, titleRequired, date, dateRequired, categoryField, categoryRequired)
+    }
+
+    function checkEmptyFields(title, titleRequired, date, dateRequired, categoryField, categoryRequired) {
+        if (title.value==="" || date.value==="") {
+            if (title.value==="") {
+                titleRequired.classList.remove('d-none-add-task');
+            }
+            if (date.value==="") {
+                dateRequired.classList.remove('d-none-add-task');
+            }
+            if (categoryField.classList.contains('d-none-add-task')) {
+                categoryRequired.classList.remove('d-none-add-task');
+            }
+        } else {
+            submitTask(boardCategory);
+        }
+    }

@@ -22,7 +22,7 @@
                 <span>Add Task</span>
             </div>
             <div class="add-task-section-container">
-                <div w3-include-html="templates/add_task_template.html"></div>
+                <div class="template-container" w3-include-html="templates/add_task_template.html"></div>
             </div>
             <div class="add-task-basic-line">
                 <div class="add-task-required-fields">
@@ -30,7 +30,7 @@
                     <p>This field is required</p>
                 </div>
                 <button type="submit" class="btn-primary btn-create disp-flex-center-center"
-                    onclick="submitTask('toDo')">Create Task</button>
+                    onclick="requiredFields('toDo')">Create Task</button>
             </div>
         </div>
     </div>
