@@ -244,19 +244,18 @@ function openCard(element) {
     let taskCategoryResult = taskCategory(keyToObject);
     let subtaskListArray = taskArray(keyToObject);
     let contactCardArrayResult = contactCardArray(keyToObject);
-    console.log(keyToObject);
     container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
+    subtaskCardCheckbox(element);
 }
 
 function taskArray(keyToObject) {
     let content = "";
     let list = keyToObject['subtasks'];
-    console.log(list);
     for (let i = 0; i < list.length; i++) {
         const element = list[i];
         content += `
         <div class="list-card-subtaskarray">
-            <input onclick="subtaskCardCheckbox(${i},'${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" value="${element}">
+            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox"  value="${element}">
             <div>
                 <div>${element}</div>
             </div>    
@@ -280,14 +279,12 @@ function contactCardArray(keyToObject) {
         </div>
         `;
     }
-    console.log(keyToObject);
     return array;
 }
 
 function deleteCard(key) {
     let keyToObject = arrTasks.find((y) => y['unique-key'] === key);
     arrTasks.splice(keyToObject);
-    console.log(arrTasks);
     deleteTaskPostData("/tasks/" + key);
     closeCardPopUp();
     updateHTML();
@@ -296,21 +293,33 @@ function deleteCard(key) {
 function subtaskBar() {
 }
 
-function subtaskCardCheckbox(index, element) {
+function subtaskCardCheckbox(element) {
 
-    let id = docID(`contactCardId${index}`);
+    // checkboxSubtask = []; 
     let object = arrTasks.find((y) => y['unique-key'] === element);
-    console.log(object);
+    let list = object['subtasks'];
+    for (let i = 0; i < list.length; i++) {
+        let id = docID(`contactCardId${i}`);
+        let value = id.value;
+        let check = checkboxSubtask.find((y) => y === value);
 
-    let value = id.value;
-    if (id.checked) {
-        checkboxSubtask.push(value);
-    } if (!id.checked) {
-        checkboxSubtask.splice(value);
+        if (id.check == false && check == value) {
+            id.check = true;
+            if (id.checked = false) {
+                checkboxSubtask.splice(value);
+            } else {
+             id.checked = true;
+            }
+        } else {   
+        if (id.checked === true && check !== value) {
+            checkboxSubtask.push(value);
+        }
+    }
+
     }
     console.log(checkboxSubtask);
-
 }
+
 
 async function deleteTaskPostData(path = "") {
     let responseAddTask = await fetch(BASE_URL + path + ".json", {
