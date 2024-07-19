@@ -111,9 +111,35 @@ async function editContact() {
 }
 
 function openNewTaskPopUp(boardCategory) {
+    clearFormular();
     let popUp = docID('cardPopUpBGEdit');
     let button = docID('buttonPopUpAdd');
     popUp.classList.remove("d-none-add-task");
     button.classList.remove("d-none-add-task");
     globalBoardCategory = boardCategory;
 }
+
+function clearFormular() {
+    let title = docID('add-task-input-title');
+    let description = docID('add-task-input-description');
+    let date = docID('add-task-input-date');
+    title.value = "";
+    description.value = "";
+    date.value = "";
+    resettCheckedContacts();
+    resettPrioButtons('urgent');
+    resettPrioButtons('medium');
+    resettPrioButtons('low');
+}
+
+function resettCheckedContacts() {
+    valueCheckedBoxes = [];
+    for (let j = 0; j < names.length; j++) {
+        let name = document.getElementById(`checkboxes${j}`);
+        if (name.checked = true) {
+            name.checked = false
+        }
+    rendercheckedContacts();
+    }
+}
+
