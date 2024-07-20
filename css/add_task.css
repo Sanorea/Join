@@ -278,6 +278,14 @@
     
 }
 
+.pop-up-wrapper {
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
 .search-field-input {
     width: 100%;
     height: 90%;
@@ -394,7 +402,19 @@
     flex-direction: column;
 }
 
+.left-side-pop-up {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .right-side-desktop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side-pop-up {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -405,6 +425,8 @@
     display: flex;
     flex-direction: column;
 }
+
+
 
 /*responsive-Desktop*/
 
@@ -420,6 +442,10 @@
         gap: 48px;
         flex-direction: row;
     
+    }
+
+    .pop-up-wrapper {
+        flex-direction: column !important;
     }
 
     .head-line {
@@ -455,6 +481,14 @@
         margin-right: 96px;
     }
 
+    .left-side-pop-up {
+        width: 100%;
+    }
+
+    .right-side-pop-up {
+        width: 100%;
+    }
+
 
 }
 
@@ -471,6 +505,7 @@
     right: 0;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .card-popUp-background-edit-container {

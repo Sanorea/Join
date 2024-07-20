@@ -2,15 +2,27 @@ let addArrTasks = [];
 let uniqueKey = "";
 /* let globalBoardCategory = ""; */
 
-
 async function editCard(key) {
-    uniqueKey=key;
-    closeCardPopUp();
+    await showPopUp();
+    saveInputs(key);
+    showSavedPrio(key);
+    showSavedAssignedTo(key);
+    showSubtasks(key);
+    docID('categorieCapture').classList.add('d-none-add-task');
+    scalePopUp();
+}
+
+async function showPopUp() {
     let popUp = docID('cardPopUpBGEdit');
     popUp.classList.remove("d-none-add-task");
     let button = docID('buttonPopUpOK');
-    button.classList.remove("d-none-add-task")
+    button.classList.remove("d-none-add-task");
+    closeCardPopUp();
     await addTaskContactsToArray();
+}
+
+function saveInputs(key) {
+    uniqueKey=key;
     let savedTitle = addArrTasks[0][key]['title'];
     let savedDescription = addArrTasks[0][key]['description'];
     let savedDate = addArrTasks[0][key]['date'];
@@ -20,10 +32,20 @@ async function editCard(key) {
     title.value = savedTitle;
     description.value = savedDescription;
     date.value = savedDate;
-    showSavedPrio(key);
-    showSavedAssignedTo(key);
-    showSubtasks(key);
-    docID('categorieCapture').classList.add('d-none-add-task');
+}
+
+function scalePopUp() {
+    let templateWrapper = docID('templateWrapper');
+    templateWrapper.classList.remove("template-wrapper");
+    templateWrapper.classList.add("pop-up-wrapper");
+    let separator = docID('separator');
+    separator.classList.add('d-none-add-task');
+    let leftSide = docID('leftSide');
+    leftSide.classList.remove('left-side-desktop');
+    leftSide.classList.add('left-side-pop-up');
+    let rightSide = docID('rightSide');
+    rightSide.classList.remove('right-side-desktop');
+    rightSide.classList.add('right-side-pop-up');
 }
 
 function showSavedPrio(key) {
@@ -92,8 +114,13 @@ async function editContact() {
     let savedBoardCategory = addArrTasks[0][uniqueKey]['boardCategory'];
     let savedTaskCategory = addArrTasks[0][uniqueKey]['taskCategory'];
     let savedID = addArrTasks[0][uniqueKey]['id'];
+    pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title);
+    updateHTML();
+    closeEditCard(); 
+}
 
-    await updateData("/tasks/" + uniqueKey, {
+function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
+    updateData("/tasks/" + uniqueKey, {
         "boardCategory": savedBoardCategory,
         "taskCategory": savedTaskCategory,
         "date": date.value,
@@ -105,8 +132,6 @@ async function editContact() {
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,
     })
-    updateHTML();
-    closeEditCard(); 
 }
 
 function openNewTaskPopUp(boardCategory) {
