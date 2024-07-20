@@ -245,7 +245,7 @@ function openCard(element) {
     let subtaskListArray = taskArray(keyToObject);
     let contactCardArrayResult = contactCardArray(keyToObject);
     container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
-    subtaskCardCheckbox(element);
+    checkboxCheck(element);
 }
 
 function taskArray(keyToObject) {
@@ -303,21 +303,28 @@ function subtaskCardCheckbox(element) {
         let value = id.value;
         let check = checkboxSubtask.find((y) => y === value);
 
-        if (id.check == false && check == value) {
-            id.check = true;
-            if (id.checked = false) {
-                checkboxSubtask.splice(value);
-            } else {
-             id.checked = true;
-            }
-        } else {   
         if (id.checked === true && check !== value) {
             checkboxSubtask.push(value);
         }
-    }
-
+        if (id.checked === false && check == value) {
+            checkboxSubtask.splice(value);
+        }
     }
     console.log(checkboxSubtask);
+}
+
+function checkboxCheck(element) {
+    let object = arrTasks.find((y) => y['unique-key'] === element);
+    let list = object['subtasks'];
+    for (let i = 0; i < list.length; i++) {
+        let id = docID(`contactCardId${i}`);
+        let value = id.value;
+        let check = checkboxSubtask.find((y) => y === value);
+
+        if (check == value && id.checked == false) {
+            id.checked = true;
+        }
+    }
 }
 
 
