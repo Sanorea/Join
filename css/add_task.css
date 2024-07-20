@@ -164,6 +164,10 @@
     padding-inline: unset;
 }
 
+.required-input-fields{
+    border: 1px solid #FF8190 !important;
+}
+
 .add-task-input-fields::placeholder {
     color: #D1D1D1;
     font-size: 16px;
@@ -181,7 +185,6 @@
 
 .add-task-selection {
     width: 100%;
-    display: flex;
 }
 
 .add-task-selection select{
@@ -532,27 +535,6 @@
     display: flex;
     justify-content: flex-end;
     padding-bottom: 48px;
-}
-
-.add-task-input-fields-edit {
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    width: 100%;
-    height: 40px;
-    padding-left:16px;
-    padding-block: unset;
-    padding-inline: unset;
-
-}
-
-.add-task-input-fields-edit::placeholder{
-    color: #D1D1D1;
-    font-size: 16px;
-    height: 20px;
-}
-
-.add-task-input-fields-edit:focus{
-    border-color:#29ABE2 !important;
 }
 
 .add-task-required-fields {

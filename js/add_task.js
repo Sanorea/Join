@@ -494,30 +494,52 @@ function renderSearchedContactListHTML(color, acronym, name, i) {
 }
 
 function requiredFields(boardCategory) {
+    let {title, titleRequired} =requiredFieldTitle ();
+    let {date, dateRequired} =requiredFieldDate ();
+    let {categoryRequired, categoryField, categoryFieldOpen} = requiredFieldCategory();
+    if (title.value==="" || date.value==="" || categoryField.classList.contains('d-none-add-task')) {
+        if (title.value==="") {
+            ifConditionRequiredFields(titleRequired, title); 
+        }
+        if (date.value==="") {
+            ifConditionRequiredFields(dateRequired, date); 
+        }
+        if (categoryField.classList.contains('d-none-add-task')) {
+            ifConditionRequiredFields(categoryRequired, categoryFieldOpen); 
+        }
+    } else {
+        submitTask(boardCategory);
+    }
+}
+
+function requiredFieldTitle () {
     let titleRequired = docID('titleRequired');
     let title = docID('add-task-input-title');
+    titleRequired.classList.add('d-none-add-task');
+    title.classList.remove('required-input-fields');
+    return {title, titleRequired};
+}
+
+function requiredFieldDate() {
     let dateRequired = docID('dateRequired');
     let date = docID('add-task-input-date');
+    dateRequired.classList.add('d-none-add-task');
+    date.classList.remove('required-input-fields');
+    return {date, dateRequired};
+}
+
+function requiredFieldCategory() {
     let categoryRequired = docID('categoryRequired');
     let categoryField = docID('categorySelectfieldTask');
-    titleRequired.classList.add('d-none-add-task');
-    dateRequired.classList.add('d-none-add-task');
+    let categoryFieldOpen = docID('categorySelectfieldOpen');
     categoryRequired.classList.add('d-none-add-task');
-    checkEmptyFields(title, titleRequired, date, dateRequired, categoryField, categoryRequired)
-    }
+    categoryFieldOpen.classList.remove('required-input-fields');
+    return {categoryRequired, categoryField, categoryFieldOpen};
+}
 
-    function checkEmptyFields(title, titleRequired, date, dateRequired, categoryField, categoryRequired) {
-        if (title.value==="" || date.value==="") {
-            if (title.value==="") {
-                titleRequired.classList.remove('d-none-add-task');
-            }
-            if (date.value==="") {
-                dateRequired.classList.remove('d-none-add-task');
-            }
-            if (categoryField.classList.contains('d-none-add-task')) {
-                categoryRequired.classList.remove('d-none-add-task');
-            }
-        } else {
-            submitTask(boardCategory);
-        }
-    }
+function ifConditionRequiredFields(text, color) {
+    text.classList.remove('d-none-add-task');
+    color.classList.add('required-input-fields');
+}
+
+   
