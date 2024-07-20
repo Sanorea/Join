@@ -1,5 +1,6 @@
 let arrTasks = [];
 let checkboxSubtask = [];
+let checkedSubtasks = [];
 
 let currentDraggedElement;
 
@@ -38,7 +39,7 @@ async function updateHTML() {
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
             let taskCategoryResult = taskCategory(element);
-            let subTaskResult = subtaskList(element);
+            let subTaskResult = subtaskList(element, index);
             let prioResult = findoutPrio(element);
             let ContactsArrayResult = ContactsArray(element);
             docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
@@ -47,9 +48,6 @@ async function updateHTML() {
     console.log(arrTasks);
 }
 
-function deleteCard(element) {
-    console.log(arrTasks);
-}
 
 function taskCategory(element) {
     let category = element['taskCategory'];
@@ -106,7 +104,7 @@ function ContactsArray(element) {
     return elementContact;
 }
 
-function subtaskList(element) {
+function subtaskList(element, index) {
     let stylee = document.querySelectorAll('.card-subtask');
     if (!element['subtasks'] || !Array.isArray(element['subtasks'])) {
         stylee.forEach(function (el) {
@@ -114,15 +112,33 @@ function subtaskList(element) {
         return ``;
     } else {
         let list = element['subtasks'].length
+        let finishedTasks = checkFinishedTasks(element, list);
+        let percent = subtaskBar(finishedTasks, list);
+        console.log(percent);
         return ` <div class="bar">
                 <div class="w3-light-grey">
-                    <div class="w3-container w3-green w3-center" style="width:50%"></div>
+                    <div id="editBar_${index}"  class="w3-container w3-green w3-center" style="width:${percent}%"></div>
                 </div><br>
             </div>
             <div id='subtask-counter' class="subtask-content">
-                <div><span>0/${list}</span></div>
+                <div><span>${finishedTasks}/${list}</span></div>
             </div>`;
     }
+}
+
+function checkFinishedTasks(element, length) {
+    checkedSubtasks = [];
+    let list = element['subtasks'];
+    console.log(checkboxSubtask);
+    for (let i = 0; i < list.length; i++) {
+        const subtask = list[i];
+        let check = checkboxSubtask.find((y) => y == subtask);
+        if (check) {
+            checkedSubtasks.push(check);
+        }
+    }
+    subtaskBar(checkedSubtasks.length, length);
+    return checkedSubtasks.length;
 }
 
 
@@ -290,7 +306,18 @@ function deleteCard(key) {
     updateHTML();
 }
 
-function subtaskBar() {
+function subtaskBar(length, list) {
+    let a = list * 100;
+    let y = a / list
+    let b = y / list;
+    let c = length * b;
+
+    if (length === 0) {
+        return 0
+    } else {
+        console.log(c);
+        return c;
+    }
 }
 
 function subtaskCardCheckbox(element) {
@@ -305,12 +332,17 @@ function subtaskCardCheckbox(element) {
 
         if (id.checked === true && check !== value) {
             checkboxSubtask.push(value);
+            checkFinishedTasks(object);
+            subtaskBar();
+            updateHTML();
         }
         if (id.checked === false && check == value) {
             checkboxSubtask.splice(value);
+            checkFinishedTasks(object);
+            subtaskBar();
+            updateHTML();
         }
     }
-    console.log(checkboxSubtask);
 }
 
 function checkboxCheck(element) {
@@ -325,6 +357,7 @@ function checkboxCheck(element) {
             id.checked = true;
         }
     }
+
 }
 
 
