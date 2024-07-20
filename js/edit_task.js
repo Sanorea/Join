@@ -17,6 +17,8 @@ async function showPopUp() {
     popUp.classList.remove("d-none-add-task");
     let button = docID('buttonPopUpOK');
     button.classList.remove("d-none-add-task");
+    let subtasks = docID('addTaskMarginButtom');
+    subtasks.classList.remove('add-task-margin-buttom');
     closeCardPopUp();
     await addTaskContactsToArray();
 }
@@ -94,6 +96,8 @@ function closeEditCard () {
     buttonOK.classList.add("d-none-add-task");
     let buttonAdd = docID('buttonPopUpAdd');
     buttonAdd.classList.add("d-none-add-task")
+    let subtasks = docID('addTaskMarginButtom');
+    subtasks.classList.remove('add-task-margin-buttom');
 }
 
 async function addTaskLoadData(path = "") {
