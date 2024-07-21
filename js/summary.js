@@ -84,7 +84,7 @@ function renderSummaryHTML() {
                       <div class=""><img class="to-do-card-img" src="/assets/img/Frame 59.svg" alt=""></div>
                       <div class="to-do-card-counter">
                           <div class="counter"><span class="black">${toDoCounter}</span></div>
-                          <div class="card-info"><span class="focus-color">To-Do</span></div>
+                          <div class="card-info"><span class="focus-color">To-do</span></div>
                       </div>
                   </div>
                   <div class="done-card card-hover">
@@ -112,15 +112,15 @@ function renderSummaryHTML() {
               <div class="third-row">
                   <div class="board-card card-hover">
                       <div class="counter"><span class="black">${arrTasks.length}</span></div>
-                      <div class="board-info"><span class="focus-color">Task in Board</span></div>
+                      <div class="board-info"><span class="focus-color">Tasks in Board</span></div>
                   </div>
                   <div class="board-card card-hover">
                       <div class="counter"><span class="black">${inProgressCounter}</span></div>
-                      <div class="progress-info"><span class="focus-color">Task in Progress</span></div>
+                      <div class="progress-info"><span class="focus-color">Tasks In<br>Progress</span></div>
                   </div>
                   <div class="board-card card-hover">
                       <div class="counter"><span class="black">${awaitFeedbackCounter}</span></div>
-                      <div class="feedback-info"><span class="focus-color">Awaiting feedback</span></div>
+                      <div class="feedback-info"><span class="focus-color">Awaiting Feedback</span></div>
                   </div>
               </div>
           </div>
