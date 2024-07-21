@@ -483,7 +483,6 @@
     .template-wrapper {
         gap: 48px;
         flex-direction: row;
-    
     }
 
     .pop-up-wrapper {
@@ -503,7 +502,7 @@
     }
 
     .left-side-desktop {
-        width: 45vw;
+        width: 30vw;
         display: flex;
         flex-direction: column;
     }
@@ -515,7 +514,7 @@
     }
 
     .right-side-desktop {
-        width: 45vw;
+        width: 30vw;
     }
 
     .add-task-basic-line {
@@ -529,6 +528,16 @@
 
     .right-side-pop-up {
         width: 100%;
+    }
+}
+
+@media (min-width:1300px) {
+    .right-side-desktop {
+        width: 35vw;
+    }
+
+    .left-side-desktop {
+        width: 35vw;
     }
 }
 
