@@ -455,6 +455,10 @@ h1 {
     align-content: center;
 }
 
+.logo-size {
+    display: none;
+}
+
 
 /* == responsive desktop == */
 
@@ -656,6 +660,7 @@ h1 {
     }
 
     .logo-size {
+        display: unset;
         width: 54px;
         height: 67px;
     }
