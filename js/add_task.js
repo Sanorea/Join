@@ -254,6 +254,7 @@ function setPrio(prio, color) {
     resettPrioButtons('urgent');
     resettPrioButtons('medium');
     resettPrioButtons('low');
+    console.log('prios :>> ', prios);
     document.getElementById(`prio${prio}`).classList.add(color);
     document.getElementById(`${prio}Img`).innerHTML = `
         <img src="/assets/img/${prio}-white.svg" alt="prio">`;
