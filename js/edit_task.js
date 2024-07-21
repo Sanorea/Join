@@ -155,6 +155,8 @@ function clearFormular() {
     title.value = "";
     description.value = "";
     date.value = "";
+    subtaskArray = [];
+    renderList();
     resettCheckedContacts();
     resettPrioButtons('urgent');
     resettPrioButtons('medium');
