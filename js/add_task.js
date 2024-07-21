@@ -281,9 +281,16 @@ async function submitTask(boardCategory) {
     }
     postAddTaskInputs(boardCategory, date, description, newId, title);
     clearFieldsDropDown(title, description, date, categorie);
+    loadMessage();
     setTimeout(() => {
         window.location.href = "board.html";
     }, 2000);
+
+}
+
+function loadMessage() {
+    let messageBox = docID('messageBoxBG');
+    messageBox.classList.remove('d-none-add-task');
 }
 
 function postAddTaskInputs(boardCategory, date, description, newId, title) {
