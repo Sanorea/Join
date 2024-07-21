@@ -32,7 +32,16 @@ async function addTaskInit() {
     renderContactListaddTasks();
     renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
+    setStartPrio();
+
 }
+
+function setStartPrio() {
+    docID(`priomedium`).classList.add(`medium-color`);
+    docID(`mediumImg`).innerHTML = `
+    <img src="/assets/img/medium-white.svg" alt="prio">`;
+}
+
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');

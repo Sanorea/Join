@@ -4,12 +4,22 @@ let uniqueKey = "";
 
 async function editCard(key) {
     await showPopUp();
+    resettStartPrios('low');
+    resettStartPrios('medium');
+    resettStartPrios('urgent');
     saveInputs(key);
     showSavedPrio(key);
     showSavedAssignedTo(key);
     showSubtasks(key);
     docID('categorieCapture').classList.add('d-none-add-task');
     scalePopUp();
+
+}
+
+function resettStartPrios(prio) {
+    docID(`prio${prio}`).classList.remove(`${prio}-color`);
+    docID(`${prio}Img`).innerHTML = `
+    <img src="/assets/img/${prio}-white.svg" alt="prio">`;
 }
 
 async function showPopUp() {
@@ -141,6 +151,7 @@ function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, desc
 function openNewTaskPopUp(boardCategory) {
     clearFormular();
     scalePopUp();
+    changeColorPrioButton('medium');
     let popUp = docID('cardPopUpBGEdit');
     let button = docID('buttonPopUpAdd');
     popUp.classList.remove("d-none-add-task");
