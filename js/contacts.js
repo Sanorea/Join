@@ -154,6 +154,12 @@ async function addContact() {
     let contactInputValues = setContactInputValues();
     await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.acronym, contactInputValues.id);
     emptyContactsInput(contactInputValues.name, contactInputValues.email, contactInputValues.phone);
+    openDialog('contact-created-popup');
+
+    setTimeout(() => {
+        closeDialog('contact-created-popup');
+      }, 1500);
+
     closeDialog('add-contact');
     reloadContacts();
 }

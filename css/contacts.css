@@ -207,6 +207,7 @@ h1 {
     position: relative;
     top: 35px;
     right: -40%;
+    cursor: pointer;
 }
 
 .contacts-details {
@@ -433,6 +434,22 @@ h1 {
     flex-direction: column;
 }
 
+#contact-created-popup {
+    width: 60vw;
+    height: 74px;
+    border-radius: 10px;
+    color: var(--body-bg-color);
+    background-color: var(--primary-color);
+    position: fixed;
+    z-index: 90;
+    top: 40%;
+    left: 20%;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    align-content: center;
+}
+
 
 /* == responsive desktop == */
 
@@ -508,16 +525,17 @@ h1 {
         display: none;
     }
 
-    .bg:not(#add-contact):not(#edit-contact):not(#delete-edit-menu) {
+    .bg:not(#add-contact):not(#edit-contact):not(#delete-edit-menu):not(#contact-created-popup) {
         display: unset;
         /* transition: transform 0.3s ease-out, background-color 0s ease-out; */
+        /* :not(#contact-created-popup) */
     }
     
-    .bg.closed:not(#add-contact):not(#edit-contact):not(#delete-edit-menu) {
+    .bg.closed:not(#add-contact):not(#edit-contact):not(#delete-edit-menu):not(#contact-created-popup) {
         transform: none;
     }
     
-    .bg.opened:not(#add-contact):not(#edit-contact):not(#delete-edit-menu) {
+    .bg.opened:not(#add-contact):not(#edit-contact):not(#delete-edit-menu):not(#contact-created-popup) {
         background-color: unset;
         z-index: unset;
         position: unset;
@@ -625,6 +643,11 @@ h1 {
     .add-contact-btn-layout {
         display: flex;
         flex-direction: row;
+    }
+
+    #contact-created-popup {
+        width: 40vw;
+        left:30%
     }
 }
 

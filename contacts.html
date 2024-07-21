@@ -6,93 +6,96 @@
     <title>Brian</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/css/contacts.css">
-    <link rel="stylesheet" href="/css/contacts_desktop.css">
     <script src="script.js"></script>
     <script src="js/contacts.js"></script>
     <script src="js/global_render_HTML.js"></script>
-
-
 </head>
+
+
 <body onload="contactsInit()">
 
-<header id="header">
+    <header id="header">
 
-</header>
+    </header>
 
-<div class="contact-list-details">
-    <section id="contact-list" class="contacts-list contacts-disp-flex-ai-center-fd-col">
-    </section> 
+    <div class="contact-list-details">
+        <section id="contact-list" class="contacts-list contacts-disp-flex-ai-center-fd-col">
+        </section> 
 
-    <section id="contacts-details" class="bg contacts-details contacts-disp-flex-ai-center-fd-col">
-        <img class="close-arrow" onclick="closeDialog('contacts-details')"src="/assets/img/arrow-left-line.svg" alt="">
-        <div id="contact-details-header" class="width-80 contacts-disp-flex-ai-start-fd-col gap-16 mb-40">
-            <h1>Contacts</h1>
-            <div class="contacts-details-seperator-desktop"></div>
-            <p id="contact-slogan" class="fs-16">Better with a team</p>
-            <div class="contacts-details-seperator-mobile"></div>
-        </div>
-        <div id="contact-detail" class="width-80 contacts-disp-flex-ai-start-fd-col gap-30">
-        </div>    
-        <button id="open-delete-edit-menu-btn" onclick="openDialog('delete-edit-menu')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/more_vert.svg" alt=""></button>
-        <div id="delete-edit" class="delete-edit d-none" onclick="closeDialog('delete-edit-menu')"></div>
-            <div id="delete-edit-menu" class="bg del-edit-menu">
-                <div id="edit-btn" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
-                <div id="del-btn" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="/assets/img/delete.svg" alt="">Delete</div>
+        <section id="contacts-details" class="bg contacts-details contacts-disp-flex-ai-center-fd-col">
+            <img class="close-arrow" onclick="closeDialog('contacts-details')"src="/assets/img/arrow-left-line.svg" alt="">
+            <div id="contact-details-header" class="width-80 contacts-disp-flex-ai-start-fd-col gap-16 mb-40">
+                <h1>Contacts</h1>
+                <div class="contacts-details-seperator-desktop"></div>
+                <p id="contact-slogan" class="fs-16">Better with a team</p>
+                <div class="contacts-details-seperator-mobile"></div>
             </div>
+            <div id="contact-detail" class="width-80 contacts-disp-flex-ai-start-fd-col gap-30">
+            </div>    
+            <button id="open-delete-edit-menu-btn" onclick="openDialog('delete-edit-menu')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/more_vert.svg" alt=""></button>
+            <div id="delete-edit" class="delete-edit d-none" onclick="closeDialog('delete-edit-menu')"></div>
+                <div id="delete-edit-menu" class="bg del-edit-menu">
+                    <div id="edit-btn" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
+                    <div id="del-btn" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="/assets/img/delete.svg" alt="">Delete</div>
+                </div>
+        </section>
+    </div>
+
+    <div id="contact-created-popup" class="bg">
+        <span>Contact successfully created</span>
+    </div>
+
+    <section id="add-contact" class="bg">
+        <div class="addAndEditDialog">
+            <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
+            <div class="contacts-top-half contacts-disp-flex-center-center-col">
+                <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+                    <h1 class="color-white fw-700">Add contact</h1>
+                    <p class="color-white fw-400">Tasks are better with a team!</p>
+                    <div class="contacts-details-seperator"></div>
+                </div>
+            </div>
+            <div class="contacts-management-user-initials disp-flex-center-center"><img src="/assets/img/person_white.svg" alt=""></div>
+            <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+                <form onsubmit="addContact(); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+                    <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
+                    <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
+                    <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
+                    <div class="add-contact-btn-layout gap-20">
+                        <button id="cancel-btn" name="cancel_btn" type="button" onclick="closeDialog('add-contact')" class="btn-secondary btn-cancel disp-flex-center-center">Cancel</button>
+                        <button id="create-btn" type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+                    </div>
+                </form>
+            </div> 
+        </div>
     </section>
-</div>
 
-<section id="add-contact" class="bg">
-    <div class="addAndEditDialog">
-        <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
-        <div class="contacts-top-half contacts-disp-flex-center-center-col">
-            <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
-                <h1 class="color-white fw-700">Add contact</h1>
-                <p class="color-white fw-400">Tasks are better with a team!</p>
-                <div class="contacts-details-seperator"></div>
-            </div>
-        </div>
-        <div class="contacts-management-user-initials disp-flex-center-center"><img src="/assets/img/person_white.svg" alt=""></div>
-        <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
-            <form onsubmit="addContact(); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
-                <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
-                <input required id="contact-email" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
-                <input required id="contact-phone" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
-                <div class="add-contact-btn-layout gap-20">
-                    <button id="cancel-btn" name="cancel_btn" type="button" onclick="closeDialog('add-contact')" class="btn-secondary btn-cancel disp-flex-center-center">Cancel</button>
-                    <button id="create-btn" type="submit" class="btn-primary btn-create disp-flex-center-center">Create contact</button>
+    <section id="edit-contact" class="bg">
+        <div class="addAndEditDialog">
+            <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
+            <div class="contacts-top-half contacts-disp-flex-center-center-col">
+                <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+                    <h1 class="color-white fw-700">Edit contact</h1>
+                    <div class="contacts-details-seperator"></div>
                 </div>
-            </form>
-        </div> 
-    </div>
-</section>
-
-<section id="edit-contact" class="bg">
-    <div class="addAndEditDialog">
-        <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
-        <div class="contacts-top-half contacts-disp-flex-center-center-col">
-            <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
-                <h1 class="color-white fw-700">Edit contact</h1>
-                <div class="contacts-details-seperator"></div>
             </div>
+            <div id="contacts-user-initials-saved" class="contacts-management-user-initials disp-flex-center-center">AM</div>
+            <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
+                <form onsubmit="editContact(currentOpenedContact); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
+                    <input required id="contact-name-saved" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
+                    <input required id="contact-email-saved" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
+                    <input required id="contact-phone-saved" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
+                    <div class="edit-btn-layout gap-20">
+                        <button id="delete-btn" name ="delete_btn" type="button" onclick="deleteContact(currentOpenedContact)" class="btn-secondary btn-wo-icon disp-flex-center-center">Delete</button>
+                        <button id="save-edit-btn" name= "edit_btn" type="submit" class="btn-primary btn-create disp-flex-center-center">Save</button>
+                    </div>
+                </form>
+            </div> 
         </div>
-        <div id="contacts-user-initials-saved" class="contacts-management-user-initials disp-flex-center-center">AM</div>
-        <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
-            <form onsubmit="editContact(currentOpenedContact); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
-                <input required id="contact-name-saved" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
-                <input required id="contact-email-saved" class="icon-contact-mail contacts-input width-80" placeholder="EMail" type="email">
-                <input required id="contact-phone-saved" class="icon-contact-phone contacts-input width-80" placeholder="Phone" type="tel">
-                <div class="edit-btn-layout gap-20">
-                    <button id="delete-btn" name ="delete_btn" type="button" onclick="deleteContact(currentOpenedContact)" class="btn-secondary btn-wo-icon disp-flex-center-center">Delete</button>
-                    <button id="save-edit-btn" name= "edit_btn" type="submit" class="btn-primary btn-create disp-flex-center-center">Save</button>
-                </div>
-            </form>
-        </div> 
-    </div>
-</section>
+    </section>
 
-<nav id="nav"></nav>
-<nav id="sideNav"></nav>
+    <nav id="nav"></nav>
+    <nav id="sideNav"></nav>
 
 </body>
 </html>
