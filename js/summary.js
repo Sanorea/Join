@@ -13,7 +13,7 @@ async function initSummary(id, renderClass) {
     docID('body-summary-content').innerHTML = renderSummaryHTML();
     loadTheWelcomeSreen();
     // loadFocus();
-    renderSideNavHTML(id, renderClass);
+    // renderSideNavHTML(id, renderClass);
 }
 
 let date = new Date();
