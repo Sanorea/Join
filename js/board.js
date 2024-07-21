@@ -179,7 +179,7 @@ function taskCategory(element) {
             break;
 
         default:
-            categoryVal = `<div>Not Found</div>`;
+            categoryVal = `<div></div>`;
             break;
     }
     return categoryVal;
@@ -201,7 +201,7 @@ function findoutPrio(element) {
             break;
 
         default:
-            prioVal = `<div>Not Found</div>`;
+            prioVal = `<div></div>`;
             break;
     }
     return prioVal;
