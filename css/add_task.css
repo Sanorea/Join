@@ -530,8 +530,24 @@
     .right-side-pop-up {
         width: 100%;
     }
+}
 
+@media (max-width:370px) {
+    .add-task-input-fields {
+        font-size: 14px;
+    }
 
+    .add-task-input-fields-description {
+        font-size: 14px;
+    }
+
+    .addTask-selectfield {
+        font-size: 14px;
+    }
+
+    .add-task-prio-buttons {
+        font-size: 12px;
+    }
 }
 
 

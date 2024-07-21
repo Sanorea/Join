@@ -34,11 +34,6 @@ async function addTaskInit() {
     addTaskContactsToArray();
 }
 
-function toggleVisibility(elementId, show = true, className = "d-none-add-task") {
-    const element = document.getElementById(elementId);
-    show ? element.classList.remove(className) : element.classList.add(className); //wenn show = true, dann führe aus, ansonsten das andere
-}
-
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -51,14 +46,12 @@ async function includeHTML() {
 
 /*Assigned to*/
 
-/*Download Contacts*/
 async function addTaskContactsToArray() {
     let addTaskContacts = [];
     let addTaskResponseToJson = await addTaskLoadData(path = "");
     addTaskContacts.push(addTaskResponseToJson);
 }
 
-/*Create next ID for Task*/
 async function addTaskIdsToArray() {
     let addTaskIdsData = await loadData("/tasks");
     saveAddTaskIdsInArray(addTaskIdsData);
@@ -71,10 +64,8 @@ function saveAddTaskIdsInArray(addTaskIdsData) {
         tempArrIds.push([i, addTaskIdsData[i]]);
     }
     for (let i in tempArrIds) {
-
         arrIds.push(tempArrIds[i][1]);
         arrIds[i]['unique-key'] = tempArrIds[i][0];
-
     }
 }
 
@@ -96,7 +87,6 @@ async function renderContactListInput() {
     colors = await renderColors();
     return { names, acronyms, colors };
 }
-
 
 async function renderNames() {
     for (let i = 0; i < arrContacts.length; i++) {
