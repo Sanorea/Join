@@ -84,10 +84,10 @@ function taskArray(keyToObject) {
     } else {
         for (let i = 0; i < list.length; i++) {
             const element = list[i];
-            const elementBoolean = checkedList[i];
+            // const elementBoolean = checkedList[i];
             content += `
         <div class="list-card-subtaskarray">
-            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" checked="false"  value="${element}">
+            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" value="${element}">
             <div>
                 <div>${element}</div>
             </div>    
