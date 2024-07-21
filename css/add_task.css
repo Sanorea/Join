@@ -141,6 +141,7 @@
     border: 1px solid #D1D1D1;
     width: 100%;
     background-color: var(--element-bg-color);
+    box-sizing: content-box !important;
 }
 
 /*Klassen der Elemente*/
