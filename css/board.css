@@ -258,7 +258,8 @@
     border-radius: 10px;
     gap: 20px;
     overflow-x: scroll;
-    padding: 10px 0;
+    padding: 10px 10px;
+    max-width: 100vw;
 }
 
 .drag-area-highlight,
@@ -286,7 +287,7 @@
 
 .drag-area::-webkit-scrollbar {
     width: 10px;
-    height: 5px;
+    height: 7px;
 }
 
 /* scrollbar track */
@@ -472,6 +473,27 @@ border-radius: 30px;
 }
 
 
+@media(min-width: 1017px) {
+
+    /* note: 1017px / 1403 px */
+    .board-body {
+        margin-left: 232px;
+    }
+
+    .board-top {
+        margin-top: 190px;
+    }
+
+    .card-content:hover {
+        transform: rotate(2deg);
+    }
+
+    .drag-area {
+        max-width: 80vw;
+        padding: 10px 5px;
+    }
+}
+
 @media(min-width: 1520px) {
 
     /* note: 1017px / 1403 px */
@@ -536,6 +558,7 @@ border-radius: 30px;
 
     .drag-area {
         min-height: 50vh;
+        height: fit-content;
         overflow-x: unset;
     }
 
@@ -548,18 +571,3 @@ border-radius: 30px;
     }
 }
 
-@media(min-width: 1017px) {
-
-    /* note: 1017px / 1403 px */
-    .board-body {
-        margin-left: 232px;
-    }
-
-    .board-top {
-        margin-top: 190px;
-    }
-
-    .card-content:hover {
-        transform: rotate(2deg);
-    }
-}
