@@ -148,22 +148,6 @@ async function renderContactListaddTasks() {
     readValueAssignedTo();
 }
 
-function renderContactListHTML(color, acronym, name, i) {
-    return /*html*/`   
-        <table>
-            <div class ="dropDownList-contact-container">
-                <div class ="dropDownList-contact-element">
-                    <div class ="add-task-details-user-initials" style="background-color: ${color}">${acronym}</div>
-                    <div class ="dropDownList-contact-element">${name}</div>
-                </div>
-                <div class ="dropDownList-contact-element" >
-                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${color};${name}">
-                </div>
-            </div>
-        </table>
-        `;
-}
-
 async function rendercheckedContacts() {
     checkedAcronyms = [];
     checkedNames = [];
@@ -244,18 +228,6 @@ async function renderDropdownCategorieAddTasks() {
         const categorie = categories[i];
         dropDown.innerHTML += templateRenderHTMLDropdownCategory(categorie);
     }
-}
-
-function templateRenderHTMLDropdownCategory(categorie) {
-    return /*html*/ `                
-    <li>
-        <label>
-            <div>
-                <div>${categorie}</div>
-            </div>    
-            <input type="checkbox" value="${categorie}">
-        </label>
-    </li>`;
 }
 
 function openCategoryList() {
@@ -354,89 +326,6 @@ function clearFieldsDropDown(title, description, date, categorie, subtasks) {
     categorie.value = "";
 }
 
-/*Subtasks*/
-
-function taskInput() {
-    let addImg = docID('switch_img');
-    let checkImg = docID('check-visibility');
-    addImg.src = "assets/img/close.svg";
-    checkImg.classList.remove('d-none');
-}
-
-function addToSubtaskArray() {
-    let inputValue = docID('subtasks-input');
-    let value = inputValue.value;
-    subtaskArray.push(value);
-    renderList();
-    inputValue.value = '';
-}
-
-function renderList() {
-    let subtaskList = docID('add-task-subtasks-list');
-    subtaskList.innerHTML = '';
-    for (let i = 0; i < subtaskArray.length; i++) {
-        const element = subtaskArray[i];
-        subtaskList.innerHTML += renderSubtaskList(element, i);
-    }
-}
-
-function renderSubtaskList(element, i) {
-    return /*HTML*/`
-    <div id="editId_${i}" class="list hover">
-       <li>${element}</li>
-       <div class="img-content hover">
-           <img onclick="editSubtask(${i})" src="/assets/img/edit_icon.svg" alt="Bearbeiten">
-           <div class="split"></div>
-           <img onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt="Löschen">
-       </div>
-    </div>
-    `;
-}
-
-function deleteValue() {
-    let inputValue = docID('subtasks-input');
-    inputValue.value = '';
-}
-
-function deletTask(element) {
-    subtaskArray.splice(element, 1);
-    renderList();
-}
-
-function editSubtask(i) {
-    // let subtaskList = docID('add-task-subtasks-list');
-    let subtask = subtaskArray[i];
-    let editTask = docID(`editId_${i}`);
-    editTask.innerHTML = renderSwitchToInput(i);
-    let edit = docID(`edit_content_${i}`);
-    let newIdContent = docID(`newID_${i}`);
-    newIdContent.value = subtask;
-    edit.classList.add('aktiveInput');
-    docID('newInputSwitchImg').innerHTML = `<img onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt=""></img>`;
-    docID('otherInputSitchImg').innerHTML = `<img onclick="finishEditInput(${i})" src="assets/img/check-task.svg" alt=""></img>`;
-}
-
-function renderSwitchToInput(i) {
-    return /*HTML*/ `
-    <div id="edit_content_${i}" class="list">
-        <li><input class="newEditInput" id="newID_${i}" type="text"></li>
-        <div class="img-content hover">
-        <div id="newInputSwitchImg"><img onclick="editSubtask(${i})" src="/assets/img/edit_icon.svg" alt="Bearbeiten"></div>
-           <div class="split"></div>
-           <div id="otherInputSitchImg"><img onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt="Löschen"></div>
-           </div>
-    </div>
-    `;
-}
-
-function finishEditInput(i) {
-    let newElement = docID(`newID_${i}`).value;
-    let editTask = docID(`editId_${i}`);
-    subtaskArray[i] = newElement;
-    let edit = subtaskArray[i];
-    editTask.innerHTML = renderSubtaskList(edit, i);
-}
-
 function searchContacts() {
     let inputField = docID('searchField');
     let search = inputField.value.toLowerCase();
@@ -475,22 +364,6 @@ async function renderSearchedContactListaddTasks() {
         const acronym = searchedAcronyms[i];
         dropDown.innerHTML += renderSearchedContactListHTML(color, acronym, name, i);
     }
-}
-
-function renderSearchedContactListHTML(color, acronym, name, i) {
-    return /*html*/`   
-            <table>
-            <div class ="dropDownList-contact-container">
-                <div class ="dropDownList-contact-element">
-                    <div class ="add-task-details-user-initials" style="background-color: ${color}">${acronym}</div>
-                    <div class ="dropDownList-contact-element">${name}</div>
-                </div>
-                <div class ="dropDownList-contact-element" >
-                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${color};${name}">
-                </div>
-            </div>
-        </table>
-            `;
 }
 
 function requiredFields(boardCategory) {

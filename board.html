@@ -16,6 +16,8 @@
     <script src="js/add_task.js"></script>
     <script src="/js/contacts.js"></script>
     <script src="/js/edit_task.js"></script>
+    <script src="js/add_task_render_HTML.js"></script>
+    <script src="js/add_task_subtask.js"></script>
     <link rel="stylesheet" href="css/add_task.css">
 </head>
 
@@ -81,7 +83,7 @@
     <!-- Edit-Card-Pop-Up -->
     <div class="card-popUp-background-edit d-none-add-task" id="cardPopUpBGEdit">
         <div class="card-popUp-background-edit-container" id="cardPopUpBGEditContainer">
-            <div onclick="closeEditCard()" class="edit-pop-up-closing-tag"><img src="/assets/img/close.svg" alt=""></div>
+            <div onclick="closeEditCard()" class="edit-pop-up-closing-tag"><img class="edit-pop-up-closing-tag-img" src="/assets/img/close.svg" alt=""></div>
             <div w3-include-html="templates/add_task_template.html"></div>
             <div class="edit-task-ok-button">
                 <button id="buttonPopUpOK" type="submit" class="btn-primary btn-create disp-flex-center-center d-none-add-task" onclick="editContact()">

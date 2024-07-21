@@ -569,6 +569,10 @@
     width: 100%;
 }
 
+.edit-pop-up-closing-tag-img:hover {
+    cursor: pointer;
+}
+
 .edit-task-ok-button {
     width: 100%;
     display: flex;

@@ -140,6 +140,7 @@ function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, desc
 
 function openNewTaskPopUp(boardCategory) {
     clearFormular();
+    scalePopUp();
     let popUp = docID('cardPopUpBGEdit');
     let button = docID('buttonPopUpAdd');
     popUp.classList.remove("d-none-add-task");
