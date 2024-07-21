@@ -58,15 +58,19 @@ function contactCardArray(keyToObject) {
     let list = keyToObject['acronymsAssignedTo'];
     let nameArray = keyToObject['namesAssignedTo']
     let array = "";
-    for (let i = 0; i < list.length; i++) {
-        const element = list[i];
-        let name = nameArray[i];
-        array += ` 
+    if (!list) {
+        array = `<div></div>`;
+    } else {
+        for (let i = 0; i < list.length; i++) {
+            const element = list[i];
+            let name = nameArray[i];
+            array += ` 
         <div class="reder-card">
           <div class="user-content-array">${element}</div>
           <div> ${name}</div>
         </div>
         `;
+        }
     }
     return array;
 }
@@ -74,9 +78,12 @@ function contactCardArray(keyToObject) {
 function taskArray(keyToObject) {
     let content = "";
     let list = keyToObject['subtasks'];
-    for (let i = 0; i < list.length; i++) {
-        const element = list[i];
-        content += `
+    if (!list) {
+        content = `<div></div>`;
+    } else {
+        for (let i = 0; i < list.length; i++) {
+            const element = list[i];
+            content += `
         <div class="list-card-subtaskarray">
             <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox"  value="${element}">
             <div>
@@ -84,6 +91,7 @@ function taskArray(keyToObject) {
             </div>    
          </div>       
             `;
+        }
     }
     return content;
 }
@@ -307,7 +315,7 @@ function subtaskBar(length, list) {
 }
 
 function subtaskCardCheckbox(element) {
-// let i = 0;
+    // let i = 0;
     // checkboxSubtask = []; 
     let object = arrTasks.find((y) => y['unique-key'] === element);
     let list = object['subtasks'];
@@ -335,6 +343,9 @@ function subtaskCardCheckbox(element) {
 function checkboxCheck(element) {
     let object = arrTasks.find((y) => y['unique-key'] === element);
     let list = object['subtasks'];
+    if (!list) {
+        list = [];
+    } else {
     for (let i = 0; i < list.length; i++) {
         let id = docID(`contactCardId${i}`);
         let value = id.value;
@@ -344,6 +355,7 @@ function checkboxCheck(element) {
             id.checked = true;
         }
     }
+}
 }
 
 async function deleteTaskPostData(path = "") {
