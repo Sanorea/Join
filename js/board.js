@@ -23,7 +23,7 @@ function ContactsArray(element) {
     let elementContact = "";
     let contact = element['acronymsAssignedTo'];
     if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
-        elementContact = `<div>not contact</div>`;
+        elementContact = `<div></div>`;
     } else
         for (let i = 0; i < contact.length; i++) {
             let user = contact[i];
