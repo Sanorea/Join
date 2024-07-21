@@ -114,6 +114,16 @@ function setActiveButton(containerId, btnClass) {
     }
 }
 
+function setActiveNavButton() {
+    let currentPath = window.location.href;
+    let currentSite = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    let activeElement = document.querySelectorAll(`[href="/${currentSite}"]`);
+
+    activeElement.forEach((element) => {
+        element.className += " active";
+    })
+}
+
 function setItemLocalStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }

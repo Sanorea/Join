@@ -1,25 +1,26 @@
 function renderSideNavHTML() {
-    docID('sideNav').innerHTML = /*HTML*/`<div class="sideNav-logo">
-    <img src="assets/img/Capa 1.svg" alt="">
-</div>
-<a href="summary.html"><div id="edit-sideNav" class="sideNav-links">
-    <div class="sideNav-summary" id="summary-link">
-        <img src="assets/img/Vector.svg" alt="">
-        <span class="sideNav-text">Summary</span>
-    </div></a>
-    <a href="add_tasks.html"><div class="sideNav-summary" id="add-task-link">
-        <img src="assets/img/edit_square.svg" alt="">
-        <span class="sideNav-text">Add Task</span>
-    </div></a>
-    <a href="board.html"><div class="sideNav-summary" id="board-link">
-        <img src="assets/img/vec.svg" alt="">
-        <span class="sideNav-text">Board</span>
-    </div></a>
-     <a href="contacts.html"><div class="sideNav-summary" id="">
-        <img src="assets/img/perm_contact_calendar.svg" alt="">
-        <span class="sideNav-text">Contacts</span>
-    </div></a>
-</div>
+    docID('sideNav').innerHTML = /*HTML*/`
+    <div class="sideNav-logo">
+        <img src="assets/img/Capa 1.svg" alt="">
+    </div>
+    <div id="edit-sideNav" class="sideNav-links">
+        <a href="/summary.html"><div class="sideNav-summary" id="summary-link">
+            <img src="assets/img/Vector.svg" alt="">
+            <span class="sideNav-text">Summary</span>
+        </div></a>
+        <a href="/add_tasks.html"><div class="sideNav-summary" id="add-task-link">
+            <img src="assets/img/edit_square.svg" alt="">
+            <span class="sideNav-text">Add Task</span>
+        </div></a>
+        <a href="/board.html"><div class="sideNav-summary" id="board-link">
+            <img src="assets/img/vec.svg" alt="">
+            <span class="sideNav-text">Board</span>
+        </div></a>
+        <a href="/contacts.html"><div class="sideNav-summary" id="">
+            <img src="assets/img/perm_contact_calendar.svg" alt="">
+            <span class="sideNav-text">Contacts</span>
+        </div></a>
+    </div>
 <div id="edit-content" class="sideNav-policy-content">
     <a class="sideNav-policy-a" href="../legal_notice.html"><span class="sideNav-policy">Privacy Policy</span></a>
     <a class="sideNav-policy-a" href="../privacy_policy.html"><span class="sideNav-notice">Legal notice</span></a>
@@ -85,4 +86,5 @@ function renderHeaderNav(id, renderClass) {
     renderHeader(finishFirstletter, id, renderClass);
     renderNav();
     renderSideNavHTML(id, renderClass);
+    setActiveNavButton();
 }

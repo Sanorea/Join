@@ -139,7 +139,9 @@ header {
 
 }
 
-
+.active {
+    background-color: var(--focus-color);
+}
 
 
 /* used for close icon */
