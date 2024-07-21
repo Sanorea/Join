@@ -30,7 +30,7 @@
                 <img onclick="openNewTaskPopUp('toDo')" class="board-add-task cursor" src="assets/img/add-img.svg" alt="">
             </div>
             <div class="board-input-content">
-                <input class="board-input" placeholder="Find Task" type="text">
+                <input id="searchbar" class="board-input" onkeyup="search()" placeholder="Find Task" type="text">
                 <button class="board-add-btn cursor"  onclick="openNewTaskPopUp('toDo')">Add Task <img class="board-add-btn-img"
                         src="assets/img/add-white.svg" alt=""></button>
             </div>
