@@ -102,6 +102,7 @@ header {
     height: 76px;
     color: #CDCDCD;
     border-radius: 16px;
+    text-decoration: none;
 }
 
 .nav-bar-container {
