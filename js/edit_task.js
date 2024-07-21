@@ -1,25 +1,23 @@
 let addArrTasks = [];
 let uniqueKey = "";
-/* let globalBoardCategory = ""; */
 
 async function editCard(key) {
     await showPopUp();
-    resettStartPrios('low');
-    resettStartPrios('medium');
-    resettStartPrios('urgent');
+    resetStartPrios('low');
+    resetStartPrios('medium');
+    resetStartPrios('urgent');
     saveInputs(key);
     showSavedPrio(key);
     showSavedAssignedTo(key);
     showSubtasks(key);
     docID('categorieCapture').classList.add('d-none-add-task');
     scalePopUp();
-
 }
 
-function resettStartPrios(prio) {
+function resetStartPrios(prio) {
     docID(`prio${prio}`).classList.remove(`${prio}-color`);
     docID(`${prio}Img`).innerHTML = `
-    <img src="/assets/img/${prio}-white.svg" alt="prio">`;
+    <img src="/assets/img/${prio}.svg" alt="prio">`;
 }
 
 async function showPopUp() {
@@ -34,7 +32,7 @@ async function showPopUp() {
 }
 
 function saveInputs(key) {
-    uniqueKey=key;
+    uniqueKey = key;
     let savedTitle = addArrTasks[0][key]['title'];
     let savedDescription = addArrTasks[0][key]['description'];
     let savedDate = addArrTasks[0][key]['date'];
@@ -62,14 +60,17 @@ function scalePopUp() {
 
 function showSavedPrio(key) {
     let savedPrio = addArrTasks[0][key]['prio'];
-    if (savedPrio==='low') {
+    if (savedPrio === 'low') {
         changeColorPrioButton('low');
+        console.log('low :>> ', 'low');
+    } else if (savedPrio === 'medium') {
+        changeColorPrioButton('medium');
+        console.log('medium :>> ', 'medium');
+    } else if (savedPrio === 'urgent') {
+        changeColorPrioButton('urgent');
+        console.log('urgent :>> ', 'urgent');
     } else {
-        if (savedPrio==='medium') {
-            changeColorPrioButton('medium');
-        } else {
-            changeColorPrioButton('urgent');
-        }
+        console.log('else :>> ', 'else');
     }
 }
 
@@ -98,7 +99,7 @@ function changeColorPrioButton(prio) {
     <img src="/assets/img/${prio}-white.svg" alt="prio">`;
 }
 
-function closeEditCard () {
+function closeEditCard() {
     let popUp = docID('cardPopUpBGEdit');
     popUp.classList.add("d-none-add-task");
     docID('categorieCapture').classList.remove('d-none-add-task');
@@ -118,6 +119,7 @@ async function addTaskLoadData(path = "") {
 
 async function addTaskContactsToArray() {
     let addTaskResponseToJson = await addTaskLoadData(path = "/tasks");
+    addArrTasks = [];
     addArrTasks.push(addTaskResponseToJson);
 }
 
@@ -128,12 +130,12 @@ async function editContact() {
     let savedBoardCategory = addArrTasks[0][uniqueKey]['boardCategory'];
     let savedTaskCategory = addArrTasks[0][uniqueKey]['taskCategory'];
     let savedID = addArrTasks[0][uniqueKey]['id'];
-    pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title);
+    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title);
+    closeEditCard();
     updateHTML();
-    closeEditCard(); 
 }
 
-function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
+async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
     updateData("/tasks/" + uniqueKey, {
         "boardCategory": savedBoardCategory,
         "taskCategory": savedTaskCategory,
@@ -181,7 +183,7 @@ function resettCheckedContacts() {
         if (name.checked = true) {
             name.checked = false
         }
-    rendercheckedContacts();
+        rendercheckedContacts();
     }
 }
 
