@@ -1,6 +1,7 @@
 let arrTasks = [];
 let checkboxSubtask = [];
 let checkedSubtasks = [];
+let searchResults = [];
 
 let currentDraggedElement;
 
@@ -141,7 +142,6 @@ function renderCardHTML(element, subTaskResult, prioResult, taskCategory, Contac
 
 async function updateHTML() {
     await getTaskData();
-    let test = await getTaskData();
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
     let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
 
@@ -361,4 +361,44 @@ function closeCardPopUp() {
 function renderInToDo() {
     let body = document.getElementById('todo-body-card');
     body.innerHTML = renderCardHTML();
+}
+
+function search() {
+    let searchValue = document.getElementById('searchbar').value.toLowerCase();
+    searchResults = [];
+
+    for (i = 0; i < arrTasks.length; i++) {
+        let searchResult = arrTasks[i];
+        if (arrTasks[i]['title'].toLowerCase().includes(searchValue) || arrTasks[i]['description'].toLowerCase().includes(searchValue)) {
+            searchResults.push(searchResult);
+        }
+    }
+
+    renderTasksBasedOnSearchInput();
+}
+
+
+function renderTasksBasedOnSearchInput() {
+    let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
+    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
+
+    for (let i = 0; i < boardCategories.length; i++) {
+        let category = boardCategories[i];
+        let elements = searchResults.filter(t => t['boardCategory'] == category);
+
+        if (elements.length > 0) {
+            docID(category).innerHTML = '';
+        } else {
+            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
+        }
+
+        for (let index = 0; index < elements.length; index++) {
+            const element = elements[index];
+            let taskCategoryResult = taskCategory(element);
+            let subTaskResult = subtaskList(element, index);
+            let prioResult = findoutPrio(element);
+            let ContactsArrayResult = ContactsArray(element);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
+        }
+    }
 }

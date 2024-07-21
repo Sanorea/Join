@@ -123,6 +123,7 @@
     font-family: 'Inter';
     font-size: 16px;
     font-weight: 400;
+    box-sizing: border-box;
 }
 
 .add-task-subtasks-inputfield img {

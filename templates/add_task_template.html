@@ -5,15 +5,15 @@
                 <p class="font-size-add-task">Title</p>
                 <p class="add-task-required-icon">*</p>
             </div>
-            <input id="add-task-input-title" class="add-task-input-fields" type="text"
+            <input maxlength="30" minlength="2" id="add-task-input-title" class="add-task-input-fields" type="text"
                 placeholder="Enter a title" required>
             <div id="titleRequired" class="required-field d-none-add-task">This field is required</div>
         </div>
         <div class="add-task-capture-input">
             <p class="font-size-add-task">Description</p>
-            <input id="add-task-input-description"
+            <textarea maxlength="250" rows="5" id="add-task-input-description"
                 class="add-task-input-fields-description" type="text"
-                placeholder="Enter a Description">
+                placeholder="Enter a Description"></textarea>
         </div>
         <div class="add-task-capture-input">
             <p class="font-size-add-task">Assigned to</p>
