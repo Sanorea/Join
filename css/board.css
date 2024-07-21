@@ -468,7 +468,6 @@ border-radius: 30px;
     gap: 20px;
 }
 
-
 @media(min-width: 1520px) {
 
     /* note: 1017px / 1403 px */
@@ -554,5 +553,9 @@ border-radius: 30px;
 
     .board-top {
         margin-top: 190px;
+    }
+
+    .card-content:hover {
+        transform: rotate(2deg);
     }
 }
