@@ -9,6 +9,7 @@ function addToSubtaskArray() {
     let inputValue = docID('subtasks-input');
     let value = inputValue.value;
     subtaskArray.push(value);
+    subtaskCheckedArray.push("false");
     renderList();
     inputValue.value = '';
 }

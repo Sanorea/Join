@@ -78,14 +78,16 @@ function contactCardArray(keyToObject) {
 function taskArray(keyToObject) {
     let content = "";
     let list = keyToObject['subtasks'];
+    let checkedList = keyToObject['subtasksChecked']
     if (!list) {
         content = `<div></div>`;
     } else {
         for (let i = 0; i < list.length; i++) {
             const element = list[i];
+            const elementBoolean = checkedList[i];
             content += `
         <div class="list-card-subtaskarray">
-            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox"  value="${element}">
+            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" checked="false"  value="${element}">
             <div>
                 <div>${element}</div>
             </div>    
@@ -290,7 +292,7 @@ function openCard(element) {
     let subtaskListArray = taskArray(keyToObject);
     let contactCardArrayResult = contactCardArray(keyToObject);
     container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
-    checkboxCheck(element);
+    // checkboxCheck(element);
 }
 
 function deleteCard(key) {
@@ -316,7 +318,7 @@ function subtaskBar(length, list) {
 
 function subtaskCardCheckbox(element) {
     // let i = 0;
-    // checkboxSubtask = []; 
+    checkboxSubtask = []; 
     let object = arrTasks.find((y) => y['unique-key'] === element);
     let list = object['subtasks'];
     for (let i = 0; i < list.length; i++) {
@@ -340,23 +342,24 @@ function subtaskCardCheckbox(element) {
     }
 }
 
-function checkboxCheck(element) {
-    let object = arrTasks.find((y) => y['unique-key'] === element);
-    let list = object['subtasks'];
-    if (!list) {
-        list = [];
-    } else {
-    for (let i = 0; i < list.length; i++) {
-        let id = docID(`contactCardId${i}`);
-        let value = id.value;
-        let check = checkboxSubtask.find((y) => y === value);
+// function checkboxCheck(element) {
+//     let object = arrTasks.find((y) => y['unique-key'] === element);
+//     let list = object['subtasks'];
+//     let checked = object['subtasksChecked']
+//     if (!list) {
+//         list = [];
+//     } else {
+//     for (let i = 0; i < list.length; i++) {
+//         let id = docID(`contactCardId${i}`);
+//         let value = id.value;
+//         let check = checkboxSubtask.find((y) => y === value);
 
-        if (check == value && id.checked == false) {
-            id.checked = true;
-        }
-    }
-}
-}
+//         if (check == value && id.checked == false) {
+//             id.checked = true;
+//         }
+//     }
+// }
+// }
 
 async function deleteTaskPostData(path = "") {
     let responseAddTask = await fetch(BASE_URL + path + ".json", {

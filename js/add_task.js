@@ -1,4 +1,5 @@
 
+let subtaskCheckedArray = [];
 let subtaskArray = [];
 let arrIds = [];
 let windowEvent;
@@ -315,6 +316,7 @@ function postAddTaskInputs(boardCategory, date, description, newId, title) {
         "title": title.value,
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,
+        "subtasksChecked": subtaskCheckedArray, 
     });
 }
 
