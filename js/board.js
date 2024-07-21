@@ -143,6 +143,7 @@ async function updateHTML() {
     await getTaskData();
     let test = await getTaskData();
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
+    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
         let category = boardCategories[i];
@@ -151,7 +152,7 @@ async function updateHTML() {
         if (elements.length > 0) {
             docID(category).innerHTML = '';
         } else {
-            docID(category).innerHTML = '<span class="empty-task-text">No Task in ...</span>';
+            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
         }
 
         for (let index = 0; index < elements.length; index++) {
