@@ -219,6 +219,10 @@
     background-color: #F4F4F4 !important;
 }
 
+.w3-container {
+    padding: 0 !important;
+}
+
 .bar {
     width: 100%;
     display: flex;
@@ -346,7 +350,6 @@ border-radius: 30px;
     font-size: 16px;
     font-weight: 400;
     color: white;
-    background-color: #0038FF;
     padding: 4px 16px 4px 16px;
     gap: 10px;
     border-radius: 8px;

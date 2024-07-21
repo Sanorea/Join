@@ -19,78 +19,6 @@ async function getTaskData() {
     return taskData;
 }
 
-
-async function updateHTML() {
-    await getTaskData();
-    let test = await getTaskData();
-    /*     console.log(test); */
-    let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
-
-    for (let i = 0; i < boardCategories.length; i++) {
-        let category = boardCategories[i];
-        let elements = arrTasks.filter(t => t['boardCategory'] == category);
-
-        if (elements.length > 0) {
-            docID(category).innerHTML = '';
-        } else {
-            docID(category).innerHTML = '<span class="empty-task-text">No Task in ...</span>';
-        }
-
-        for (let index = 0; index < elements.length; index++) {
-            const element = elements[index];
-            let taskCategoryResult = taskCategory(element);
-            let subTaskResult = subtaskList(element, index);
-            let prioResult = findoutPrio(element);
-            let ContactsArrayResult = ContactsArray(element);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
-        }
-    }
-    console.log(arrTasks);
-}
-
-
-function taskCategory(element) {
-    let category = element['taskCategory'];
-    let categoryVal = "";
-
-    switch (category) {
-        case 'User Story':
-            categoryVal = `<div class="headline-card">User Story</div>`;
-            break;
-        case 'Technical Task':
-            categoryVal = `<div class="headline-card-Technical">Technical Task</div>`;
-            break;
-
-        default:
-            categoryVal = `<div>Not Found</div>`;
-            break;
-    }
-    return categoryVal;
-}
-
-function findoutPrio(element) {
-    /*     console.log(element); */
-    let prio = element['prio'];
-    let prioVal = "";
-
-    switch (prio) {
-        case 'urgent':
-            prioVal = `<div><img src="assets/img/prio high.svg" alt=""></div>`;
-            break;
-        case 'medium':
-            prioVal = `<div><img src="assets/img/Capa 2.svg" alt=""></div>`;
-            break;
-        case 'low':
-            prioVal = `<div><img src="assets/img/Prio low.svg" alt=""></img></div>`;
-            break;
-
-        default:
-            prioVal = `<div>Not Found</div>`;
-            break;
-    }
-    return prioVal;
-}
-
 function ContactsArray(element) {
     let elementContact = "";
     let contact = element['acronymsAssignedTo'];
@@ -114,7 +42,6 @@ function subtaskList(element, index) {
         let list = element['subtasks'].length
         let finishedTasks = checkFinishedTasks(element, list);
         let percent = subtaskBar(finishedTasks, list);
-        console.log(percent);
         return ` <div class="bar">
                 <div class="w3-light-grey">
                     <div id="editBar_${index}"  class="w3-container w3-green w3-center" style="width:${percent}%"></div>
@@ -126,97 +53,38 @@ function subtaskList(element, index) {
     }
 }
 
-function checkFinishedTasks(element, length) {
-    checkedSubtasks = [];
-    let list = element['subtasks'];
-    console.log(checkboxSubtask);
+function contactCardArray(keyToObject) {
+    let list = keyToObject['acronymsAssignedTo'];
+    let nameArray = keyToObject['namesAssignedTo']
+    let array = "";
     for (let i = 0; i < list.length; i++) {
-        const subtask = list[i];
-        let check = checkboxSubtask.find((y) => y == subtask);
-        if (check) {
-            checkedSubtasks.push(check);
-        }
-    }
-    subtaskBar(checkedSubtasks.length, length);
-    return checkedSubtasks.length;
-}
-
-
-function startDragging(id) {
-    currentDraggedElement = id;
-}
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-async function moveTo(category) {
-    let index = arrTasks.findIndex(obj => obj.id == currentDraggedElement);
-    let key = arrTasks[index]['unique-key'];
-    arrTasks[index]['boardCategory'] = category;
-
-    await updateData("/tasks/" + key, {
-        "taskCategory": arrTasks[index]['taskCategory'],
-        "boardCategory": arrTasks[index]['boardCategory'],
-        "date": arrTasks[index]['date'],
-        "description": arrTasks[index]['description'],
-        "id": arrTasks[index]['id'],
-        "prio": arrTasks[index]['prio'],
-        "subtasks": arrTasks[index]['subtasks'],
-        "title": arrTasks[index]['title'],
-        "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
-        "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
-    })
-
-    updateHTML();
-}
-
-function highlight(category1, category2, category3) {
-    document.getElementById(category1).classList.add('drag-area-highlight');
-    document.getElementById(category2).classList.add('drag-area-highlight');
-    document.getElementById(category3).classList.add('drag-area-highlight');
-}
-
-function removeHighlight() {
-    document.getElementById('toDo').classList.remove('drag-area-highlight');
-    document.getElementById('inProgress').classList.remove('drag-area-highlight');
-    document.getElementById('awaitFeedback').classList.remove('drag-area-highlight');
-    document.getElementById('done').classList.remove('drag-area-highlight');
-}
-
-function saveTaskDataInArray(taskData) {
-    let tempArrTasks = [];
-    arrTasks = [];
-    for (let i in taskData) {
-        tempArrTasks.push([i, taskData[i]]);
-    }
-
-    for (let i in tempArrTasks) {
-        arrTasks.push(tempArrTasks[i][1]);
-        arrTasks[i]['unique-key'] = tempArrTasks[i][0];
-    }
-
-    // console.log(arrTasks);
-    // console.log(arrTasks[0]['boardCategory']);
-}
-
-
-function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
-    let uniqueKey = element['unique-key'];
-    return /*HTML*/ `
-    <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
-        <div>${taskCategory}</div>
-        <div class="card-title">${element['title']}</div>
-        <div class="card-subtitle">${element['description']}</div>
-        <div class="card-subtask">
-          <div id='subtask-counter'>${subTaskResult}</div>
+        const element = list[i];
+        let name = nameArray[i];
+        array += ` 
+        <div class="reder-card">
+          <div class="user-content-array">${element}</div>
+          <div> ${name}</div>
         </div>
-        <div class="card-info">
-            <div class="card-profil">${ContactsArrayResult}</div>
-            <div class="card-difficulty">${prioResult}</div>
-        </div>
-    </div>
-    `;
+        `;
+    }
+    return array;
+}
+
+function taskArray(keyToObject) {
+    let content = "";
+    let list = keyToObject['subtasks'];
+    for (let i = 0; i < list.length; i++) {
+        const element = list[i];
+        content += `
+        <div class="list-card-subtaskarray">
+            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox"  value="${element}">
+            <div>
+                <div>${element}</div>
+            </div>    
+         </div>       
+            `;
+    }
+    return content;
 }
 
 function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray) {
@@ -253,6 +121,158 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
     `;
 }
 
+function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
+    let uniqueKey = element['unique-key'];
+    return /*HTML*/ `
+    <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
+        <div>${taskCategory}</div>
+        <div class="card-title">${element['title']}</div>
+        <div class="card-subtitle">${element['description']}</div>
+        <div class="card-subtask">
+          <div id='subtask-counter'>${subTaskResult}</div>
+        </div>
+        <div class="card-info">
+            <div class="card-profil">${ContactsArrayResult}</div>
+            <div class="card-difficulty">${prioResult}</div>
+        </div>
+    </div>
+    `;
+}
+
+async function updateHTML() {
+    await getTaskData();
+    let test = await getTaskData();
+    let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
+
+    for (let i = 0; i < boardCategories.length; i++) {
+        let category = boardCategories[i];
+        let elements = arrTasks.filter(t => t['boardCategory'] == category);
+
+        if (elements.length > 0) {
+            docID(category).innerHTML = '';
+        } else {
+            docID(category).innerHTML = '<span class="empty-task-text">No Task in ...</span>';
+        }
+
+        for (let index = 0; index < elements.length; index++) {
+            const element = elements[index];
+            let taskCategoryResult = taskCategory(element);
+            let subTaskResult = subtaskList(element, index);
+            let prioResult = findoutPrio(element);
+            let ContactsArrayResult = ContactsArray(element);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
+        }
+    }
+}
+
+function taskCategory(element) {
+    let category = element['taskCategory'];
+    let categoryVal = "";
+
+    switch (category) {
+        case 'User Story':
+            categoryVal = `<div class="headline-card">User Story</div>`;
+            break;
+        case 'Technical Task':
+            categoryVal = `<div class="headline-card-Technical">Technical Task</div>`;
+            break;
+
+        default:
+            categoryVal = `<div>Not Found</div>`;
+            break;
+    }
+    return categoryVal;
+}
+
+function findoutPrio(element) {
+    let prio = element['prio'];
+    let prioVal = "";
+
+    switch (prio) {
+        case 'urgent':
+            prioVal = `<div><img src="assets/img/prio high.svg" alt=""></div>`;
+            break;
+        case 'medium':
+            prioVal = `<div><img src="assets/img/Capa 2.svg" alt=""></div>`;
+            break;
+        case 'low':
+            prioVal = `<div><img src="assets/img/Prio low.svg" alt=""></img></div>`;
+            break;
+
+        default:
+            prioVal = `<div>Not Found</div>`;
+            break;
+    }
+    return prioVal;
+}
+
+function checkFinishedTasks(element, length) {
+    checkedSubtasks = [];
+    let list = element['subtasks'];
+    for (let i = 0; i < list.length; i++) {
+        const subtask = list[i];
+        let check = checkboxSubtask.find((y) => y == subtask);
+        if (check) {
+            checkedSubtasks.push(check);
+        }
+    }
+    subtaskBar(checkedSubtasks.length, length);
+    return checkedSubtasks.length;
+}
+
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+async function moveTo(category) {
+    let index = arrTasks.findIndex(obj => obj.id == currentDraggedElement);
+    let key = arrTasks[index]['unique-key'];
+    arrTasks[index]['boardCategory'] = category;
+
+    await updateData("/tasks/" + key, {
+        "taskCategory": arrTasks[index]['taskCategory'],
+        "boardCategory": arrTasks[index]['boardCategory'],
+        "date": arrTasks[index]['date'],
+        "description": arrTasks[index]['description'],
+        "id": arrTasks[index]['id'],
+        "prio": arrTasks[index]['prio'],
+        "subtasks": arrTasks[index]['subtasks'],
+        "title": arrTasks[index]['title'],
+        "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
+        "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
+    })
+    updateHTML();
+}
+
+function highlight(category1, category2, category3) {
+    document.getElementById(category1).classList.add('drag-area-highlight');
+    document.getElementById(category2).classList.add('drag-area-highlight');
+    document.getElementById(category3).classList.add('drag-area-highlight');
+}
+
+function removeHighlight() {
+    document.getElementById('toDo').classList.remove('drag-area-highlight');
+    document.getElementById('inProgress').classList.remove('drag-area-highlight');
+    document.getElementById('awaitFeedback').classList.remove('drag-area-highlight');
+    document.getElementById('done').classList.remove('drag-area-highlight');
+}
+
+function saveTaskDataInArray(taskData) {
+    let tempArrTasks = [];
+    arrTasks = [];
+    for (let i in taskData) {
+        tempArrTasks.push([i, taskData[i]]);
+    }
+    for (let i in tempArrTasks) {
+        arrTasks.push(tempArrTasks[i][1]);
+        arrTasks[i]['unique-key'] = tempArrTasks[i][0];
+    }
+}
+
 function openCard(element) {
     let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
@@ -262,40 +282,6 @@ function openCard(element) {
     let contactCardArrayResult = contactCardArray(keyToObject);
     container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
     checkboxCheck(element);
-}
-
-function taskArray(keyToObject) {
-    let content = "";
-    let list = keyToObject['subtasks'];
-    for (let i = 0; i < list.length; i++) {
-        const element = list[i];
-        content += `
-        <div class="list-card-subtaskarray">
-            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox"  value="${element}">
-            <div>
-                <div>${element}</div>
-            </div>    
-         </div>       
-            `;
-    }
-    return content;
-}
-
-function contactCardArray(keyToObject) {
-    let list = keyToObject['acronymsAssignedTo'];
-    let nameArray = keyToObject['namesAssignedTo']
-    let array = "";
-    for (let i = 0; i < list.length; i++) {
-        const element = list[i];
-        let name = nameArray[i];
-        array += ` 
-        <div class="reder-card">
-          <div class="user-content-array">${element}</div>
-          <div> ${name}</div>
-        </div>
-        `;
-    }
-    return array;
 }
 
 function deleteCard(key) {
@@ -315,13 +301,12 @@ function subtaskBar(length, list) {
     if (length === 0) {
         return 0
     } else {
-        console.log(c);
         return c;
     }
 }
 
 function subtaskCardCheckbox(element) {
-
+// let i = 0;
     // checkboxSubtask = []; 
     let object = arrTasks.find((y) => y['unique-key'] === element);
     let list = object['subtasks'];
@@ -329,6 +314,7 @@ function subtaskCardCheckbox(element) {
         let id = docID(`contactCardId${i}`);
         let value = id.value;
         let check = checkboxSubtask.find((y) => y === value);
+        let index = checkboxSubtask.findIndex((i) => i === value);
 
         if (id.checked === true && check !== value) {
             checkboxSubtask.push(value);
@@ -337,7 +323,7 @@ function subtaskCardCheckbox(element) {
             updateHTML();
         }
         if (id.checked === false && check == value) {
-            checkboxSubtask.splice(value);
+            checkboxSubtask.splice(index, 1);
             checkFinishedTasks(object);
             subtaskBar();
             updateHTML();
@@ -357,9 +343,7 @@ function checkboxCheck(element) {
             id.checked = true;
         }
     }
-
 }
-
 
 async function deleteTaskPostData(path = "") {
     let responseAddTask = await fetch(BASE_URL + path + ".json", {
