@@ -48,13 +48,16 @@
     <section id="add-contact" class="bg">
         <div class="addAndEditDialog">
             <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
-            <div class="contacts-top-half contacts-disp-flex-center-center-col">
-                <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
-                    <h1 class="color-white fw-700">Add contact</h1>
-                    <p class="color-white fw-400">Tasks are better with a team!</p>
-                    <div class="contacts-details-seperator"></div>
+                <div class="contacts-top-half contacts-disp-flex-center-center-col">
+                    <div class="contacts-text-format">
+                        <img class="logo-size" src="/assets/img/logo.svg" alt="logo">
+                        <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+                            <h1 class="color-white fw-700">Add contact</h1>
+                            <p class="color-white fw-400">Tasks are better with a team!</p>
+                            <div class="contacts-seperator"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <div class="contacts-management-user-initials disp-flex-center-center"><img src="/assets/img/person_white.svg" alt=""></div>
             <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
                 <form onsubmit="addContact(); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
@@ -74,9 +77,12 @@
         <div class="addAndEditDialog">
             <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
             <div class="contacts-top-half contacts-disp-flex-center-center-col">
-                <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
-                    <h1 class="color-white fw-700">Edit contact</h1>
-                    <div class="contacts-details-seperator"></div>
+                <div class="contacts-text-format">
+                    <img class="logo-size" src="/assets/img/logo.svg" alt="logo">
+                    <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
+                        <h1 class="color-white fw-700">Edit contact</h1>
+                        <div class="contacts-seperator"></div>
+                    </div>
                 </div>
             </div>
             <div id="contacts-user-initials-saved" class="contacts-management-user-initials disp-flex-center-center">AM</div>
