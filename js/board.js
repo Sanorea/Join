@@ -2,6 +2,7 @@ let arrTasks = [];
 let checkboxSubtask = [];
 let checkedSubtasks = [];
 let searchResults = [];
+let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
 let currentDraggedElement;
 
@@ -136,24 +137,58 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
 function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
     let uniqueKey = element['unique-key'];
     return /*HTML*/ `
-    <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
-        <div>${taskCategory}</div>
-        <div class="card-title">${element['title']}</div>
-        <div class="card-subtitle">${element['description']}</div>
-        <div class="card-subtask">
-          <div id='subtask-counter'>${subTaskResult}</div>
+    <div class="card-with-arrows">
+        <div onclick="switchCategory('${element['id']}', 'up')" class="move-arrow move-arrow-up">
+            <img class="move-menu-icon" src="/assets/img/arrow_drop_down_up.svg" alt="">
         </div>
-        <div class="card-info">
-            <div class="card-profil">${ContactsArrayResult}</div>
-            <div class="card-difficulty">${prioResult}</div>
+        <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
+            <div>${taskCategory}</div>
+            <div class="card-title">${element['title']}</div>
+            <div class="card-subtitle">${element['description']}</div>
+            <div class="card-subtask">
+            <div id='subtask-counter'>${subTaskResult}</div>
+            </div>
+            <div class="card-info">
+                <div class="card-profil">${ContactsArrayResult}</div>
+                <div class="card-difficulty">${prioResult}</div>
+            </div>
+        </div>
+        <div onclick="switchCategory('${element['id']}', 'down')" class="move-arrow move-arrow-down">
+            <img class="move-menu-icon" src="/assets/img/arrow_drop_down_down.svg" alt="">
         </div>
     </div>
     `;
 }
 
+function switchCategory(id, direction) {
+    let currentBoardCategory = '';
+    let currentBoardCategoryIndex = 0;
+
+    for (let i = 0; i < arrTasks.length; i++) {
+        if (arrTasks[i]['id'] == id) {
+            currentBoardCategory = arrTasks[i]['boardCategory'];
+            currentBoardCategoryIndex = boardCategories.indexOf(currentBoardCategory);
+            currentDraggedElement = id;
+        }
+    }
+
+    if (direction === 'down') {
+        if (currentBoardCategoryIndex === boardCategories.length - 1) {
+            moveTo(boardCategories[0]);
+        } else {
+            moveTo(boardCategories[currentBoardCategoryIndex + 1])
+        }
+    } else if (direction == 'up') {
+        if (currentBoardCategoryIndex === 0) {
+            moveTo(boardCategories[boardCategories.length - 1]);
+        } else {
+            moveTo(boardCategories[currentBoardCategoryIndex - 1])
+        }
+    }
+}
+
 async function updateHTML() {
     await getTaskData();
-    let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
     let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
 
     for (let i = 0; i < boardCategories.length; i++) {
@@ -265,6 +300,7 @@ async function moveTo(category) {
         "id": arrTasks[index]['id'],
         "prio": arrTasks[index]['prio'],
         "subtasks": arrTasks[index]['subtasks'],
+        "subtasksChecked": arrTasks[index['subtasksChecked']],
         "title": arrTasks[index]['title'],
         "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
         "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
@@ -366,26 +402,24 @@ async function updateCheckedBoolean(uniqueKey, index, boolean) {
 }
 
 function checkboxCheck(element) {
-     let object = arrTasks.find((y) => y['unique-key'] === element);
-     let list = object['subtasks'];
-     let checked = object['subtasksChecked']
-     if (!list) {
-        //  list = [];
-    } else {
-    for (let i = 0; i < list.length; i++) {
-        let id = docID(`contactCardId${i}`);
-        let value = id.value;
-        //  let check = list.find((y) => y === value);
-         let checkIndex = list.findIndex((y) => y === value);
-         let booleanIndex = checked[checkIndex];
+        let object = arrTasks.find((y) => y['unique-key'] === element);
+        let list = object['subtasks'];
+        let checked = object['subtasksChecked']
+        if (!list) {
+            //  list = [];
+        } else {
+        for (let i = 0; i < list.length; i++) {
+            let id = docID(`contactCardId${i}`);
+            let value = id.value;
+            //  let check = list.find((y) => y === value);
+            let checkIndex = list.findIndex((y) => y === value);
+            let booleanIndex = checked[checkIndex];
 
-        if (booleanIndex == 'true') {
-            id.checked = true;
+            if (booleanIndex == 'true') {
+                id.checked = true;
+            }
         }
-     }
-}
-
-
+    }
 }
 
 async function deleteTaskPostData(path = "") {
@@ -418,7 +452,6 @@ function search() {
 
     renderTasksBasedOnSearchInput();
 }
-
 
 function renderTasksBasedOnSearchInput() {
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
