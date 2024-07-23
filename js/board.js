@@ -1,6 +1,4 @@
 let arrTasks = [];
-let checkboxSubtask = [];
-let checkedSubtasks = [];
 let searchResults = [];
 let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
@@ -68,7 +66,7 @@ function contactCardArray(keyToObject) {
             array += ` 
         <div class="reder-card">
           <div class="user-content-array">${element}</div>
-          <div> ${name}</div>
+          <div class="nameClass"> ${name}</div>
         </div>
         `;
         }
@@ -79,19 +77,16 @@ function contactCardArray(keyToObject) {
 function taskArray(keyToObject) {
     let content = "";
     let list = keyToObject['subtasks'];
-    // let checkedList = keyToObject['subtasksChecked']
     if (!list) {
         content = `<div></div>`;
     } else {
         for (let i = 0; i < list.length; i++) {
             const element = list[i];
-            //const elementBoolean = checkedList[i];
-            // console.log(elementBoolean);
             content += `
         <div class="list-card-subtaskarray">
             <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" value="${element}">
             <div>
-                <div>${element}</div>
+                <div class="subtasksClass" >${element}</div>
             </div>    
          </div>       
             `;
@@ -100,7 +95,7 @@ function taskArray(keyToObject) {
     return content;
 }
 
-function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray) {
+function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray, prioImg) {
     return /*HTML*/ `
       <div class="card-popUp">
             <div class="card-popUp-top">
@@ -114,8 +109,8 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
                 <div class="date">${element['date']}</div>
             </div>
             <div class="card-popUp-priority">
-                <div class="title">Priority</div>
-                <div class="difficulty">${element['prio']}</div>
+                <div class="title">Priority:</div>
+                <div class="difficulty">${element['prio']} ${prioImg}</div>
             </div>
             <div class="card-popUp-assignet">
                 <div class="title">Assignet to:</div>
@@ -128,7 +123,7 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
             <div class="edit-and-delete">
                 <div onclick="deleteCard('${element['unique-key']}')" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
-                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
+                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img class="edit" src="assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
         </div>    
     `;
@@ -207,7 +202,8 @@ async function updateHTML() {
             let subTaskResult = subtaskList(element, index);
             let prioResult = findoutPrio(element);
             let ContactsArrayResult = ContactsArray(element);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
+            let prioImg = findoutPrio(elements);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult, prioImg);
         }
     }
 }
@@ -222,6 +218,25 @@ function taskCategory(element) {
             break;
         case 'Technical Task':
             categoryVal = `<div class="headline-card-Technical">Technical Task</div>`;
+            break;
+
+        default:
+            categoryVal = `<div></div>`;
+            break;
+    }
+    return categoryVal;
+}
+
+function taskCategoryPopup(element) {
+    let category = element['taskCategory'];
+    let categoryVal = "";
+
+    switch (category) {
+        case 'User Story':
+            categoryVal = `<div class="headline-card-popup">User Story</div>`;
+            break;
+        case 'Technical Task':
+            categoryVal = `<div class="headline-card-Technical-popup">Technical Task</div>`;
             break;
 
         default:
@@ -253,27 +268,14 @@ function findoutPrio(element) {
     return prioVal;
 }
 
-function checkFinishedTasks(element, length) {
+function checkFinishedTasks(element) {
     let trueList = [];
-    // checkedSubtasks = [];
-    loadData();
     let list = element['subtasks'];
     let checkedList = element['subtasksChecked'];
     if (!checkedList) {
         return '0'
     } else {
-        // for (let i = 0; i < list.length; i++) {
-        // const subtask = list[i];
-        // let check = checkboxSubtask.find((y) => y == subtask);
-        // let index = checkboxSubtask.findIndex((x) => x == subtask);
         trueList = checkedList.filter((y) => y == 'true');
-        // console.log(filter);
-        // const checkedArray = checkedList[index];
-        // console.log(checkedArray);
-        // if (checkedArray == false) {
-        // checkedSubtasks.push(check);
-        // }
-        // }
     }
     subtaskBar(trueList.length, list.length);
     return trueList.length;
@@ -337,10 +339,11 @@ function openCard(element) {
     let container = docID('card-popUp-background');
     docID('card-popUp-background').hidden = false;
     let keyToObject = arrTasks.find((y) => y['unique-key'] === element);
-    let taskCategoryResult = taskCategory(keyToObject);
+    let taskCategoryResult = taskCategoryPopup(keyToObject);
     let subtaskListArray = taskArray(keyToObject);
     let contactCardArrayResult = contactCardArray(keyToObject);
-    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
+    let prioImg = findoutPrio(keyToObject);
+    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray, prioImg);
     checkboxCheck(element);
 }
 
@@ -366,29 +369,23 @@ function subtaskBar(length, list) {
 }
 
 async function subtaskCardCheckbox(element) {
-    // let i = 0;
-    // checkboxSubtask = [];
     let object = arrTasks.find((y) => y['unique-key'] === element);
     let list = object['subtasks'];
     let booleanArray = object['subtasksChecked'];
     for (let i = 0; i < list.length; i++) {
         let id = docID(`contactCardId${i}`);
         let value = id.value;
-        // let check = list.find((y) => y === value);
         let index = list.findIndex((i) => i === value);
         let boolean = booleanArray[index];
 
         if (id.checked === true && boolean == 'false') {
-            // boolean = true; 
             await updateCheckedBoolean(element, index, 'true');
             console.log('hallo');
-            // checkboxSubtask.push(value);
             checkFinishedTasks(object);
             subtaskBar();
             updateHTML();
         }
         if (id.checked === false && boolean == 'true') {
-            // checkboxSubtask.splice(index, 1);
             await updateCheckedBoolean(element, index, 'false');
             checkFinishedTasks(object);
             subtaskBar();
@@ -398,20 +395,20 @@ async function subtaskCardCheckbox(element) {
 }
 
 async function updateCheckedBoolean(uniqueKey, index, boolean) {
-    updateData("/tasks/" + uniqueKey + "/subtasksChecked/" + index, boolean)
+    await updateData("/tasks/" + uniqueKey + "/subtasksChecked/" + index, boolean);
 }
 
 function checkboxCheck(element) {
+    // loadData();
         let object = arrTasks.find((y) => y['unique-key'] === element);
         let list = object['subtasks'];
         let checked = object['subtasksChecked']
         if (!list) {
-            //  list = [];
+            return `zero`
         } else {
         for (let i = 0; i < list.length; i++) {
             let id = docID(`contactCardId${i}`);
             let value = id.value;
-            //  let check = list.find((y) => y === value);
             let checkIndex = list.findIndex((y) => y === value);
             let booleanIndex = checked[checkIndex];
 
