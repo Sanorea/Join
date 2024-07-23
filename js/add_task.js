@@ -295,7 +295,7 @@ async function submitTask(boardCategory) {
     loadMessage();
     setTimeout(() => {
         window.location.href = "board.html";
-    }, 2000);
+    }, 1500);
 
 }
 

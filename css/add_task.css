@@ -360,6 +360,19 @@
     font-size: 20px;
 }
 
+.dropdown-bg {
+    z-index: 899;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
 
 
 /* edu */
@@ -499,6 +512,11 @@
 
 .message-box img {
     filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(200%) contrast(101%);
+}
+
+.button-container {
+    display: flex;
+    gap: 25px;
 }
 
 

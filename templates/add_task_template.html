@@ -11,9 +11,8 @@
         </div>
         <div class="add-task-capture-input">
             <p class="font-size-add-task">Description</p>
-            <textarea maxlength="250" rows="5" id="add-task-input-description"
-                class="add-task-input-fields-description" type="text"
-                placeholder="Enter a Description"></textarea>
+            <textarea maxlength="250" rows="5" id="add-task-input-description" class="add-task-input-fields-description"
+                type="text" placeholder="Enter a Description"></textarea>
         </div>
         <div class="add-task-capture-input">
             <p class="font-size-add-task">Assigned to</p>
@@ -23,15 +22,17 @@
                         Select contacts to assign
                         <img src="./assets/img/arrow_down.svg" alt="">
                     </div>
-                    <div id="selectfieldClose" class="addTask-selectfield d-none-add-task" onclick="closeContactListTasks()">
-                        <input class="search-field-input" onkeydown="searchContacts()" onkeyup="searchContacts()" onclick="stopPropagation(event)" id="searchField" type="input" >
+                    <div id="selectfieldClose" class="addTask-selectfield d-none-add-task"
+                        onclick="closeContactListTasks()">
+                        <input class="search-field-input" onkeydown="searchContacts()" onkeyup="searchContacts()"
+                            id="searchField" type="input">
                         <img src="./assets/img/arrow_up.svg" alt="">
                     </div>
                     <ul class="dropdown-menu d-none-add-task" id="dropDownList">
                         <!-- Checkboxes werden hier dynamisch hinzugefügt -->
                     </ul>
                     <div class="list-acronyms" id="checkedContacts">
-                        <!-- angewählte Personen werden hier dynamisch hinzugefügt -->                                
+                        <!-- angewählte Personen werden hier dynamisch hinzugefügt -->
                     </div>
                 </div>
             </div>
@@ -44,7 +45,7 @@
                 <p class="font-size-add-task">Due date</p>
                 <p class="add-task-required-icon">*</p>
             </div>
-            <input id="add-task-input-date" class="add-task-input-fields" type="date" required >
+            <input id="add-task-input-date" class="add-task-input-fields" type="date" required>
             <div id="dateRequired" class="required-field d-none-add-task">This field is required</div>
         </div>
         <div class="required-field d-none-add-task">This field is required</div>
@@ -57,13 +58,13 @@
                         <img src="/assets/img/urgent.svg" alt="urgent">
                     </div>
                 </div>
-                <div class="add-task-prio-buttons"  id="priomedium" onclick="setPrio('medium', 'medium-color')">
+                <div class="add-task-prio-buttons" id="priomedium" onclick="setPrio('medium', 'medium-color')">
                     <p>Medium</p>
                     <div id="mediumImg">
                         <img src="/assets/img/medium.svg" alt="medium">
                     </div>
                 </div>
-                <div class="add-task-prio-buttons"  id="priolow" onclick="setPrio('low', 'low-color')">
+                <div class="add-task-prio-buttons" id="priolow" onclick="setPrio('low', 'low-color')">
                     <p>Low</p>
                     <div id="lowImg">
                         <img src="/assets/img/low.svg" alt="low">
@@ -79,25 +80,29 @@
             <div class="required-field d-none-add-task">This field is required</div>
             <div class="add-task-selection">
                 <div class="task-selection-wrapper">
-                    <div id="categorySelectfieldOpen"  class="addTask-selectfield" onclick="openCategoryList()" >
+                    <div id="categorySelectfieldOpen" class="addTask-selectfield" onclick="openCategoryList()">
                         Select task category
                         <img src="./assets/img/arrow_down.svg" alt="">
                     </div>
-                    <div id="categorySelectfieldClose"  class="addTask-selectfield d-none-add-task" onclick="closeCategoryList()">
+                    <div id="categorySelectfieldClose" class="addTask-selectfield d-none-add-task"
+                        onclick="closeCategoryList()">
                         Select task category
                         <img src="./assets/img/arrow_up.svg" alt="">
                     </div>
-                    <div id="categorySelectfieldTask"  class="addTask-selectfield d-none-add-task" onclick="closeCheckedCategory()">
+                    <div id="categorySelectfieldTask" class="addTask-selectfield d-none-add-task"
+                        onclick="closeCheckedCategory()">
                         <div id="selectedCategory"></div>
                         <img src="./assets/img/arrow_up.svg" alt="">
                     </div>
                     <div id="categoryDropDownList" class="categoryDropDown d-none-add-task">
                         <label class="dropdown-option" onclick="checkedCategory('Technical Task')">
-                            <input type="radio" name="" id="categories" class="add-task-radio-hidden" value="Technical Task">
+                            <input type="radio" name="" id="categories" class="add-task-radio-hidden"
+                                value="Technical Task">
                             <span>Technical Task</span>
                         </label>
-                        <label class="dropdown-option"  onclick="checkedCategory('User Story')">
-                            <input type="radio" name="" id="categories" class="add-task-radio-hidden" value="User Story">
+                        <label class="dropdown-option" onclick="checkedCategory('User Story')">
+                            <input type="radio" name="" id="categories" class="add-task-radio-hidden"
+                                value="User Story">
                             <span>User Story</span>
                         </label>
                     </div>
@@ -110,9 +115,11 @@
                 <p class="font-size-add-task">Subtasks</p>
             </div>
             <div id="add-task-subtasks-inputfield" class="add-task-subtasks-inputfield">
-                <input class="subtasks-input" required id="subtasks-input" minlength="5" onclick="taskInput()" type="text">
+                <input class="subtasks-input" required id="subtasks-input" minlength="5" onclick="taskInput()"
+                    type="text">
                 <div class="add-task-imgs">
-                    <img onclick="addToSubtaskArray()" id="check-visibility" class="d-none" src="assets/img/check-task.svg" alt="">
+                    <img onclick="addToSubtaskArray()" id="check-visibility" class="d-none"
+                        src="assets/img/check-task.svg" alt="">
                     <img onclick="deleteValue()" id="switch_img" src="/assets/img/add.svg" alt="">
                 </div>
             </div>

@@ -56,6 +56,8 @@ function scalePopUp() {
     let rightSide = docID('rightSide');
     rightSide.classList.remove('right-side-desktop');
     rightSide.classList.add('right-side-pop-up');
+    let cancel = docID('cancelButton');
+    cancel.classList.add('d-none-add-task');
 }
 
 function showSavedPrio(key) {
@@ -136,7 +138,7 @@ async function editContact() {
 }
 
 async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
-    updateData("/tasks/" + uniqueKey, {
+    await updateData("/tasks/" + uniqueKey, {
         "boardCategory": savedBoardCategory,
         "taskCategory": savedTaskCategory,
         "date": date.value,
@@ -158,6 +160,8 @@ function openNewTaskPopUp(boardCategory) {
     let button = docID('buttonPopUpAdd');
     popUp.classList.remove("d-none-add-task");
     button.classList.remove("d-none-add-task");
+    let cancel = docID('cancelButton');
+    cancel.classList.remove("d-none-add-task");
     globalBoardCategory = boardCategory;
 }
 

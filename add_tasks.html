@@ -14,6 +14,7 @@
     <script src="js/add_task_render_HTML.js"></script>
     <script src="js/add_task.js"></script>
     <script src="js/add_task_subtask.js"></script>
+    <script src="js/edit_task.js"></script>
 
 </head>
 
@@ -33,8 +34,16 @@
                     <p class="add-task-required-icon">*</p>
                     <p>This field is required</p>
                 </div>
-                <button type="submit" class="btn-primary btn-create disp-flex-center-center"
-                    onclick="requiredFields('toDo')">Create Task</button>
+                <div class="button-container">
+                    <button onclick="clearFormular()" class="btn-secondary btn-cancel disp-flex-center-center">
+                        Clear
+                    </button>
+                    <button type="submit" class="btn-primary btn-create disp-flex-center-center"
+                        onclick="requiredFields('toDo')">
+                        Create Task
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
