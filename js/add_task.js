@@ -144,7 +144,7 @@ async function renderContactListaddTasks() {
         const name = names[i];
         const acronym = acronyms[i];
         dropDown.innerHTML += renderContactListHTML(color, acronym, name, i);
-    }   
+    }
     readValueAssignedTo();
 }
 
@@ -182,9 +182,15 @@ function openContactListTasks() {
     selectfieldClose.classList.remove("d-none-add-task");
     const contactListTasks = document.getElementById("dropDownList");
     contactListTasks.classList.remove("d-none-add-task");
-    docID('addTaskBG').addEventListener('click', closeClickOutside);
-}
+    if (docID('addTaskBG')) {
+        docID('addTaskBG').addEventListener('click', closeClickOutside);
+    }
+    if (docID('cardPopUpBGEditContainer')) {
+        docID('cardPopUpBGEditContainer').addEventListener('click', closeClickOutside);
+        docID('cardPopUpBGEdit').addEventListener('click', closeClickOutside);
+    }
 
+}
 
 function closeContactListTasks() {
     const selectfieldOpen = document.getElementById("selectfieldOpen");
@@ -200,15 +206,15 @@ function closeClickOutside(e) {
     let myDiv = document.querySelectorAll(".dropDownList-contact-element");
     let inside = false;
     for (let i = 0; i < myUL.children.length; i++) {
-        if (e.target===myUL.children[i]||e.target===docID(`checkboxes${i}`)) {
+        if (e.target === myUL.children[i] || e.target === docID(`checkboxes${i}`)) {
             inside = true;
         }
     }
     for (let j = 0; j < myDiv.length; j++) {
-        e.target === myDiv[j]?inside = true:'';
+        e.target === myDiv[j] ? inside = true : '';
     }
-    e.target===docID('selectFieldOpenIMG')||e.target===myUL?inside = true:'';  
-    !inside?closeContactListTasks():'';
+    e.target === docID('selectFieldOpenIMG') || e.target === myUL ? inside = true : '';
+    !inside ? closeContactListTasks() : '';
 }
 
 /*Category*/
@@ -299,7 +305,7 @@ async function addTaskPostData(path = "", data = {}) {
 
 async function submitTask(boardCategory) {
 
-    let {title, description, date, categorie} = setVariablesForDivs();
+    let { title, description, date, categorie } = setVariablesForDivs();
     readValueAssignedTo();
     await addTaskIdsToArray();
     let newId = setId();
@@ -332,7 +338,7 @@ function postAddTaskInputs(boardCategory, date, description, newId, title) {
         "title": title.value,
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,
-        "subtasksChecked": subtaskCheckedArray, 
+        "subtasksChecked": subtaskCheckedArray,
     });
 }
 
@@ -341,7 +347,7 @@ function setVariablesForDivs() {
     let description = docID('add-task-input-description');
     let date = docID('add-task-input-date');
     let categorie = docID('categories');
-    return {title, description, date, categorie};
+    return { title, description, date, categorie };
 }
 
 function clearFieldsDropDown(title, description, date, categorie, subtasks) {
@@ -391,30 +397,30 @@ async function renderSearchedContactListaddTasks() {
 }
 
 function requiredFields(boardCategory) {
-    let {title, titleRequired} =requiredFieldTitle ();
-    let {date, dateRequired} =requiredFieldDate ();
-    let {categoryRequired, categoryField, categoryFieldOpen} = requiredFieldCategory();
-    if (title.value==="" || date.value==="" || categoryField.classList.contains('d-none-add-task')) {
-        if (title.value==="") {
-            ifConditionRequiredFields(titleRequired, title); 
+    let { title, titleRequired } = requiredFieldTitle();
+    let { date, dateRequired } = requiredFieldDate();
+    let { categoryRequired, categoryField, categoryFieldOpen } = requiredFieldCategory();
+    if (title.value === "" || date.value === "" || categoryField.classList.contains('d-none-add-task')) {
+        if (title.value === "") {
+            ifConditionRequiredFields(titleRequired, title);
         }
-        if (date.value==="") {
-            ifConditionRequiredFields(dateRequired, date); 
+        if (date.value === "") {
+            ifConditionRequiredFields(dateRequired, date);
         }
         if (categoryField.classList.contains('d-none-add-task')) {
-            ifConditionRequiredFields(categoryRequired, categoryFieldOpen); 
+            ifConditionRequiredFields(categoryRequired, categoryFieldOpen);
         }
     } else {
         submitTask(boardCategory);
     }
 }
 
-function requiredFieldTitle () {
+function requiredFieldTitle() {
     let titleRequired = docID('titleRequired');
     let title = docID('add-task-input-title');
     titleRequired.classList.add('d-none-add-task');
     title.classList.remove('required-input-fields');
-    return {title, titleRequired};
+    return { title, titleRequired };
 }
 
 function requiredFieldDate() {
@@ -422,7 +428,7 @@ function requiredFieldDate() {
     let date = docID('add-task-input-date');
     dateRequired.classList.add('d-none-add-task');
     date.classList.remove('required-input-fields');
-    return {date, dateRequired};
+    return { date, dateRequired };
 }
 
 function requiredFieldCategory() {
@@ -431,7 +437,7 @@ function requiredFieldCategory() {
     let categoryFieldOpen = docID('categorySelectfieldOpen');
     categoryRequired.classList.add('d-none-add-task');
     categoryFieldOpen.classList.remove('required-input-fields');
-    return {categoryRequired, categoryField, categoryFieldOpen};
+    return { categoryRequired, categoryField, categoryFieldOpen };
 }
 
 function ifConditionRequiredFields(text, color) {
