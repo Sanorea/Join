@@ -132,12 +132,13 @@ async function editContact() {
     let savedBoardCategory = addArrTasks[0][uniqueKey]['boardCategory'];
     let savedTaskCategory = addArrTasks[0][uniqueKey]['taskCategory'];
     let savedID = addArrTasks[0][uniqueKey]['id'];
-    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title);
+    let subtasksChecked = addArrTasks[0][uniqueKey]['subtasksChecked'];
+    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, subtasksChecked, title);
     closeEditCard();
     updateHTML();
 }
 
-async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
+async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, subtasksChecked, title) {
     await updateData("/tasks/" + uniqueKey, {
         "boardCategory": savedBoardCategory,
         "taskCategory": savedTaskCategory,
@@ -146,6 +147,7 @@ async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date
         "id": savedID,
         "prio": prios,
         "subtasks": subtaskArray,
+        "subtasksChecked": subtasksChecked,
         "title": title.value,
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,

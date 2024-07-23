@@ -181,7 +181,8 @@ function openContactListTasks() {
     const selectfieldClose = document.getElementById("selectfieldClose");
     selectfieldClose.classList.remove("d-none-add-task");
     const contactListTasks = document.getElementById("dropDownList");
-    contactListTasks.classList.remove("d-none-add-task")
+    contactListTasks.classList.remove("d-none-add-task");
+    docID('addTaskBG').addEventListener('click', closeClickOutside);
 }
 
 
@@ -191,7 +192,23 @@ function closeContactListTasks() {
     const selectfieldClose = document.getElementById("selectfieldClose");
     selectfieldClose.classList.add("d-none-add-task");
     const contactListTasks = document.getElementById("dropDownList");
-    contactListTasks.classList.add("d-none-add-task")
+    contactListTasks.classList.add("d-none-add-task");
+}
+
+function closeClickOutside(e) {
+    let myUL = docID('dropDownList');
+    let myDiv = document.querySelectorAll(".dropDownList-contact-element");
+    let inside = false;
+    for (let i = 0; i < myUL.children.length; i++) {
+        if (e.target===myUL.children[i]||e.target===docID(`checkboxes${i}`)) {
+            inside = true;
+        }
+    }
+    for (let j = 0; j < myDiv.length; j++) {
+        e.target === myDiv[j]?inside = true:'';
+    }
+    e.target===docID('selectFieldOpenIMG')||e.target===myUL?inside = true:'';  
+    !inside?closeContactListTasks():'';
 }
 
 /*Category*/
@@ -236,7 +253,7 @@ function openCategoryList() {
     const selectfieldClose = docID("categorySelectfieldClose");
     selectfieldClose.classList.remove("d-none-add-task");
     const contactListTasks = docID("categoryDropDownList");
-    contactListTasks.classList.remove("d-none-add-task")
+    contactListTasks.classList.remove("d-none-add-task");
 }
 
 function closeCategoryList() {
@@ -245,7 +262,7 @@ function closeCategoryList() {
     const selectfieldClose = docID("categorySelectfieldClose");
     selectfieldClose.classList.add("d-none-add-task");
     const contactListTasks = docID("categoryDropDownList");
-    contactListTasks.classList.add("d-none-add-task")
+    contactListTasks.classList.add("d-none-add-task");
 }
 
 /*Prio*/
@@ -255,7 +272,6 @@ function setPrio(prio, color) {
     resettPrioButtons('urgent');
     resettPrioButtons('medium');
     resettPrioButtons('low');
-    console.log('prios :>> ', prios);
     document.getElementById(`prio${prio}`).classList.add(color);
     document.getElementById(`${prio}Img`).innerHTML = `
         <img src="/assets/img/${prio}-white.svg" alt="prio">`;
@@ -366,7 +382,6 @@ function stopPropagation(event) {
 
 async function renderSearchedContactListaddTasks() {
     let dropDown = document.getElementById('dropDownList');
-    console.log('searchedNames :>> ', searchedNames);
     for (let i = 0; i < searchedNames.length; i++) {
         const color = searchedColors[i];
         const name = searchedNames[i];
@@ -423,5 +438,3 @@ function ifConditionRequiredFields(text, color) {
     text.classList.remove('d-none-add-task');
     color.classList.add('required-input-fields');
 }
-
-   
