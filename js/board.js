@@ -27,7 +27,9 @@ function ContactsArray(element) {
     } else
         for (let i = 0; i < contact.length; i++) {
             let user = contact[i];
-            elementContact += `<div class="user-content">${user}</div>`;
+            let findContact = acronyms.findIndex((x) => x == user);
+            let color = colors[findContact];
+            elementContact += `<div class="user-content" style="background: ${color}">${user}</div>`;
         }
     return elementContact;
 }
@@ -44,7 +46,7 @@ function subtaskList(element, index) {
         let percent = subtaskBar(finishedTasks, list);
         return ` <div class="bar">
                 <div class="w3-light-grey">
-                    <div id="editBar_${index}"  class="w3-container w3-green w3-center" style="width:${percent}%"></div>
+                    <div id="editBar_${index}"  class="w3-container bar-color w3-center" style="width:${percent}%"></div>
                 </div><br>
             </div>
             <div id='subtask-counter' class="subtask-content">
@@ -63,9 +65,11 @@ function contactCardArray(keyToObject) {
         for (let i = 0; i < list.length; i++) {
             const element = list[i];
             let name = nameArray[i];
+            let findContact = acronyms.findIndex((x) => x == element);
+            let color = colors[findContact];
             array += ` 
         <div class="reder-card">
-          <div class="user-content-array">${element}</div>
+          <div class="user-content-array" style="background: ${color}">${element}</div>
           <div class="nameClass"> ${name}</div>
         </div>
         `;
@@ -97,10 +101,10 @@ function taskArray(keyToObject) {
 
 function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray, prioImg) {
     return /*HTML*/ `
-      <div class="card-popUp">
+      <div id="popUp-animation" class="card-popUp">
             <div class="card-popUp-top">
                 <div class="categorie">${taskCategoryResult}</div>
-                <div class="back-arrow"><img class="cursor" onclick="closeCardPopUp()" src="assets/img/close.svg" alt=""></div>
+                <div class="back-arrow"><img class="cursor" onclick="timeOut()" src="assets/img/close.svg" alt=""></div>
             </div>
             <div class="card-popUp-headline">${element['title']}</div>
             <div class="card-popUp-subline">${element['description']}</div>
@@ -337,6 +341,8 @@ function saveTaskDataInArray(taskData) {
 
 function openCard(element) {
     let container = docID('card-popUp-background');
+    let body = docID('body-board');
+    body.classList.add('fixed');
     docID('card-popUp-background').hidden = false;
     let keyToObject = arrTasks.find((y) => y['unique-key'] === element);
     let taskCategoryResult = taskCategoryPopup(keyToObject);
@@ -380,7 +386,6 @@ async function subtaskCardCheckbox(element) {
 
         if (id.checked === true && boolean == 'false') {
             await updateCheckedBoolean(element, index, 'true');
-            console.log('hallo');
             checkFinishedTasks(object);
             subtaskBar();
             updateHTML();
@@ -399,7 +404,6 @@ async function updateCheckedBoolean(uniqueKey, index, boolean) {
 }
 
 function checkboxCheck(element) {
-    // loadData();
         let object = arrTasks.find((y) => y['unique-key'] === element);
         let list = object['subtasks'];
         let checked = object['subtasksChecked']
@@ -429,6 +433,8 @@ async function deleteTaskPostData(path = "") {
 
 function closeCardPopUp() {
     docID('card-popUp-background').hidden = true;
+    let body = docID('body-board');
+    body.classList.remove('fixed');
 }
 
 function renderInToDo() {
@@ -474,3 +480,8 @@ function renderTasksBasedOnSearchInput() {
         }
     }
 }
+
+function timeOut() {
+    docID('popUp-animation').classList.add('card-animation-back');
+    setTimeout(closeCardPopUp, 200);
+};

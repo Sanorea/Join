@@ -242,7 +242,16 @@
     height: 8px;
     border-radius: 50px;
     width: 0%;
+    background-color: #4589FF !important;
 }
+
+.bar-color{
+    height: 8px;
+    border-radius: 50px;
+    width: 0%;
+    background-color: #4589FF !important;
+}
+
 
 .w3-light-grey {
     width: 100%;
@@ -276,9 +285,9 @@
 }
 
 
-.d-none {
+/* .d-none {
     display: none;
-}
+} */
 
 .drag-area {
     min-height: 150px;
@@ -329,7 +338,7 @@
 
 .card-popUp {
     background-color: white;
-    padding: 32px 24px 32px 24px;
+    padding: 48px 40px 48px 40px;
     width: 93%;
     max-width: 525px;
     gap: 24px;
@@ -337,6 +346,33 @@
     flex-direction: column;
     box-shadow: 0px 0px 4px 0px #00000029;
     border-radius: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 930px;
+    scrollbar-width: none;
+    animation-name: example;
+    position: relative;
+    animation-duration: 0.5s;
+}
+
+@keyframes example {
+    0% {right:-200px;}
+    100% {right: 0px;}
+}
+
+@keyframes example2 {
+    0% {right: 0px;}
+    100% {right: -200px;}
+}
+
+.card-animation-back {
+    animation-name: example2;
+    position: relative;
+    animation-duration: 0.4s;
+}
+
+.show-overlay {
+    transform: translateX(0px);
 }
 
 .card-popUp-top {
@@ -397,8 +433,6 @@
     font-size: 16px;
 }
 
-
-
 .edit {
     display: flex;
     box-sizing: content-box;
@@ -445,6 +479,7 @@
 
 .card-profil {
     display: flex;
+    width: 80%;
 }
 
 .user-content {
@@ -497,6 +532,9 @@
     gap: 8px;
     margin-top: 10px;
     margin-left: 20px;
+    height: 260px;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .subtask-list {
@@ -538,6 +576,10 @@
 
 .drag-area::-webkit-scrollbar {
     display: none;
+}
+
+.fixed {
+    position: fixed;
 }
 
 .headline-card-popup {
