@@ -302,7 +302,7 @@ async function moveTo(category) {
         "id": arrTasks[index]['id'],
         "prio": arrTasks[index]['prio'],
         "subtasks": arrTasks[index]['subtasks'],
-        "subtasksChecked": arrTasks[index['subtasksChecked']],
+        "subtasksChecked": arrTasks[index]['subtasksChecked'],
         "title": arrTasks[index]['title'],
         "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
         "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
