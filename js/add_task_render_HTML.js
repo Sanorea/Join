@@ -28,12 +28,12 @@ function templateRenderHTMLDropdownCategory(categorie) {
 
 function renderSubtaskList(element, i) {
     return /*HTML*/`
-    <div id="editId_${i}" class="list hover">
-       <li>${element}</li>
+    <div id="editId_${i}" class="list hover cursor">
+       <div class="subtask-content">${element}</div>
        <div class="img-content hover">
-           <img onclick="editSubtask(${i})" src="/assets/img/edit_icon.svg" alt="Bearbeiten">
+           <img class="hover-img" onclick="editSubtask(${i})" src="/assets/img/edit_icon.svg" alt="Bearbeiten">
            <div class="split"></div>
-           <img onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt="Löschen">
+           <img class="hover-img" onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt="Löschen">
        </div>
     </div>
     `;
@@ -41,8 +41,8 @@ function renderSubtaskList(element, i) {
 
 function renderSwitchToInput(i) {
     return /*HTML*/ `
-    <div id="edit_content_${i}" class="list">
-        <li><input class="newEditInput" id="newID_${i}" type="text"></li>
+    <div id="edit_content_${i}" class="list-edit">
+        <input class="newEditInput" id="newID_${i}" type="text">
         <div class="img-content hover">
         <div id="newInputSwitchImg"><img onclick="editSubtask(${i})" src="/assets/img/edit_icon.svg" alt="Bearbeiten"></div>
            <div class="split"></div>

@@ -92,6 +92,7 @@ function showSavedAssignedTo(key) {
 
 function showSubtasks(key) {
     subtaskArray = addArrTasks[0][key]['subtasks'];
+    subtaskCheckedArray = addArrTasks[0][key]['subtasksChecked'];
     renderList();
 }
 
@@ -132,13 +133,12 @@ async function editContact() {
     let savedBoardCategory = addArrTasks[0][uniqueKey]['boardCategory'];
     let savedTaskCategory = addArrTasks[0][uniqueKey]['taskCategory'];
     let savedID = addArrTasks[0][uniqueKey]['id'];
-    let subtasksChecked = addArrTasks[0][uniqueKey]['subtasksChecked'];
-    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, subtasksChecked, title);
+    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title);
     closeEditCard();
     updateHTML();
 }
 
-async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, subtasksChecked, title) {
+async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
     await updateData("/tasks/" + uniqueKey, {
         "boardCategory": savedBoardCategory,
         "taskCategory": savedTaskCategory,
@@ -147,7 +147,7 @@ async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date
         "id": savedID,
         "prio": prios,
         "subtasks": subtaskArray,
-        "subtasksChecked": subtasksChecked,
+        "subtasksChecked": subtaskCheckedArray,
         "title": title.value,
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,

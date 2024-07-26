@@ -113,6 +113,7 @@
 
 .board-column-content {
     width: 95vw;
+    /* max-width: 252px; */
     gap: 30px;
     display: flex;
     flex-direction: column;
@@ -225,6 +226,7 @@
 .card-title {
     font-weight: 700;
     font-size: 16px;
+    word-break: break-all;
 }
 
 .card-subtitle {
@@ -263,7 +265,7 @@
 }
 
 .bar {
-    width: 100%;
+    width: 115%;
     display: flex;
     align-items: center;
 }
@@ -282,6 +284,7 @@
 #subtask-counter {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 
@@ -532,7 +535,7 @@
     gap: 8px;
     margin-top: 10px;
     margin-left: 20px;
-    height: 260px;
+    max-height: 260px;
     overflow-y: scroll;
     scrollbar-width: none;
 }
@@ -672,8 +675,8 @@
     /* note: 1017px / 1403 px */
     .board-body {
         align-items: flex-start;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 70px;
+        padding-right: 70px;
         width: auto;
     }
 

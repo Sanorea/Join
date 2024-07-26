@@ -9,8 +9,8 @@ async function initBoard(id, renderClass) {
     // renderSideNavHTML(id, renderClass);
     await includeHTML();
     renderHeaderNav(id, renderClass);
-    updateHTML();
     renderContactListaddTasks();
+    updateHTML();
 }
 
 async function getTaskData() {
@@ -19,20 +19,6 @@ async function getTaskData() {
     return taskData;
 }
 
-function ContactsArray(element) {
-    let elementContact = "";
-    let contact = element['acronymsAssignedTo'];
-    if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
-        elementContact = `<div></div>`;
-    } else
-        for (let i = 0; i < contact.length; i++) {
-            let user = contact[i];
-            let findContact = acronyms.findIndex((x) => x == user);
-            let color = colors[findContact];
-            elementContact += `<div class="user-content" style="background: ${color}">${user}</div>`;
-        }
-    return elementContact;
-}
 
 function subtaskList(element, index) {
     let stylee = document.querySelectorAll('.card-subtask');
@@ -50,10 +36,25 @@ function subtaskList(element, index) {
                 </div><br>
             </div>
             <div id='subtask-counter' class="subtask-content">
-                <div><span>${finishedTasks}/${list}</span></div>
+                <div><span>${finishedTasks}/${list}Subtasks</span></div>
             </div>`;
     }
 }
+
+function ContactsArray(element) {
+        let elementContact = "";
+        let contact = element['acronymsAssignedTo'];
+        if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
+            elementContact = `<div></div>`;
+        } else
+            for (let i = 0; i < contact.length; i++) {
+                let user = contact[i];
+                let findContact = acronyms.findIndex((x) => x == user);
+                let color = colors[findContact];
+                elementContact += `<div class="user-content" style="background-color: ${color}">${user}</div>`;
+            }
+        return elementContact;
+    }
 
 function contactCardArray(keyToObject) {
     let list = keyToObject['acronymsAssignedTo'];
@@ -186,31 +187,6 @@ function switchCategory(id, direction) {
     }
 }
 
-async function updateHTML() {
-    await getTaskData();
-    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
-
-    for (let i = 0; i < boardCategories.length; i++) {
-        let category = boardCategories[i];
-        let elements = arrTasks.filter(t => t['boardCategory'] == category);
-
-        if (elements.length > 0) {
-            docID(category).innerHTML = '';
-        } else {
-            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
-        }
-
-        for (let index = 0; index < elements.length; index++) {
-            const element = elements[index];
-            let taskCategoryResult = taskCategory(element);
-            let subTaskResult = subtaskList(element, index);
-            let prioResult = findoutPrio(element);
-            let ContactsArrayResult = ContactsArray(element);
-            let prioImg = findoutPrio(elements);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult, prioImg);
-        }
-    }
-}
 
 function taskCategory(element) {
     let category = element['taskCategory'];
@@ -340,6 +316,7 @@ function saveTaskDataInArray(taskData) {
 }
 
 function openCard(element) {
+    
     let container = docID('card-popUp-background');
     let body = docID('body-board');
     body.classList.add('fixed');
@@ -454,6 +431,32 @@ function search() {
     }
 
     renderTasksBasedOnSearchInput();
+}
+
+async function updateHTML() {
+    await getTaskData();
+    console.log(acronyms);
+    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
+    for (let i = 0; i < boardCategories.length; i++) {
+        let category = boardCategories[i];
+        let elements = arrTasks.filter(t => t['boardCategory'] == category);
+
+        if (elements.length > 0) {
+            docID(category).innerHTML = '';
+        } else {
+            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
+        }
+
+        for (let index = 0; index < elements.length; index++) {
+            const element = elements[index];
+            let taskCategoryResult = taskCategory(element);
+            let subTaskResult = subtaskList(element, index)
+            let prioResult = findoutPrio(element);
+            let prioImg = findoutPrio(elements);
+            let ContactsArrayResult = ContactsArray(element);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult, prioImg);
+        }
+    }
 }
 
 function renderTasksBasedOnSearchInput() {

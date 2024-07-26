@@ -41,8 +41,8 @@ function editSubtask(i) {
     let newIdContent = docID(`newID_${i}`);
     newIdContent.value = subtask;
     edit.classList.add('aktiveInput');
-    docID('newInputSwitchImg').innerHTML = `<img onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt=""></img>`;
-    docID('otherInputSitchImg').innerHTML = `<img onclick="finishEditInput(${i})" src="assets/img/check-task.svg" alt=""></img>`;
+    docID('newInputSwitchImg').innerHTML = `<img class="hover-img" onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt=""></img>`;
+    docID('otherInputSitchImg').innerHTML = `<img class="hover-img" onclick="finishEditInput(${i})" src="assets/img/check-task.svg" alt=""></img>`;
 }
 
 function finishEditInput(i) {
