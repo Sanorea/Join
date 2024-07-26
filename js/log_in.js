@@ -1,9 +1,9 @@
 
-const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.firebasedatabase.app/';
+const EDU_FIREBASE = "https://join-192-default-rtdb.europe-west1.firebasedatabase.app/";
 
 
 function initLogIn() {
-    loadData(path = "-NxdlUHdMDgqDya6QkiU/login");
+    loadData(path = "/login");
     docID('body-login').innerHTML = LogInHTML();
 }
 
@@ -35,7 +35,7 @@ function SingUpHTML() {
             <div class="sign-up-remember-me">
                     <input class="form-check-input curser input-remember" required type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
-                      <span class="accapt-the-policy-text">i accept the <span class="sign-in-policy">Privacy policy</span></span>
+                      <span class="accapt-the-policy-text">i accept the <a class="p-none" href="privacy_policy.html"><span class="sign-in-policy">Privacy policy</span></a></span>
                     </label>
             </div>
                 <div class="sign-up-btn">
@@ -214,7 +214,7 @@ function addUserLogIn() {
         password.value = ``;
         passwordSecond.value = ``;
     } else {
-        postData("-NxdlUHdMDgqDya6QkiU/login", signUpDAta);
+        postData("/login", signUpDAta);
         popUp.classList.remove("d-none");
         popUp.innerHTML = checkInPopup();
         setTimeout(function () { popUp.classList.add("d-none"); }, 2000);
@@ -254,8 +254,9 @@ function check() {
 
 async function userLogIn() {
     let popUp = docID('sign-up-popup');
-    let response = await loadData("-NxdlUHdMDgqDya6QkiU");
-    let users = Object.values(response.login);
+    let response = await loadData("/login");
+    console.log(response);
+    let users = Object.values(response);
     let email = docID('log-in-email');
     let password = docID('log-in-password-1');
     let user = users.find(u => u.email == email.value && u.password == password.value);

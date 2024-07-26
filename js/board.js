@@ -4,12 +4,11 @@ let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
 let currentDraggedElement;
 
-async function initBoard(id, renderClass) {
-    // document.getElementById('body-board').innerHTML = renderBoardHTML();
-    // renderSideNavHTML(id, renderClass);
+async function initBoard() {
     await includeHTML();
-    renderHeaderNav(id, renderClass);
-    renderContactListaddTasks();
+    console.log();
+    renderHeaderNav();
+    await renderContactListaddTasks();
     updateHTML();
 }
 
@@ -304,6 +303,7 @@ function removeHighlight() {
 }
 
 function saveTaskDataInArray(taskData) {
+    // console.log(acronyms);
     let tempArrTasks = [];
     arrTasks = [];
     for (let i in taskData) {
@@ -330,10 +330,10 @@ function openCard(element) {
     checkboxCheck(element);
 }
 
-function deleteCard(key) {
+async function deleteCard(key) {
     let keyToObject = arrTasks.find((y) => y['unique-key'] === key);
     arrTasks.splice(keyToObject);
-    deleteTaskPostData("/tasks/" + key);
+    await deleteTaskPostData("/tasks/" + key);
     closeCardPopUp();
     updateHTML();
 }
@@ -434,6 +434,7 @@ function search() {
 }
 
 async function updateHTML() {
+    console.log(acronyms);
     await getTaskData();
     console.log(acronyms);
     let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];

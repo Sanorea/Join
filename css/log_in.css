@@ -587,6 +587,15 @@ body {
 
 .sign-in-policy {
     color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.sign-in-policy a {
+    text-decoration: none;
+}
+
+.p-none a{
+    text-decoration: none;
 }
 
 .sign-in-policy:hover {
@@ -595,6 +604,10 @@ body {
 
 .accapt-the-policy-text {
     color: #A8A8A8;
+}
+
+.accapt-the-policy-text a{
+    text-decoration: none;
 }
 
 .sign-up-btn {
