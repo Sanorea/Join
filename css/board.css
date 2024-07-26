@@ -450,6 +450,12 @@
     font-weight: 400;
 }
 
+.delete:hover {
+    transform: scale(1.09);
+    color: #29ABE2;
+    font-weight: 400;  
+}
+
 .delete {
     display: flex;
     box-sizing: content-box;
