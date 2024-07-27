@@ -555,7 +555,10 @@
     gap: 25px;
 }
 
-
+.add-task-subtasks-inputfield:focus {
+    border-color: #29ABE2;
+    /* outline: none; */
+}
 
 /*responsive-Desktop*/
 

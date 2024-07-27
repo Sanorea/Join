@@ -356,6 +356,7 @@
     animation-name: example;
     position: relative;
     animation-duration: 0.5s;
+    height: 93vh;
 }
 
 @keyframes example {
@@ -405,7 +406,7 @@
     font-size: 16px;
     font-weight: 400;
     color: white;
-    padding: 4px 16px 4px 16px;
+    /* padding: 4px 16px 4px 16px; */
     gap: 10px;
     border-radius: 8px;
 }
@@ -672,6 +673,12 @@
     .card-with-arrows {
         border-radius: unset;
         box-shadow: none;
+    }
+}
+
+@media(max-width: 340px) {
+    .card-popUp {
+        padding: 40px 30px 40px 30px;
     }
 }
 

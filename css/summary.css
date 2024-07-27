@@ -555,7 +555,7 @@
     }
 }
 
-@media(max-width:325px) {
+@media(max-width:380px) {
     .second-row {
         gap: 12px;
     }
