@@ -117,7 +117,7 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
                 <div class="difficulty">${element['prio']} ${prioImg}</div>
             </div>
             <div class="card-popUp-assignet">
-                <div class="title">Assignet to:</div>
+                <div class="title">Assigned to:</div>
                 <div class="assignet-list">${contactCardArrayResult}</div>
             </div>
             <div class="card-popUp-subtask">
