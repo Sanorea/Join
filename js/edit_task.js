@@ -64,15 +64,11 @@ function showSavedPrio(key) {
     let savedPrio = addArrTasks[0][key]['prio'];
     if (savedPrio === 'low') {
         changeColorPrioButton('low');
-        console.log('low :>> ', 'low');
     } else if (savedPrio === 'medium') {
         changeColorPrioButton('medium');
-        console.log('medium :>> ', 'medium');
     } else if (savedPrio === 'urgent') {
         changeColorPrioButton('urgent');
-        console.log('urgent :>> ', 'urgent');
     } else {
-        console.log('else :>> ', 'else');
     }
 }
 

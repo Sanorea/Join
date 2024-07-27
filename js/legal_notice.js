@@ -9,5 +9,4 @@ function initNotice() {
         renderHeaderNav();
         renderSideNavHTML();  
     }
-    console.log(document.referrer);
 }

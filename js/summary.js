@@ -18,7 +18,6 @@ let date = new Date();
 let hour = date.getHours();
 let minute = date.getMinutes();
 let time = hour + "." + minute;
-console.log(time)
 
 async function getTaskSummaryCount() {
     await getTaskData();

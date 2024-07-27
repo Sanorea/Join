@@ -6,7 +6,6 @@ let currentDraggedElement;
 
 async function initBoard() {
     await includeHTML();
-    console.log();
     renderHeaderNav();
     await renderContactListaddTasks();
     updateHTML();
@@ -303,7 +302,6 @@ function removeHighlight() {
 }
 
 function saveTaskDataInArray(taskData) {
-    // console.log(acronyms);
     let tempArrTasks = [];
     arrTasks = [];
     for (let i in taskData) {
@@ -434,9 +432,7 @@ function search() {
 }
 
 async function updateHTML() {
-    console.log(acronyms);
     await getTaskData();
-    console.log(acronyms);
     let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
     for (let i = 0; i < boardCategories.length; i++) {
         let category = boardCategories[i];

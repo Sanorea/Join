@@ -255,7 +255,6 @@ function check() {
 async function userLogIn() {
     let popUp = docID('sign-up-popup');
     let response = await loadData("/login");
-    console.log(response);
     let users = Object.values(response);
     let email = docID('log-in-email');
     let password = docID('log-in-password-1');

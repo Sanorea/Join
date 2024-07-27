@@ -230,7 +230,6 @@ function setContactInputValues() {
     let email = docID('contact-email');
     let phone = docID('contact-phone');
     let names = name.value.split(' ');
-    console.log(names);
     let firstLetterOfName = getFirstLetter(names[0]);
     let firstLetterOfLastName = getFirstLetter (names[names.length - 1]);
     let acronym = firstLetterOfName + firstLetterOfLastName;
