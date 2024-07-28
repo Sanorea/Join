@@ -112,7 +112,7 @@ function iconFirstSwitch(icon) {
     // Check if passwords match
     // Check if email ends with .de or .com
 
-function addUserLogIn() {
+async function addUserLogIn() {
     let popUp = docID('sign-up-popup');
     let name = docID('sing-up-name');
     let email = docID('sing-up-email');
@@ -135,7 +135,7 @@ function addUserLogIn() {
         popUp.innerHTML = checkInPopup();
         setTimeout(function () { popUp.classList.add("d-none"); }, 2000);
         setTimeout(backToLogIn, 2000);
-        let contactInputValue = setContactInputValuesSignUp();
+        let contactInputValue = await setContactInputValuesSignUp();
         postContactData(contactInputValue.name.value, contactInputValue.email.value, contactInputValue.phone, contactInputValue.acronym, contactInputValue.id);
     } else {
 
@@ -280,12 +280,12 @@ async function userLogIn() {
  * // }
  */
 
-function setContactInputValuesSignUp() {
+async function setContactInputValuesSignUp() {
     let name = docID('sing-up-name'); // Input für Name
     let email = docID('sing-up-email'); // Inputfeld für E-Mail
     let phone = "";
     let acronym = setInitials(name);
-    // await getContactsData()
+    await getContactsData();
     let id = setID();
 
     return {

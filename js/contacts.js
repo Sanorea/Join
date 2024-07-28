@@ -267,9 +267,10 @@ function getRandomColor() {
 function setID() {
     let id = 0;
     if (arrContacts.length == 0) {
-        id = 1;
+        id = 100;
     } else {
-        let lastUsedId = arrContacts[arrContacts.length - 1]['contact-id'];
+        let sort = arrContacts.sort((a,b) => (a['contact-id'] - b['contact-id']));
+        let lastUsedId = sort[arrContacts.length - 1]['contact-id'];
         id = lastUsedId + 1;
     }
 

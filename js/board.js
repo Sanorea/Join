@@ -49,7 +49,6 @@ function switchCategory(id, direction) {
             currentDraggedElement = id;
         }
     }
-
     if (direction === 'down') {
         if (currentBoardCategoryIndex === boardCategories.length - 1) {
             moveTo(boardCategories[0]);
@@ -192,29 +191,17 @@ function checkFinishedTasks(element) {
 }
 
 /**
- * Sets the ID of the currently dragged element.
- * 
  * @param {string} id - The ID of the element being dragged.
- * 
- * @example
- * startDragging('task-123');
- * // Sets `currentDraggedElement` to 'task-123'
- */
-
+ * */
 function startDragging(id) {
     currentDraggedElement = id;
 }
-
 /**
  * Prevents the default behavior of the drag-and-drop event to allow dropping.
  * 
  * @param {DragEvent} event - The drag event.
- * 
- * @example
- * document.addEventListener('dragover', allowDrop);
- * // Prevents default behavior during dragover to allow drop.
- */
 
+**/
 function allowDrop(event) {
     event.preventDefault();
 }
@@ -225,13 +212,7 @@ function allowDrop(event) {
  * @param {string} category - The new category to move the task to.
  * 
  * @returns {Promise<void>} - A promise that resolves when the task data is updated and the HTML is refreshed.
- * 
- * @async
- * 
- * @example
- * moveTo('inProgress');
- * // Moves the currently dragged task to the 'inProgress' category, updates the backend, and refreshes the HTML.
- */
+ **/
 
 async function moveTo(category) {
     let index = arrTasks.findIndex(obj => obj.id == currentDraggedElement);
@@ -254,45 +235,7 @@ async function moveTo(category) {
     updateHTML();
 }
 
-/**
- * Highlights the specified categories by adding a CSS class to their corresponding elements.
- * 
- * @param {string} category1 - The ID of the first category element to highlight.
- * @param {string} category2 - The ID of the second category element to highlight.
- * @param {string} category3 - The ID of the third category element to highlight.
- * 
- * @returns {void} - This function does not return a value.
- * 
- * @example
- * highlight('category1', 'category2', 'category3');
- * // Adds 'drag-area-highlight' class to elements with IDs 'category1', 'category2', and 'category3'.
- */
 
-function highlight(category1, category2, category3) {
-    document.getElementById(category1).classList.add('drag-area-highlight');
-    document.getElementById(category2).classList.add('drag-area-highlight');
-    document.getElementById(category3).classList.add('drag-area-highlight');
-}
-
-/**
- * Removes the highlight CSS class from all category elements.
- * 
- * This function targets specific elements by their IDs and removes the 'drag-area-highlight' class from each,
- * effectively removing the highlight effect from the categories.
- * 
- * @returns {void} - This function does not return a value.
- * 
- * @example
- * removeHighlight();
- * // Removes 'drag-area-highlight' class from elements with IDs 'toDo', 'inProgress', 'awaitFeedback', and 'done'.
- */
-
-function removeHighlight() {
-    document.getElementById('toDo').classList.remove('drag-area-highlight');
-    document.getElementById('inProgress').classList.remove('drag-area-highlight');
-    document.getElementById('awaitFeedback').classList.remove('drag-area-highlight');
-    document.getElementById('done').classList.remove('drag-area-highlight');
-}
 
 /**
  * Saves task data into a global array `arrTasks`.
@@ -328,11 +271,6 @@ function saveTaskDataInArray(taskData) {
  * @param {string} element - The unique key of the task to be displayed in the popup.
  * 
  * @returns {void} - This function does not return a value.
- * 
- * @example
- * // Assuming 'task123' is a valid unique key in arrTasks
- * openCard('task123');
- * // The popup card will be populated with details of the task with key 'task123'
  */
 
 function openCard(element) {
@@ -352,7 +290,6 @@ function openCard(element) {
 
 /**
  * Deletes a task by its unique key and updates the UI.
- * 
  * @param {string} key - The unique key of the task to delete.
  * @returns {Promise<void>} - Resolves when the task is deleted and UI is updated.
  * @async
@@ -389,7 +326,6 @@ function subtaskBar(length, list) {
 
 /**
  * Updates the subtask completion status based on checkbox inputs.
- * 
  * @async
  * @param {string} element - The unique key of the task.
  * @returns {Promise<void>} - Resolves when the subtask completion status is updated.
@@ -421,8 +357,7 @@ async function subtaskCardCheckbox(element) {
 }
 
 /**
- * Updates the checked status of a subtask in the database.
- * 
+ * Updates the checked status of a subtask in the database. 
  * @async
  * @param {string} uniqueKey - The unique key of the task.
  * @param {number} index - The index of the subtask in the list.
@@ -498,80 +433,13 @@ function renderInToDo() {
 function search() {
     let searchValue = document.getElementById('searchbar').value.toLowerCase();
     searchResults = [];
-
     for (i = 0; i < arrTasks.length; i++) {
         let searchResult = arrTasks[i];
         if (arrTasks[i]['title'].toLowerCase().includes(searchValue) || arrTasks[i]['description'].toLowerCase().includes(searchValue)) {
             searchResults.push(searchResult);
         }
     }
-
     renderTasksBasedOnSearchInput();
-}
-
-/**
- * Updates the HTML content of task categories based on current task data.
- * Clears and repopulates each category section (e.g., 'To-do', 'In progress') with tasks.
- * If no tasks are available in a category, displays a message indicating so.
- * 
- * @async
- * @function
- */
-
-async function updateHTML() {
-    await getTaskData();
-    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
-    for (let i = 0; i < boardCategories.length; i++) {
-        let category = boardCategories[i];
-        let elements = arrTasks.filter(t => t['boardCategory'] == category);
-        if (elements.length > 0) {
-            docID(category).innerHTML = '';
-        } else {
-            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
-        }
-        for (let index = 0; index < elements.length; index++) {
-            const element = elements[index];
-            let taskCategoryResult = taskCategory(element);
-            let subTaskResult = subtaskList(element, index)
-            let prioResult = findoutPrio(element);
-            let prioImg = findoutPrio(elements);
-            let ContactsArrayResult = ContactsArray(element);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult, prioImg);
-        }
-    }
-}
-
-/**
- * Renders tasks in the HTML based on search results, organized by board category.
- * Clears the current content of each category and repopulates it with tasks that match the search criteria.
- * Displays a message if no tasks are available in a category after filtering.
- * 
- * @function
- */
-
-function renderTasksBasedOnSearchInput() {
-    let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
-    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
-
-    for (let i = 0; i < boardCategories.length; i++) {
-        let category = boardCategories[i];
-        let elements = searchResults.filter(t => t['boardCategory'] == category);
-
-        if (elements.length > 0) {
-            docID(category).innerHTML = '';
-        } else {
-            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
-        }
-
-        for (let index = 0; index < elements.length; index++) {
-            const element = elements[index];
-            let taskCategoryResult = taskCategory(element);
-            let subTaskResult = subtaskList(element, index);
-            let prioResult = findoutPrio(element);
-            let ContactsArrayResult = ContactsArray(element);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
-        }
-    }
 }
 
 /**
@@ -579,9 +447,7 @@ function renderTasksBasedOnSearchInput() {
  * 
  * Adds the `card-animation-back` class to the element with the ID `popUp-animation` to trigger the animation.
  * Uses `setTimeout` to call `closeCardPopUp` after a 200ms delay to ensure the animation completes before closing.
- * 
- * @function
- */
+**/
 
 function timeOut() {
     docID('popUp-animation').classList.add('card-animation-back');
