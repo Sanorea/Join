@@ -1,21 +1,6 @@
 /*Assigned to*/
 
 /**
- * Loads task contact data and adds it to an array.
- *
- * This asynchronous function fetches contact data related to tasks from a specified path 
- * and then adds the retrieved data to the `addTaskContacts` array. The function uses the 
- * `addTaskLoadData` function to perform the data retrieval and waits for the data to be 
- * loaded before pushing it into the array.
- *
- */
-async function addTaskContactsToArray() {
-    let addTaskContacts = [];
-    let addTaskResponseToJson = await addTaskLoadData(path = "");
-    addTaskContacts.push(addTaskResponseToJson);
-}
-
-/**
  * Retrieves task IDs from a remote source and saves them to an array.
  *
  * This asynchronous function fetches task IDs data from a specified endpoint using the 

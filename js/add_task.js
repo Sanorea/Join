@@ -42,7 +42,6 @@ async function addTaskInit() {
     await addTaskLoadData("/tasks");
     renderContactListaddTasks();
     renderDropdownCategorieAddTasks();
-    addTaskContactsToArray();
     setStartPrio();
 }
 
