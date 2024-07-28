@@ -356,7 +356,6 @@
     animation-name: example;
     position: relative;
     animation-duration: 0.5s;
-    height: 93vh;
 }
 
 @keyframes example {

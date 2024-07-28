@@ -11,152 +11,32 @@ async function initBoard() {
     updateHTML();
 }
 
+/**
+ * Fetches task data from the server and saves it.
+ * 
+ * @async
+ * @function
+ * @returns {Promise<Object>} The task data from the server.
+ * 
+ * @example
+ * getTaskData().then(taskData => console.log(taskData));
+ */
+
 async function getTaskData() {
     let taskData = await loadData('/tasks');
     saveTaskDataInArray(taskData);
     return taskData;
 }
 
-
-function subtaskList(element, index) {
-    let stylee = document.querySelectorAll('.card-subtask');
-    if (!element['subtasks'] || !Array.isArray(element['subtasks'])) {
-        stylee.forEach(function (el) {
-        });
-        return ``;
-    } else {
-        let list = element['subtasks'].length
-        let finishedTasks = checkFinishedTasks(element, list);
-        let percent = subtaskBar(finishedTasks, list);
-        return ` <div class="bar">
-                <div class="w3-light-grey">
-                    <div id="editBar_${index}"  class="w3-container bar-color w3-center" style="width:${percent}%"></div>
-                </div><br>
-            </div>
-            <div id='subtask-counter' class="subtask-content">
-                <div><span>${finishedTasks}/${list}Subtasks</span></div>
-            </div>`;
-    }
-}
-
-function ContactsArray(element) {
-        let elementContact = "";
-        let contact = element['acronymsAssignedTo'];
-        if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
-            elementContact = `<div></div>`;
-        } else
-            for (let i = 0; i < contact.length; i++) {
-                let user = contact[i];
-                let findContact = acronyms.findIndex((x) => x == user);
-                let color = colors[findContact];
-                elementContact += `<div class="user-content" style="background-color: ${color}">${user}</div>`;
-            }
-        return elementContact;
-    }
-
-function contactCardArray(keyToObject) {
-    let list = keyToObject['acronymsAssignedTo'];
-    let nameArray = keyToObject['namesAssignedTo']
-    let array = "";
-    if (!list) {
-        array = `<div></div>`;
-    } else {
-        for (let i = 0; i < list.length; i++) {
-            const element = list[i];
-            let name = nameArray[i];
-            let findContact = acronyms.findIndex((x) => x == element);
-            let color = colors[findContact];
-            array += ` 
-        <div class="reder-card">
-          <div class="user-content-array" style="background: ${color}">${element}</div>
-          <div class="nameClass"> ${name}</div>
-        </div>
-        `;
-        }
-    }
-    return array;
-}
-
-function taskArray(keyToObject) {
-    let content = "";
-    let list = keyToObject['subtasks'];
-    if (!list) {
-        content = `<div></div>`;
-    } else {
-        for (let i = 0; i < list.length; i++) {
-            const element = list[i];
-            content += `
-        <div class="list-card-subtaskarray">
-            <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" value="${element}">
-            <div>
-                <div class="subtasksClass" >${element}</div>
-            </div>    
-         </div>       
-            `;
-        }
-    }
-    return content;
-}
-
-function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray, prioImg) {
-    return /*HTML*/ `
-      <div id="popUp-animation" class="card-popUp">
-            <div class="card-popUp-top">
-                <div class="categorie">${taskCategoryResult}</div>
-                <div class="back-arrow"><img class="cursor" onclick="timeOut()" src="assets/img/close.svg" alt=""></div>
-            </div>
-            <div class="card-popUp-headline">${element['title']}</div>
-            <div class="card-popUp-subline">${element['description']}</div>
-            <div class="card-popUp-DueDate">
-                <div class="title">Due date:</div>
-                <div class="date">${element['date']}</div>
-            </div>
-            <div class="card-popUp-priority">
-                <div class="title">Priority:</div>
-                <div class="difficulty">${element['prio']} ${prioImg}</div>
-            </div>
-            <div class="card-popUp-assignet">
-                <div class="title">Assigned to:</div>
-                <div class="assignet-list">${contactCardArrayResult}</div>
-            </div>
-            <div class="card-popUp-subtask">
-                <div class="title">Subtask</div>
-                <div class="subtask-list">${subtaskListArray}</div>
-            </div>
-            <div class="edit-and-delete">
-                <div onclick="deleteCard('${element['unique-key']}')" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
-                <div class="line"></div>
-                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img class="edit" src="assets/img/edit.svg" alt=""><span>Edit</span></div>
-            </div>
-        </div>    
-    `;
-}
-
-function renderCardHTML(element, subTaskResult, prioResult, taskCategory, ContactsArrayResult) {
-    let uniqueKey = element['unique-key'];
-    return /*HTML*/ `
-    <div class="card-with-arrows">
-        <div onclick="switchCategory('${element['id']}', 'up')" class="move-arrow move-arrow-up">
-            <img class="move-menu-icon" src="/assets/img/arrow_drop_down_up.svg" alt="">
-        </div>
-        <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
-            <div>${taskCategory}</div>
-            <div class="card-title">${element['title']}</div>
-            <div class="card-subtitle">${element['description']}</div>
-            <div class="card-subtask">
-            <div id='subtask-counter'>${subTaskResult}</div>
-            </div>
-            <div class="card-info">
-                <div class="card-profil">${ContactsArrayResult}</div>
-                <div class="card-difficulty">${prioResult}</div>
-            </div>
-        </div>
-        <div onclick="switchCategory('${element['id']}', 'down')" class="move-arrow move-arrow-down">
-            <img class="move-menu-icon" src="/assets/img/arrow_drop_down_down.svg" alt="">
-        </div>
-    </div>
-    `;
-}
+/**
+ * Switches the category of a task based on the direction provided.
+ * 
+ * @param {string} id - The ID of the task whose category is to be switched.
+ * @param {'up' | 'down'} direction - The direction to switch the category; 'up' or 'down'.
+ * 
+ * @example
+ * switchCategory('task123', 'down'); // Moves the task with ID 'task123' to the next category.
+ */
 
 function switchCategory(id, direction) {
     let currentBoardCategory = '';
@@ -185,6 +65,18 @@ function switchCategory(id, direction) {
     }
 }
 
+/**
+ * Generates HTML for displaying a task's category.
+ * 
+ * @param {Object} element - The task element containing category information.
+ * @param {string} element.taskCategory - The category of the task.
+ * @returns {string} HTML string representing the task category.
+ * 
+ * @example
+ * const taskElement = { taskCategory: 'User Story' };
+ * const html = taskCategory(taskElement);
+ * console.log(html); // Outputs: <div class="headline-card">User Story</div>
+ */
 
 function taskCategory(element) {
     let category = element['taskCategory'];
@@ -205,6 +97,19 @@ function taskCategory(element) {
     return categoryVal;
 }
 
+/**
+ * Generates HTML for displaying a task's category in a popup.
+ * 
+ * @param {Object} element - The task element containing category information.
+ * @param {string} element.taskCategory - The category of the task.
+ * @returns {string} HTML string representing the task category for the popup.
+ * 
+ * @example
+ * const taskElement = { taskCategory: 'Technical Task' };
+ * const html = taskCategoryPopup(taskElement);
+ * console.log(html); // Outputs: <div class="headline-card-Technical-popup">Technical Task</div>
+ */
+
 function taskCategoryPopup(element) {
     let category = element['taskCategory'];
     let categoryVal = "";
@@ -223,6 +128,19 @@ function taskCategoryPopup(element) {
     }
     return categoryVal;
 }
+
+/**
+ * Generates HTML to display the priority level of a task.
+ * 
+ * @param {Object} element - The task element containing priority information.
+ * @param {string} element.prio - The priority level of the task.
+ * @returns {string} HTML string representing the task's priority.
+ * 
+ * @example
+ * const taskElement = { prio: 'medium' };
+ * const html = findoutPrio(taskElement);
+ * console.log(html); // Outputs: <div><img src="assets/img/Capa 2.svg" alt=""></div>
+ */
 
 function findoutPrio(element) {
     let prio = element['prio'];
@@ -246,6 +164,20 @@ function findoutPrio(element) {
     return prioVal;
 }
 
+/**
+ * Counts and processes the number of completed subtasks for a given task.
+ * 
+ * @param {Object} element - The task element containing subtask information.
+ * @param {Array<string>} element.subtasks - The list of subtasks.
+ * @param {Array<string>} [element.subtasksChecked] - The list of checked subtasks, where each entry is either 'true' or 'false'.
+ * @returns {number} The number of completed subtasks.
+ * 
+ * @example
+ * const taskElement = {
+ *   subtasks: ['Task 1', 'Task 2', 'Task 3'],
+ *   subtasksChecked: ['true', 'false', 'true']
+ * };*/
+
 function checkFinishedTasks(element) {
     let trueList = [];
     let list = element['subtasks'];
@@ -259,13 +191,47 @@ function checkFinishedTasks(element) {
     return trueList.length;
 }
 
+/**
+ * Sets the ID of the currently dragged element.
+ * 
+ * @param {string} id - The ID of the element being dragged.
+ * 
+ * @example
+ * startDragging('task-123');
+ * // Sets `currentDraggedElement` to 'task-123'
+ */
+
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+/**
+ * Prevents the default behavior of the drag-and-drop event to allow dropping.
+ * 
+ * @param {DragEvent} event - The drag event.
+ * 
+ * @example
+ * document.addEventListener('dragover', allowDrop);
+ * // Prevents default behavior during dragover to allow drop.
+ */
+
 function allowDrop(event) {
     event.preventDefault();
 }
+
+/**
+ * Moves the currently dragged task to a new category and updates the task data in the backend.
+ * 
+ * @param {string} category - The new category to move the task to.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the task data is updated and the HTML is refreshed.
+ * 
+ * @async
+ * 
+ * @example
+ * moveTo('inProgress');
+ * // Moves the currently dragged task to the 'inProgress' category, updates the backend, and refreshes the HTML.
+ */
 
 async function moveTo(category) {
     let index = arrTasks.findIndex(obj => obj.id == currentDraggedElement);
@@ -288,11 +254,38 @@ async function moveTo(category) {
     updateHTML();
 }
 
+/**
+ * Highlights the specified categories by adding a CSS class to their corresponding elements.
+ * 
+ * @param {string} category1 - The ID of the first category element to highlight.
+ * @param {string} category2 - The ID of the second category element to highlight.
+ * @param {string} category3 - The ID of the third category element to highlight.
+ * 
+ * @returns {void} - This function does not return a value.
+ * 
+ * @example
+ * highlight('category1', 'category2', 'category3');
+ * // Adds 'drag-area-highlight' class to elements with IDs 'category1', 'category2', and 'category3'.
+ */
+
 function highlight(category1, category2, category3) {
     document.getElementById(category1).classList.add('drag-area-highlight');
     document.getElementById(category2).classList.add('drag-area-highlight');
     document.getElementById(category3).classList.add('drag-area-highlight');
 }
+
+/**
+ * Removes the highlight CSS class from all category elements.
+ * 
+ * This function targets specific elements by their IDs and removes the 'drag-area-highlight' class from each,
+ * effectively removing the highlight effect from the categories.
+ * 
+ * @returns {void} - This function does not return a value.
+ * 
+ * @example
+ * removeHighlight();
+ * // Removes 'drag-area-highlight' class from elements with IDs 'toDo', 'inProgress', 'awaitFeedback', and 'done'.
+ */
 
 function removeHighlight() {
     document.getElementById('toDo').classList.remove('drag-area-highlight');
@@ -300,6 +293,18 @@ function removeHighlight() {
     document.getElementById('awaitFeedback').classList.remove('drag-area-highlight');
     document.getElementById('done').classList.remove('drag-area-highlight');
 }
+
+/**
+ * Saves task data into a global array `arrTasks`.
+ * 
+ * This function processes the `taskData` object to populate the global `arrTasks` array.
+ * It extracts task objects from the `taskData`, assigns each a unique key, and updates the `arrTasks` array
+ * with these tasks.
+ * 
+ * @param {Object} taskData - An object containing task data, where each key-value pair represents a task.
+ * 
+ * @returns {void} - This function does not return a value.
+*/
 
 function saveTaskDataInArray(taskData) {
     let tempArrTasks = [];
@@ -313,8 +318,25 @@ function saveTaskDataInArray(taskData) {
     }
 }
 
+/**
+ * Opens a card popup with detailed information about a specific task.
+ * 
+ * This function displays a popup card containing details of a task specified by the given `element` ID.
+ * It updates the popup with information such as task category, subtasks, contacts, and priority.
+ * Additionally, it applies necessary styling and checks checkboxes based on the task's data.
+ * 
+ * @param {string} element - The unique key of the task to be displayed in the popup.
+ * 
+ * @returns {void} - This function does not return a value.
+ * 
+ * @example
+ * // Assuming 'task123' is a valid unique key in arrTasks
+ * openCard('task123');
+ * // The popup card will be populated with details of the task with key 'task123'
+ */
+
 function openCard(element) {
-    
+
     let container = docID('card-popUp-background');
     let body = docID('body-board');
     body.classList.add('fixed');
@@ -328,6 +350,14 @@ function openCard(element) {
     checkboxCheck(element);
 }
 
+/**
+ * Deletes a task by its unique key and updates the UI.
+ * 
+ * @param {string} key - The unique key of the task to delete.
+ * @returns {Promise<void>} - Resolves when the task is deleted and UI is updated.
+ * @async
+ */
+
 async function deleteCard(key) {
     let keyToObject = arrTasks.find((y) => y['unique-key'] === key);
     arrTasks.splice(keyToObject);
@@ -335,6 +365,14 @@ async function deleteCard(key) {
     closeCardPopUp();
     updateHTML();
 }
+
+/**
+ * Calculates the percentage of completed subtasks as a bar value.
+ * 
+ * @param {number} length - The number of completed subtasks.
+ * @param {number} list - The total number of subtasks.
+ * @returns {number} - The calculated percentage value for the subtask bar.
+ */
 
 function subtaskBar(length, list) {
     let a = list * 100;
@@ -348,6 +386,14 @@ function subtaskBar(length, list) {
         return c;
     }
 }
+
+/**
+ * Updates the subtask completion status based on checkbox inputs.
+ * 
+ * @async
+ * @param {string} element - The unique key of the task.
+ * @returns {Promise<void>} - Resolves when the subtask completion status is updated.
+ */
 
 async function subtaskCardCheckbox(element) {
     let object = arrTasks.find((y) => y['unique-key'] === element);
@@ -374,17 +420,34 @@ async function subtaskCardCheckbox(element) {
     }
 }
 
+/**
+ * Updates the checked status of a subtask in the database.
+ * 
+ * @async
+ * @param {string} uniqueKey - The unique key of the task.
+ * @param {number} index - The index of the subtask in the list.
+ * @param {string} boolean - The new checked status ('true' or 'false').
+ * @returns {Promise<void>} - Resolves when the update operation is complete.
+ */
+
 async function updateCheckedBoolean(uniqueKey, index, boolean) {
     await updateData("/tasks/" + uniqueKey + "/subtasksChecked/" + index, boolean);
 }
 
+/**
+ * Updates the checkbox states based on the subtask completion status.
+ * 
+ * @param {string} element - The unique key of the task.
+ * @returns {string} - Returns 'zero' if there are no subtasks, otherwise updates checkboxes.
+ */
+
 function checkboxCheck(element) {
-        let object = arrTasks.find((y) => y['unique-key'] === element);
-        let list = object['subtasks'];
-        let checked = object['subtasksChecked']
-        if (!list) {
-            return `zero`
-        } else {
+    let object = arrTasks.find((y) => y['unique-key'] === element);
+    let list = object['subtasks'];
+    let checked = object['subtasksChecked']
+    if (!list) {
+        return `zero`
+    } else {
         for (let i = 0; i < list.length; i++) {
             let id = docID(`contactCardId${i}`);
             let value = id.value;
@@ -398,6 +461,13 @@ function checkboxCheck(element) {
     }
 }
 
+/**
+ * Sends a DELETE request to remove a task from the database.
+ * 
+ * @param {string} path - The endpoint path for the task to be deleted.
+ * @returns {Promise<Object>} - The response JSON from the DELETE request.
+ */
+
 async function deleteTaskPostData(path = "") {
     let responseAddTask = await fetch(BASE_URL + path + ".json", {
         method: "DELETE",
@@ -405,6 +475,10 @@ async function deleteTaskPostData(path = "") {
     );
     return responseToJson = await responseAddTask.json();
 }
+
+/**
+ * Closes the card popup by hiding the popup background and removing the fixed positioning from the body.
+ */
 
 function closeCardPopUp() {
     docID('card-popUp-background').hidden = true;
@@ -416,6 +490,10 @@ function renderInToDo() {
     let body = document.getElementById('todo-body-card');
     body.innerHTML = renderCardHTML();
 }
+
+/**
+ * Renders the HTML content for the "To Do" section by updating the innerHTML of the 'todo-body-card' element.
+ */
 
 function search() {
     let searchValue = document.getElementById('searchbar').value.toLowerCase();
@@ -431,19 +509,26 @@ function search() {
     renderTasksBasedOnSearchInput();
 }
 
+/**
+ * Updates the HTML content of task categories based on current task data.
+ * Clears and repopulates each category section (e.g., 'To-do', 'In progress') with tasks.
+ * If no tasks are available in a category, displays a message indicating so.
+ * 
+ * @async
+ * @function
+ */
+
 async function updateHTML() {
     await getTaskData();
     let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
     for (let i = 0; i < boardCategories.length; i++) {
         let category = boardCategories[i];
         let elements = arrTasks.filter(t => t['boardCategory'] == category);
-
         if (elements.length > 0) {
             docID(category).innerHTML = '';
         } else {
             docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
         }
-
         for (let index = 0; index < elements.length; index++) {
             const element = elements[index];
             let taskCategoryResult = taskCategory(element);
@@ -455,6 +540,14 @@ async function updateHTML() {
         }
     }
 }
+
+/**
+ * Renders tasks in the HTML based on search results, organized by board category.
+ * Clears the current content of each category and repopulates it with tasks that match the search criteria.
+ * Displays a message if no tasks are available in a category after filtering.
+ * 
+ * @function
+ */
 
 function renderTasksBasedOnSearchInput() {
     let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
@@ -480,6 +573,15 @@ function renderTasksBasedOnSearchInput() {
         }
     }
 }
+
+/**
+ * Applies a CSS animation to the popup element and then closes the popup after a short delay.
+ * 
+ * Adds the `card-animation-back` class to the element with the ID `popUp-animation` to trigger the animation.
+ * Uses `setTimeout` to call `closeCardPopUp` after a 200ms delay to ensure the animation completes before closing.
+ * 
+ * @function
+ */
 
 function timeOut() {
     docID('popUp-animation').classList.add('card-animation-back');
