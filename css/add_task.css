@@ -336,6 +336,7 @@
 
 .add-task-details-user-initials {
     width: 42px;
+    min-width: 42px;
     height: 42px;
     border-radius: 45px;
     border: 2px solid white;
@@ -485,6 +486,8 @@
 
 .list-acronyms {
     display: flex;
+    overflow-x: scroll;
+    width: 100%;
 }
 
 .left-side-desktop {
