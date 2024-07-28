@@ -241,7 +241,14 @@ function setContactInputValues() {
 function setInitials(name) {
     let names = name.value.split(' ');
     let firstLetterOfName = getFirstLetter(names[0]);
-    let firstLetterOfLastName = getFirstLetter (names[names.length - 1]);
+    let firstLetterOfLastName;
+    
+    if (names.length > 1) {
+        firstLetterOfLastName = getFirstLetter(names[names.length - 1]);
+    } else {
+        firstLetterOfLastName = '';
+    }
+    
     let initials = firstLetterOfName + firstLetterOfLastName;
 
     return initials;
