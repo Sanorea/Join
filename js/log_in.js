@@ -2,6 +2,15 @@
 const EDU_FIREBASE = "https://join-192-default-rtdb.europe-west1.firebasedatabase.app/";
 
 
+
+/**
+ * Initializes the login page by loading data and setting up the login form.
+ * 
+ * This function:
+ * 1. Loads data from the specified path ("/login").
+ * 2. Sets the inner HTML of the login body to the generated login page HTML.
+ * 3. Clears any previously entered values in the email and password input fields.
+ */
 function initLogIn() {
     loadData(path = "/login");
     docID('body-login').innerHTML = LogInHTML();
@@ -9,155 +18,22 @@ function initLogIn() {
     docID('log-in-password-1').value = "";
 }
 
-function SingUpHTML() {
-    return /*HTML*/`
-    <form onsubmit="addUserLogIn(); return false;" class="form-body">
-            <div class="log-in-header">
-                <span id="header" class="header">Sign up</span>
-                <div class="underline-header"></div>
-                <img onclick="backToLogIn()" class="header-arrow curser" src="/assets/img/arrow-left-line.svg" alt="">
-            </div>
-            <div id="log-in-input-container" class="sign-up-input-container input">
-                    <div class="email-input-content">
-                        <input id="sing-up-name" minlength="3" maxlength="30" required class="name-input" placeholder="Name" type="Text">
-                    </div>
-                    <div class="email-input-content">
-                        <input id="sing-up-email" minlength="6" maxlength="30" required class="email-input" placeholder="Email" type="email">
-                    </div>
-                    <div class="password-input-content">
-                        <input class="password-input"  minlength="5" maxlength="15" required id="sign-up-password-1" onclick="iconFirstSwitch('icon'); this.onclick=null;" placeholder="Password" type="password" > 
-                        <img id="icon" onclick="showVisibility('sign-up-password-1','icon')" src="assets/img/lock.svg">
-                    </div>
-                    <div class="password-input-content">
-                        <input class="password-input" minlength="5" maxlength="15" required id="sign-up-password-2" onkeydown="check()" onkeyup="check()" onclick="iconFirstSwitch('icon-2'); this.onclick=null;" placeholder="Confirm Password" type="password" >
-                        <img id="icon-2" onclick="showVisibility('sign-up-password-2','icon-2')" src="assets/img/lock.svg">
-                        <p id="notTheSamePassword"></p>
-                    </div>
-            </div>
-            <div class="sign-up-remember-me">
-                    <input class="form-check-input curser input-remember" required type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      <span class="accapt-the-policy-text">i accept the <a class="p-none" href="privacy_policy.html"><span class="sign-in-policy">Privacy policy</span></a></span>
-                    </label>
-            </div>
-                <div class="sign-up-btn">
-                    <button type="submit" class="log-in-btn-black btn-primary curser"><span class="log-in-btn-text">Sign up</span></button>           
-                </div>
-           </div>
-        <div class="bottom-body">
-            <div class="Not-a-Join-user">
-                <span class="bottom-text-not-joiner"></span>
-            </div>
-        </div>
-        <div class="policy-notice">
-            <div class="privacy-policy"><a class="sideNav-policy-a" href="legal_notice.html"><span class="policy-text">Privacy Policy</span></a></div>
-            <div class="legal-notice"><a class="sideNav-policy-a" href="privacy_policy.html"><span class="notice-text">Legal notice</span></a></div>
-        </div>
-        </form>
-        <!-- <div id="sign-up-popup" class="modal-dialog modal-fullscreen-sm-down d-none popup"></div> -->
-  `;
-}
-
-function LogInHTML() {
-    return /*HTML*/ `
-    <div id="log-in-body" class="log-in-body">
-        <div id="log-in-container" class="log-in-container">
-            <div class="log-in-header">
-                <span id="header" class="header">Log in</span>
-                <div class="underline-header"></div>
-            </div>
-            <div id="log-in-input-container" class="log-in-input-container">
-                <form onsubmit="userLogIn(); return false;" class="input">
-                    <div class="email-input-content">
-                        <input required id="log-in-email" minlength="6" maxlength="30" class="email-input" placeholder="Email" type="email">
-                    </div>
-                    <div class="password-input-content">
-                        <input required class="password-input" minlength="5" maxlength="15" id="log-in-password-1"
-                            onclick="iconFirstSwitch('icon-3'); this.onclick=null;" placeholder="Password"
-                            type="password">
-                        <img id="icon-3" onclick="showVisibility('log-in-password-1','icon-3')" src="assets/img/lock.svg">
-                    </div>
-                    <div class="log-in-remember-me">
-                        <input class="form-check-input input-remember curser" type="checkbox" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            <span class="remember-text">Remember me</span>
-                        </label>
-                    </div>
-            <div class="log-in-btn">
-                <div class="log-in-button">
-                    <button type="submit" class="log-in-btn-black btn-primary curser"><span class="log-in-btn-text">Log In</span></button>
-                </div>
-            </form>
-                <div class="log-in-guest">
-                    <button type="button" onclick="guestLogIn()" class="log-in-btn-white btn-secondary curser"><span class="guest-btn-text">Guest Log in</span></button>
-                </div>
-            </div>
-        </div>
-        <div id="bottom-body-1" class="bottom-body">
-            <div class="Not-a-Join-user">
-                <span class="bottom-text-not-joiner">Not a Join user?</span>
-            </div>
-            <div class="Sing-up-button">
-                <button onclick="renderSignUp()" class="Sing-up-btn btn-primary curser"><span class="bottom-text-sing-up">Sign up</span></button>
-            </div>
-        </div>
-        <div class="policy-notice">
-            <div class="privacy-policy"><a class="sideNav-policy-a" href="legal_notice.html"><span class="policy-text">Privacy Policy</span></a></div>
-            <div class="legal-notice"><a class="sideNav-policy-a" href="privacy_policy.html"><span class="notice-text">Legal notice</span></a></div>
-        </div>
-    </div>
-    `;
-}
-
-function renderPopUp(text) {
-    return /*HTML*/ `
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modalContent">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">${text}</h1>
-      </div>
-      <div class="modal-footer">
-        <button onclick="fromPopUpToSignUp()" type="button" class="btn btn-primary">Okey</button>
-      </div>
-    </div>
-  </div>
-</div>
-    `;
-}
-
-function WelcomePopUp(text, name) {
-    return /*HTML*/ `
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modalContent">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">${text} ${name}</h1>
-      </div>
-    </div>
-  </div>
-</div>
-    `;
-}
-
-function checkInPopup() {
-    return /*HTML*/ `
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content modalContent">
-          <div class="modal-header">
-          <div class="circle-loader">
-          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
-          </div>
-        </div>
-      </div>
-    </div> 
-    `}
+    /**
+ * Hides the sign-up pop-up.
+ * Adds the "d-none" class to the pop-up element to make it invisible.
+ */
 
 function fromPopUpToSignUp() {
     let popUp = docID('sign-up-popup');
     popUp.classList.add("d-none");
 }
+
+/**
+ * Renders the sign-up page.
+ * Adjusts the height of specific elements and sets the inner HTML of the container to the sign-up page HTML.
+ */
+// Set the height of login body and container elements
+// Replace the inner HTML of the container with the sign-up page HTML
 
 function renderSignUp() {
     let container = docID('log-in-container');
@@ -166,6 +42,13 @@ function renderSignUp() {
     container.style.height = '100%';
     container.innerHTML = SingUpHTML();
 }
+
+/**
+ * Redirects the user back to the login page.
+ * Adjusts the height of specific elements and sets the inner HTML of the body to the login page HTML.
+ */
+// Set the height of login body and container elements
+// Replace the inner HTML of the body with the login page HTML
 
 function backToLogIn() {
     let body = docID('body-login');
@@ -176,6 +59,12 @@ function backToLogIn() {
     body.innerHTML = LogInHTML();
 }
 
+/**
+ * Handles the guest login process.
+ * Displays a welcome pop-up message, sets the user name in local storage, 
+ * and redirects the user to the summary page after a short delay.
+ */
+
 function guestLogIn() {
     let popUp = docID('sign-up-popup');
     popUp.classList.remove("d-none");
@@ -183,6 +72,13 @@ function guestLogIn() {
     setItemLocalStorage('user-name', 'Guest');
     setTimeout(function () { window.location.href = "summary.html"; }, 1400);
 }
+
+/**
+ * Toggles the visibility of a password input field and changes the associated icon.
+ * 
+ * @param {string} id - The ID of the input element whose type is to be toggled.
+ * @param {string} icon - The ID of the image element whose source is to be changed.
+ */
 
 function showVisibility(id, icon) {
     let x = document.getElementById(`${id}`);
@@ -195,9 +91,26 @@ function showVisibility(id, icon) {
     }
 }
 
+/**
+ * Switches the source of an image element to display a "hide password" icon.
+ * 
+ * @param {string} icon - The ID of the image element whose source is to be changed.
+ */
+
 function iconFirstSwitch(icon) {
     docID(`${icon}`).src = `assets/img/hide_password.svg`;
 }
+
+/**
+ * Handles user sign-up process.
+ * Validates user input, displays appropriate messages, and sends data to the server.
+ */
+ /**
+     * Object containing user sign-up data.
+     * @type {{name: string, email: string, password: string}}
+     */
+    // Check if passwords match
+    // Check if email ends with .de or .com
 
 function addUserLogIn() {
     let popUp = docID('sign-up-popup');
@@ -232,6 +145,14 @@ function addUserLogIn() {
 
 }
 
+/**
+ * This Function Post the Data in Firebase.
+ * 
+ * @param {string} path 
+ * @param {jason} data 
+ * @returns Send the responsed to Firebase.
+ */
+
 async function postData(path = "", data = {}) {
     let response = await fetch(EDU_FIREBASE + path + ".json", {
         method: "POST",
@@ -243,11 +164,37 @@ async function postData(path = "", data = {}) {
     return responseToJson = await response.json();
 }
 
+/**
+ * Asynchronously fetches data from a specified path and returns it as a JSON object.
+ * 
+ * This function performs the following steps:
+ * 1. Sends a fetch request to the URL constructed with the base URL (`EDU_FIREBASE`) and the specified path, appending ".json" to the path.
+ * 2. Waits for the response and converts it to a JSON object.
+ * 3. Returns the parsed JSON object.
+ * 
+ * @param {string} [path=""] - The relative path to append to the base URL for fetching data. Defaults to an empty string if not provided.
+ * @returns {Promise<Object>} A promise that resolves to the JSON object representing the fetched data.*/
+
 async function loadData(path = "") {
     let response = await fetch(EDU_FIREBASE + path + ".json");
     let responseToJson = await response.json();
     return responseToJson;
 }
+
+/**
+ * Validates if the values in the password and confirm password input fields match.
+ * 
+ * This function compares the values of the password and confirm password input fields. 
+ * If the values do not match, it displays an error message indicating that the passwords do not match.
+ * If the values match, any existing error message is hidden.
+ * 
+ * @returns {void}
+ * 
+ * @example
+ * // Example usage:
+ * // Call this function on the `keyup` or `input` event of the confirm password field to validate passwords in real-time.
+ * check();
+ */
 
 function check() {
     let textfiled = docID('notTheSamePassword');
@@ -259,6 +206,32 @@ function check() {
         textfiled.style.visibility = "hidden"
     }
 }
+
+/**
+ * Handles the user login process by validating credentials against stored data.
+ * 
+ * This function:
+ * 1. Fetches user data from the server.
+ * 2. Searches for a user with matching email and password.
+ * 3. If a matching user is found:
+ *    - Displays a welcome message in a popup.
+ *    - Clears the email and password input fields.
+ *    - Stores the user's name in local storage.
+ *    - Redirects the user to the "summary.html" page after a short delay.
+ * 4. If no matching user is found:
+ *    - Displays an error message in a popup.
+ *    - Clears the password input field.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the login process is complete.
+ * 
+ * @example
+ * // Example usage:
+ * userLogIn().then(() => {
+ *     console.log("Login process completed.");
+ * }).catch(error => {
+ *     console.error("Error during login process:", error);
+ * });
+ */
 
 async function userLogIn() {
     let popUp = docID('sign-up-popup');
@@ -281,6 +254,32 @@ async function userLogIn() {
     }
 }
 
+/**
+ * Collects and returns contact input values from the sign-up form.
+ * 
+ * This function retrieves input values for name and email from the sign-up form and generates additional data
+ * such as initials and a unique ID. It returns an object containing these values, which can be used for further processing.
+ * 
+ * @returns {Object} An object containing the following properties:
+ * - {HTMLElement} name - The input element for the user's name.
+ * - {HTMLElement} email - The input element for the user's email.
+ * - {string} phone - An empty string, placeholder for a phone number.
+ * - {string} acronym - The initials of the user's name.
+ * - {string} id - A unique identifier for the user.
+ * 
+ * @example
+ * // Example usage:
+ * const contactInfo = setContactInputValuesSignUp();
+ * // Output might be: 
+ * // { 
+ * //   name: <input element>, 
+ * //   email: <input element>, 
+ * //   phone: "", 
+ * //   acronym: "JS", 
+ * //   id: "12345" 
+ * // }
+ */
+
 function setContactInputValuesSignUp() {
     let name = docID('sing-up-name'); // Input für Name
     let email = docID('sing-up-email'); // Inputfeld für E-Mail
@@ -297,6 +296,21 @@ function setContactInputValuesSignUp() {
         id
     }
 }
+
+/**
+ * Sends contact data to the server.
+ * 
+ * This function constructs a contact data object with the provided parameters and sends it to the server using a POST request.
+ * It includes a randomly generated color for the contact.
+ * 
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} acronym - The acronym for the contact, typically derived from the name.
+ * @param {string} id - A unique identifier for the contact.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the POST request is complete.
+ * */
 
 async function postContactData(name, email, phone, acronym, id) {
     await postData("/contacts", {
