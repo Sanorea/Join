@@ -189,7 +189,6 @@ function openContactListTasks() {
         docID('cardPopUpBGEditContainer').addEventListener('click', closeClickOutside);
         docID('cardPopUpBGEdit').addEventListener('click', closeClickOutside);
     }
-
 }
 
 function closeContactListTasks() {
