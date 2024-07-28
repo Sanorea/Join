@@ -180,12 +180,9 @@ async function editContact(id) {
     let contactDetail = docID('contact-detail');
     let key = contact['unique-key'];
     let name = docID('contact-name-saved').value;
-    let names = name.split(' ');
     let email = docID('contact-email-saved').value;
     let phone = docID('contact-phone-saved').value;
-    let firstLetterOfName = getFirstLetter(names[0]);
-    let firstLetterOfLastName = getFirstLetter (names[names.length - 1]);
-    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let acronym = setInitials(name);
 
     await updateData("/contacts/" + key, {
         "contact-name": name,
@@ -229,21 +226,25 @@ function setContactInputValues() {
     let name = docID('contact-name');
     let email = docID('contact-email');
     let phone = docID('contact-phone');
-    let names = name.value.split(' ');
-    let firstLetterOfName = getFirstLetter(names[0]);
-    let firstLetterOfLastName = getFirstLetter (names[names.length - 1]);
-    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let acronym = setInitials(name);
     let id = setID();
 
     return {
         name,
         email,
         phone,
-        firstLetterOfName,
-        firstLetterOfLastName,
         acronym,
         id
     }
+}
+
+function setInitials(name) {
+    let names = name.value.split(' ');
+    let firstLetterOfName = getFirstLetter(names[0]);
+    let firstLetterOfLastName = getFirstLetter (names[names.length - 1]);
+    let initials = firstLetterOfName + firstLetterOfLastName;
+
+    return initials;
 }
 
 

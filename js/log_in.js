@@ -277,17 +277,13 @@ function setContactInputValuesSignUp() {
     let name = docID('sing-up-name'); // Input für Name
     let email = docID('sing-up-email'); // Inputfeld für E-Mail
     let phone = "";
-    let firstLetterOfName = getFirstLetter(name.value);
-    let firstLetterOfLastName = getFirstLetter(name.value.split(' ').pop()); 
-    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let acronym = setInitials(name);
     let id = setID();
 
     return {
         name,
         email,
         phone,
-        firstLetterOfName,
-        firstLetterOfLastName,
         acronym,
         id
     }
