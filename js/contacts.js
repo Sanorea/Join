@@ -19,7 +19,6 @@ async function reloadContacts() {
 
 async function getContactsData() {
     let contactData = await loadData("/contacts");
-/*     console.log(contactData); */
     saveContactDataInArray(contactData);
 
     return contactData;
@@ -29,13 +28,13 @@ async function getContactsData() {
 function getHeadlineLetters() {
     arrHeadlineLetters = [];
     for (i = 0; i < arrContacts.length; i++) {
-        let letter = getFirstLetter(arrContacts[i]['contact-name']);
+        let firstLetter = getFirstLetter(arrContacts[i]['contact-name']);
+        let letter = firstLetter.toUpperCase();
         if (arrHeadlineLetters.indexOf(letter) === -1) {
             arrHeadlineLetters.push(letter);
         }
         arrHeadlineLetters.sort();
     }
-/*     console.log(arrHeadlineLetters); */
 }
 
 
@@ -53,7 +52,7 @@ function renderContactList() {
         // for loop to check which contacts start with the current headline letter
         for (let j = 0; j < arrContacts.length; j++) {
             let firstLetter = getFirstLetter(arrContacts[j]['contact-name']);
-            if (arrHeadlineLetters[i].includes(firstLetter) == true) {
+            if (arrHeadlineLetters[i].includes(firstLetter.toUpperCase()) == true) {
                 arrContactsInList.push(arrContacts[j]);
             }
         }
@@ -144,15 +143,12 @@ function saveContactDataInArray(contactData) {
         arrContacts.push(tempArrContacts[i][1]);
         arrContacts[i]['unique-key'] = tempArrContacts[i][0];
     }
-/*     console.log(tempArrContacts);
-    console.log(arrContacts);
-    console.log(arrContacts[0]['contact-email']); */
 }
 
 
 async function addContact() {
     let contactInputValues = setContactInputValues();
-    await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.acronym, contactInputValues.id);
+    await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.acronym.toUpperCase(), contactInputValues.id);
     emptyContactsInput(contactInputValues.name, contactInputValues.email, contactInputValues.phone);
     openDialog('contact-created-popup');
 
@@ -186,15 +182,13 @@ async function editContact(id) {
     let name = docID('contact-name-saved').value;
     let email = docID('contact-email-saved').value;
     let phone = docID('contact-phone-saved').value;
-    let firstLetterOfName = getFirstLetter(name);
-    let firstLetterOfLastName = getFirstLetter(name.split(' ').pop()); // need solution for cases without last name
-    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let acronym = setInitials(name);
 
     await updateData("/contacts/" + key, {
         "contact-name": name,
         "contact-email": email,
         "contact-tel": phone,
-        "contact-acronym": acronym,
+        "contact-acronym": acronym.toUpperCase(),
         "contact-id": id,
         "contact-color": getRandomColor()
     })
@@ -232,20 +226,32 @@ function setContactInputValues() {
     let name = docID('contact-name');
     let email = docID('contact-email');
     let phone = docID('contact-phone');
-    let firstLetterOfName = getFirstLetter(name.value);
-    let firstLetterOfLastName = getFirstLetter(name.value.split(' ').pop()); // need solution for cases without last name
-    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let acronym = setInitials(name);
     let id = setID();
 
     return {
         name,
         email,
         phone,
-        firstLetterOfName,
-        firstLetterOfLastName,
         acronym,
         id
     }
+}
+
+function setInitials(name) {
+    let names = name.value.split(' ');
+    let firstLetterOfName = getFirstLetter(names[0]);
+    let firstLetterOfLastName;
+    
+    if (names.length > 1) {
+        firstLetterOfLastName = getFirstLetter(names[names.length - 1]);
+    } else {
+        firstLetterOfLastName = '';
+    }
+    
+    let initials = firstLetterOfName + firstLetterOfLastName;
+
+    return initials;
 }
 
 

@@ -34,7 +34,6 @@ async function addTaskInit() {
     renderDropdownCategorieAddTasks();
     addTaskContactsToArray();
     setStartPrio();
-
 }
 
 function setStartPrio() {
@@ -443,3 +442,4 @@ function ifConditionRequiredFields(text, color) {
     text.classList.remove('d-none-add-task');
     color.classList.add('required-input-fields');
 }
+

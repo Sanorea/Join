@@ -1,10 +1,12 @@
 
-const EDU_FIREBASE = 'https://remotestorage-79ec8-default-rtdb.europe-west1.firebasedatabase.app/';
+const EDU_FIREBASE = "https://join-192-default-rtdb.europe-west1.firebasedatabase.app/";
 
 
 function initLogIn() {
-    loadData(path = "-NxdlUHdMDgqDya6QkiU/login");
+    loadData(path = "/login");
     docID('body-login').innerHTML = LogInHTML();
+    docID('log-in-email').value = "";
+    docID('log-in-password-1').value = "";
 }
 
 function SingUpHTML() {
@@ -17,10 +19,10 @@ function SingUpHTML() {
             </div>
             <div id="log-in-input-container" class="sign-up-input-container input">
                     <div class="email-input-content">
-                        <input id="sing-up-name" minlength="3" maxlength="20" required class="name-input" placeholder="Name" type="Text">
+                        <input id="sing-up-name" minlength="3" maxlength="30" required class="name-input" placeholder="Name" type="Text">
                     </div>
                     <div class="email-input-content">
-                        <input id="sing-up-email" minlength="6" maxlength="20" required class="email-input" placeholder="Email" type="email">
+                        <input id="sing-up-email" minlength="6" maxlength="30" required class="email-input" placeholder="Email" type="email">
                     </div>
                     <div class="password-input-content">
                         <input class="password-input"  minlength="5" maxlength="15" required id="sign-up-password-1" onclick="iconFirstSwitch('icon'); this.onclick=null;" placeholder="Password" type="password" > 
@@ -35,7 +37,7 @@ function SingUpHTML() {
             <div class="sign-up-remember-me">
                     <input class="form-check-input curser input-remember" required type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
-                      <span class="accapt-the-policy-text">i accept the <span class="sign-in-policy">Privacy policy</span></span>
+                      <span class="accapt-the-policy-text">i accept the <a class="p-none" href="privacy_policy.html"><span class="sign-in-policy">Privacy policy</span></a></span>
                     </label>
             </div>
                 <div class="sign-up-btn">
@@ -67,7 +69,7 @@ function LogInHTML() {
             <div id="log-in-input-container" class="log-in-input-container">
                 <form onsubmit="userLogIn(); return false;" class="input">
                     <div class="email-input-content">
-                        <input required id="log-in-email" minlength="6" maxlength="20" class="email-input" placeholder="Email" type="email">
+                        <input required id="log-in-email" minlength="6" maxlength="30" class="email-input" placeholder="Email" type="email">
                     </div>
                     <div class="password-input-content">
                         <input required class="password-input" minlength="5" maxlength="15" id="log-in-password-1"
@@ -174,12 +176,12 @@ function backToLogIn() {
     body.innerHTML = LogInHTML();
 }
 
-function guestLogIn(){
+function guestLogIn() {
     let popUp = docID('sign-up-popup');
     popUp.classList.remove("d-none");
-        popUp.innerHTML = WelcomePopUp('Welcome', 'Guest');
-        setItemLocalStorage('user-name', 'Guest');
-        setTimeout(function () { window.location.href = "summary.html"; }, 1400);
+    popUp.innerHTML = WelcomePopUp('Welcome', 'Guest');
+    setItemLocalStorage('user-name', 'Guest');
+    setTimeout(function () { window.location.href = "summary.html"; }, 1400);
 }
 
 function showVisibility(id, icon) {
@@ -213,15 +215,21 @@ function addUserLogIn() {
         popUp.innerHTML = renderPopUp('Password does not match');
         password.value = ``;
         passwordSecond.value = ``;
-    } else {
-        postData("-NxdlUHdMDgqDya6QkiU/login", signUpDAta);
+    }
+    if (email.value.includes(".de") || email.value.includes(".com")) {
+        postData("/login", signUpDAta);
         popUp.classList.remove("d-none");
         popUp.innerHTML = checkInPopup();
         setTimeout(function () { popUp.classList.add("d-none"); }, 2000);
         setTimeout(backToLogIn, 2000);
         let contactInputValue = setContactInputValuesSignUp();
         postContactData(contactInputValue.name.value, contactInputValue.email.value, contactInputValue.phone, contactInputValue.acronym, contactInputValue.id);
+    } else {
+
+        popUp.classList.remove("d-none");
+        popUp.innerHTML = renderPopUp('Email need to End with .de or .com');
     }
+
 }
 
 async function postData(path = "", data = {}) {
@@ -254,8 +262,8 @@ function check() {
 
 async function userLogIn() {
     let popUp = docID('sign-up-popup');
-    let response = await loadData("-NxdlUHdMDgqDya6QkiU");
-    let users = Object.values(response.login);
+    let response = await loadData("/login");
+    let users = Object.values(response);
     let email = docID('log-in-email');
     let password = docID('log-in-password-1');
     let user = users.find(u => u.email == email.value && u.password == password.value);
@@ -277,17 +285,14 @@ function setContactInputValuesSignUp() {
     let name = docID('sing-up-name'); // Input für Name
     let email = docID('sing-up-email'); // Inputfeld für E-Mail
     let phone = "";
-    let firstLetterOfName = getFirstLetter(name.value);
-    let firstLetterOfLastName = getFirstLetter(name.value.split(' ').pop()); 
-    let acronym = firstLetterOfName + firstLetterOfLastName;
+    let acronym = setInitials(name);
+    // await getContactsData()
     let id = setID();
 
     return {
         name,
         email,
         phone,
-        firstLetterOfName,
-        firstLetterOfLastName,
         acronym,
         id
     }

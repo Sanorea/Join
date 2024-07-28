@@ -461,6 +461,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    margin-right: 20px;
 }
 
 .info-img {
@@ -553,6 +554,13 @@ header {
         font-weight: 700;
         font-size: 61px;
         margin-bottom: 30px;
+    }
+    .header-user {
+        width: 45px;
+        height: 45px;
+    }
+    .header-user-initials{
+        font-size: 19px;
     }
 }
 

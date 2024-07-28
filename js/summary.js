@@ -12,15 +12,12 @@ async function initSummary(id, renderClass) {
     await getTaskSummaryCount();
     docID('body-summary-content').innerHTML = renderSummaryHTML();
     loadTheWelcomeSreen();
-    // loadFocus();
-    // renderSideNavHTML(id, renderClass);
 }
 
 let date = new Date();
 let hour = date.getHours();
 let minute = date.getMinutes();
 let time = hour + "." + minute;
-console.log(time)
 
 async function getTaskSummaryCount() {
     await getTaskData();
@@ -156,21 +153,15 @@ function getItemLocalStorage(key) {
 }
 
 function loadDateTime() {
-    if (time > 6.00 && time < 11.59) {
+    if (time >= 6.00 && time <= 11.59) {
         return 'Good morning'
-    } if (time > 12.00 && time < 16.59) {
+    } if (time >= 12.00 && time <= 16.59) {
         return 'Good afternoon'
-    } if (time > 17.00 && time < 21.59) {
+    } if (time >= 17.00 && time <= 21.59) {
         return 'Good evening'
-    } if (time > 22.00 && time < 24.00) {
+    } if (time >= 22.00 && time <= 24.00) {
         return 'Good night'
-    } if (time > 0.00 && time < 5.00) {
+    } if (time >= 0.00 && time <= 5.59) {
         return 'Good night'
     }
 }
-
-// function loadFocus(){
-//     let id = docID('summary-link'); 
-//     id.classList.add('sideNav-summary-focus');
-// };
-

@@ -1,18 +1,14 @@
 let arrTasks = [];
-let checkboxSubtask = [];
-let checkedSubtasks = [];
 let searchResults = [];
 let boardCategories = ['toDo', 'inProgress', 'awaitFeedback', 'done'];
 
 let currentDraggedElement;
 
-async function initBoard(id, renderClass) {
-    // document.getElementById('body-board').innerHTML = renderBoardHTML();
-    // renderSideNavHTML(id, renderClass);
+async function initBoard() {
     await includeHTML();
-    renderHeaderNav(id, renderClass);
+    renderHeaderNav();
+    await renderContactListaddTasks();
     updateHTML();
-    renderContactListaddTasks();
 }
 
 async function getTaskData() {
@@ -21,18 +17,6 @@ async function getTaskData() {
     return taskData;
 }
 
-function ContactsArray(element) {
-    let elementContact = "";
-    let contact = element['acronymsAssignedTo'];
-    if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
-        elementContact = `<div></div>`;
-    } else
-        for (let i = 0; i < contact.length; i++) {
-            let user = contact[i];
-            elementContact += `<div class="user-content">${user}</div>`;
-        }
-    return elementContact;
-}
 
 function subtaskList(element, index) {
     let stylee = document.querySelectorAll('.card-subtask');
@@ -46,14 +30,29 @@ function subtaskList(element, index) {
         let percent = subtaskBar(finishedTasks, list);
         return ` <div class="bar">
                 <div class="w3-light-grey">
-                    <div id="editBar_${index}"  class="w3-container w3-green w3-center" style="width:${percent}%"></div>
+                    <div id="editBar_${index}"  class="w3-container bar-color w3-center" style="width:${percent}%"></div>
                 </div><br>
             </div>
             <div id='subtask-counter' class="subtask-content">
-                <div><span>${finishedTasks}/${list}</span></div>
+                <div><span>${finishedTasks}/${list}Subtasks</span></div>
             </div>`;
     }
 }
+
+function ContactsArray(element) {
+        let elementContact = "";
+        let contact = element['acronymsAssignedTo'];
+        if (!element['acronymsAssignedTo'] || !Array.isArray(element['acronymsAssignedTo'])) {
+            elementContact = `<div></div>`;
+        } else
+            for (let i = 0; i < contact.length; i++) {
+                let user = contact[i];
+                let findContact = acronyms.findIndex((x) => x == user);
+                let color = colors[findContact];
+                elementContact += `<div class="user-content" style="background-color: ${color}">${user}</div>`;
+            }
+        return elementContact;
+    }
 
 function contactCardArray(keyToObject) {
     let list = keyToObject['acronymsAssignedTo'];
@@ -65,10 +64,12 @@ function contactCardArray(keyToObject) {
         for (let i = 0; i < list.length; i++) {
             const element = list[i];
             let name = nameArray[i];
+            let findContact = acronyms.findIndex((x) => x == element);
+            let color = colors[findContact];
             array += ` 
         <div class="reder-card">
-          <div class="user-content-array">${element}</div>
-          <div> ${name}</div>
+          <div class="user-content-array" style="background: ${color}">${element}</div>
+          <div class="nameClass"> ${name}</div>
         </div>
         `;
         }
@@ -79,19 +80,16 @@ function contactCardArray(keyToObject) {
 function taskArray(keyToObject) {
     let content = "";
     let list = keyToObject['subtasks'];
-    // let checkedList = keyToObject['subtasksChecked']
     if (!list) {
         content = `<div></div>`;
     } else {
         for (let i = 0; i < list.length; i++) {
             const element = list[i];
-            //const elementBoolean = checkedList[i];
-            // console.log(elementBoolean);
             content += `
         <div class="list-card-subtaskarray">
             <input onclick="subtaskCardCheckbox('${keyToObject['unique-key']}')" id="contactCardId${i}" type="checkbox" value="${element}">
             <div>
-                <div>${element}</div>
+                <div class="subtasksClass" >${element}</div>
             </div>    
          </div>       
             `;
@@ -100,12 +98,12 @@ function taskArray(keyToObject) {
     return content;
 }
 
-function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray) {
+function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult, subtaskListArray, prioImg) {
     return /*HTML*/ `
-      <div class="card-popUp">
+      <div id="popUp-animation" class="card-popUp">
             <div class="card-popUp-top">
                 <div class="categorie">${taskCategoryResult}</div>
-                <div class="back-arrow"><img class="cursor" onclick="closeCardPopUp()" src="assets/img/close.svg" alt=""></div>
+                <div class="back-arrow"><img class="cursor" onclick="timeOut()" src="assets/img/close.svg" alt=""></div>
             </div>
             <div class="card-popUp-headline">${element['title']}</div>
             <div class="card-popUp-subline">${element['description']}</div>
@@ -114,11 +112,11 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
                 <div class="date">${element['date']}</div>
             </div>
             <div class="card-popUp-priority">
-                <div class="title">Priority</div>
-                <div class="difficulty">${element['prio']}</div>
+                <div class="title">Priority:</div>
+                <div class="difficulty">${element['prio']} ${prioImg}</div>
             </div>
             <div class="card-popUp-assignet">
-                <div class="title">Assignet to:</div>
+                <div class="title">Assigned to:</div>
                 <div class="assignet-list">${contactCardArrayResult}</div>
             </div>
             <div class="card-popUp-subtask">
@@ -128,7 +126,7 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
             <div class="edit-and-delete">
                 <div onclick="deleteCard('${element['unique-key']}')" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
-                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img src="assets/img/edit.svg" alt=""><span>Edit</span></div>
+                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img class="edit" src="assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
         </div>    
     `;
@@ -187,30 +185,6 @@ function switchCategory(id, direction) {
     }
 }
 
-async function updateHTML() {
-    await getTaskData();
-    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
-
-    for (let i = 0; i < boardCategories.length; i++) {
-        let category = boardCategories[i];
-        let elements = arrTasks.filter(t => t['boardCategory'] == category);
-
-        if (elements.length > 0) {
-            docID(category).innerHTML = '';
-        } else {
-            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
-        }
-
-        for (let index = 0; index < elements.length; index++) {
-            const element = elements[index];
-            let taskCategoryResult = taskCategory(element);
-            let subTaskResult = subtaskList(element, index);
-            let prioResult = findoutPrio(element);
-            let ContactsArrayResult = ContactsArray(element);
-            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult);
-        }
-    }
-}
 
 function taskCategory(element) {
     let category = element['taskCategory'];
@@ -222,6 +196,25 @@ function taskCategory(element) {
             break;
         case 'Technical Task':
             categoryVal = `<div class="headline-card-Technical">Technical Task</div>`;
+            break;
+
+        default:
+            categoryVal = `<div></div>`;
+            break;
+    }
+    return categoryVal;
+}
+
+function taskCategoryPopup(element) {
+    let category = element['taskCategory'];
+    let categoryVal = "";
+
+    switch (category) {
+        case 'User Story':
+            categoryVal = `<div class="headline-card-popup">User Story</div>`;
+            break;
+        case 'Technical Task':
+            categoryVal = `<div class="headline-card-Technical-popup">Technical Task</div>`;
             break;
 
         default:
@@ -253,27 +246,14 @@ function findoutPrio(element) {
     return prioVal;
 }
 
-function checkFinishedTasks(element, length) {
+function checkFinishedTasks(element) {
     let trueList = [];
-    // checkedSubtasks = [];
-    loadData();
     let list = element['subtasks'];
     let checkedList = element['subtasksChecked'];
     if (!checkedList) {
         return '0'
     } else {
-        // for (let i = 0; i < list.length; i++) {
-        // const subtask = list[i];
-        // let check = checkboxSubtask.find((y) => y == subtask);
-        // let index = checkboxSubtask.findIndex((x) => x == subtask);
         trueList = checkedList.filter((y) => y == 'true');
-        // console.log(filter);
-        // const checkedArray = checkedList[index];
-        // console.log(checkedArray);
-        // if (checkedArray == false) {
-        // checkedSubtasks.push(check);
-        // }
-        // }
     }
     subtaskBar(trueList.length, list.length);
     return trueList.length;
@@ -300,7 +280,7 @@ async function moveTo(category) {
         "id": arrTasks[index]['id'],
         "prio": arrTasks[index]['prio'],
         "subtasks": arrTasks[index]['subtasks'],
-        "subtasksChecked": arrTasks[index['subtasksChecked']],
+        "subtasksChecked": arrTasks[index]['subtasksChecked'],
         "title": arrTasks[index]['title'],
         "namesAssignedTo": arrTasks[index]['namesAssignedTo'],
         "acronymsAssignedTo": arrTasks[index]['acronymsAssignedTo']
@@ -334,20 +314,24 @@ function saveTaskDataInArray(taskData) {
 }
 
 function openCard(element) {
+    
     let container = docID('card-popUp-background');
+    let body = docID('body-board');
+    body.classList.add('fixed');
     docID('card-popUp-background').hidden = false;
     let keyToObject = arrTasks.find((y) => y['unique-key'] === element);
-    let taskCategoryResult = taskCategory(keyToObject);
+    let taskCategoryResult = taskCategoryPopup(keyToObject);
     let subtaskListArray = taskArray(keyToObject);
     let contactCardArrayResult = contactCardArray(keyToObject);
-    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray);
+    let prioImg = findoutPrio(keyToObject);
+    container.innerHTML = renderPopupCardHTML(keyToObject, taskCategoryResult, contactCardArrayResult, subtaskListArray, prioImg);
     checkboxCheck(element);
 }
 
-function deleteCard(key) {
+async function deleteCard(key) {
     let keyToObject = arrTasks.find((y) => y['unique-key'] === key);
     arrTasks.splice(keyToObject);
-    deleteTaskPostData("/tasks/" + key);
+    await deleteTaskPostData("/tasks/" + key);
     closeCardPopUp();
     updateHTML();
 }
@@ -366,29 +350,22 @@ function subtaskBar(length, list) {
 }
 
 async function subtaskCardCheckbox(element) {
-    // let i = 0;
-    // checkboxSubtask = [];
     let object = arrTasks.find((y) => y['unique-key'] === element);
     let list = object['subtasks'];
     let booleanArray = object['subtasksChecked'];
     for (let i = 0; i < list.length; i++) {
         let id = docID(`contactCardId${i}`);
         let value = id.value;
-        // let check = list.find((y) => y === value);
         let index = list.findIndex((i) => i === value);
         let boolean = booleanArray[index];
 
         if (id.checked === true && boolean == 'false') {
-            // boolean = true; 
             await updateCheckedBoolean(element, index, 'true');
-            console.log('hallo');
-            // checkboxSubtask.push(value);
             checkFinishedTasks(object);
             subtaskBar();
             updateHTML();
         }
         if (id.checked === false && boolean == 'true') {
-            // checkboxSubtask.splice(index, 1);
             await updateCheckedBoolean(element, index, 'false');
             checkFinishedTasks(object);
             subtaskBar();
@@ -398,7 +375,7 @@ async function subtaskCardCheckbox(element) {
 }
 
 async function updateCheckedBoolean(uniqueKey, index, boolean) {
-    updateData("/tasks/" + uniqueKey + "/subtasksChecked/" + index, boolean)
+    await updateData("/tasks/" + uniqueKey + "/subtasksChecked/" + index, boolean);
 }
 
 function checkboxCheck(element) {
@@ -406,12 +383,11 @@ function checkboxCheck(element) {
         let list = object['subtasks'];
         let checked = object['subtasksChecked']
         if (!list) {
-            //  list = [];
+            return `zero`
         } else {
         for (let i = 0; i < list.length; i++) {
             let id = docID(`contactCardId${i}`);
             let value = id.value;
-            //  let check = list.find((y) => y === value);
             let checkIndex = list.findIndex((y) => y === value);
             let booleanIndex = checked[checkIndex];
 
@@ -432,6 +408,8 @@ async function deleteTaskPostData(path = "") {
 
 function closeCardPopUp() {
     docID('card-popUp-background').hidden = true;
+    let body = docID('body-board');
+    body.classList.remove('fixed');
 }
 
 function renderInToDo() {
@@ -451,6 +429,31 @@ function search() {
     }
 
     renderTasksBasedOnSearchInput();
+}
+
+async function updateHTML() {
+    await getTaskData();
+    let boardCategorieNames = ['To-do', 'In progress', 'Await feedback', 'Done'];
+    for (let i = 0; i < boardCategories.length; i++) {
+        let category = boardCategories[i];
+        let elements = arrTasks.filter(t => t['boardCategory'] == category);
+
+        if (elements.length > 0) {
+            docID(category).innerHTML = '';
+        } else {
+            docID(category).innerHTML = `<span class="empty-task-text">No Task in ${boardCategorieNames[i]}</span>`;
+        }
+
+        for (let index = 0; index < elements.length; index++) {
+            const element = elements[index];
+            let taskCategoryResult = taskCategory(element);
+            let subTaskResult = subtaskList(element, index)
+            let prioResult = findoutPrio(element);
+            let prioImg = findoutPrio(elements);
+            let ContactsArrayResult = ContactsArray(element);
+            docID(category).innerHTML += renderCardHTML(element, subTaskResult, prioResult, taskCategoryResult, ContactsArrayResult, prioImg);
+        }
+    }
 }
 
 function renderTasksBasedOnSearchInput() {
@@ -477,3 +480,8 @@ function renderTasksBasedOnSearchInput() {
         }
     }
 }
+
+function timeOut() {
+    docID('popUp-animation').classList.add('card-animation-back');
+    setTimeout(closeCardPopUp, 200);
+};

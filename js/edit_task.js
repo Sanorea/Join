@@ -64,15 +64,11 @@ function showSavedPrio(key) {
     let savedPrio = addArrTasks[0][key]['prio'];
     if (savedPrio === 'low') {
         changeColorPrioButton('low');
-        console.log('low :>> ', 'low');
     } else if (savedPrio === 'medium') {
         changeColorPrioButton('medium');
-        console.log('medium :>> ', 'medium');
     } else if (savedPrio === 'urgent') {
         changeColorPrioButton('urgent');
-        console.log('urgent :>> ', 'urgent');
     } else {
-        console.log('else :>> ', 'else');
     }
 }
 
@@ -92,6 +88,7 @@ function showSavedAssignedTo(key) {
 
 function showSubtasks(key) {
     subtaskArray = addArrTasks[0][key]['subtasks'];
+    subtaskCheckedArray = addArrTasks[0][key]['subtasksChecked'];
     renderList();
 }
 
@@ -132,13 +129,12 @@ async function editContact() {
     let savedBoardCategory = addArrTasks[0][uniqueKey]['boardCategory'];
     let savedTaskCategory = addArrTasks[0][uniqueKey]['taskCategory'];
     let savedID = addArrTasks[0][uniqueKey]['id'];
-    let subtasksChecked = addArrTasks[0][uniqueKey]['subtasksChecked'];
-    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, subtasksChecked, title);
+    await pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title);
     closeEditCard();
     updateHTML();
 }
 
-async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, subtasksChecked, title) {
+async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date, description, title) {
     await updateData("/tasks/" + uniqueKey, {
         "boardCategory": savedBoardCategory,
         "taskCategory": savedTaskCategory,
@@ -147,7 +143,7 @@ async function pushNewDatas(savedBoardCategory, savedTaskCategory, savedID, date
         "id": savedID,
         "prio": prios,
         "subtasks": subtaskArray,
-        "subtasksChecked": subtasksChecked,
+        "subtasksChecked": subtaskCheckedArray,
         "title": title.value,
         "namesAssignedTo": checkedNames,
         "acronymsAssignedTo": checkedAcronyms,

@@ -113,6 +113,7 @@
 
 .board-column-content {
     width: 95vw;
+    /* max-width: 252px; */
     gap: 30px;
     display: flex;
     flex-direction: column;
@@ -225,6 +226,7 @@
 .card-title {
     font-weight: 700;
     font-size: 16px;
+    word-break: break-all;
 }
 
 .card-subtitle {
@@ -241,8 +243,17 @@
 .w3-green {
     height: 8px;
     border-radius: 50px;
-    width: 0% ;
+    width: 0%;
+    background-color: #4589FF !important;
 }
+
+.bar-color{
+    height: 8px;
+    border-radius: 50px;
+    width: 0%;
+    background-color: #4589FF !important;
+}
+
 
 .w3-light-grey {
     width: 100%;
@@ -254,7 +265,7 @@
 }
 
 .bar {
-    width: 100%;
+    width: 115%;
     display: flex;
     align-items: center;
 }
@@ -273,12 +284,13 @@
 #subtask-counter {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 
-.d-none {
+/* .d-none {
     display: none;
-}
+} */
 
 .drag-area {
     min-height: 150px;
@@ -318,7 +330,7 @@
 .card-popUp-background {
     background-color: rgba(43, 42, 42, 0.479);
     width: 100vw;
-    height: calc(100% - 80px);
+    height: 100%;
     z-index: 999;
     position: absolute;
     top: 0;
@@ -329,16 +341,45 @@
 
 .card-popUp {
     background-color: white;
-    padding: 32px 24px 32px 24px;
-    width: 396px;
-    gap: 16px;
+    padding: 48px 40px 48px 40px;
+    width: 93%;
+    max-width: 525px;
+    gap: 24px;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 4px 0px #00000029;
-border-radius: 30px;
+    border-radius: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 930px;
+    scrollbar-width: none;
+    animation-name: example;
+    position: relative;
+    animation-duration: 0.5s;
+    height: 93vh;
 }
 
-.card-popUp-top{
+@keyframes example {
+    0% {right:-200px;}
+    100% {right: 0px;}
+}
+
+@keyframes example2 {
+    0% {right: 0px;}
+    100% {right: -200px;}
+}
+
+.card-animation-back {
+    animation-name: example2;
+    position: relative;
+    animation-duration: 0.4s;
+}
+
+.show-overlay {
+    transform: translateX(0px);
+}
+
+.card-popUp-top {
     display: flex;
     justify-content: space-between;
 }
@@ -346,44 +387,54 @@ border-radius: 30px;
 .card-popUp-headline {
     font-size: 36px;
     font-weight: 700;
+    word-break: break-all;
 }
 
 .card-popUp-subline {
     font-size: 16px;
     font-weight: 400;
+    word-break: break-all;
 }
 
 .title {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
     color: #42526E;
 }
 
-.categorie{
+.categorie {
     font-size: 16px;
     font-weight: 400;
     color: white;
-    padding: 4px 16px 4px 16px;
+    /* padding: 4px 16px 4px 16px; */
     gap: 10px;
     border-radius: 8px;
 }
 
 .card-popUp-DueDate {
-    width: 200px;
     display: flex;
-    justify-content: space-between;
+    gap: 25px;
+    align-items: center;
+}
+
+.date {
+    font-weight: 400;
+    font-size: 19px;
 }
 
 .card-popUp-priority {
     width: 160px;
     display: flex;
     justify-content: space-between;
+    gap: 45px;
 }
 
 .edit-and-delete {
     display: flex;
     gap: 15px;
-    margin-left: 165px;
+    justify-content: flex-end;
+    margin-right: 20px;
+    font-size: 16px;
 }
 
 .edit {
@@ -394,6 +445,18 @@ border-radius: 30px;
     gap: 7px;
 }
 
+.edit:hover {
+    transform: scale(1.09);
+    color: #29ABE2;
+    font-weight: 400;
+}
+
+.delete:hover {
+    transform: scale(1.09);
+    color: #29ABE2;
+    font-weight: 400;  
+}
+
 .delete {
     display: flex;
     box-sizing: content-box;
@@ -402,7 +465,7 @@ border-radius: 30px;
     gap: 7px;
 }
 
-.line{
+.line {
     height: 23px;
     width: 1px;
     border: 1px solid;
@@ -426,13 +489,14 @@ border-radius: 30px;
 
 .card-profil {
     display: flex;
+    width: 80%;
 }
 
 .user-content {
 
     width: 30px;
     height: 30px;
-     background-color: orange; 
+    background-color: orange;
     border-radius: 45px;
     border: 2px solid white;
     color: white;
@@ -445,15 +509,15 @@ border-radius: 30px;
     margin-right: -8px;
 }
 
-.card-info{
+.card-info {
     display: flex;
     justify-content: space-between;
 }
 
-.user-content-array{
-    width: 30px;
-    height: 30px;
-     background-color: orange; 
+.user-content-array {
+    width: 42px;
+    height: 42px;
+    background-color: orange;
     border-radius: 45px;
     border: 2px solid white;
     color: white;
@@ -466,16 +530,28 @@ border-radius: 30px;
     margin-right: -8px;
 }
 
-.reder-card{
+.reder-card {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.assignet-list{
+.assignet-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 10px;
+    margin-left: 20px;
+    max-height: 260px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.subtask-list {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     margin-top: 10px;
 }
 
@@ -484,8 +560,25 @@ border-radius: 30px;
     gap: 20px;
 }
 
+.difficulty {
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    gap: 20px;
+}
+
+.nameClass {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.subtasksClass {
+    font-size: 16px;
+    font-weight: 400;
+}
+
 .card-head {
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -495,6 +588,38 @@ border-radius: 30px;
     display: none;
 }
 
+.fixed {
+    position: fixed;
+}
+
+.headline-card-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 4px 24px 4px 24px;
+    background-color: #0038FF;
+    font-size: 23px;
+    font-weight: 400;
+    color: white;
+    height: 36px;
+    width: max-content;
+}
+
+.headline-card-Technical-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 4px 24px 4px 24px;
+    background-color: #1FD7C1;
+    font-size: 23px;
+    font-weight: 400;
+    color: white;
+    height: 36px;
+    width: max-content;
+}
+
 @media(min-width: 1017px) {
 
     .drag-area::-webkit-scrollbar {
@@ -502,20 +627,20 @@ border-radius: 30px;
         width: 10px;
         height: 7px;
     }
-    
+
     /* scrollbar track */
     .drag-area::-webkit-scrollbar-track {
         border-radius: 8px;
         background-color: none;
         border: none;
     }
-    
+
     /* scrollbar thumb */
     .drag-area::-webkit-scrollbar-thumb {
         border-radius: 8px;
         background-color: #A8A8A8;
     }
-    
+
 
     /* note: 1017px / 1403 px */
     .board-body {
@@ -551,13 +676,20 @@ border-radius: 30px;
     }
 }
 
+@media(max-width: 340px) {
+    .card-popUp {
+        padding: 40px 30px 40px 30px;
+    }
+}
+
+
 @media(min-width: 1520px) {
 
     /* note: 1017px / 1403 px */
     .board-body {
         align-items: flex-start;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 70px;
+        padding-right: 70px;
         width: auto;
     }
 
@@ -613,26 +745,26 @@ border-radius: 30px;
         justify-content: flex-start;
         overflow-x: unset;
         height: 65vh;
-        overflow-y:scroll;
+        overflow-y: scroll;
     }
 
     .drag-area::-webkit-scrollbar {
         display: none;
     }
-    
+
     /* scrollbar track */
     .drag-area::-webkit-scrollbar-track {
         border-radius: 8px;
         background-color: none;
         border: none;
     }
-    
+
     /* scrollbar thumb */
     .drag-area::-webkit-scrollbar-thumb {
         border-radius: 8px;
         background-color: #A8A8A8;
     }
-    
+
 
     .card-content {
         width: 100%;
@@ -646,4 +778,3 @@ border-radius: 30px;
         width: 100%;
     }
 }
-

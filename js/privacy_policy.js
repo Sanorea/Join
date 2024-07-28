@@ -9,7 +9,6 @@ function initPolicy() {
         renderHeaderNav();
         renderSideNavHTML();  
     }
-    console.log(document.referrer);
 }
 
 
