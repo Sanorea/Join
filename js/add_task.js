@@ -341,6 +341,14 @@ async function renderSearchedContactListaddTasks() {
     }
 }
 
+/**
+ * Sets the minimum date for the date input field to the current date.
+ *
+ * This function generates a date string in the format "YYYY-MM-DD" representing the
+ * current date. If the month is less than 10, a leading zero is added to ensure the
+ * proper format. The resulting date string is then set as the minimum allowable date
+ * in the date input field with the ID 'add-task-input-date'.
+ */
 function renderDateInput() {
     let newDate = "";
     if (date.getMonth() + 1 <= 10) {
@@ -353,6 +361,12 @@ function renderDateInput() {
     docID('add-task-input-date').min = newDate;
 }
 
+/**
+ * Displays the date picker for the date input field.
+ *
+ * This function triggers the display of the date picker UI for the date input field
+ * with the ID 'add-task-input-date'. It is useful for prompting the user to select a date.
+ */
 function emptyDate() {
     let date = document.getElementById("add-task-input-date");
     date.showPicker();
