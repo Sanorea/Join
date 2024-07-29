@@ -353,10 +353,9 @@ function renderDateInput() {
     let newDate = "";
     if (date.getMonth() + 1 <= 10) {
         newDate = date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
-        console.log('if :>> ', 'if');
+
     } else {
         newDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-        console.log('else :>> ', 'else');
     }
     docID('add-task-input-date').min = newDate;
 }
