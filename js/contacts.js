@@ -3,6 +3,9 @@ let arrHeadlineLetters = [];
 let currentId = 0;
 let currentOpenedContact = 0;
 
+/**
+ * Initiate the contacts site.
+ */
 async function contactsInit() {
     renderHeaderNav();
     await getContactsData();
@@ -10,13 +13,18 @@ async function contactsInit() {
     setActiveButton("contact-list-table", "contacts-contact-entry");
 }
 
-
+/**
+ * This function is used to reload the contact list with the currently stored data.
+ */
 async function reloadContacts() {
     await getContactsData();
     renderContactList();
 }
 
-
+/** 
+ * Gets the stored data from the backend and converts it into an array.
+ * @returns an array with all the contact data.
+ */
 async function getContactsData() {
     let contactData = await loadData("/contacts");
     saveContactDataInArray(contactData);
@@ -24,7 +32,9 @@ async function getContactsData() {
     return contactData;
 }
 
-
+/**
+ * Determines the headline letters for the contacts list in upper case. Sorts through the headline letters to save it in alphabetical order.
+ */
 function getHeadlineLetters() {
     arrHeadlineLetters = [];
     for (i = 0; i < arrContacts.length; i++) {
@@ -37,7 +47,9 @@ function getHeadlineLetters() {
     }
 }
 
-
+/**
+ * Renders the contact list with the contacts put in the correct categories (headline letters).
+ */
 function renderContactList() {
     let arrContactsInList = [];
     let contactList = docID('contact-list');
@@ -46,10 +58,8 @@ function renderContactList() {
     <div id="contact-list-table" class="contacts-disp-flex-ai-center-fd-col"></div>`;
     let contactListTable = docID('contact-list-table');
     getHeadlineLetters();
-    // for loop to go through every headline letter that exists
     for (let i = 0; i < arrHeadlineLetters.length; i++) {
         contactListTable.innerHTML += generateContactListHTML(arrHeadlineLetters[i]);
-        // for loop to check which contacts start with the current headline letter
         for (let j = 0; j < arrContacts.length; j++) {
             let firstLetter = getFirstLetter(arrContacts[j]['contact-name']);
             if (arrHeadlineLetters[i].includes(firstLetter.toUpperCase()) == true) {
@@ -57,7 +67,6 @@ function renderContactList() {
             }
         }
         arrContactsInList.sort((a, b) => (a['contact-name'] > b['contact-name'] ? 1 : -1));
-        // for loop to generate HTML for every contact for current headline letter
         for (let k = 0; k < arrContactsInList.length; k++) {
             currentId = arrContactsInList[k]['contact-id'];
             contactListTable.innerHTML += generateContactHTML(arrContactsInList[k], currentId);
@@ -67,7 +76,10 @@ function renderContactList() {
     contactListTable.innerHTML += `<button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>`
 }
 
-
+/**
+ * Shows the contact details for the currently selected contact.
+ * @param {number} id - The ID of the currently selected contact.
+ */
 function openContactDetails(id) {
     let contact = getCurrentContactById(id);
     let contactDetail = docID('contact-detail');
@@ -77,9 +89,14 @@ function openContactDetails(id) {
         openDialog('contacts-details');
     }
     contactDetail.innerHTML = generateContactDetailHTML(contact);
-    
 }
 
+
+/**
+ * Generates the HTML for the contact details.
+ * @param {array} contact - Array with all information of the currently generated contact.
+ * @returns {string} - The HTML string representing the contact details.
+ */
 function generateContactDetailHTML(contact) {
     return `
     <div class="contacts-df-row-ai-center contacts-details-contact">
@@ -104,11 +121,15 @@ function generateContactDetailHTML(contact) {
             <p class="fw-700">Phone</p>
             <p>${contact['contact-tel']}</p>
         </div>
-    </div>
-    `
+    </div>`
 }
 
-
+/**
+ * Generates the contact entry in the contact list.
+ * @param {array} contact - Array with all information of the currently generated contact list entry.
+ * @param {number} id - The ID of the currently generated contact list entry.
+ * @returns {string} - The HTML string representing the contact list entry.
+ */
 function generateContactHTML(contact, id) {
     return `
     <div id="contact${id}" onclick="openContactDetails(${id})" class="contacts-contact-entry width-70 contacts-df-row-ai-center">
@@ -117,21 +138,26 @@ function generateContactHTML(contact, id) {
             <p class="contacts-name">${contact['contact-name']}</p>
             <p class="contacts-email">${contact['contact-email']}</p>
         </div>
-    </div>
-    `
+    </div>`
 }
 
-
+/**
+ * Generates the headlines for the contact list.
+ * @param {string} headlineLetter - First letter of all the contacts listed in the category.
+ * @returns - The HTML string representing the contact list headlines.
+ */
 function generateContactListHTML(headlineLetter) {
     return `
     <div class="width-70 contacts-headline-letter-padding">
         <div class="contacts-headline-letter">${headlineLetter}</div>   
     </div>
-    <div class="contacts-list-seperator width-80"></div>
-    `
+    <div class="contacts-list-seperator width-80"></div>`
 }
 
-
+/**
+ * Converts the data from backend to an array and also saves the unique key per entry in this array.
+ * @param {Object} contactData - An object containing contact data, where each key-value pair represents a contact.
+ */
 function saveContactDataInArray(contactData) {
     let tempArrContacts = [];
     arrContacts = [];
@@ -145,7 +171,9 @@ function saveContactDataInArray(contactData) {
     }
 }
 
-
+/**
+ * Saves new contacts to the backend storage.
+ */
 async function addContact() {
     let contactInputValues = setContactInputValues();
     await postContactData(contactInputValues.name.value, contactInputValues.email.value, contactInputValues.phone.value, contactInputValues.acronym.toUpperCase(), contactInputValues.id);
@@ -160,7 +188,10 @@ async function addContact() {
     reloadContacts();
 }
 
-
+/**
+ * Deletes currently selected contact.
+ * @param {number} id - The ID of the currently selected contact.
+ */
 async function deleteContact(id) {
     let contact = getCurrentContactById(id);
     let key = contact['unique-key'];
@@ -170,11 +201,18 @@ async function deleteContact(id) {
     reloadContacts();
 }
 
+/**
+ * Clears the contact detail HTML element.
+ */
 function emptyContactDetails() {
     let details = docID('contact-detail');
     details.innerHTML = '';
 }
 
+/**
+ * Saves edited contact data to backend storage.
+ * @param {number} id - The ID of the currently selected contact.
+ */
 async function editContact(id) {
     let contact = getCurrentContactById(id);
     let contactDetail = docID('contact-detail');
@@ -200,6 +238,11 @@ async function editContact(id) {
     contactDetail.innerHTML = generateContactDetailHTML(contact);
 }
 
+/**
+ * Opens dialog to edit the contact and show the currently saved contact data in the input
+ * fields.
+ * @param {number} id - The ID of the currently selected contact.
+ */
 function loadCurrentContact(id) {
     let contact = getCurrentContactById(id);
     let name = docID('contact-name-saved');
@@ -216,12 +259,20 @@ function loadCurrentContact(id) {
     initials.style = `background-color: ${contact['contact-color']}`
 }
 
-
+/**
+ * Determines the currently selected contact by finding the ID in the contact array.
+ * @param {number} id - The ID of the currently selected contact.
+ * @returns {array} - Contact data determined based on the ID.
+ */
 function getCurrentContactById(id) {
     let contact = arrContacts.find(entry => entry['contact-id'] === id);
     return contact;
 }
 
+/**
+ * Sets the input data from the add contact form.
+ * @returns {array} - Array of all input data.
+ */
 function setContactInputValues() {
     let name = docID('contact-name');
     let email = docID('contact-email');
@@ -238,6 +289,11 @@ function setContactInputValues() {
     }
 }
 
+/**
+ * Sets the first letter of the name and the first letter of the last name if a last name exists.
+ * @param {string} name - Complete name of the currently added contact.
+ * @returns {string} - Initials determined by the first letters of the name.
+ */
 function setInitials(name) {
     let names = name.value.split(' ');
     let firstLetterOfName = getFirstLetter(names[0]);
@@ -254,7 +310,10 @@ function setInitials(name) {
     return initials;
 }
 
-
+/**
+ * Gets random color of a pre-defined array.
+ * @returns {string} - Random color string.
+ */
 function getRandomColor() {
     const colors = [
       "#9327FF", "#6E52FF", "#FC71FF", "#FFBB2B", "#1FD7C1", "#FF7A00", "#FFC700"
@@ -263,7 +322,10 @@ function getRandomColor() {
     return colors[randomColorIndex];
 }
 
-
+/**
+ * Sets the ID based on the last entry of the contact data by incrementing the determined value by 1.
+ * @returns {number} - ID for newly added contact.
+ */
 function setID() {
     let id = 0;
     if (arrContacts.length == 0) {
@@ -277,14 +339,26 @@ function setID() {
     return id;
 }
 
-
+/**
+ * Empties input fields of add contact form. 
+ * @param {string} name - Emptied name input field.
+ * @param {string} email - Emptied email input field. 
+ * @param {string} phone  - Emptied phone input field.
+ */
 function emptyContactsInput(name, email, phone) {
     name.value = "";
     email.value = "";
     phone.value = "";
 }
 
-
+/**
+ * Posts newly added contact to backend storage.
+ * @param {string} name - Name of newly added contact.
+ * @param {string} email - Email of newly added contact.
+ * @param {string} phone - Phone number of newly added contact. 
+ * @param {string} acronym - Initials of newly added contact. 
+ * @param {number} id - ID of newly added contact.
+ */
 async function postContactData(name, email, phone, acronym, id) {
     await postData("/contacts", {
         "contact-name": name,
@@ -296,7 +370,10 @@ async function postContactData(name, email, phone, acronym, id) {
     })
 }
 
-
+/**
+ * Opens dialog popup.
+ * @param {string} dialog - Document ID of HTML element.
+ */
 function openDialog(dialog) {
     let dialogContainer = docID(dialog);
     dialogContainer.classList.remove('closed');
@@ -307,7 +384,10 @@ function openDialog(dialog) {
     }
 }
 
-
+/**
+ * Closes dialog popup.
+ * @param {string} dialog - Document ID of HTML element.
+ */
 function closeDialog(dialog) {
     let dialogContainer = docID(dialog);
     dialogContainer.classList.remove('opened');
