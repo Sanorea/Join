@@ -36,6 +36,9 @@ function addToSubtaskArray() {
 
 function renderList() {
     let subtaskList = docID('add-task-subtasks-list');
+    if (subtaskArray == undefined) {
+        subtaskArray =  [];
+    }
     subtaskList.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
         const element = subtaskArray[i];
