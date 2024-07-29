@@ -9,6 +9,7 @@ async function initBoard() {
     renderHeaderNav();
     await renderContactListaddTasks();
     updateHTML();
+    renderDateInput();
 }
 
 /**

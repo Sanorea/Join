@@ -206,6 +206,26 @@ async function rendercheckedContacts() {
 }
 
 /**
+ * Toggles the checked state of a checkbox when its associated div is clicked.
+ *
+ * This function targets a checkbox with a specified index and toggles its
+ * checked state. If the checkbox is currently unchecked, it will be checked,
+ * and vice versa. It then updates the list of assigned values by calling
+ * `readValueAssignedTo()`.
+ * 
+ * @param {number} i - The index of the checkbox to be toggled.
+ */
+function checkTheBoxByClickOnDiv(i) {
+    let name = document.getElementById(`checkboxes${i}`);
+    if (name.checked == false) {
+        name.checked = true; 
+    } else {
+        name.checked = false;
+    }
+    readValueAssignedTo();
+}
+
+/**
  * Collects values from checked checkboxes and updates the list of assigned contacts.
  *
  * This function performs the following tasks:
@@ -300,6 +320,7 @@ function closeClickOutside(e) {
         e.target === myDiv[j] ? inside = true : '';
     }
     e.target === docID('selectFieldOpenIMG') || e.target === myUL ? inside = true : '';
+    e.target === docID('selectFieldOpenText') || e.target === myUL ? inside = true : '';
     e.target === docID('selectfieldOpen') || e.target === myUL ? inside = true : '';
     !inside ? closeContactListTasks() : '';
 }

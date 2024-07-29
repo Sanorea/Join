@@ -1,5 +1,9 @@
 /* Grundlegende Anordnung - Ordnungscontainer */
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
 .add-task-bg {
     width: auto;
     display: flex;
@@ -195,7 +199,7 @@
     height: 40px;
     font-family: 'Inter';
     font-size: 20px;
-    padding-block: unset;
+    padding-block: 16px;
     padding-inline: unset;
     padding-left: 16px;
     box-sizing: border-box;
@@ -270,6 +274,12 @@
     border-radius: 10px;
     z-index: 900;
     font-size: 20px;
+    height: 210px;
+    overflow-y: scroll;
+}
+
+.cursor:hover {
+    cursor: pointer;
 }
 
 .dropDownList-contact-container {
@@ -482,11 +492,13 @@
     cursor: pointer;
 }
 
-
+.date-input {
+    width: 100%;
+}
 
 .list-acronyms {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 100%;
 }
 
@@ -611,6 +623,8 @@
     .add-task-basic-line {
         margin-left: 328px;
         margin-right: 96px;
+        position: absolute;  
+        bottom: 0px;      
     }
 
     .left-side-pop-up {

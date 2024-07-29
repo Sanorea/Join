@@ -18,8 +18,8 @@
             <p class="font-size-add-task">Assigned to</p>
             <div class="add-task-selection">
                 <div class="dropdown-add-task" id="dropdown">
-                    <div id="selectfieldOpen" class="addTask-selectfield"  onclick="openContactListTasks()">
-                        <p>Select contacts to assign</p>
+                    <div id="selectfieldOpen" class="addTask-selectfield cursor"  onclick="openContactListTasks()">
+                        <p id="selectFieldOpenText">Select contacts to assign</p>
                         <img id="selectFieldOpenIMG" src="./assets/img/arrow_down.svg" alt="">
                     </div>
                     <div id="selectfieldClose" class="addTask-selectfield d-none-add-task"
@@ -28,7 +28,7 @@
                             id="searchField" type="input">
                         <img src="./assets/img/arrow_up.svg" alt="">
                     </div>
-                    <ul class="dropdown-menu d-none-add-task" id="dropDownList">
+                    <ul class="dropdown-menu d-none-add-task cursor" id="dropDownList">
                         <!-- Checkboxes werden hier dynamisch hinzugefügt -->
                     </ul>
                     <div class="list-acronyms" id="checkedContacts">
@@ -45,7 +45,7 @@
                 <p class="font-size-add-task">Due date</p>
                 <p class="add-task-required-icon">*</p>
             </div>
-            <input id="add-task-input-date" class="add-task-input-fields" type="date" required>
+            <input onclick="emptyDate()" id="add-task-input-date" class="add-task-input-fields cursor" type="date" required></input>
             <div id="dateRequired" class="required-field d-none-add-task">This field is required</div>
         </div>
         <div class="required-field d-none-add-task">This field is required</div>
@@ -80,11 +80,11 @@
             <div class="required-field d-none-add-task">This field is required</div>
             <div class="add-task-selection">
                 <div class="task-selection-wrapper">
-                    <div id="categorySelectfieldOpen" class="addTask-selectfield" onclick="openCategoryList()">
+                    <div id="categorySelectfieldOpen" class="addTask-selectfield cursor" onclick="openCategoryList()">
                         Select task category
                         <img src="./assets/img/arrow_down.svg" alt="">
                     </div>
-                    <div id="categorySelectfieldClose" class="addTask-selectfield d-none-add-task"
+                    <div id="categorySelectfieldClose" class="addTask-selectfield cursor d-none-add-task"
                         onclick="closeCategoryList()">
                         Select task category
                         <img src="./assets/img/arrow_up.svg" alt="">

@@ -17,13 +17,13 @@
 function renderContactListHTML(color, acronym, name, i) {
     return /*html*/`   
         <table>
-            <div class ="dropDownList-contact-container">
+            <div id="dropDownListContainer${i}" class ="dropDownList-contact-container"  onclick = "checkTheBoxByClickOnDiv(${i})">
                 <div class ="dropDownList-contact-element">
                     <div class ="add-task-details-user-initials" style="background-color: ${color}">${acronym}</div>
                     <div class ="dropDownList-contact-element">${name}</div>
                 </div>
-                <div class ="dropDownList-contact-element" >
-                    <input onclick = "readValueAssignedTo()" id="checkboxes${i}" type="checkbox" value="${acronym};${color};${name}">
+                <div class ="dropDownList-contact-element">
+                    <input id="checkboxes${i}" type="checkbox" value="${acronym};${color};${name}"onclick = "checkTheBoxByClickOnDiv(${i})">
                 </div>
             </div>
         </table>

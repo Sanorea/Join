@@ -15,6 +15,7 @@ let uniqueKey = "";
  * @param {string} key - The unique identifier for the card to be edited.
  */
 async function editCard(key) {
+
     await showPopUp();
     resetStartPrios('low');
     resetStartPrios('medium');
