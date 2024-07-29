@@ -8,10 +8,14 @@ function taskInput() {
 function addToSubtaskArray() {
     let inputValue = docID('subtasks-input');
     let value = inputValue.value;
+    if (value == "") {
+        inputValue.value = '';
+    } else {
     subtaskArray.push(value);
     subtaskCheckedArray.push("false");
     renderList();
     inputValue.value = '';
+    }
 }
 
 function renderList() {
