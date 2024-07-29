@@ -300,5 +300,6 @@ function closeClickOutside(e) {
         e.target === myDiv[j] ? inside = true : '';
     }
     e.target === docID('selectFieldOpenIMG') || e.target === myUL ? inside = true : '';
+    e.target === docID('selectfieldOpen') || e.target === myUL ? inside = true : '';
     !inside ? closeContactListTasks() : '';
 }
