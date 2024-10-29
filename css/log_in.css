@@ -202,7 +202,7 @@ body {
     align-items: center;
     width: calc(90% - 42px);
     height: 50px;
-    background-image: url('./assets/img/mail.svg');
+    background-image: url('../assets/img/mail.svg');
     background-repeat: no-repeat;
     box-sizing: border-box;
     outline: none;
@@ -506,7 +506,7 @@ body {
 }
 
 #sign-up-name {
-    background-image: url('assets/img/person.svg');
+    background-image: url('./assets/img/person.svg');
     background-repeat: no-repeat;
     display: flex;
     justify-content: space-around;
@@ -562,7 +562,7 @@ body {
     align-items: center;
     width: calc(90% - 42px);
     height: 50px;
-    background-image: url('/assets/img/person.svg');
+    background-image: url('./assets/img/person.svg');
     background-repeat: no-repeat;
     box-sizing: border-box;
     outline: none;

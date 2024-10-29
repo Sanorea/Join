@@ -53,7 +53,7 @@ async function addTaskInit() {
 function setStartPrio() {
     docID(`priomedium`).classList.add(`medium-color`);
     docID(`mediumImg`).innerHTML = `
-    <img src="/assets/img/medium-white.svg" alt="prio">`;
+    <img src="./assets/img/medium-white.svg" alt="prio">`;
 }
 
 /**
@@ -97,7 +97,7 @@ function setPrio(prio, color) {
     resettPrioButtons('low');
     docID(`prio${prio}`).classList.add(color);
     docID(`${prio}Img`).innerHTML = `
-        <img src="/assets/img/${prio}-white.svg" alt="prio">`;
+        <img src="./assets/img/${prio}-white.svg" alt="prio">`;
 }
 
 /**
@@ -115,7 +115,7 @@ function setPrio(prio, color) {
 function resettPrioButtons(prio) {
     docID(`prio${prio}`).classList.remove(`${prio}-color`);
     docID(`${prio}Img`).innerHTML = `
-    <img src="/assets/img/${prio}.svg" alt="${prio}">`;
+    <img src="./assets/img/${prio}.svg" alt="${prio}">`;
 }
 
 /*Post Data on Firebase*/

@@ -73,7 +73,7 @@ function renderContactList() {
         }
         arrContactsInList = [];
     }
-    contactListTable.innerHTML += `<button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/person_add.svg" alt=""></button>`
+    contactListTable.innerHTML += `<button id="show-contact-btn" onclick="openDialog('add-contact')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="./assets/img/person_add.svg" alt=""></button>`
 }
 
 /**
@@ -106,8 +106,8 @@ function generateContactDetailHTML(contact) {
         <div>
         <p class="contacts-details-name">${contact['contact-name']}</p>
         <div id="edit-delete-desktop-container">
-            <div id="edit-btn-desktop" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
-            <div id="del-btn-desktop" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="/assets/img/delete.svg" alt="">Delete</div>
+            <div id="edit-btn-desktop" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="./assets/img/edit.svg" alt="">Edit</div>
+            <div id="del-btn-desktop" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="./assets/img/delete.svg" alt="">Delete</div>
         </div>
         </div>
     </div>

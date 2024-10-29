@@ -259,11 +259,11 @@
 }
 
 .to-do-card:hover img {
-    content: url(/assets/img/Group\ 7\ white.svg);
+    content: url(./assets/img/Group\ 7\ white.svg);
 }
 
 .done-card:hover img {
-    content: url(/assets/img/Group\ 7\ otherWithe.svg);
+    content: url(./assets/img/Group\ 7\ otherWithe.svg);
 }
 
 /* #body {

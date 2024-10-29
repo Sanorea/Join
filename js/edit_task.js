@@ -39,7 +39,7 @@ async function editCard(key) {
 function resetStartPrios(prio) {
     docID(`prio${prio}`).classList.remove(`${prio}-color`);
     docID(`${prio}Img`).innerHTML = `
-    <img src="/assets/img/${prio}.svg" alt="prio">`;
+    <img src="./assets/img/${prio}.svg" alt="prio">`;
 }
 
 /**
@@ -192,7 +192,7 @@ function showSubtasks(key) {
 function changeColorPrioButton(prio) {
     docID(`prio${prio}`).classList.add(`${prio}-color`);
     docID(`${prio}Img`).innerHTML = `
-    <img src="/assets/img/${prio}-white.svg" alt="prio">`;
+    <img src="./assets/img/${prio}-white.svg" alt="prio">`;
 }
 
 /**

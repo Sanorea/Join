@@ -10,7 +10,7 @@ function SingUpHTML() {
             <div class="log-in-header">
                 <span id="header" class="header">Sign up</span>
                 <div class="underline-header"></div>
-                <img onclick="backToLogIn()" class="header-arrow curser" src="/assets/img/arrow-left-line.svg" alt="">
+                <img onclick="backToLogIn()" class="header-arrow curser" src="./assets/img/arrow-left-line.svg" alt="">
             </div>
             <div id="log-in-input-container" class="sign-up-input-container input">
                     <div class="email-input-content">
@@ -21,11 +21,11 @@ function SingUpHTML() {
                     </div>
                     <div class="password-input-content">
                         <input class="password-input"  minlength="5" maxlength="15" required id="sign-up-password-1" onclick="iconFirstSwitch('icon'); this.onclick=null;" placeholder="Password" type="password" > 
-                        <img id="icon" onclick="showVisibility('sign-up-password-1','icon')" src="assets/img/lock.svg">
+                        <img id="icon" onclick="showVisibility('sign-up-password-1','icon')" src="./assets/img/lock.svg">
                     </div>
                     <div class="password-input-content">
                         <input class="password-input" minlength="5" maxlength="15" required id="sign-up-password-2" onkeydown="check()" onkeyup="check()" onclick="iconFirstSwitch('icon-2'); this.onclick=null;" placeholder="Confirm Password" type="password" >
-                        <img id="icon-2" onclick="showVisibility('sign-up-password-2','icon-2')" src="assets/img/lock.svg">
+                        <img id="icon-2" onclick="showVisibility('sign-up-password-2','icon-2')" src="./assets/img/lock.svg">
                         <p id="notTheSamePassword"></p>
                     </div>
             </div>
@@ -75,7 +75,7 @@ function LogInHTML() {
                         <input required class="password-input" minlength="5" maxlength="15" id="log-in-password-1"
                             onclick="iconFirstSwitch('icon-3'); this.onclick=null;" placeholder="Password"
                             type="password">
-                        <img id="icon-3" onclick="showVisibility('log-in-password-1','icon-3')" src="assets/img/lock.svg">
+                        <img id="icon-3" onclick="showVisibility('log-in-password-1','icon-3')" src="./assets/img/lock.svg">
                     </div>
                     <div class="log-in-remember-me">
                         <input class="form-check-input input-remember curser" type="checkbox" id="flexCheckDefault">

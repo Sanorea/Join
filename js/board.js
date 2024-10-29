@@ -148,13 +148,13 @@ function findoutPrio(element) {
 
     switch (prio) {
         case 'urgent':
-            prioVal = `<div><img src="assets/img/prio high.svg" alt=""></div>`;
+            prioVal = `<div><img src="./assets/img/prio high.svg" alt=""></div>`;
             break;
         case 'medium':
-            prioVal = `<div><img src="assets/img/Capa 2.svg" alt=""></div>`;
+            prioVal = `<div><img src="./assets/img/Capa 2.svg" alt=""></div>`;
             break;
         case 'low':
-            prioVal = `<div><img src="assets/img/Prio low.svg" alt=""></img></div>`;
+            prioVal = `<div><img src="./assets/img/Prio low.svg" alt=""></img></div>`;
             break;
 
         default:

@@ -84,10 +84,10 @@ function showVisibility(id, icon) {
     let x = document.getElementById(`${id}`);
     if (x.type === "password") {
         x.type = "text";
-        document.getElementById(`${icon}`).src = `assets/img/show_password.svg`;
+        document.getElementById(`${icon}`).src = `./assets/img/show_password.svg`;
     } else {
         x.type = "password";
-        document.getElementById(`${icon}`).src = `assets/img/hide_password.svg`;
+        document.getElementById(`${icon}`).src = `./assets/img/hide_password.svg`;
     }
 }
 
@@ -98,7 +98,7 @@ function showVisibility(id, icon) {
  */
 
 function iconFirstSwitch(icon) {
-    docID(`${icon}`).src = `assets/img/hide_password.svg`;
+    docID(`${icon}`).src = `./assets/img/hide_password.svg`;
 }
 
 /**

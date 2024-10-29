@@ -156,14 +156,14 @@ function renderSummaryHTML() {
           <div class="cards-body">
               <div class="first-row">
                   <div class="to-do-card card-hover">
-                      <div class=""><img class="to-do-card-img" src="/assets/img/Frame 59.svg" alt=""></div>
+                      <div class=""><img class="to-do-card-img" src="./assets/img/Frame 59.svg" alt=""></div>
                       <div class="to-do-card-counter">
                           <div class="counter"><span class="black">${toDoCounter}</span></div>
                           <div class="card-info"><span class="focus-color">To-do</span></div>
                       </div>
                   </div>
                   <div class="done-card card-hover">
-                      <div class=""><img class="to-do-card-img" src="/assets/img/Group 7.svg" alt=""></div>
+                      <div class=""><img class="to-do-card-img" src="./assets/img/Group 7.svg" alt=""></div>
                       <div class="to-do-card-counter">
                           <div class="counter"><span class="black">${doneCounter}</span></div>
                           <div class="card-info"><span class="focus-color">Done</span></div>
@@ -172,7 +172,7 @@ function renderSummaryHTML() {
               </div>
               <div class="second-row card-hover">
                   <div class="urgent-left">
-                      <div class=""><img class="to-do-card-img" src="assets/img/Group 7 logo.svg" alt=""></div>
+                      <div class=""><img class="to-do-card-img" src="./assets/img/Group 7 logo.svg" alt=""></div>
                       <div class="urgent-counter">
                           <div class="counter"><span class="black">${urgentCounter}</span></div>
                           <div class="card-info"><span class="focus-color">Urgent</span></div>

@@ -396,15 +396,15 @@ h1 {
 }
 
 .icon-contact-person {
-    background: url("/assets/img/contact_person.svg") no-repeat 90%;
+    background: url("./assets/img/contact_person.svg") no-repeat 90%;
 }
 
 .icon-contact-phone {
-    background: url("/assets/img/contact_phone.svg") no-repeat 90%;
+    background: url("./assets/img/contact_phone.svg") no-repeat 90%;
 }
 
 .icon-contact-mail {
-    background: url("/assets/img/contact_mail.svg") no-repeat 90%;
+    background: url("./assets/img/contact_mail.svg") no-repeat 90%;
 }
 
 .contacts-input {

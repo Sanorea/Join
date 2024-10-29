@@ -1,7 +1,7 @@
 function taskInput() {
     let addImg = docID('switch_img');
     let checkImg = docID('check-visibility');
-    addImg.src = "assets/img/close.svg";
+    addImg.src = "./assets/img/close.svg";
     checkImg.classList.remove('d-none');
 }
 
@@ -86,8 +86,8 @@ function editSubtask(i) {
     let newIdContent = docID(`newID_${i}`);
     newIdContent.value = subtask;
     edit.classList.add('aktiveInput');
-    docID('newInputSwitchImg').innerHTML = `<img class="hover-img" onclick="deletTask(${i})" src="/assets/img/delete_icon.svg" alt=""></img>`;
-    docID('otherInputSitchImg').innerHTML = `<img class="hover-img" onclick="finishEditInput(${i})" src="assets/img/check-task.svg" alt=""></img>`;
+    docID('newInputSwitchImg').innerHTML = `<img class="hover-img" onclick="deletTask(${i})" src="./assets/img/delete_icon.svg" alt=""></img>`;
+    docID('otherInputSitchImg').innerHTML = `<img class="hover-img" onclick="finishEditInput(${i})" src="./assets/img/check-task.svg" alt=""></img>`;
 }
 
 /**

@@ -217,7 +217,7 @@ header {
 }
 
 .btn-cancel::after {
-    content: url('/assets/img/close.svg');
+    content: url('./assets/img/close.svg');
 }
 
 .btn-cancel:hover:not(:focus) {
@@ -236,7 +236,7 @@ header {
 }
 
 .btn-create::after {
-    content: url('/assets/img/check.svg');
+    content: url('./assets/img/check.svg');
 }
 
 .btn-create:hover:not(:focus) {
@@ -254,7 +254,7 @@ header {
 }
 
 .btn-add-task::after {
-    content: url('/assets/img/add.svg');
+    content: url('./assets/img/add.svg');
 }
 
 
@@ -270,7 +270,7 @@ header {
 }
 
 .btn-add-contact::after {
-    content: url(/assets/img/person_add.svg);
+    content: url(./assets/img/person_add.svg);
 }
 
 /*Dropdown menu*/

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/Logo for Favicon construction.svg">
+    <link rel="icon" type="image/x-icon" href="./assets/img/Logo for Favicon construction.svg">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/css/contacts.css">
+    <link rel="stylesheet" href="./css/contacts.css">
     <script src="script.js"></script>
     <script src="js/contacts.js"></script>
     <script src="js/global_render_HTML.js"></script>
@@ -24,7 +24,7 @@
         </section> 
 
         <section id="contacts-details" class="bg contacts-details contacts-disp-flex-ai-center-fd-col">
-            <img class="close-arrow" onclick="closeDialog('contacts-details')"src="/assets/img/arrow-left-line.svg" alt="">
+            <img class="close-arrow" onclick="closeDialog('contacts-details')"src="./assets/img/arrow-left-line.svg" alt="">
             <div id="contact-details-header" class="width-80 contacts-disp-flex-ai-start-fd-col gap-16 mb-40">
                 <h1>Contacts</h1>
                 <div class="contacts-details-seperator-desktop"></div>
@@ -33,11 +33,11 @@
             </div>
             <div id="contact-detail" class="width-80 contacts-disp-flex-ai-start-fd-col gap-30">
             </div>    
-            <button id="open-delete-edit-menu-btn" onclick="openDialog('delete-edit-menu')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="/assets/img/more_vert.svg" alt=""></button>
+            <button id="open-delete-edit-menu-btn" onclick="openDialog('delete-edit-menu')" class="btn-primary btn-wo-icon btn-circle disp-flex-center-center"><img src="./assets/img/more_vert.svg" alt=""></button>
             <div id="delete-edit" class="delete-edit d-none" onclick="closeDialog('delete-edit-menu')"></div>
                 <div id="delete-edit-menu" class="bg del-edit-menu">
-                    <div id="edit-btn" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="/assets/img/edit.svg" alt="">Edit</div>
-                    <div id="del-btn" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="/assets/img/delete.svg" alt="">Delete</div>
+                    <div id="edit-btn" onclick="loadCurrentContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="edit-img" src="./assets/img/edit.svg" alt="">Edit</div>
+                    <div id="del-btn" onclick="deleteContact(currentOpenedContact)" class="del-edit-menu-btn"><img id="delete-img" src="./assets/img/delete.svg" alt="">Delete</div>
                 </div>
         </section>
     </div>
@@ -48,10 +48,10 @@
 
     <section id="add-contact" class="bg">
         <div class="addAndEditDialog">
-            <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
+            <div onclick="closeDialog('add-contact')" class="contacts-btn-close"><img class="" src="./assets/img/close.svg" alt=""></div>
                 <div class="contacts-top-half contacts-disp-flex-center-center-col">
                     <div class="contacts-text-format">
-                        <img class="logo-size" src="/assets/img/logo.svg" alt="logo">
+                        <img class="logo-size" src="./assets/img/logo.svg" alt="logo">
                         <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
                             <h1 class="color-white fw-700">Add contact</h1>
                             <p class="color-white fw-400">Tasks are better with a team!</p>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-            <div class="contacts-management-user-initials disp-flex-center-center"><img src="/assets/img/person_white.svg" alt=""></div>
+            <div class="contacts-management-user-initials disp-flex-center-center"><img src="./assets/img/person_white.svg" alt=""></div>
             <div class="contacts-form contacts-bottom-half contacts-disp-flex-center-center-col gap-22">
                 <form onsubmit="addContact(); return false;" class="contacts-form-inputs contacts-disp-flex-center-center-col gap-16 mt-60 width-100" action="">
                     <input required id="contact-name" class="icon-contact-person contacts-input width-80" placeholder="Name" type="text">
@@ -76,10 +76,10 @@
 
     <section id="edit-contact" class="bg">
         <div class="addAndEditDialog">
-            <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="/assets/img/close.svg" alt=""></div>
+            <div onclick="closeDialog('edit-contact')" class="contacts-btn-close"><img class="" src="./assets/img/close.svg" alt=""></div>
             <div class="contacts-top-half contacts-disp-flex-center-center-col">
                 <div class="contacts-text-format">
-                    <img class="logo-size" src="/assets/img/logo.svg" alt="logo">
+                    <img class="logo-size" src="./assets/img/logo.svg" alt="logo">
                     <div class="width-80 contacts-disp-flex-ai-start-fd-col gap-16">
                         <h1 class="color-white fw-700">Edit contact</h1>
                         <div class="contacts-seperator"></div>

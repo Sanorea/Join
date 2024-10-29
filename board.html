@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <script src="js/board.js"></script>
-    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="js/board-renderHTML.js"></script>
     <script src="js/board-renderFunction.js"></script>
-    <link rel="icon" type="image/x-icon" href="/assets/img/Logo for Favicon construction.svg">
+    <link rel="icon" type="image/x-icon" href="./assets/img/Logo for Favicon construction.svg">
     <script src="js/global_render_HTML.js"></script>
     <script src="js/add_task_render_HTML.js"></script>
     <script src="js/add_task.js"></script>
@@ -24,7 +24,7 @@
     <script src="js/add_task_category.js"></script>
     <script src="js/add_task_requiredField.js"></script>
     <script src="js/summary.js"></script>
-    <link rel="stylesheet" href="css/add_task.css">
+    <link rel="stylesheet" href="./css/add_task.css">
 </head>
 
 <body onload="initBoard()">
@@ -33,20 +33,20 @@
         <div class="board-top">
             <div class="left-side">
                 <div class="board-content"><span class="board-title">Board</span></div>
-                <img onclick="openNewTaskPopUp('toDo')" class="board-add-task cursor" src="assets/img/add-img.svg"
+                <img onclick="openNewTaskPopUp('toDo')" class="board-add-task cursor" src="./assets/img/add-img.svg"
                     alt="">
             </div>
             <div class="board-input-content">
                 <input id="searchbar" class="board-input" onkeyup="search()" placeholder="Find Task" type="text">
                 <button class="board-add-btn cursor" onclick="openNewTaskPopUp('toDo')">Add Task <img
-                        class="board-add-btn-img" src="assets/img/add-white.svg" alt=""></button>
+                        class="board-add-btn-img" src="./assets/img/add-white.svg" alt=""></button>
             </div>
         </div>
         <div class="task-body">
             <div class="board-column-content">
                 <div class="board-body-todo">
                     <div class="body-title-todo">To do</div>
-                    <img onclick="openNewTaskPopUp('toDo')" class="cursor" src="assets/img/plus button mobile.svg#"
+                    <img onclick="openNewTaskPopUp('toDo')" class="cursor" src="./assets/img/plus button mobile.svg#"
                         alt="">
                 </div>
                 <div id="toDo" class="drag-area" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"
@@ -58,7 +58,7 @@
                 <div class="board-body-todo">
                     <div class="body-title-progress"> In progress</div>
                     <img class="cursor" onclick="openNewTaskPopUp('inProgress')"
-                        src="assets/img/plus button mobile.svg#" alt="">
+                        src="./assets/img/plus button mobile.svg#" alt="">
                 </div>
                 <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)"
                     ondragstart="highlight('toDo', 'awaitFeedback', 'done')" ondragend="removeHighlight()">
@@ -69,7 +69,7 @@
                 <div class="board-body-todo">
                     <div class="body-title-feedback">Await feedback</div>
                     <img class="cursor" onclick="openNewTaskPopUp('awaitFeedback')"
-                        src="assets/img/plus button mobile.svg#" alt="">
+                        src="./assets/img/plus button mobile.svg#" alt="">
                 </div>
                 <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)"
                     ondragstart="highlight('inProgress', 'toDo', 'done')" ondragend="removeHighlight()">
@@ -94,7 +94,7 @@
     <div class="card-popUp-background-edit d-none-add-task" id="cardPopUpBGEdit">
         <div class="card-popUp-background-edit-container" id="cardPopUpBGEditContainer">
             <div onclick="closeEditCard()" class="edit-pop-up-closing-tag"><img class="edit-pop-up-closing-tag-img"
-                    src="/assets/img/close.svg" alt=""></div>
+                    src="./assets/img/close.svg" alt=""></div>
             <div w3-include-html="templates/add_task_template.html"></div>
             <div class="edit-task-ok-button">
                 <div class="button-container">

@@ -150,7 +150,7 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
       <div id="popUp-animation" class="card-popUp">
             <div class="card-popUp-top">
                 <div class="categorie">${taskCategoryResult}</div>
-                <div class="back-arrow"><img class="cursor" onclick="timeOut()" src="assets/img/close.svg" alt=""></div>
+                <div class="back-arrow"><img class="cursor" onclick="timeOut()" src="./assets/img/close.svg" alt=""></div>
             </div>
             <div class="card-popUp-headline">${element['title']}</div>
             <div class="card-popUp-subline">${element['description']}</div>
@@ -171,9 +171,9 @@ function renderPopupCardHTML(element, taskCategoryResult, contactCardArrayResult
                 <div class="subtask-list">${subtaskListArray}</div>
             </div>
             <div class="edit-and-delete">
-                <div onclick="deleteCard('${element['unique-key']}')" class="delete cursor"><img src="assets/img/delete.svg" alt=""><span>Delete</span></div>
+                <div onclick="deleteCard('${element['unique-key']}')" class="delete cursor"><img src="./assets/img/delete.svg" alt=""><span>Delete</span></div>
                 <div class="line"></div>
-                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img class="edit" src="assets/img/edit.svg" alt=""><span>Edit</span></div>
+                <div onclick="editCard('${element['unique-key']}')" class="edit cursor"><img class="edit" src="./assets/img/edit.svg" alt=""><span>Edit</span></div>
             </div>
         </div>    
     `;
@@ -199,7 +199,7 @@ function renderCardHTML(element, subTaskResult, prioResult, taskCategory, Contac
     return /*HTML*/ `
     <div class="card-with-arrows">
         <div onclick="switchCategory('${element['id']}', 'up')" class="move-arrow move-arrow-up">
-            <img class="move-menu-icon" src="/assets/img/arrow_drop_down_up.svg" alt="">
+            <img class="move-menu-icon" src="./assets/img/arrow_drop_down_up.svg" alt="">
         </div>
         <div onclick="openCard('${uniqueKey}')" draggable="true" ondragstart="startDragging(${element['id']})" class="card-content cursor">
             <div>${taskCategory}</div>
@@ -214,7 +214,7 @@ function renderCardHTML(element, subTaskResult, prioResult, taskCategory, Contac
             </div>
         </div>
         <div onclick="switchCategory('${element['id']}', 'down')" class="move-arrow move-arrow-down">
-            <img class="move-menu-icon" src="/assets/img/arrow_drop_down_down.svg" alt="">
+            <img class="move-menu-icon" src="./assets/img/arrow_drop_down_down.svg" alt="">
         </div>
     </div>
     `;
